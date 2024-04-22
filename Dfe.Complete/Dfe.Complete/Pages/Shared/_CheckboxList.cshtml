@@ -1,0 +1,115 @@
+﻿@model Dfe.ManageFreeSchoolProjects.TagHelpers.CheckboxListViewModel
+@{
+	var showError = !string.IsNullOrWhiteSpace(Model.ErrorMessage);
+
+	var testIds = Model.TestIds.Any() ? Model.TestIds : Model.CheckboxValues;
+}
+
+@functions {
+	string Id(string id, int position)
+	{
+		return $"{id}-{position + 1}";
+	}
+
+	void RenderHint(string hint)
+	{
+		if (string.IsNullOrEmpty(hint))
+		{
+			return;
+		}
+
+		var splitHint = hint.Split(Environment.NewLine);
+
+		if (splitHint.Length == 1)
+		{
+			<div class="govuk-hint govuk-radios__hint">
+				@hint
+			</div>
+		}
+		else
+		{
+			<div class="govuk-hint govuk-radios__hint govuk-!-margin-bottom-6">
+				@for (var i = 0; i < splitHint.Length; i++)
+				{
+					@splitHint[i]
+					@if (i < splitHint.Length - 1)
+					{
+						<br />
+					}
+				}
+			</div>
+		}
+	}
+}
+
+<div class="govuk-form-group @(showError ? "govuk-form-group--error" : "")">
+	<fieldset class="govuk-fieldset" id=@Model.Id>
+		@if (!string.IsNullOrWhiteSpace(Model.Label))
+		{
+			if (Model.MediumHeadingLabel)
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+					@Model.Label
+				</legend>
+			}
+			else if (Model.HeadingLabel)
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+					<h1 class="govuk-fieldset__heading">
+						@Model.Label
+					</h1>
+				</legend>
+			}
+			else if (Model.XLHeadingLabel)
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-!-margin-bottom-6">
+					<h1 class="govuk-fieldset__heading">
+						@Model.Label
+					</h1>
+				</legend>
+			}
+			else
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+					@Model.Label
+				</legend>
+			}
+		}
+
+		@if (!string.IsNullOrWhiteSpace(Model.LeadingParagraph))
+		{
+			<p class="govuk-body">@Model.LeadingParagraph</p>
+		}
+
+		@if (showError)
+		{
+			<span id="@Model.Id-error" class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span> @Model.ErrorMessage
+			</span>
+		}
+		<div class="govuk-checkboxes">
+			@for (var i = 0; i < Model.CheckboxValues.Length; i++)
+			{
+				<div class="govuk-checkboxes__item">
+					<input class="govuk-checkboxes__input" id="@Id(Model.Id, i)" name="@Model.Name" type="checkbox" value="@Model.CheckboxValues[i]" checked="@(Model.SelectedValues.Any(value => value.Equals(Model.CheckboxValues[i], StringComparison.OrdinalIgnoreCase)))" data-testid="@testIds.ElementAtOrDefault(i)">
+
+					<label class="govuk-label govuk-checkboxes__label" id="@Id(Model.Id, i)-label" for="@Id(Model.Id, i)">
+						@if (Model.HtmlLabels.Any())
+						{
+							@Html.Raw(@Model.HtmlLabels[i])
+						}
+						else
+						{
+							@Model.CheckboxLabels[i]
+						}
+
+					</label>
+					@if (Model.Hints.ElementAtOrDefault(i) != null)
+					{
+						RenderHint(Model.Hints[i]);
+					}
+				</div>
+			}
+		</div>
+	</fieldset>
+</div>

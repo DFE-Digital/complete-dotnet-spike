@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "ManageFreeSchoolProjects.UserContext": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:65515;http://localhost:65516"
+    }
+  }
+}

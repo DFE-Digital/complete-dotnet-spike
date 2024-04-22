@@ -1,0 +1,46 @@
+@page "/projects/{projectId}/tasks/kickoffmeeting"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Tasks
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.KickOffMeeting
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.KickOffMeeting.ViewKickOffMeetingTask
+@{
+    ViewData["Title"] = $"Kick-off Meeting - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditKickOffMeeting, Model.ProjectId);
+    var kickoffmeeting = Model.Project.KickOffMeeting;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Kick-off meeting
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Funding arrangement details agreed between local authority and sponsor" asp-for="@kickoffmeeting.FundingArrangementAgreed" href="@editlink"/>
+            <govuk-summary-item label="Comments" asp-for="@kickoffmeeting.FundingArrangementDetailsAgreed" href="@editlink"/>
+            <govuk-summary-item label="Realistic year of opening" asp-for="@kickoffmeeting.RealisticYearOfOpening" href="@editlink"/>
+            <govuk-summary-item label="Provisional opening date agreed with trust" asp-for="@kickoffmeeting.ProvisionalOpeningDate" href="@editlink"/>
+            <govuk-summary-item label="SharePoint link" asp-for="@kickoffmeeting.SharepointLink" href="@editlink" render-link="true" />
+        </govuk-summary-list>
+
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

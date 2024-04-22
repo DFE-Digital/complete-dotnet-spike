@@ -1,0 +1,131 @@
+@page "/accessibility-statement"
+
+@inject Microsoft.Extensions.Configuration.IConfiguration _configuration
+
+@{
+	ViewBag.Title = "Accessibility statement";
+	Layout = "_Layout";
+}
+
+@section BeforeMain {
+	<div role="navigation" class="govuk-width-container">
+		<a href="/" class="govuk-back-link">Back to projects</a>
+	</div>
+}
+
+<div class="govuk-grid-row">
+	<div class="govuk-grid-column-two-thirds">
+		<h1 class="govuk-heading-xl">
+			Accessibility statement
+		</h1>
+
+		<p class="govuk-body-m">
+			This accessibility statement applies to Manage free school projects.
+		</p>
+		<p class="govuk-body-m">
+			This website is run by the Department for Education. We want as many people as possible to be able to use this website. For example, that means you should be able to:
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>change colours, contrast levels and fonts</li>
+			<li>zoom in up to 300% without the text spilling off the screen</li>
+			<li>navigate most of the service using just a keyboard</li>
+			<li>navigate most of the service using speech recognition software</li>
+			<li>listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+		</ul>
+		<p class="govuk-body-m">
+			We've also made the website text as simple as possible to understand.
+		</p>
+		<p class="govuk-body-m">
+			<a class="govuk-link" href="https://mcmw.abilitynet.org.uk/">AbilityNet</a> has advice on making your device easier to use if you have a disability.
+		</p>
+
+		<h2 class="govuk-heading-l">Feedback and contact information </h2>
+		<p class="govuk-body">
+			Email <a class="govuk-link" href="mailto:regionalservices.rg@education.gov.uk">regionalservices.rg@education.gov.uk</a> if you need information on this website in a different format like:
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>accessible PDF</li>
+			<li>large print</li>
+			<li>easy read</li>
+			<li>audio recording</li>
+			<li>braille</li>
+		</ul>
+		<p class="govuk-body">
+			We'll consider your request and get back to you in 5 working days.
+		</p>
+
+		<h2 class="govuk-heading-l">Reporting accessibility problems with this website</h2>
+		<p class="govuk-body">
+			We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, email us at: <a class="govuk-link" href="mailto:regionalservices.rg@education.gov.uk">regionalservices.rg@education.gov.uk</a>.
+		</p>
+
+		<h2 class="govuk-heading-l">Enforcement procedure</h2>
+		<p class="govuk-body">
+			The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’).
+		</p>
+		<p class="govuk-body">
+			If you’re not happy with how we respond to your complaint,
+			<a class="govuk-link" target="_blank" rel="noopener" href="https://www.equalityadvisoryservice.com/">contact the Equality Advisory and Support Service (EASS) (opens in new tab)</a>.
+		</p>
+
+		<h2 class="govuk-heading-l">Technical information about this website's accessibility</h2>
+		<p class="govuk-body">
+			The Department for Education is committed to making its websites accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.
+		</p>
+
+		<h2 class="govuk-heading-l">Compliance status</h2>
+		<p class="govuk-body">
+			This website is partially compliant with the Web Content Accessibility Guidelines (WCAG) version 2.2 AA standard, due to the following non-compliances and exemptions.
+		</p>
+
+		<h3 class="govuk-heading-m">Non-accessible content </h3>
+		<p class="govuk-body">
+			The content is non-accessible for the following reasons:
+		</p>
+		<h4 class="govuk-heading-s">
+		Non-compliance with the accessibility regulations
+		</h4>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				links to projects on the your / all projects page have the same link text. This fails WCAG 2.2 AA success criterion <a class="govuk-link" href="https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context.html" target="_blank">4.1.2 - Link Purpose (In Context)</a>
+			</li>
+			<li>
+				when changing the age range of a school, it is not clear what information to put in the 2 fields. This fails WCAG 2.2 AA success criterion <a class="govuk-link" href="https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels.html" target="_blank"> 2.4.6 - Headings and Labels</a>
+			</li>
+			<li>
+				when a problem is found, it is not clear how many there are or where on the page they are. This fails WCAG 2.2 AA success criterion <a class="govuk-link" href="https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html" target="_blank">3.3.1 - Error Identification</a>
+			</li>
+		</ul>
+
+		<h4 class="govuk-heading-s">
+			The content is not within the scope of this accessibility statement
+		</h4>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>
+				data that is populated into our website from other websites. For example, <a class="govuk-link" href="https://members.parliament.uk/findyourmp">Find your MP</a>
+			</li>
+			<li>
+				content hosted on other websites, like <a class="govuk-link" href="https://members.parliament.uk/findyourmp">Find your MP</a>
+			</li>
+		</ul>
+
+
+		<h2 class="govuk-heading-l">What we’re doing to improve accessibility</h2>
+		<p class="govuk-body">
+			We are looking into the non-compliances mentioned previously and aim to resolve these in a future iteration of the website.
+		</p>
+
+		<h2 class="govuk-heading-l">Preparation of this accessibility statement</h2>
+		<p class="govuk-body">
+			This statement was prepared on 21 December 2023. It was last reviewed on 21 December 2023.
+		</p>
+		<p class="govuk-body">
+			This website was last tested on 15 December 2023. The test was carried out by a Senior Accessibility Advisor at the Department for Education using:
+		</p>
+		<ul class="govuk-list govuk-list--bullet">
+			<li>Dragon NaturallySpeaking (V15.71)</li>
+			<li>JAWS (2023)</li>
+			<li>Zoomtext (2023)</li>
+		</ul>
+	</div>
+</div>

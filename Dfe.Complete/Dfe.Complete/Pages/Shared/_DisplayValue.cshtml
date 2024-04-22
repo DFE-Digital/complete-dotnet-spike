@@ -1,0 +1,19 @@
+﻿@model DisplayValueViewModel
+
+@{
+    RenderValue(Model.Value);
+}
+
+@functions {
+    public void RenderValue(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            <span class="empty">Empty</span>
+        }
+        else
+        {
+            @value
+        }
+    }
+}

@@ -1,0 +1,55 @@
+@page "/projects/{projectId}/tasks/modelfundingagreement"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.ModelFundingAgreement.ViewModelFundingAgreementTask
+@{
+    ViewData["Title"] = $"Model funding agreement - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditModelFundingAgreement, Model.ProjectId);
+    var modelfundingagreement = Model.Project.ModelFundingAgreement;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Model funding agreement
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Tailored a model funding agreement (FA)" asp-for="@modelfundingagreement.TailoredAModelFundingAgreement" href="@editlink"/>
+            <govuk-summary-item label="Shared FA with trust" asp-for="@modelfundingagreement.SharedFAWithTheTrust" href="@editlink"/>
+            <govuk-summary-item label="Trust agrees with model FA" asp-for="@modelfundingagreement.TrustAgreesWithModelFA" href="@editlink"/>
+            @if (modelfundingagreement.TrustAgreesWithModelFA == YesNo.Yes)
+            {
+                <govuk-summary-item label="Date Agreed" asp-for="@modelfundingagreement.DateTrustAgreesWithModelFA" href="@editlink"/>
+            }
+            <govuk-summary-item label="Comments" asp-for="@modelfundingagreement.Comments" href="@editlink"/>
+            <govuk-summary-item label="Drafted FA health check" asp-for="@modelfundingagreement.DraftedFAHealthCheck" href="@editlink"/>
+            <govuk-summary-item label="Saved FA documents in Workplaces folder" asp-for="@modelfundingagreement.SavedFADocumentsInWorkplacesFolder " href="@editlink"/>
+        </govuk-summary-list>
+        <form method="post">
+            <div class="govuk-form-group">
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input" asp-for="MarkAsCompleted" type="checkbox" id="mark-as-completed" data-testid="mark-as-completed">
+                        <label class="govuk-label govuk-checkboxes__label" for="mark-as-completed">
+                            Mark this section as complete, you can still make changes later
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

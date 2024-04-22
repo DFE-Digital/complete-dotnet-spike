@@ -1,0 +1,19 @@
+﻿@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Risk
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Risk;
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model RiskRatingLabelViewModel
+
+@{
+    var riskRatingLabels = RiskRatingLabelBuilder.Build();
+
+    var match = riskRatingLabels.FirstOrDefault(x => x.RiskRating == Model.RiskRating);
+}
+
+@if (match != null)
+{
+    @Html.Raw(match.Label)
+}
+else
+{
+    <span class="empty">Empty</span>
+}

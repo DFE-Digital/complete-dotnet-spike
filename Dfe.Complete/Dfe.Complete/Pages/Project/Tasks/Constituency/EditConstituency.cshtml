@@ -1,0 +1,75 @@
+﻿@page "/projects/{projectId}/tasks/constituency/edit/"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.Constituency.EditConstituencyModel
+@{
+    ViewData["Title"] = $"Confirm Constituency - {Model.CurrentFreeSchoolName}";
+    var backlink = string.Format(RouteConstants.SearchConstituency, Model.ProjectId);
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+@if(Model.Labels == null || Model.Labels.Length == 0)
+{
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-xl" data-testid="title">
+                <span class="govuk-caption-l" data-testid="school-name">@Model.CurrentFreeSchoolName</span>
+                0 results for @Model.SearchTerm
+            </h1>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <p class="govuk-body">
+                        Improve your results by:
+                    </p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>checking you have spelt the constituency name correctly</li>
+                        <li>checking you have entered the postcode in the right format. For example, W1A 1AA</li>
+                        <li>searching with a different name or postcode</li>
+                    </ul>
+                    <p class="govuk-body">
+                        <a href=@backlink class="govuk-link" data-testid="search-again">Search again for a constituency</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <form method="post">
+                        <div class="govuk-form-group">
+                            <div class="govuk-form-group">
+                                <fieldset class="govuk-fieldset">
+                                    <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl govuk-!-margin-bottom-9">
+                                        <h1 class="govuk-fieldset__heading" data-testid="title">
+                                            <span class="govuk-caption-l" data-testid="school-name">@Model.CurrentFreeSchoolName</span>Confirm the constituency
+                                        </h1>
+                                    </legend>
+                                    <govuk-radios-input asp-for="@Model.Constituency"
+                                                        name="constituency"
+                                                        data-testid="constituency"
+                                                        labels="@Model.Labels"
+                                                        values="@Model.Values"
+                                                        hints="@Model.Hints"/>
+                                </fieldset>
+                            </div>
+                            <br><br>
+                            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                                Continue
+                            </button>
+                        </div>
+                        <input name="constituencyResults" type="hidden" asp-for="ConstituencyResults" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}

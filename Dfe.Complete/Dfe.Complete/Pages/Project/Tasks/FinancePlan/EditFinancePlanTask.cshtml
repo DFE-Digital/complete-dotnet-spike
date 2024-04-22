@@ -1,0 +1,56 @@
+﻿@page "/projects/{projectId}/tasks/finance-plan/edit"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.FinancePlan.EditFinancePlanTaskModel
+@{
+    ViewData["Title"] = $"Edit finance plan - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewFinancePlanTask, Model.ProjectId);
+
+    var yesNoNotApplicableLabels  = new[] { "Yes", "No", "Not applicable" };
+    var yesNoNotApplicableValues = new[] { YesNoNotApplicable.Yes.ToString(), YesNoNotApplicable.No.ToString(), YesNoNotApplicable.NotApplicable.ToString() };
+    var localAuthorityAgreedTestIds = yesNoNotApplicableValues.Select(v => $"local-authority-agreed-{v}").ToArray();
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit finance plan
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input id="finance-plan-agreed" name="finance-plan-agreed" asp-for="@Model.FinancePlanAgreed" heading-label="Finance plan agreed" label="Done" />
+            <govuk-date-input id="date-agreed" name="date-agreed" asp-for="@Model.DateAgreed" label="Date agreed" hint="For example, 27 3 2021" />
+            <govuk-checkbox-input id="plan-saved-in-workplaces-folder" name="plan-saved-in-workplaces-folder" asp-for="@Model.PlanSavedInWorkplacesFolder" heading-label="Plan saved in workplaces folder" label="Done" />
+            <govuk-radios-input id="local-authority-agreed-to-pupil-numbers"
+                                medium-heading-label="true"
+                                name="local-authority-agreed-to-pupil-numbers"
+                                asp-for="@Model.LocalAuthorityAgreedToPupilNumbers"
+                                label="Local authority agreed to underwrite pupil numbers"
+                                values="@yesNoNotApplicableValues"
+                                labels="@yesNoNotApplicableLabels"
+                                test-ids="@localAuthorityAgreedTestIds"/>
+            <govuk-textarea-input id="comments" name="comments" bold-label="true" label="Comments" rows="5" asp-for="@Model.Comments" add-margin="true" test-id="comments" />
+            <govuk-conditional-radio id="trust-opt-into-rpa" label="Trust will opt-in to RPA (risk protection arrangement)" asp-for="@Model.TrustOptIntoRpa">
+                <govuk-date-input id="rpa-start-date" name="rpa-start-date" asp-for="@Model.RpaStartDate" label="Start date" hint="For example, 27 3 2021" small-label="true" />
+                <govuk-text-input id="rpa-cover-type" name="rpa-cover-type" asp-for="@Model.RpaCoverType" label="Type of RPA cover" small-label="true" />
+            </govuk-conditional-radio>
+          
+            @Html.HiddenFor(m => m.SchoolName)
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

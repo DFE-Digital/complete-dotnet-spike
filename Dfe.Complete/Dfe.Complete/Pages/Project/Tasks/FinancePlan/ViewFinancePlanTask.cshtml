@@ -1,0 +1,51 @@
+﻿@page "/projects/{projectId}/tasks/finance-plan"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.FinancePlan.ViewFinancePlanTaskModel
+@{
+    ViewData["Title"] = $"Finance plan - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditFinancePlanTask, Model.ProjectId);
+    var financePlan = Model.Project.FinancePlan;
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Finance plan
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Finance plan agreed" asp-for="@financePlan.FinancePlanAgreed" href="@editlink" />
+            <govuk-summary-item label="Date agreed" asp-for="@financePlan.DateAgreed" href="@editlink" />
+            <govuk-summary-item label="Plan saved in Workplaces folder" asp-for="@financePlan.PlanSavedInWorksplacesFolder" href="@editlink" />
+            <govuk-summary-item label="Local authority agreed to underwrite pupil numbers" asp-for="@financePlan.LocalAuthorityAgreedPupilNumbers" href="@editlink" />
+            <govuk-summary-item label="Comments" asp-for="@financePlan.Comments" href="@editlink" />
+            <govuk-summary-item label="Trust will opt-in to RPA (risk protection arrangement)" asp-for="@financePlan.TrustWillOptIntoRpa" href="@editlink" />
+
+            @if (@financePlan.TrustWillOptIntoRpa == YesNo.Yes)
+            {
+                <govuk-summary-item label="RPA start date" asp-for="@financePlan.RpaStartDate" href="@editlink" />
+                <govuk-summary-item label="Type of RPA cover" asp-for="@financePlan.RpaCoverType" href="@editlink" />
+            }
+
+        </govuk-summary-list>
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,26 @@
+{
+	"scripts": {
+		"build": "npm run build:assets && npm run build:frontend",
+		"build:frontend": "webpack",
+		"build:assets": "webpack --config webpack.assets.config.js",
+		"build:watch": "webpack --watch"
+	},
+	"devDependencies": {
+		"copy-webpack-plugin": "^11.0.0",
+		"css-loader": "^6.0.0",
+		"file-loader": "^6.2.0",
+		"mini-css-extract-plugin": "^2.0.0",
+		"sass": "^1.56.0",
+		"sass-loader": "^13.0.0",
+		"style-loader": "^3.0.0",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^5.0.0"
+	},
+	"dependencies": {
+		"@ministryofjustice/frontend": "^1.0.0",
+		"accessible-autocomplete": "^2.0.4",
+		"dfe-frontend-alpha": "1.0.1",
+		"govuk-frontend": "^4.4.1",
+		"jquery": "^3.6.1"
+	}
+}

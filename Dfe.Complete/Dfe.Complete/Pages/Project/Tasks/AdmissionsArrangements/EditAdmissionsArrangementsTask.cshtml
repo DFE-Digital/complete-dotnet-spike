@@ -1,0 +1,56 @@
+@page "/projects/{projectId}/tasks/admissions-arrangements/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.AdmissionsArrangements.EditAdmissionsArrangementsTaskModel
+@{
+    ViewData["Title"] = $"Edit Admissions arrangements - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewAdmissionsArrangementsTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Admissions arrangements
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="The trust has confirmed that they have developed their admissions arrangements using the recommended template"
+                                  asp-for="@Model.TrustConfirmedAdmissionsArrangementsTemplate"
+                                  name="trust-confirmed-admissions-arrangements-template"
+                                  id="trust-confirmed-admissions-arrangements-template"
+                                  add-margin=false />
+
+            <govuk-checkbox-input label="The trust has confirmed that the admissions arrangements comply with the appropriate admissions policies"
+                                  asp-for="@Model.TrustConfirmedAdmissionsArrangementsPolicies"
+                                  name="trust-confirmed-admissions-arrangements-policies"
+                                  id="trust-confirmed-admissions-arrangements-policies"
+                                  add-margin=false />
+
+            <govuk-date-input label="Admissions arrangements confirmed date"
+                                  asp-for="@Model.AdmissionsArrangementsConfirmedDate"
+                                  name="admissions-arrangements-confirmed-date"
+                                  id="admissions-arrangements-confirmed-date"
+                                  hint="For example, 27 3 2021"/>
+
+            <govuk-checkbox-input label="Saved the confirmation email in Workplaces folder"
+                                  asp-for="@Model.SavedToWorkplaces"
+                                  name="saved-to-workplaces"
+                                  id="saved-to-workplaces"
+                                  add-margin=false />
+            
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

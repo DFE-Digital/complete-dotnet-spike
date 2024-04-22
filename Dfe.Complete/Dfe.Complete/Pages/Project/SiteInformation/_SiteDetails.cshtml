@@ -1,0 +1,56 @@
+﻿@model Dfe.ManageFreeSchoolProjects.Pages.Project.SiteInformation.SiteDetailsViewModel
+
+<div class="govuk-summary-card">
+    <div class="govuk-summary-card__title-wrapper">
+        <h2 class="govuk-summary-card__title">@Model.SiteType site</h2>
+        <div class="govuk-summary-card__actions">
+            <a class="govuk-link" href="@Model.EditLink" data-testid="change-@Model.IdPrefix-site">
+                Change<span class="govuk-visually-hidden">Change @Model.SiteType?.ToLower() site information</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Address
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="@Model.IdPrefix-site-address">
+                    <govuk-address address-line1="@Model.Site.Address.AddressLine1"
+                                   address-line2="@Model.Site.Address.AddressLine2"
+                                   address-line3="@Model.Site.Address.TownOrCity"/>
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Postcode
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="@Model.IdPrefix-site-postcode">
+                    <govuk-display-value value="@Model.Site.Address.Postcode" />
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Date planning permission obtained
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="@Model.IdPrefix-site-date-planning-permission-obtained">
+                    <govuk-display-value value="@Model.Site.DatePlanningPermissionObtained.ToDateString()" />
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Start date of site occupation
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="@Model.IdPrefix-site-start-date-of-site-occupation">
+                    <govuk-display-value value="@Model.Site.StartDateOfSiteOccupation.ToDateString()" />
+                </dd>
+            </div>
+
+        </dl>
+    </div>
+</div>

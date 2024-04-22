@@ -1,0 +1,24 @@
+﻿@page "/projects/{projectId}/risk/add/overall"
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Risk;
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model AddOverallRiskModel
+@{
+    
+    ViewData["Title"] = $"Overall risk - {Model.SchoolName}";
+
+    var riskFormModel = new RiskFormModel
+    {
+        SchoolName = Model.SchoolName,
+        Heading = "Overall",
+        RiskRating = Model.RiskRating,
+        Summary = Model.Summary
+    };
+
+    var backLink = string.Format(RouteConstants.ProjectRiskReview, Model.ProjectId);
+}
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href="@backLink" class="govuk-back-link">Back</a>
+    </div>
+}
+<partial name="_RiskForm" model="@riskFormModel" />

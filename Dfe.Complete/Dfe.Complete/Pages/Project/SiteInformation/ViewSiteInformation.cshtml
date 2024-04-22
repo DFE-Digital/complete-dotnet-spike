@@ -1,0 +1,24 @@
+﻿@page "/projects/{projectId}/site-information"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Sites
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.SiteInformation.ViewSiteInformationModel
+@{
+    var backLink = string.Format(RouteConstants.ProjectOverview, Model.ProjectId);
+    var editPermanentSite = string.Format(RouteConstants.EditPermanentSiteInformation, Model.ProjectId);
+    var editTemporarySite = string.Format(RouteConstants.EditTemporarySiteInformation, Model.ProjectId);
+
+    ViewData["Title"] = $"Site information - {Model.SiteInformation.SchoolName}";
+}
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href="@backLink" class="govuk-back-link">Back to about the project</a>
+    </div>
+}
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SiteInformation.SchoolName</span>
+    Site information
+</h1>
+
+<govuk-site-details site="@Model.SiteInformation.TemporarySite" edit-link="@editTemporarySite" site-type="@ProjectSiteType.Temporary.ToString()" />
+<govuk-site-details site="@Model.SiteInformation.PermanentSite" edit-link="@editPermanentSite" site-type="@ProjectSiteType.Permanent.ToString()" />

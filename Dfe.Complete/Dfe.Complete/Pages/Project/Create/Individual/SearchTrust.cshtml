@@ -1,0 +1,26 @@
+﻿@page "/project/create/trust/search"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.SearchTrustTaskModel
+@{
+    ViewData["Title"] = "Search for a trust";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.BackLink" class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary" />
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+            <div class="govuk-form-group">
+                <govuk-create-title label="Search for a trust by TRN" for="trn" />
+                <govuk-text-input id="trn" name="trn" asp-for="@Model.TRN" data-testid="trust-reference-number" label="TRN (Trust reference number)" hint="For example, TR00036" />
+            </div>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

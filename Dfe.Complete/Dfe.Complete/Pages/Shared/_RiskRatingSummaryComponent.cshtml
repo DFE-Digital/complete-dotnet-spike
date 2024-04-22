@@ -1,0 +1,49 @@
+﻿@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.TagHelpers.RiskRatingSummaryComponentViewModel
+@{
+    var riskSummaryLink = string.Format(RouteConstants.ProjectRiskSummary, Model.ProjectId);
+}
+
+<div class="govuk-summary-card" id="risk-rating">
+    <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title">Risk rating and summary</h3>
+        <div class="govuk-summary-card__actions">
+            <a class="govuk-link" href="@riskSummaryLink" data-testid="change-project-risk">
+                @Model.ChangeLinkText<span class="govuk-visually-hidden">Change risk rating and summary</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Date
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="project-risk-date">
+                    <govuk-display-value value="@Model.Date.ToDateString()" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Overall risk rating
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="project-risk-rating">
+                    <govuk-risk-rating-label risk-rating="@Model.RiskRating" />
+                </dd>
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Overall risk summary
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="project-risk-summary">
+                    <govuk-display-value value="@Model.Summary" />
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>

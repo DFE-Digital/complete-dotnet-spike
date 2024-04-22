@@ -1,0 +1,40 @@
+﻿@page "/projects/{projectId}/tasks/final-finance-plan/edit"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.FinalFinancePlan.EditFinalFinancePlanTaskModel
+@{
+    ViewData["Title"] = $"Edit final finance plan - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewFinalFinancePlanTask, Model.ProjectId);
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Final finance plan
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input id="confirmed-trust-has-provided-final-plan" name="confirmed-trust-has-provided-final-plan" asp-for="@Model.ConfirmedTrustHasProvidedFinalPlan" label="Confirmed that the trust has provided the final finance plan" />
+            <govuk-date-input id="grade-6-signed-off-final-plan-date" name="grade-6-signed-off-final-plan-date" asp-for="@Model.Grade6SignedOffFinalPlanDate" label="Date that the Grade 6 signed-off the final plan" hint="For example, 27 3 2021" />
+            <govuk-checkbox-input id="sent-final-plan-to-revenue-funding-mailbox" name="sent-final-plan-to-revenue-funding-mailbox" asp-for="@Model.SentFinalPlanToRevenueFundingMailbox" label="Sent the final plan to the Revenue Funding mailbox" />
+            <govuk-checkbox-input id="saved-final-plan-in-workplaces-folder" name="saved-final-plan-in-workplaces-folder" asp-for="@Model.SavedFinalPlanInWorkplacesFolder" label="Saved final plan in Workplaces folder" />
+
+            @Html.HiddenFor(m => m.SchoolName)
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

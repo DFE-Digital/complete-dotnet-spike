@@ -1,0 +1,21 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["cypress"],
+    "rules": {
+        "cypress/unsafe-to-chain-command": "off",
+        "@typescript-eslint/no-namespace": [
+            "error",
+            { "allowDeclarations": true }
+        ]
+    },
+    "env": {
+        "cypress/globals": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:cypress/recommended",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended"
+    ]
+}

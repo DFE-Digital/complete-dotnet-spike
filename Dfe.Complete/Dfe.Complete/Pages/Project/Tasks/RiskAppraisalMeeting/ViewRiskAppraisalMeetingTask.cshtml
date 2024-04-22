@@ -1,0 +1,55 @@
+﻿@page "/projects/{projectId}/tasks/risk-appraisal-meeting"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.RiskAppraisalMeeting.ViewRiskAppraisalMeetingTaskModel
+@{
+    ViewData["Title"] = $"Risk appraisal meeting - {Model.Project.SchoolName}";
+    var editLink = string.Format(RouteConstants.EditRiskAppraisalMeetingTask, Model.ProjectId);
+    var backLink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+
+    var riskAppraisalMeetingTask = Model.Project.RiskAppraisalMeeting;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backLink class="govuk-back-link">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.Project.SchoolName</span>
+            Risk appraisal meeting
+        </h1>
+
+        <govuk-summary-list>
+            <govuk-summary-item label="Initial risk appraisal meeting completed" asp-for="@riskAppraisalMeetingTask.InitialRiskAppraisalMeetingCompleted" href="@editLink" />
+            <govuk-summary-item label="Forecast date" asp-for="@riskAppraisalMeetingTask.ForecastDate" href="@editLink" />
+            <govuk-summary-item label="Actual date" asp-for="@riskAppraisalMeetingTask.ActualDate" href="@editLink" />
+            <govuk-summary-item label="Comments on decision to approve (if applicable)" asp-for="@riskAppraisalMeetingTask.CommentsOnDecisionToApprove" href="@editLink" />
+            <govuk-summary-item label="Reason not applicable" asp-for="@riskAppraisalMeetingTask.ReasonNotApplicable" href="@editLink" />
+        </govuk-summary-list>
+
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>
+<div class="govuk-grid-row govuk-!-margin-top-6">
+    <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-l" data-testid="title">Review risk rating</h2>
+        <p class="govuk-body">You may want to update the risk rating after the risk appraisal meeting.</p>
+        <govuk-risk-rating-summary project-id="@Model.ProjectId"
+                                   change-link-text="Change"
+                                   date="@Model.ProjectRisk.Date"
+                                   risk-rating="@Model.ProjectRisk.Overall.RiskRating"
+                                   summary="@Model.ProjectRisk.Overall.Summary" />
+    </div>
+</div>

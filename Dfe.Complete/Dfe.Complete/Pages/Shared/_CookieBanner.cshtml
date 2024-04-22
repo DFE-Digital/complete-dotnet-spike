@@ -1,0 +1,34 @@
+@{
+	var showBanner = !Context.Request.Cookies.ContainsKey(".ManageFreeSchoolProjects.Consent");
+}
+
+@if (showBanner)
+{
+	<div data-test="cookie-banner" class="app-cookie-banner" id="appCookieBanner" aria-label="cookie banner"
+		role="complementary">
+		<div class="govuk-width-container">
+			<h2 class="govuk-cookie-banner__heading govuk-heading-m">Cookies on Manage free school projects</h2>
+			<div class="app-cookie-banner__container" id="cookieActionsContainer">
+				<p class="govuk-body">We use some essential cookies to make this website work.</p>
+				<p class="govuk-body">We’d like to set additional cookies so we can understand how you use the site and make
+					improvements.</p>
+				<div>
+					<a role="button" draggable="false" data-testid="cookie-banner-accept"
+						class="govuk-button govuk-!-margin-bottom-2" asp-page="@Links.Public.CookiePreferences.Page"
+						asp-route-consent="true" asp-route-returnUrl="@Context.Request.Path">
+						Accept optional cookies
+					</a>
+					<a role="button" draggable="false" data-testid="cookie-banner-reject"
+						class="govuk-button govuk-!-margin-bottom-2" asp-page="@Links.Public.CookiePreferences.Page"
+						asp-route-consent="false" asp-route-returnUrl="@Context.Request.Path">
+						Reject optional cookies
+					</a>
+					<p class="inline-message govuk-body">
+						<a class="govuk-link" data-testid="cookie-banner-link-2"
+							asp-page="@Links.Public.CookiePreferences.Page" asp-route-returnUrl="@Context.Request.Path">View cookies</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+}

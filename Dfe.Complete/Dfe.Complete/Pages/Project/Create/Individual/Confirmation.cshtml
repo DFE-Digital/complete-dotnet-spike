@@ -1,0 +1,27 @@
+﻿@page "/project/create/confirmation"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.Individual.ConfirmationModel
+@{
+    ViewData["Title"] = "Confirmation"; 
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-panel govuk-panel--confirmation">
+            <h1 class="govuk-panel__title">
+                Free school project created
+            </h1>
+            <div class="govuk-panel__body">
+                Temporary project ID<br><strong data-testid="created-project-id" >@Model.ProjectID</strong>
+            </div>
+        </div>
+        <p data-testid="confirmation-email">
+            We have sent a notification email to <a class="govuk-link" href="mailto:@Model.EmailToNotify">@Model.EmailToNotify</a>.
+        </p>
+        <h2 class="govuk-heading-m">
+            What happens next
+        </h2>
+        <p>
+            <a class="govuk-link" href="/">Go back to the projects listing page</a> and see the newly created project.
+        </p>
+    </div>
+</div>

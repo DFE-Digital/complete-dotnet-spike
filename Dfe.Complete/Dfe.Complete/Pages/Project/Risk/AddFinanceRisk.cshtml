@@ -1,0 +1,24 @@
+﻿@page "/projects/{projectId}/risk/add/finance"
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Risk;
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model AddFinanceRiskModel
+@{
+    ViewData["Title"] = $"Finance risk - {Model.SchoolName}";
+
+    var riskFormModel = new RiskFormModel
+    {
+        SchoolName = Model.SchoolName,
+        Heading = "Finance (optional)",
+        RiskRating = Model.RiskRating,
+        Summary = Model.Summary
+    };
+
+    var backLink = string.Format(RouteConstants.ProjectRiskReview, Model.ProjectId);
+}
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href="@backLink" class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_RiskForm" model="@riskFormModel" />

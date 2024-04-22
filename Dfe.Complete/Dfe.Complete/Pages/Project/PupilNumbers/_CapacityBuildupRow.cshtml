@@ -1,0 +1,21 @@
+﻿@model Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers.CapacityBuildupRowViewModel
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell">
+        @if (Model.BoldLabel)
+        {
+            <strong>@Model.Label</strong>
+        }
+        else
+        {
+            @Model.Label
+        }
+    </td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-current-capacity">@Model.CapacityBuildupEntry.CurrentCapacity</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-first-year">@Model.CapacityBuildupEntry.FirstYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-second-year">@Model.CapacityBuildupEntry.SecondYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-third-year">@Model.CapacityBuildupEntry.ThirdYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-fourth-year">@Model.CapacityBuildupEntry.FourthYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-fifth-year">@Model.CapacityBuildupEntry.FifthYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-sixth-year">@Model.CapacityBuildupEntry.SixthYear</td>
+    <td class="govuk-table__cell" data-testid="@Model.IdPrefix-seventh-year">@Model.CapacityBuildupEntry.SeventhYear</td>
+</tr>

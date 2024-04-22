@@ -1,0 +1,58 @@
+﻿@model Dfe.ManageFreeSchoolProjects.ViewModels.StartEndViewModel
+@{
+	var showError = !string.IsNullOrWhiteSpace(Model.ErrorMessage);
+}
+
+<div class="govuk-form-group @(showError ? "govuk-form-group--error" : "")">
+	<fieldset class="govuk-fieldset" role="group" aria-describedby="@Model.Id-hint">
+		@if(Model.HeadingLabel)
+		{
+			<legend class="govuk-fieldset__legend--l">
+				<h1 class="govuk-fieldset__heading">
+					@Model.Label
+				</h1>
+			</legend>
+		}
+		else
+		{
+			<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+				@Model.Label
+			</legend>
+		}
+		
+		<div id="@Model.Id-hint" class="govuk-hint">
+			@Model.Hint
+		</div>
+		@if (showError)
+		{
+			<span id="@Model.Id-error" class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span> @Model.ErrorMessage
+			</span>
+		}
+		<div class="govuk-date-input" id="@Model.Id">
+			<div class="govuk-date-input__item">
+				<div class="govuk-form-group">
+					<label class="govuk-label govuk-date-input__label" for="@Model.Id-startyear">
+						Start Year
+					</label>
+					<input class="govuk-input govuk-date-input__input govuk-input--width-4 @(Model.StartInvalid ? "govuk-input--error" : "")"
+						   id="@Model.Id-startyear" name="@Model.Name-startyear"
+						   value="@Model.StartYear"
+					       type="text">
+				</div>
+			</div>
+			<div class="govuk-date-input__item">
+				<div class="govuk-form-group">
+					<label class="govuk-label govuk-date-input__label" for="@Model.Id-endyear">
+						End year
+					</label>
+					<input class="govuk-input govuk-date-input__input govuk-input--width-4 @(Model.EndInvalid ? "govuk-input--error" : "")"
+					       id="@Model.Id-endyear"
+					       name="@Model.Name-endyear"
+					       value="@Model.EndYear"
+					       type="text">
+				</div>
+			</div>
+		</div>
+	</fieldset>
+</div>

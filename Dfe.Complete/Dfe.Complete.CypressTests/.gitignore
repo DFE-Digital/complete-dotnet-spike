@@ -1,0 +1,4 @@
+cypress/videos
+cypress.env.json
+cypress/reports
+cypress/downloads

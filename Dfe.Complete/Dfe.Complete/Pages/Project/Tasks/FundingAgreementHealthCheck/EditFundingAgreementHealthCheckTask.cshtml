@@ -1,0 +1,41 @@
+﻿@page "/projects/{projectId}/tasks/funding-agreement-health-check/edit"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.FundingAgreementHealthCheck.EditFundingAgreementHealthCheckTaskModel
+@{
+    ViewData["Title"] = $"Edit Funding agreement health check - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewFundingAgreementHealthCheckTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Funding agreement health check
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input id="drafted-fa-health-check" name="drafted-fa-health-check" asp-for="@Model.DraftedFAHealthCheck" bold-label="true" label="Drafted a funding agreement (FA) health check" />
+            <govuk-checkbox-input id="regional-director-signed-off-fa-health-check" name="regional-director-signed-off-fa-health-check" asp-for="@Model.RegionalDirectorSignedOffFaHealthCheck" bold-label="true" label="Regional Director has signed-off the FA health check (if applicable)" />
+            <govuk-checkbox-input id="minister-signed-off-fa-health-check" name="minister-signed-off-fa-health-check" asp-for="@Model.MinisterSignedOffFaHealthCheck" bold-label="true" label="Minister has signed-off the FA health check (if applicable)" />
+            <govuk-checkbox-input id="saved-fa-health-check-in-workplaces-folder" name="saved-fa-health-check-in-workplaces-folder" asp-for="@Model.SavedFaHealthCheckInWorkplacesFolder" bold-label="true" label="Saved the health check in Workplaces folder" />
+            
+            @Html.HiddenFor(m => m.SchoolName)
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

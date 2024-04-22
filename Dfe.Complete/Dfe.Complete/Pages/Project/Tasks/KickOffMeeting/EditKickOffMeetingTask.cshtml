@@ -1,0 +1,38 @@
+﻿@page "/projects/{projectId}/tasks/kickoffmeeting/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.KickOffMeeting.EditKickOffMeetingTaskModel
+@{
+    ViewData["Title"] = $"Edit kick-off meeting - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewKickOffMeeting, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary"/>
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>Edit kick-off meeting
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-yesno-input id="funding-arrangements-agreed" name="funding-arrangements-agreed" bold-label="true" label="Funding arrangement details agreed between local authority and sponsor" asp-for="@Model.FundingArrangementsAgreed" add-margin="true" data-testid="funding-arrangements-agreed"/>
+            <govuk-textarea-input id="funding-arrangements-details-agreed" label="Comments" rows="5" bold-label="true" name="funding-arrangements-details-agreed" asp-for="@Model.FundingArrangementDetailsAgreed" add-margin="true" data-testid="funding-arrangements-details-agreed"/>
+            <govuk-year-start-end id="realistic-year-of-opening"  name="realistic-year-of-opening" bold-label="true" label="Realistic year of opening" asp-for="@Model.RealisticYearOfOpening" add-margin="true" data-testid="realistic-year-of-opening" hint="For example, 2021 2022"/>
+            <govuk-date-input id="provisional-opening-date" name="provisional-opening-date" bold-label="true" label="Provisional opening date agreed with trust" asp-for="@Model.ProvisionalOpeningDate" add-margin="true" data-testid="provisional-opening-date" hint="For example, 27 3 2021"/>
+            <govuk-text-input id="sharepoint-link" name="sharepoint-link" bold-label="true" label="Sharepoint link" asp-for="@Model.SharepointLink" add-margin="true" data-testid="sharepoint-link"/>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,74 @@
+﻿@page "/projects/{projectId}/pupil-numbers/pre16-published-admission-number/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers.EditPre16PublishedAdmissionNumberModel
+
+@{
+    var backlink = string.Format(RouteConstants.ViewPupilNumbers, Model.ProjectId);
+    ViewData["Title"] = $"Edit Pre-16 published admission number (PAN) - {Model.SchoolName}";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+            Edit Pre-16 published admission number (PAN)
+        </h1>
+
+        <form class="form" method="post">
+
+            <table class="govuk-table govuk-table__border--full govuk-table--small">
+                <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Edit Pre-16 published admission number (PAN)</caption>
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                        <th scope="col" class="govuk-table__header">PAN in first year of opening</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Reception</td>
+                        <td class="govuk-table__cell">
+                            <govuk-number-input-cell id="reception" name="reception" asp-for="@Model.Reception" label="Reception" />
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Year 7</td>
+                        <td class="govuk-table__cell">
+                            <govuk-number-input-cell id="year7" name="year7" asp-for="@Model.Year7" label="Year 7" />
+
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Year 10</td>
+                        <td class="govuk-table__cell">
+                            <govuk-number-input-cell id="year10" name="year10" asp-for="@Model.Year10" label="Year 10" />
+
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+                        <td class="govuk-table__cell">Other pre-16</td>
+                        <td class="govuk-table__cell">
+                            <govuk-number-input-cell id="other-pre16" name="other-pre16" asp-for="@Model.OtherPre16" label="Other pre-16" />
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="govuk-button" data-module="govuk-button" data-testid="save-and-continue">
+                Save and continue
+            </button>
+
+            @Html.HiddenFor(m => m.SchoolName)
+        </form>
+    </div>
+</div>

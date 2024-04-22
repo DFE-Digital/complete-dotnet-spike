@@ -1,0 +1,43 @@
+﻿@page "/projects/{projectId}/tasks/final-finance-plan"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.FinalFinancePlan.ViewFinalFinancePlanTaskModel
+@{
+    ViewData["Title"] = $"Final finance plan - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditFinalFinancePlanTask, Model.ProjectId);
+    var finalFinancePlan = Model.Project.FinalFinancePlan;
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Final finance plan
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Confirmed that the trust has provided the final finance plan" asp-for="@finalFinancePlan.ConfirmedTrustHasProvidedFinalPlan" href="@editlink" />
+            <govuk-summary-item label="Date the Grade 6 signed-off the final plan " asp-for="@finalFinancePlan.Grade6SignedOffFinalPlanDate" href="@editlink" />
+            <govuk-summary-item label="Sent the final plan to the Revenue Funding mailbox" asp-for="@finalFinancePlan.SentFinalPlanToRevenueFundingMailbox" href="@editlink" />
+            <govuk-summary-item label="Sent the final plan to the Revenue Funding mailbox" asp-for="@finalFinancePlan.SavedFinalPlanInWorkplacesFolder" href="@editlink" />
+
+        </govuk-summary-list>
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,76 @@
+﻿@page "/project/create/trust/confirm/{trn}"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.ConfirmTrustTaskModel
+@{
+    ViewData["Title"] = "Confirm the trust";
+
+    var labels = new[] { "Yes", "No" };
+    var values = new[] { "true", "false" };
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.BackLink" class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary" />
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+            <govuk-create-title label="Confirm the trust" />
+            <dl class="govuk-summary-list">
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Trust ID:
+                    </dt>
+                    <dd class="govuk-summary-list__value" data-testid="trn">
+                        @{
+                            RenderValue(@Model.TRN);
+                        }
+                    </dd>
+
+                </div>
+
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                        Trust name:
+                    </dt>
+                    <dd class="govuk-summary-list__value" data-testid="trust-name">@Model.TrustName</dd>
+                </div>
+
+                <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                        Trust type:
+                    </dt>
+                    <dd class="govuk-summary-list__value" data-testid="trust-type">@Model.TrustType.ToDescription()</dd>
+                </div>
+            </dl>
+            <div>
+                <h2 class="govuk-heading-s">Is this the correct trust?</h2>
+                <govuk-radios-input id="confirm-trust"
+                                    name="confirm-trust"
+                                    asp-for="@Model.ConfirmTrust"
+                                    data-testid="confirm-trust"
+                                    labels="@labels"
+                                    values="@values" />
+            </div>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
+
+@functions{
+    public void RenderValue(string value)
+    {
+        if (string.IsNullOrEmpty(value))
+        {
+            <span class="empty">Empty</span>
+        }
+        else
+        {
+            @value
+        }
+    }
+}

@@ -1,0 +1,48 @@
+﻿@page "/projects/{projectId}/tasks/region-and-localauthority/localauthority/edit"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.RegionAndLA.EditLocalAuthority
+
+@{
+    var currentFreeSchoolName = Model.CurrentFreeSchoolName;
+    
+    ViewData["Title"] = $"Edit local authority - {currentFreeSchoolName}";
+    
+    var localAuthorities = Model.LocalAuthorities.ToArray();
+
+    var backlink = $"/projects/{Model.ProjectId}/tasks/region-and-localauthority/region/edit";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@currentFreeSchoolName</span>
+            Edit local authority
+        </h1>
+        <div class="govuk-grid-row">
+
+            <div class="govuk-grid-column-two-thirds">
+            <partial name="_ErrorSummary"/>
+
+            <form class="form" method="post">
+                <div class="govuk-form-group">
+                          <govuk-radios-input
+                              asp-for="@Model.LocalAuthority"
+                              name="local-authority"
+                              data-testid="local-authority"
+                              labels="localAuthorities"
+                              values="localAuthorities"/>
+                      </div>
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Save and continue
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

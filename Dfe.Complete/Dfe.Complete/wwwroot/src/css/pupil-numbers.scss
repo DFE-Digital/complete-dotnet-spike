@@ -1,0 +1,17 @@
+﻿// ===========================================
+// Pupil numbers
+// ===========================================
+.govuk-table__border--full {
+    th, td {
+        border: 1px solid govuk-colour("mid-grey");
+        padding: 0.4em;
+    }
+}
+
+.govuk-table--small {
+    max-width: 640px;
+}
+
+.mfsp-pupil-numbers-table__first-header {
+    width: 180px;
+}

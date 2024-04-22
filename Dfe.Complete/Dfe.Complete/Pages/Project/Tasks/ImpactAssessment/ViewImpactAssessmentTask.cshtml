@@ -1,0 +1,43 @@
+﻿@page "/projects/{projectId}/tasks/impact-assessment"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.ImpactAssessment.ViewImpactAssessmentModel
+@{
+    ViewData["Title"] = $"Impact assessment - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditImpactAssessmentTask, Model.ProjectId);
+    var impactAssessment = Model.Project.ImpactAssessment;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Impact assessment
+        </h1>
+        <p class="govuk-body">Use <a class="govuk-link" target="_blank" href="https://apps.powerapps.com/play/e/default-fad277c9-c60a-4da1-b5f3-b3b8b34a82f9/a/f48134e3-e9d7-4c3a-9ea3-f25402537389?tenantId=fad277c9-c60a-4da1-b5f3-b3b8b34a82f9&hint=68285632-7229-46e9-888a-0a3ddcb314b4&sourcetime=1699873425524">Assess the Impact of Opening a New Free School (opens in a new tab)</a> to conduct the impact assessment.</p>
+        <govuk-summary-list>
+                    <govuk-summary-item label="Conducted the impact assessment using the Assess the Impact of Opening a New Free School tool" asp-for="@impactAssessment.ImpactAssessment" href="@editlink" />
+                    <govuk-summary-item label="Saved the signed-off impact assessment in Workplaces folder" asp-for="@impactAssessment.SavedToWorkplaces" href="@editlink" />
+                </govuk-summary-list>
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+
+        </form>
+    </div>
+</div>

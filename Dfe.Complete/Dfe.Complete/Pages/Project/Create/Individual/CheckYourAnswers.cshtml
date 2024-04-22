@@ -1,0 +1,399 @@
+﻿@page "/project/create/checkyouranswers"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Tasks
+@using static Dfe.ManageFreeSchoolProjects.API.Contracts.Project.ClassType
+@using Dfe.ManageFreeSchoolProjects.Pages.Project
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.Individual.CheckYourAnswersModel
+@{
+    ViewData["Title"] = "Check your answers";
+
+    var faithType = Model.Project.FaithType == FaithType.Other ? $"Other - {Model.Project.OtherFaithType}" :  Model.Project.FaithType.ToDescription();
+    var faithTypeLink = Model.Project.FaithStatus == FaithStatus.None ? RouteConstants.CreateFaithStatus : @RouteConstants.CreateFaithType;
+}
+
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href=@RouteConstants.CreateProjectLead class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+<partial name="_ErrorSummary"/>
+<div class="govuk-grid-column-two-thirds-from-desktop">
+
+<h1 class="govuk-heading-xl">
+    <span class="govuk-caption-l">Creating a new free school project</span>
+    Check your answers
+</h1>
+<dl class="govuk-summary-list">
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Temporary Project ID
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="projectid">
+            @Model.Project.ProjectId
+        </dd>
+
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href=@RouteConstants.CreateProjectId>
+                Change<span class="govuk-visually-hidden">Temporary Project Id</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Current free school name
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="school">
+            @Model.Project.SchoolName
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href=@RouteConstants.CreateProjectSchool>
+                Change<span class="govuk-visually-hidden">School name</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Region
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="region">
+            @{
+                RenderValue(Model.Project.Region.ToDescription());
+            }
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+            <a class="govuk-link" href="@RouteConstants.CreateProjectRegion">
+                Change<span class="govuk-visually-hidden">Geographical region</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Local authority
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="local-authority">
+            @Model.Project.LocalAuthority
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectLocalAuthority">
+                Change<span class="govuk-visually-hidden"> Local authority</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Trust
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="trust">
+            @Model.Project.TrustName
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href=@RouteConstants.CreateProjectSearchTrust>
+                Change<span class="govuk-visually-hidden"> Trust</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            School type
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="school-type">
+            @Model.Project.SchoolType.ToDescription()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectSchoolType" data-testid="change-school-type">
+                Change<span class="govuk-visually-hidden"> School type</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Nursery
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="nursery ">
+            @{
+                RenderValue(@Model.Project.Nursery.ToString());
+            }
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href=@RouteConstants.CreateClassType>
+                Change<span class="govuk-visually-hidden">Nursery</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Sixth form
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="sixth-form">
+            @{
+                RenderValue(Model.Project.SixthForm.ToString());
+            }
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href=@RouteConstants.CreateClassType>
+                Change<span class="govuk-visually-hidden"> Sixth form</span>
+            </a>
+        </dd>
+    </div>
+
+    @{
+        if (ProjectConstants.SchoolTypesWithSpecialistProvisions.Contains(Model.Project.SchoolType))
+        {
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Alternative provision (specialist resource provision)
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="alternative-provision">
+                    @{
+                        RenderValue(@Model.Project.AlternativeProvision.ToString());
+                    }
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href=@RouteConstants.CreateClassType>
+                        Change<span class="govuk-visually-hidden">Alternative provision</span>
+                    </a>
+                </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Special educational needs (specialist resource provision)
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="special-education-needs">
+                    @{
+                        RenderValue(@Model.Project.SpecialEducationNeeds.ToString());
+                    }
+                </dd>
+                <dd class="govuk-summary-list__actions">
+                    <a class="govuk-link" href=@RouteConstants.CreateClassType>
+                        Change<span class="govuk-visually-hidden">Special education needs</span>
+                    </a>
+                </dd>
+            </div>
+        }
+    }
+    
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            School phase
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="school-phase">
+            @{
+                RenderValue(@Model.Project.SchoolPhase.ToDescription());
+            }
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectSchoolPhase">
+                Change<span class="govuk-visually-hidden"> School phase</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Age range
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="age-range">
+            @Model.Project.AgeRange
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectAgeRange">
+                Change<span class="govuk-visually-hidden"> Age range</span>
+            </a>
+        </dd>
+    </div>
+
+    @if (Model.Project.Nursery == Nursery.Yes)
+    {
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                Nursery capacity
+            </dt>
+            <dd class="govuk-summary-list__value" data-testid="nursery-capacity">
+                @Model.Project.NurseryCapacity.ToString()
+            </dd>
+            <dd class="govuk-summary-list__actions">
+                <a class="govuk-link" href="@RouteConstants.CreateProjectCapacity" data-testid="change-capacity">
+                    Change<span class="govuk-visually-hidden"> Capacity</span>
+                </a>
+            </dd>
+        </div>
+    }
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Reception to year 6 capacity
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="yr-y6-capacity">
+            @Model.Project.YRY6Capacity.ToString()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectCapacity" data-testid="change-capacity">
+                Change<span class="govuk-visually-hidden"> Capacity</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Year 7 to year 11 capacity
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="y7-y11-capacity">
+            @Model.Project.Y7Y11Capacity.ToString()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectCapacity" data-testid="change-capacity">
+                Change<span class="govuk-visually-hidden"> Capacity</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Year 12 to year 14 capacity
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="y12-y14-capacity">
+            @Model.Project.Y12Y14Capacity.ToString()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateProjectCapacity" data-testid="change-capacity">
+                Change<span class="govuk-visually-hidden"> Capacity</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Forms of entry
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="forms-of-entry">
+            @Model.Project.FormsOfEntry
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateFormsOfEntry" data-testid="change-forms-of-entry">
+                Change<span class="govuk-visually-hidden">Forms of entry</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Faith status
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="faith-status">
+            @Model.Project.FaithStatus.ToString()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <a class="govuk-link" href="@RouteConstants.CreateFaithStatus" data-testid="change-faith-status">
+                Change<span class="govuk-visually-hidden">Faith status</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Faith type
+        </dt>
+        <dd class="govuk-summary-list__value" data-testid="faith-type">
+            @{
+                RenderValue(faithType);
+            }
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+            <a class="govuk-link" href="@faithTypeLink" data-testid="change-faith-type">
+                Change<span class="govuk-visually-hidden">Faith type</span>
+            </a>
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Provisional opening date agreed with trust
+        </dt>
+        <dd class="govuk-summary-list__value" data-test-id="provisional-opening-date">
+            @Model.Project.ProvisionalOpeningDate.ToDateString()
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+            <a class="govuk-link" href="@RouteConstants.CreateProjectProvisionalOpeningDate">
+                Change<span class="govuk-visually-hidden"> Provisional opening date agreed with trust</span>
+            </a>
+
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Project lead name
+        </dt>
+        <dd class="govuk-summary-list__value" data-test-id="project-lead-name">
+            @Model.Project.ProjectLeadName
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+            <a class="govuk-link" href="@RouteConstants.CreateProjectLead">
+                Change<span class="govuk-visually-hidden"> Project lead name</span>
+            </a>
+
+        </dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+            Project lead email
+        </dt>
+        <dd class="govuk-summary-list__value" data-test-id="project-lead-email">
+            @Model.Project.ProjectLeadEmail
+        </dd>
+        <dd class="govuk-summary-list__actions">
+
+            <a class="govuk-link" href="@RouteConstants.CreateProjectLead">
+                Change<span class="govuk-visually-hidden"> Project lead email</span>
+            </a>
+
+        </dd>
+    </div>
+
+</dl>
+<h2 class="govuk-heading-m">
+    Now create your project
+</h2>
+
+<p>
+    By selecting the Create project button, you are confirming that you have approval to create projects.
+</p>
+
+<form method="post" novalidate="">
+    <button class="govuk-button" data-module="govuk-button" data-testid="create-project">
+        Create project
+    </button>
+</form>
+</div>
+</div>
+
+@functions {
+
+    public void RenderValue(string value)
+    {
+        if (string.IsNullOrEmpty(value) || value == "NotSet")
+        {
+            <span class="empty">Empty</span>
+        }
+        else
+        {
+            @value
+        }
+    }
+
+}

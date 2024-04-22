@@ -1,0 +1,36 @@
+﻿@page "/projects/{projectId}/tasks/pdg/edit-trust-letter"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.PDG.EditPDGTrustGrantLetterModel
+@{
+    ViewData["Title"] = $"Edit trust letter  - {Model.CurrentFreeSchoolName}";
+    var backLink = string.Format(RouteConstants.ViewPDG, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backLink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">
+        @Model.CurrentFreeSchoolName
+    </span>
+    Edit Trust letter
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+            <govuk-date-input id="trust-letter-date" name="trust-letter-date" asp-for="@Model.TrustSignedPDGLetterDate" data-testid="trust-letter-date" label="Date when DfE signed PDG letter sent from the trust" hint="For example, 27 3 2021" />
+            <govuk-checkbox-input label="Saved the signed trust letter in Workplaces folder" asp-for="@Model.SavedLetterInWorkplacesFolder"
+                                  name="saved-letter-in-workplaces-folder"
+                                  id="saved-letter-in-workplaces-folder"/>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

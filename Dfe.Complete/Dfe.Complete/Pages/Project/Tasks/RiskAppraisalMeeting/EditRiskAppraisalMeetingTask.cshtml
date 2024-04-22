@@ -1,0 +1,34 @@
+﻿@page "/projects/{projectId}/tasks/risk-appraisal-meeting/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.RiskAppraisalMeeting.EditRiskAppraisalMeetingModel
+@{
+    ViewData["Title"] = $"Edit risk appraisal meeting - {Model.CurrentFreeSchoolName}";
+    var backLink = string.Format(RouteConstants.ViewRiskAppraisalMeetingTask, Model.ProjectId);
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backLink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.CurrentFreeSchoolName</span>
+    Edit risk appraisal meeting
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+            <govuk-yesno-input id="meeting-completed" name="meeting-completed" label="Initial risk appraisal meeting completed" asp-for="@Model.MeetingCompleted" data-testid="meeting-completed" />
+            <govuk-date-input id="forecast-date" name="forecast-date" asp-for="@Model.ForecastDate" data-testid="forecast-date" label="Forecast date" hint="For example, 27 3 2021" />
+            <govuk-date-input id="actual-date" name="actual-date" asp-for="@Model.ActualDate" data-testid="actual-date" label="Actual date" hint="For example, 27 3 2021" />
+            <govuk-text-input id="comments-on-decision" name="comments-on-decision" bold-label="true" add-margin="true" label="Comments on decision to approve (if applicable)" asp-for="@Model.CommentsOnDecision" data-testid="comments-on-decision" />
+            <govuk-text-input id="reason-not-applicable" name="reason-not-applicable" bold-label="true" add-margin="true" label="Reason not applicable" asp-for="@Model.ReasonNotApplicable" data-testid="reason-not-applicable" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                    Save and continue
+            </button>
+        </form>
+    </div>
+</div>

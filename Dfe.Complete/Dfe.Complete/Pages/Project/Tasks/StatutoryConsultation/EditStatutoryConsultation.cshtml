@@ -1,0 +1,67 @@
+﻿@page "/projects/{projectId}/tasks/statutoryconsultation/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.StatutoryConsultation.EditStatutoryConsultationTaskModel
+@{
+    ViewData["Title"] = $"Edit Statutory consultation - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewStatutoryConsultation, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary"/>
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>Edit Statutory consultation
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-date-input id="expected-date-for-receiving-findings-from-trust" name="expected-date-for-receiving-findings-from-trust" bold-label="true" label="Expected date for receiving findings from trust" asp-for="@Model.ExpectedDateForReceivingFindingsFromTrust" add-margin="true" test-id="expected-date-for-receiving-findings-from-trust" hint="For example, 27 3 2021" />
+            <div class="govuk-form-group ">
+                <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                    <div class="govuk-checkboxes__item">
+                        <input class="govuk-checkboxes__input"
+                               id="received-consultation-findings-from-trust"
+                               name="received-consultation-findings-from-trust"
+                               type="checkbox"
+                               value="true"
+                               checked="@(Model.ReceivedConsultationFindingsFromTrust == true ? "checked" : null)"
+                               data-aria-controls="conditional-date-received"
+                               data-testid="received-consultation-findings-from-trust">
+                        <label class="govuk-label govuk-checkboxes__label" for="received-consultation-findings-from-trust">
+                            Received consultation findings from trust
+                        </label>
+                    </div>
+                    <div class="govuk-checkboxes__conditional" id="conditional-date-received">
+                        <govuk-date-input id="date-received" name="date-received" asp-for="@Model.DateReceived" label="Date received" test-id="date-received" hint="For example, 27 3 2021" />
+                    </div>
+                </div>
+            </div>
+            <govuk-checkbox-input label="Consultation fulfils trust section 10 statutory duty"
+                                  asp-for="@Model.ConsultationFulfilsTrustSection10StatutoryDuty"
+                                  name="consultation-fulfils-trust-section-10-statutory-duty"
+                                  id="consultation-fulfils-trust-section-10-statutory-duty"
+                                  test-id="consultation-fulfils-trust-section-10-statutory-duty"
+                                  add-margin=false />
+            <govuk-textarea-input id="comments" label="Comments" rows="5" bold-label="true" name="comments" asp-for="@Model.Comments" test-id="comments" />
+            <govuk-checkbox-input label="Saved findings in workplaces folder"
+                                  asp-for="@Model.SavedFindingsInWorkplacesFolder"
+                                  name="saved-findings-in-workplaces-folder"
+                                  id="saved-findings-in-workplaces-folder"
+                                  test-id="saved-findings-in-workplaces-folder"
+                                  add-margin=false />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

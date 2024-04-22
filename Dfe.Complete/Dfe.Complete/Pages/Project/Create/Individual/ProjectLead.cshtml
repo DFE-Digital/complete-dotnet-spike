@@ -1,0 +1,29 @@
+﻿@page "/project/create/projectlead"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.Individual.ProjectLead
+@{
+    ViewData["Title"] = "Who is the project lead?";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.BackLink" class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary"/>
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+            <govuk-create-title label="Who is the project lead?" />
+            <div class="govuk-form-group">
+                <p class="govuk-hint">We will tell them the project record has been created</p>
+                <govuk-text-input name="name" asp-for="@Model.Name" label="Full name" data-testid="name" />
+                <govuk-text-input name="email" asp-for="@Model.Email" label="Email address" data-testid="email"/>
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

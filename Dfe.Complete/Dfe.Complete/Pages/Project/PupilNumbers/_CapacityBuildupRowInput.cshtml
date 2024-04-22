@@ -1,0 +1,67 @@
+﻿@using Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers.CapacityRowBuildupInputViewModel
+@{
+    var idPrefix = Model.SchoolYear.Replace(" ", string.Empty).ToLower();
+}
+
+<tr class="govuk-table__row">
+    <td class="govuk-table__cell">@Model.SchoolYear</td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.CurrentCapacity"
+                                 id="@idPrefix-current-capacity-field"
+                                 name="@idPrefix-current-capacity-field"
+                                 label="@Model.SchoolYear capacity buildup current capacity"
+                                 test-id="@idPrefix-current-capacity-field" />
+    </td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.FirstYear"
+                                 id="@idPrefix-first-year-field"
+                                 name="@idPrefix-first-year-field"
+                                 label="@Model.SchoolYear capacity buildup first year"
+                                 test-id="@idPrefix-first-year-field" />
+    </td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.SecondYear"
+                                 id="@idPrefix-second-year-field"
+                                 name="@idPrefix-second-year-field"
+                                 label="@Model.SchoolYear capacity buildup second year"
+                                 test-id="@idPrefix-second-year-field" />
+    </td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.ThirdYear"
+                                 id="@idPrefix-third-year-field"
+                                 name="@idPrefix-third-year-field"
+                                 label="@Model.SchoolYear capacity buildup third year"
+                                 test-id="@idPrefix-third-year-field" />
+    </td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.FourthYear"
+                                 id="@idPrefix-fourth-year-field"
+                                 name="@idPrefix-fourth-year-field"
+                                 label="@Model.SchoolYear capacity buildup fourth year"
+                                 test-id="@idPrefix-fourth-year-field" />
+    </td>
+
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.FifthYear"
+                                 id="@idPrefix-fifth-year-field"
+                                 name="@idPrefix-fifth-year-field"
+                                 label="@Model.SchoolYear capacity buildup fifth year"
+                                 test-id="@idPrefix-fifth-year-field" />
+    </td>
+
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.SixthYear"
+                                 id="@idPrefix-sixth-year-field"
+                                 name="@idPrefix-sixth-year-field"
+                                 label="@Model.SchoolYear capacity buildup sixth year"
+                                 test-id="@idPrefix-sixth-year-field" />
+    </td>
+    <td class="govuk-table__cell">
+        <govuk-number-input-cell asp-for="@Model.CapacityBuildupRow.SeventhYear"
+                                 id="@idPrefix-seventh-year-field"
+                                 name="@idPrefix-seventh-year-field"
+                                 label="@Model.SchoolYear capacity buildup seventh year"
+                                 test-id="@idPrefix-seventh-year-field" />
+    </td>
+</tr>

@@ -1,0 +1,46 @@
+@page "/projects/{projectId}/tasks/gias"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Tasks
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.Gias
+@using DocumentFormat.OpenXml.Office2013.Drawing.Chart
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.Gias.ViewGiasTask
+
+@{
+    ViewData["Title"] = $"GIAS (Get information about schools) - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditGiasTask, Model.ProjectId);
+    var gias = Model.Project.Gias;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Set up the school on GIAS (Get information about schools)
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Check the information on trusts' completed GIAS application form is correct" asp-for="@gias.CheckedTrustInformation" href="@editlink"/>
+            <govuk-summary-item label="Send the application form to the Ofstedpre-reg.FreeSchools@education.gov.uk mailbox" asp-for="@gias.ApplicationFormSent" href="@editlink"/>
+            <govuk-summary-item label="Save a copy of the application form in Workplaces" asp-for="@gias.SavedToWorkspaces" href="@editlink"/>
+            <govuk-summary-item label="Send the trust their URN and DfE establishment number" asp-for="@gias.UrnSent" href="@editlink"/>
+        </govuk-summary-list>
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

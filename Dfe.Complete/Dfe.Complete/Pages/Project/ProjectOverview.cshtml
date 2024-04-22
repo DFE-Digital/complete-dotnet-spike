@@ -1,0 +1,626 @@
+﻿@page "/projects/{projectId}/overview"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.ProjectOverviewModel
+
+@{
+    ViewData["Title"] = $"{Model.Project.ProjectStatus.CurrentFreeSchoolName} - About the project";
+    ViewData["WidePage"] = true;
+    var projectOverviewLink = string.Format(RouteConstants.ProjectOverview, Model.ProjectId);
+    var taskListLink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var contactsSummaryLink = string.Format(RouteConstants.ViewContacts, Model.ProjectId);
+    var siteInformationLink = string.Format(RouteConstants.ViewSiteInformation, Model.ProjectId);
+    var pupilNumbersLink = string.Format(RouteConstants.ViewPupilNumbers, Model.ProjectId);
+
+    var temporarySite = Model.Project.SiteInformation.TemporarySite;
+    var permanentSite = Model.Project.SiteInformation.PermanentSite;
+}
+
+@section BeforeMain
+{
+    <div class="dfe-content-page--header">
+        <div class="dfe-width-container ">
+            <div class="govuk-grid-row ">
+                <div class="govuk-grid-column-three-quarters">
+                    <a href="/" class="govuk-back-link">Back to all projects</a>
+
+                </div>
+            </div>
+            <div class="govuk-grid-row govuk-!-padding-top-5 govuk-!-padding-bottom-0">
+                <div class="govuk-grid-column-three-quarters">
+                    <span class="govuk-body-s" data-testid="project-id-header">Project ID: @Model.Project.ProjectStatus.ProjectId</span>
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-2" data-testid="project-title-header">@Model.Project.ProjectStatus.CurrentFreeSchoolName</h1>
+                    <p class="govuk-!-font-size-27 govuk-!-font-weight-bold">
+                        About the project
+                    </p>
+                </div>
+            </div>
+            <div class="govuk-grid-row govuk-!-padding-top-0 govuk-!-padding-bottom-5">
+                <div class="govuk-grid-column-full">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <nav class="app-sub-navigation" aria-label="sub menu">
+
+            <ul class="app-sub-navigation__list govuk-!-margin-top-6">
+                <li class="app-sub-navigation__item">
+                    <a class="app-sub-navigation__link" aria-current="page" href="@projectOverviewLink">
+                        About the project
+                    </a>
+                </li>
+                <li class="app-sub-navigation__item">
+                    <a class="app-sub-navigation__link" href="@taskListLink">Task list</a>
+                </li>
+                <li class="app-sub-navigation__item">
+                    <a class="app-sub-navigation__link" href="#">Project notes</a>
+                </li>
+            </ul>
+
+        </nav>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter page-contents js-page-contents project-overview-menu">
+
+        <h2 class="gem-c-heading govuk-heading-m">Page contents</h2>
+
+        <ul class="govuk-list">
+
+            <li class="govuk-body govuk-!-margin-bottom-2">
+                <h3 class="govuk-heading-s project-overview-menu__section-heading govuk-!-margin-bottom-1">Project details</h3>
+                <ul class="govuk-list">
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#dates" data-link-scroll>Dates</a>
+                    </li>
+                    <li class="govuk-body">
+                        <a class="govuk-link" href="#trust" data-link-scroll>Trust</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#reference-numbers" data-link-scroll>Reference numbers</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#school" data-link-scroll>School</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#region" data-link-scroll>Region and local authority</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="govuk-body govuk-!-margin-bottom-2">
+                <h3 class="govuk-heading-s project-overview-menu__section-heading govuk-!-margin-bottom-1">Other information</h3>
+                <ul class="govuk-list  govuk-!-margin-bottom-2">
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#risk-rating" data-link-scroll>Risk rating and summary</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#contacts" data-link-scroll>Contacts</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#site-information" data-link-scroll>Site information</a>
+                    </li>
+                    <li class="govuk-body govuk-!-margin-bottom-2">
+                        <a class="govuk-link" href="#pupil-numbers" data-link-scroll>Pupil numbers</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <div class="govuk-grid-column-three-quarters">
+
+        <h2 class="govuk-heading-l govuk-!-margin-bottom-9">Project details</h2>
+
+        <h3 class="govuk-heading-m govuk-!-font-size-27" id="dates">Dates</h3>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Entry into pre-opening
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="date-of-entry-into-preopening">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.DateOfEntryIntoPreopening.ToDateString());
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Provisional opening date agreed with trust
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="provisional-opening-date-agreed-with-trust">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.ProvisionalOpeningDateAgreedWithTrust.ToDateString());
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Realistic year of opening
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="realistic-year-of-opening">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.RealisticYearOfOpening);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Actual opening date
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="actual-opening-date">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.ActualOpeningDate);
+                    }
+                </dd>
+
+            </div>
+            @{
+                if (Model.Project.ProjectStatus.DateSchoolClosed.HasValue)
+                {
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Date school closed
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="date-school-closed">
+                            @{
+                                RenderValue(Model.Project.ProjectStatus.DateSchoolClosed.ToDateString());
+                            }
+                        </dd>
+
+                    </div>
+                }
+            }
+        </dl>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h3 class="govuk-heading-m govuk-!-font-size-27" id="trust">Trust</h3>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Trust ID
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="trust-id">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.TrustId);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Trust name
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="trust-name">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.TrustName);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Trust type
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="trust-type">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.TrustType.ToDescription());
+                    }
+                </dd>
+
+            </div>
+        </dl>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h3 class="govuk-heading-m govuk-!-font-size-27" id="reference-numbers">Reference numbers</h3>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Project ID
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="project-id">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.ProjectId);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    URN
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="urn">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.Urn);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Application number
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="application-number">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.FreeSchoolsApplicationNumber);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Application wave
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="application-wave">
+                    @{
+                        RenderValue(Model.Project.ProjectStatus.ApplicationWave);
+                    }
+                </dd>
+
+            </div>
+        </dl>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h3 class="govuk-heading-m govuk-!-font-size-27" id="school">School</h3>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Current name
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="free-school-name">
+                    @{
+                        RenderValue(@Model.Project.ProjectStatus.CurrentFreeSchoolName);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    School type
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="school-type">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.SchoolType?.ToDescription());
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    School phase
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="school-phase">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.SchoolPhase.ToDescription());
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Faith Status
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="faith-status">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.FaithStatus);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Faith type
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="faith-type">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.FaithType.ToDescription());
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Forms of entry
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="number-of-forms-of-entry">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.NumberOfEntryForms);
+                    }
+                </dd>
+
+            </div>
+        </dl>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h3 class="govuk-heading-m govuk-!-font-size-27" id="region">Region and local authority</h3>
+
+        <dl class="govuk-summary-list govuk-summary-list--no-border">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Local authority
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="local-authority">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.LocalAuthority);
+                    }
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Region
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="region">
+                    @{
+                        RenderValue(Model.Project.SchoolDetails.Region);
+                    }
+                </dd>
+
+            </div>
+        </dl>
+
+        <h2 class="govuk-heading-l govuk-!-margin-top-9">Other information</h2>
+
+        <govuk-risk-rating-summary project-id="@Model.ProjectId"
+                                   change-link-text="View details"
+                                   date="@Model.Project.Risk.Date"
+                                   risk-rating="@Model.Project.Risk.RiskRating"
+                                   summary="@Model.Project.Risk.Summary" />
+
+        <div class="govuk-summary-card" id="contacts">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">Contacts</h2>
+                <div class="govuk-summary-card__actions">
+                    <a class="govuk-link" href="@contactsSummaryLink" data-testid="change-contacts">
+                        View details<span class="govuk-visually-hidden">Change contacts</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Project managed by
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="project-managed-by">
+                            <govuk-display-value value="@Model.Project.KeyContacts.ProjectManager" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Team lead
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="team-lead">
+                            <govuk-display-value value="@Model.Project.KeyContacts.TeamLeader" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Grade 6
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="grade-six">
+                            <govuk-display-value value="@Model.Project.KeyContacts.Grade6" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Project director
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="project-director">
+                            <govuk-display-value value="@Model.Project.KeyContacts.ProjectDirector" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            School chair of governors
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="school-chair-of-governors">
+                            <govuk-display-value value="@Model.Project.KeyContacts.SchoolChairOfGovernors" />
+                        </dd>
+                    </div>
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Trust chair
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="trust-chair">
+                            <govuk-display-value value="@Model.Project.KeyContacts.ChairOfGovernors" />
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <div class="govuk-summary-card" id="site-information">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">Site information</h2>
+                <div class="govuk-summary-card__actions">
+                    <a class="govuk-link" href="@siteInformationLink" data-testid="change-site-information">
+                        View details<span class="govuk-visually-hidden">Change site information</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Temporary site address
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="temporary-site-address">
+                            <govuk-address address-line1="@temporarySite.Address.AddressLine1"
+                                           address-line2="@temporarySite.Address.AddressLine2"
+                                           address-line3="@temporarySite.Address.TownOrCity" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Temporary site postcode
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="temporary-site-postcode">
+                            <govuk-display-value value="@temporarySite.Address.Postcode" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Permanent site address
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="permanent-site-address">
+                            <govuk-address address-line1="@permanentSite.Address.AddressLine1"
+                                           address-line2="@permanentSite.Address.AddressLine2"
+                                           address-line3="@permanentSite.Address.TownOrCity" />
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Permanent site postcode
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="permanent-site-postcode">
+                            <govuk-display-value value="@permanentSite.Address.Postcode" />
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+        <div class="govuk-summary-card" id="pupil-numbers">
+            <div class="govuk-summary-card__title-wrapper">
+                <h2 class="govuk-summary-card__title">Pupil numbers and capacity</h2>
+                <div class="govuk-summary-card__actions">
+                    <a class="govuk-link" href="@pupilNumbersLink" data-testid="change-pupil-numbers">
+                        View details<span class="govuk-visually-hidden">Change pupil numbers and capacity</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="govuk-summary-card__content">
+                <dl class="govuk-summary-list">
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Capacity
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="capacity">
+                            @Model.Project.PupilNumbers.Capacity
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Pre-16 published admission number (PAN)
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="pre16-published-admission-number">
+                            @Model.Project.PupilNumbers.Pre16PublishedAdmissionNumber
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Post-16 published admission number (PAN)
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="post16-published-admission-number">
+                            @Model.Project.PupilNumbers.Post16PublishedAdmissionNumber
+                        </dd>
+
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Minimum viable number (MVN) for first year
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="minimum-viable-number">
+                            @Model.Project.PupilNumbers.MinimumViableNumberForFirstYear
+                        </dd>
+                    </div>
+
+                    <div class="govuk-summary-list__row">
+                        <dt class="govuk-summary-list__key">
+                            Applications received
+                        </dt>
+                        <dd class="govuk-summary-list__value" data-testid="applications-received">
+                            @Model.Project.PupilNumbers.ApplicationsReceived
+                        </dd>
+
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script asp-add-nonce>
+    const handleScroll = () => {
+        let found = false;
+        document.querySelectorAll("a[data-link-scroll]")
+            .forEach(x => {
+                const yy = document.querySelector('#' + x.href.split("#")[1]).getBoundingClientRect().y;
+                if (found == false && yy > -10) {
+                    x.style.fontWeight = "600";
+                    found = true;
+                }
+                else {
+                    x.style.fontWeight = ""
+                }
+            });
+    }
+
+    document.onscroll = handleScroll;
+
+</script>
+
+@functions {
+
+    public void RenderValue(string value)
+    {
+        if (string.IsNullOrEmpty(value) || value == "NotSet")
+        {
+            <span class="empty">Empty</span>
+        }
+        else
+        {
+            @value
+        }
+    }
+
+}

@@ -1,0 +1,44 @@
+﻿@page "/projects/{projectId}/tasks/admissions-arrangements"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.AdmissionsArrangements.ViewAdmissionsArrangementsModel
+@{
+    ViewData["Title"] = $"Admissions arrangements - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditAdmissionsArrangementsTask, Model.ProjectId);
+    var admissionsArrangements = Model.Project.AdmissionsArrangements;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Admissions arrangements
+        </h1>
+            <govuk-summary-list>
+                    <govuk-summary-item label="The trust has confirmed that they have developed their admissions arrangements using the recommended template" asp-for="@admissionsArrangements.TrustConfirmedAdmissionsArrangementsTemplate" href="@editlink" />
+                    <govuk-summary-item label="The trust has confirmed that the admissions arrangements comply with the appropriate admissions policies" asp-for="@admissionsArrangements.TrustConfirmedAdmissionsArrangementsPolicies" href="@editlink" />
+                    <govuk-summary-item label="Admissions arrangements confirmed date" asp-for="@admissionsArrangements.AdmissionsArrangementsConfirmedDate" href="@editlink" />
+                    <govuk-summary-item label="Saved the confirmation email in Workplaces folder" asp-for="@admissionsArrangements.SavedToWorkplaces" href="@editlink" />
+                </govuk-summary-list>
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+
+        </form>
+    </div>
+</div>

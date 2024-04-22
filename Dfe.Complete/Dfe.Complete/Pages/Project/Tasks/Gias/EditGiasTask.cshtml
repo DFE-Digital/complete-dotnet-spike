@@ -1,0 +1,37 @@
+@page "/projects/{projectId}/tasks/gias/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.Gias.EditGiasTaskModel
+@{
+    ViewData["Title"] = $"Edit Set up the school on GIAS (Get information about schools) - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewGiasTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary"/>
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>Edit Set up the school on GIAS (Get information about schools)
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input id="checked-trust-information" name="checked-trust-information" asp-for="@Model.CheckedTrustInformation" bold-label="true" label="Check the information on trusts' completed GIAS application form is correct" />
+            <govuk-checkbox-input id="application-form-sent" name="application-form-sent" asp-for="@Model.ApplicationFormSent" bold-label="true" label="Send the application form to the Ofstedpre-reg.FreeSchools@education.gov.uk mailbox" />
+            <govuk-checkbox-input id="saved-to-workplaces" name="saved-to-workplaces" asp-for="@Model.SavedToWorkplaces" bold-label="true" label="Save a copy of the application form in Workplaces" />
+            <govuk-checkbox-input id="urn-Sent" name="urn-Sent" asp-for="@Model.UrnSent" bold-label="true" label="Send the trust their URN and DfE establishment number" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

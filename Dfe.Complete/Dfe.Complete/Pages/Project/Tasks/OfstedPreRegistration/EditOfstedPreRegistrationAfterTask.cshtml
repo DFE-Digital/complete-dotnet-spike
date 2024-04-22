@@ -1,0 +1,54 @@
+@page "/projects/{projectId}/tasks/ofsted-pre-registration/edit-after-inspection"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.OfstedPreRegistration.EditOfstedPreRegistrationAfterTaskModel
+@{
+    ViewData["Title"] = $"Edit After the inspection - Ofsted pre-registration - {Model.SchoolName}";
+    var backlink = string.Format(RouteConstants.ViewOfstedPreRegistrationTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit After the inspection - Ofsted pre-registration 
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="Shared the outcome with the trust"
+                                  asp-for="@Model.SharedOutcomeWithTrust"
+                                  name="shared-outcome-with-trust"
+                                  id="shared-outcome-with-trust"
+                                  add-margin="false"/>
+            
+            <govuk-checkbox-input label="Any actions to meet conditions have been taken - if applicable"
+                                  asp-for="@Model.InspectionConditionsMet"
+                                  name="inspection-conditions-met"
+                                  id="inspection-conditions-met"
+                                  add-margin="false"/>
+            
+            <govuk-checkbox-input label="Requested that the school is changed to 'proposed to open' on GIAS"
+                                  asp-for="@Model.ProposedToOpenOnGias"
+                                  name="proposed-to-open-on-gias"
+                                  id="proposed-to-open-on-gias"
+                                  add-margin="false"/>
+            
+            <govuk-checkbox-input label="Saved inspection documents and G6 agreement in Workplaces folder"
+                                  asp-for="@Model.SavedToWorkplaces"
+                                  name="saved-to-workplaces"
+                                  id="saved-to-workplaces"
+                                  add-margin="false"/>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

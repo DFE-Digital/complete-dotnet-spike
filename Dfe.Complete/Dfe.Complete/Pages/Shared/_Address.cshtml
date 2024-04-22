@@ -1,0 +1,16 @@
+﻿@model Dfe.ManageFreeSchoolProjects.TagHelpers.AddressViewModel
+@{
+    var hasAddress = !string.IsNullOrEmpty(Model.AddressLine1) || !string.IsNullOrEmpty(Model.AddressLine2) || !string.IsNullOrEmpty(Model.AddressLine3);
+}
+
+@if (hasAddress)
+{
+    <p class="govuk-!-margin-bottom-0" data-testid="address-line1">@Model.AddressLine1</p>
+    <p class="govuk-!-margin-bottom-0" data-testid="address-line2">@Model.AddressLine2</p>
+    <p class="govuk-!-margin-bottom-0" data-testid="address-line3">@Model.AddressLine3</p>
+}
+else
+{
+    <span class="empty">Empty</span>
+}
+

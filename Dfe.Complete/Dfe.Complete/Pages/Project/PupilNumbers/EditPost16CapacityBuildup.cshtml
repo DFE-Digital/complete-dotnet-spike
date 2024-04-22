@@ -1,0 +1,57 @@
+﻿@page "/projects/{projectId}/pupil-numbers/post16-capacity-buildup/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers.EditPost16CapacityBuildupModel
+@{
+    var backlink = string.Format(RouteConstants.ViewPupilNumbers, Model.ProjectId);
+    ViewData["Title"] = $"Edit Post-16 capacity buildup - {Model.SchoolName}";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+            Edit Post-16 capacity buildup
+        </h1>
+
+        <form class="form" method="post">
+
+            <table class="govuk-table govuk-table__border--full">
+                <caption class="govuk-table__caption govuk-table__caption--m govuk-visually-hidden">Edit Post-16 capacity buildup</caption>
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                        <th scope="col" class="govuk-table__header">Current capacity (if school is open)</th>
+                        <th scope="col" class="govuk-table__header">First year</th>
+                        <th scope="col" class="govuk-table__header">Second year</th>
+                        <th scope="col" class="govuk-table__header">Third year</th>
+                        <th scope="col" class="govuk-table__header">Fourth year</th>
+                        <th scope="col" class="govuk-table__header">Fifth year</th>
+                        <th scope="col" class="govuk-table__header">Sixth year</th>
+                        <th scope="col" class="govuk-table__header">Seventh year</th>
+                    </tr>
+                </thead>
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+                        <govuk-capacity-buildup-row-input asp-for="@Model.Year12" school-year="Year 12" />
+                        <govuk-capacity-buildup-row-input asp-for="@Model.Year13" school-year="Year 13" />
+                        <govuk-capacity-buildup-row-input asp-for="@Model.Year14" school-year="Year 14" />
+                    </tr>
+                </tbody>
+            </table>
+            <button class="govuk-button" data-module="govuk-button" data-testid="save-and-continue">
+                Save and continue
+            </button>
+
+            @Html.HiddenFor(m => m.SchoolName)
+        </form>
+    </div>
+</div>

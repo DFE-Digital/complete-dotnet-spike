@@ -1,0 +1,184 @@
+﻿@page "/projects/{projectId}/risk/summary"
+@using Dfe.ManageFreeSchoolProjects.TagHelpers;
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Risk;
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model RiskSummaryModel
+@{
+    var isPastRiskRating = Model.Entry > 1;
+    var backLink = string.Format(RouteConstants.ProjectOverview, Model.ProjectId);
+
+    const string currentRiskRatings = "Current risk ratings";
+    const string pastRiskRatings = "Past risk ratings";
+    var title = $"{@Model.RiskDate.ToDateString()} - {(isPastRiskRating ? pastRiskRatings.ToLower() : currentRiskRatings.ToLower())}";
+
+    if (@Model.RiskDate == null)
+    {
+        title = $"{(isPastRiskRating ? pastRiskRatings : currentRiskRatings)}";
+    }
+    
+    ViewData["Title"] = $"{title} - { Model.SchoolName}";
+}
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href="@backLink" class="govuk-back-link">Back to about the project</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+            @if (Model.RiskDate != null)
+            {
+                <span data-testid="risk-date">@title</span>
+            }
+            else
+            {
+                <span data-testid="risk-date">Current risk ratings</span>
+            }
+        </h1>
+
+        <div class="risk-rating-landing-page__overall-box">
+            <h2 class="govuk-heading-m">Overall rating and summary</h2>
+            <p class="govuk-body" data-testid="overall-risk-rating">
+                <govuk-risk-rating-label risk-rating="@Model.ProjectRisk.Overall.RiskRating"/>
+            </p>
+            @if (Model.ProjectRisk.Overall.Summary != null)
+            {
+                <p class="govuk-body-l" data-testid="overall-risk-summary">
+                    <govuk-display-value value="@Model.ProjectRisk.Overall.Summary"/>
+                </p>
+            }
+        </div>
+
+        <h2 class="govuk-heading-m">Individual risks</h2>
+
+        <dl class="govuk-summary-list">
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Governance and suitability rating
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="governance-and-suitability-risk-rating">
+                    <govuk-risk-rating-label risk-rating="@Model.ProjectRisk.GovernanceAndSuitability.RiskRating" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Governance and suitability summary
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="governance-and-suitability-risk-summary">
+                    <govuk-display-value value="@Model.ProjectRisk.GovernanceAndSuitability.Summary" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Education rating
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="education-risk-rating">
+                    <govuk-risk-rating-label risk-rating="@Model.ProjectRisk.Education.RiskRating" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Education summary
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="education-risk-summary">
+                    <govuk-display-value value="@Model.ProjectRisk.Education.Summary" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Finances rating
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="finance-risk-rating">
+                    <govuk-risk-rating-label risk-rating="@Model.ProjectRisk.Finance.RiskRating" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    Finances summary
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="finance-risk-summary">
+                    <govuk-display-value value="@Model.ProjectRisk.Finance.Summary" />
+                </dd>
+
+            </div>
+
+            <div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    RAF (risk appraisal form) SharePoint link
+                </dt>
+                <dd class="govuk-summary-list__value" data-testid="risk-appraisal-form-sharepoint-link">
+                    @if (string.IsNullOrEmpty(Model.ProjectRisk.RiskAppraisalFormSharepointLink))
+                    {
+                        <span class="empty">Empty</span>
+                    }
+                    else
+                    {
+                        <a class="govuk-link" target="_blank" href="@Model.ProjectRisk.RiskAppraisalFormSharepointLink">RAF (risk appraisal form) - open in new tab</a>
+                    }
+                </dd>
+
+            </div>
+        </dl>
+        
+        @if (!isPastRiskRating)
+        {
+            <a class="govuk-button" data-module="govuk-button" asp-page-handler="NewConfigureRiskRating" data-testid="add-risk-entry">
+                Update risk rating and summary
+            </a>
+        }
+
+    </div>
+</div>
+
+@if (Model.ProjectRisk.History != null)
+{
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <table class="govuk-table">
+
+                <caption class="govuk-table__caption govuk-table__caption--m">Risk ratings history</caption>
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
+                        <th scope="col" class="govuk-table__header app-custom-class">Date</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Overall risk rating</th>
+                        <th scope="col" class="govuk-table__header app-custom-class">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody class="govuk-table__body"> 
+                    @{
+                        var historyIdx = 1;
+                    }
+                    @foreach (var historyEntry in Model.ProjectRisk.History)
+                    {
+                        <tr class="govuk-table__row" data-testid="risk-history-row-@historyIdx">
+                            <td class="govuk-table__cell" data-testid="project-risk-history-date">@historyEntry.Date.ToDateString()</td>
+                            <td class="govuk-table__cell" data-testid="project-risk-history-rating"><govuk-risk-rating-label risk-rating="@historyEntry.RiskRating" /></td>
+                            <td class="govuk-table__cell">
+                                @if (historyIdx != Model.Entry)
+                                {
+                                    <a href="/projects/@Model.ProjectId/risk/summary?entry=@historyIdx" class="govuk-link" data-testid="project-risk-view-link">View details</a>
+                                }
+                            </td>
+                        </tr>
+
+                        historyIdx++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

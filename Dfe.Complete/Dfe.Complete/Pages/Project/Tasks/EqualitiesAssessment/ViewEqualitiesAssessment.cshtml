@@ -1,0 +1,43 @@
+﻿@page "/projects/{projectId}/tasks/equalitiesassessment"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Tasks
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.EqualitiesAssessment;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.EqualitiesAssessment.ViewEqualitiesAssessmentTaskModel
+@{
+    ViewData["Title"] = $"Equalities assessment - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditEqualitiesAssessmentTask, Model.ProjectId);
+    var equalitiesassessment = Model.Project.EqualitiesAssessment;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Equalities assessment
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Completed the equalities process record (EPR)" asp-for="@equalitiesassessment.CompletedEqualitiesProcessRecord" href="@editlink" />
+            <govuk-summary-item label="Saved the EPR in Workplaces folder" asp-for="@equalitiesassessment.SavedEPRInWorkplacesFolder" href="@editlink" />
+        </govuk-summary-list>
+
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+    </div>
+</div>

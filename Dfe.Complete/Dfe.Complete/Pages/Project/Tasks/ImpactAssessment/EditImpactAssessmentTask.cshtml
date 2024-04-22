@@ -1,0 +1,45 @@
+@page "/projects/{projectId}/tasks/impact-assessment/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.ImpactAssessment.EditImpactAssessmentTaskModel
+@{
+    ViewData["Title"] = $"Edit Impact assessment - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewImpactAssessmentTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Impact assessment
+</h1>
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="Conducted the impact assessment using the Assess the Impact of Opening a New Free School tool"
+                                  asp-for="@Model.ImpactAssessmentDone"
+                                  name="impact-assessment-done"
+                                  id="impact-assessment-done"
+                                  add-margin=false />
+            
+            <govuk-checkbox-input label="Saved the signed-off impact assessment in Workplaces folder"
+                                  asp-for="@Model.SavedToWorkplaces"
+                                  name="saved-to-workplaces"
+                                  id="saved-to-workplaces"
+                                  add-margin=false />
+            
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

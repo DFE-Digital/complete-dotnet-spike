@@ -1,0 +1,26 @@
+﻿@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@using NetEscapades.AspNetCore.SecurityHeaders
+@model Dfe.ManageFreeSchoolProjects.TagHelpers.BackLinkViewModel
+@{
+    var nonce = Context.GetNonce();
+}
+
+@if (Model.BackBehaviour == BackBehaviour.Previous)
+{
+    <div role="navigation" class="govuk-width-container">
+        <a href="#" class="govuk-back-link" id="back-link">Back</a>
+    </div>
+
+    <script nonce="@nonce">
+        $("#back-link").click(function () {
+            history.back();
+        });
+    </script>
+}
+else
+{
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.Href" class="govuk-back-link" id="back-link">Back</a>
+    </div>
+}
+

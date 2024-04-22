@@ -1,0 +1,41 @@
+﻿@page "/projects/{projectId}/site-information/{siteType}/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.SiteInformation.EditSiteInformationModel
+@{
+    var backlink = string.Format(RouteConstants.ViewSiteInformation, Model.ProjectId);
+    var siteType = Model.SiteType.ToString();
+
+    ViewData["Title"] = $"Edit {siteType} site information - {Model.SchoolName}";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit @siteType site information
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-text-input id="address-line1" name="address-line1" label="Address line 1" asp-for="@Model.AddressLine1" add-margin="true" />
+            <govuk-text-input id="address-line2" name="address-line2" label="Address line 2" asp-for="@Model.AddressLine2" add-margin="true" />
+            <govuk-text-input id="town-or-city" name="town-or-city" label="Town or city" asp-for="@Model.TownOrCity" add-margin="true" input-styles="govuk-!-width-two-thirds" />
+            <govuk-text-input id="postcode" name="postcode" label="Postcode" asp-for="@Model.Postcode" add-margin="true" width="10" />
+            <govuk-date-input id="date-planning-permission-obtained" name="date-planning-permission-obtained" label="Date planning permission obtained" asp-for="@Model.DatePlanningPermissionObtained" add-margin="true" />
+            <govuk-date-input id="start-date-of-site-occupation" name="start-date-of-site-occupation" label="Start date of site occupation" asp-for="@Model.StartDateOfSiteOccupation" add-margin="true" />
+            @Html.HiddenFor(m => m.SchoolName)
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

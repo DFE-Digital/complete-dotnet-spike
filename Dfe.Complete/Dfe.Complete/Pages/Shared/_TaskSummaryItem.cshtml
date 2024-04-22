@@ -1,0 +1,35 @@
+﻿@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project.Tasks
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model TaskSummaryItemViewModel
+
+<li class="app-task-list__item">
+    <span class="app-task-list__task-name">
+        <a href="@Model.Href" class="govuk-link" data-testid="@Model.TaskSummary.Name-task">
+            @Model.Label
+        </a>
+    </span>
+    @{
+        RenderStatus(Model.TaskSummary);
+    }
+</li>
+
+@functions {
+
+    public void RenderStatus(TaskSummaryResponse task)
+    {
+        var testId = $"task-{task.Name}-status";
+
+        if (task.Status == ProjectTaskStatus.Completed)
+        {
+            <strong class="govuk-tag app-task-list__tag" data-testid="@testId">Completed</strong>
+        }
+        else if (task.Status == ProjectTaskStatus.InProgress)
+        {
+            <strong class="govuk-tag govuk-tag--blue app-task-list__tag" data-testid="@testId">In progress</strong>
+        }
+        else
+        {
+            <strong class="govuk-tag govuk-tag--grey app-task-list__tag" data-testid="@testId">Not started</strong>
+        }
+    }
+}

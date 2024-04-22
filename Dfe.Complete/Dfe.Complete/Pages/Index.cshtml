@@ -1,0 +1,47 @@
+﻿@page
+@using Dfe.BuildFreeSchools.Pages;
+@using Dfe.ManageFreeSchoolProjects.Pages.Dashboard;
+@model IndexModel
+@{
+    ViewData["Title"] = "All projects";
+    ViewData["WidePage"] = true;
+
+    var dashboardLinksModel = new DashboardLinksModel()
+    {
+        CurrentTab = DashboardLinksModel.AllProjectsTabName
+    };
+}
+
+@section AfterHeader
+    {
+
+    <partial name="./Dashboard/_DashboardLinks" model="dashboardLinksModel" />
+}
+
+@section BeforeMain
+    {
+    <div class="dfe-content-page--header">
+        <div class="dfe-width-container ">
+            <div class="govuk-grid-row ">
+                <div class="govuk-grid-column-three-quarters">
+                </div>
+            </div>
+            <div class="govuk-grid-row govuk-!-padding-top-9 govuk-!-padding-bottom-0">
+                <div class="govuk-grid-column-three-quarters">
+                    <span class="govuk-body-s"></span>
+                    <h1 class="govuk-heading-xl govuk-!-margin-bottom-4">All free school projects</h1>
+                    <p class="govuk-body-l"></p>
+                </div>
+            </div>
+            <div class="govuk-grid-row govuk-!-padding-top-0 govuk-!-padding-bottom-7">
+                <div class="govuk-grid-column-full">
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<partial name="./Dashboard/_Dashboard" model="Model.Dashboard" />
+

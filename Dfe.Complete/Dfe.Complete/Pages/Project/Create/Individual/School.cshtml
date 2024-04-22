@@ -1,0 +1,28 @@
+﻿@page "/project/create/school"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.Individual.SchoolModel
+@{
+    ViewData["Title"] = "What is the current free school name?";
+
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.BackLink" class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary" />
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+
+            <div class="govuk-form-group">
+                <govuk-create-title label="What is the current free school name?" for="school" />
+                <govuk-text-input id="school" name="school" asp-for="@Model.School" data-testid="school" hint="You can still edit it anytime" />
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

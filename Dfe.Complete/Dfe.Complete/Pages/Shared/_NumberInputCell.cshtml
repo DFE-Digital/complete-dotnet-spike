@@ -1,0 +1,15 @@
+﻿@model Dfe.ManageFreeSchoolProjects.TagHelpers.NumberInputCellViewModel
+
+@{
+    var showError = !string.IsNullOrWhiteSpace(Model.ErrorMessage);
+}
+<div class="govuk-form-group @(showError ? "govuk-form-group--error" : "")">
+    <input 
+        class="govuk-input govuk-input--width-3 @(showError ? "govuk-input--error" : "")" 
+        id="@Model.Id" 
+        name="@Model.Name" 
+        type="text" 
+        value="@Model.Value" 
+        aria-label="@Model.Label"
+        data-testid="@Model.TestId"/>
+</div>

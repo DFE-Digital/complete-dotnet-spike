@@ -1,0 +1,41 @@
+﻿@page "/projects/{projectId}/tasks/dates"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.Dates.ViewDatesTaskModel
+@{
+    ViewData["Title"] = $"Dates - {Model.Project.SchoolName}";
+    var editLink = string.Format(RouteConstants.EditDatesTask, Model.ProjectId);
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+
+    var datesTask = Model.Project.Dates;
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.Project.SchoolName</span>
+            Dates
+        </h1>
+
+        <govuk-summary-list>
+            <govuk-summary-item label="Entry into pre-opening" asp-for="@datesTask.DateOfEntryIntoPreopening" href="@editLink" />
+            <govuk-summary-item label="Provisional opening date agreed with trust" asp-for="@datesTask.ProvisionalOpeningDateAgreedWithTrust" href="@editLink" />
+        </govuk-summary-list>
+
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+        </form>
+
+    </div>
+</div>

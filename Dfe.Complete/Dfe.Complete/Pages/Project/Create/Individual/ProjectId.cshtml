@@ -1,0 +1,26 @@
+﻿@page "/project/create/projectid"
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.Individual.ProjectIdModel
+@{
+    ViewData["Title"] = "What is the temporary project ID?";
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href="@Model.BackLink" class="govuk-back-link" data-testid="back">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary" />
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+
+            <div class="govuk-form-group">
+                <govuk-create-title label="What is the temporary project ID?" for="projectid" />
+                <govuk-text-input id="projectid" name="projectid" asp-for="@Model.ProjectId" data-testid="projectid" hint="For example, W3456" />
+            </div>
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

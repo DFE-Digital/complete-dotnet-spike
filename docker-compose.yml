@@ -1,0 +1,57 @@
+version: "3.8"
+services:
+  web:
+    container_name: Dfe.ManageFreeSchoolProjects.Web
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    command: /bin/bash -c "./docker-entrypoint.sh dotnet Dfe.ManageFreeSchoolProjects.dll"
+    ports:
+      - 80:80/tcp
+    depends_on:
+      - api
+    env_file:
+       - .env.development.local
+    networks:
+      - dev
+
+  api:
+    container_name: Dfe.ManageFreeSchoolProjects.API
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    command: /bin/bash -c "./docker-entrypoint.sh dotnet Dfe.ManageFreeSchoolProjects.API.dll"
+    ports:
+      - 88:80/tcp
+    depends_on:
+      - db
+      - sqlcmd
+    env_file:
+       - .env.development.local
+    networks:
+      - dev
+
+  db:
+    container_name: Dfe.ManageFreeSchoolProjects.SQL
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    env_file: .env.database
+    ports:
+      - 1433:1433
+    networks:
+      - dev
+
+  sqlcmd:
+    container_name: Dfe.ManageFreeSchoolProjects.Tools
+    image: mcr.microsoft.com/mssql-tools:latest
+    env_file: .env.database
+    command: /etc/docker-entrypoint.sh
+    depends_on:
+      - db
+    stdin_open: true
+    volumes:
+      - ./script/sqlcmd-docker-entrypoint.sh:/etc/docker-entrypoint.sh
+    networks:
+      - dev
+
+networks:
+  dev:

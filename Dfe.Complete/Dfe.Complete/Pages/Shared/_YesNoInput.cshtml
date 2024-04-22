@@ -1,0 +1,48 @@
+﻿@model Dfe.ManageFreeSchoolProjects.ViewModels.YesNoInputViewModel
+@{
+	var showError = !string.IsNullOrWhiteSpace(Model.ErrorMessage);
+}
+
+<div class="govuk-form-group @(showError ? "govuk-form-group--error" : "")">
+	<fieldset class="govuk-fieldset">
+		@if (!string.IsNullOrWhiteSpace(Model.Label))
+		{
+			if (Model.HeadingLabel)
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+					<h1 class="govuk-fieldset__heading">
+						@Model.Label
+					</h1>
+				</legend>
+			}
+			else
+			{
+				<legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+					@Model.Label
+				</legend>
+			}
+		}
+		
+		@if (!string.IsNullOrWhiteSpace(Model.LeadingParagraph))
+		{
+			<p class="govuk-body">@Model.LeadingParagraph</p>
+		}
+		
+		@if (showError)
+		{
+			<span id="@Model.Id-error" class="govuk-error-message">
+				<span class="govuk-visually-hidden">Error:</span> @Model.ErrorMessage
+			</span>
+		}
+    <div class="govuk-radios">
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="@Model.Id-yes" name="@Model.Name" type="radio" value=true checked="@(Model.Value == true)" data-testid="@Model.Id-yes">
+            <label class="govuk-label govuk-radios__label" id="@Model.Id-yes-label" for="@Model.Id-yes">Yes</label>
+        </div>
+        <div class="govuk-radios__item">
+            <input class="govuk-radios__input" id="@Model.Id-no" name="@Model.Name" type="radio" value=false checked="@(Model.Value == false)" data-testid="@Model.Id-no">
+            <label class="govuk-label govuk-radios__label" id="@Model.Id-no-label" for="@Model.Id-no">No</label>
+        </div>
+    </div>
+	</fieldset>
+</div>

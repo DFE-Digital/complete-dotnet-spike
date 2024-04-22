@@ -1,0 +1,293 @@
+﻿@page "/projects/{projectId}/pupil-numbers"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.PupilNumbers.ViewPupilNumbersModel
+@{
+    ViewData["Title"] = $"Pupil numbers - {Model.PupilNumbers.SchoolName}";
+    var backlink = string.Format(RouteConstants.ProjectOverview, Model.ProjectId);
+    var capacityWhenFull = Model.PupilNumbers.CapacityWhenFull;
+    var recruitmentAndViability = Model.PupilNumbers.RecruitmentAndViability;
+    var pre16PublishedAdmissionNumber = Model.PupilNumbers.Pre16PublishedAdmissionNumber;
+    var post16PublishedAdmissionNumber = Model.PupilNumbers.Post16PublishedAdmissionNumber;
+    var pre16CapacityBuildup = Model.PupilNumbers.Pre16CapacityBuildup;
+    var post16CapacityBuildup = Model.PupilNumbers.Post16CapacityBuildup;
+    var editCapacityWhenFullLink = string.Format(RouteConstants.EditCapacityWhenFull, Model.ProjectId);
+    var editPre16PanLink = string.Format(RouteConstants.EditPre16PublishedAdmissionNumber, Model.ProjectId);
+    var editPost16PanLink = string.Format(RouteConstants.EditPost16PublishedAdmissionNumber, Model.ProjectId);
+    var editRecruitmentAndViabilityLink = string.Format(RouteConstants.EditRecruitmentAndViability, Model.ProjectId);
+    var editPre16CapacityBuildupLink = string.Format(RouteConstants.EditPre16CapacityBuildup, Model.ProjectId);
+    var editPost16CapacityBuildupLink = string.Format(RouteConstants.EditPost16CapacityBuildup, Model.ProjectId);
+    var applicationsEvidenceLink = string.Format(RouteConstants.ViewApplicationsEvidenceTask, Model.ProjectId) + $"?back={BackBehaviour.Previous}";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link" data-testid="back-to-project-overview">Back to about the project</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    @if (Model.ShowBanner)
+    {
+        <div 
+            class="govuk-notification-banner govuk-notification-banner--success" 
+            role="alert" 
+            aria-labelledby="govuk-notification-banner-title"
+            data-module="govuk-notification-banner"
+            data-testid="save-banner">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                    Success
+                </h2>
+            </div>
+            <div class="govuk-notification-banner__content">
+                <h3 class="govuk-notification-banner__heading">
+                    Pupil numbers updated.
+                </h3>
+            </div>
+        </div>
+    }
+
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.PupilNumbers.SchoolName</span>
+            Pupil numbers
+        </h1>
+
+        <table class="govuk-table govuk-table__border--full govuk-table--small">
+            <caption class="govuk-table__caption govuk-table__caption--l">Capacity when full</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School group</th>
+                    <th scope="col" class="govuk-table__header">Capacity</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Nursery</td>
+                    <td class="govuk-table__cell" data-testid="nursery-capacity">@capacityWhenFull.Nursery</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Reception to year 6</td>
+                    <td class="govuk-table__cell" data-testid="reception-to-year6-capacity">@capacityWhenFull.ReceptionToYear6</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 7 to year 11</td>
+                    <td class="govuk-table__cell" data-testid="year7-to-year11-capacity">@capacityWhenFull.Year7ToYear11</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 12 to year 14</td>
+                    <td class="govuk-table__cell" data-testid="year12-to-year14-capacity">@capacityWhenFull.Year12ToYear14</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Special educational needs (specialist resource provision)</td>
+                    <td class="govuk-table__cell" data-testid="special-educational-needs-capacity">@capacityWhenFull.SpecialEducationNeeds</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Alternative provision (specialist resource provision)</td>
+                    <td class="govuk-table__cell" data-testid="alternative-provision-capacity">@capacityWhenFull.AlternativeProvision</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><strong>Total</strong></td>
+                    <td class="govuk-table__cell" data-testid="total-capacity">@capacityWhenFull.Total</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editCapacityWhenFullLink" data-testid="edit-capacity">Edit Capacity when full</a>
+
+        <table class="govuk-table govuk-table__border--full govuk-table--small">
+            <caption class="govuk-table__caption govuk-table__caption--l">Pre-16 published admission number (PAN)</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                    <th scope="col" class="govuk-table__header">PAN in first year of opening</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Reception</td>
+                    <td class="govuk-table__cell" data-testid="reception-pan">@pre16PublishedAdmissionNumber.Reception</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 7</td>
+                    <td class="govuk-table__cell" data-testid="year7-pan">@pre16PublishedAdmissionNumber.Year7</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 10</td>
+                    <td class="govuk-table__cell" data-testid="year10-pan">@pre16PublishedAdmissionNumber.Year10</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Other pre-16</td>
+                    <td class="govuk-table__cell" data-testid="other-pre16-pan">@pre16PublishedAdmissionNumber.OtherPre16</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><strong>Total</strong></td>
+                    <td class="govuk-table__cell" data-testid="total-pre16-pan">
+                        @pre16PublishedAdmissionNumber.Total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editPre16PanLink" data-testid="edit-pre16-pan">Edit Pre-16 PAN</a>
+
+
+        <table class="govuk-table govuk-table__border--full govuk-table--small">
+            <caption class="govuk-table__caption govuk-table__caption--l">Post-16 published admission number (PAN)</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                    <th scope="col" class="govuk-table__header">PAN in first year of opening</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 12</td>
+                    <td class="govuk-table__cell" data-testid="year12-pan">@post16PublishedAdmissionNumber.Year12</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Other post-16</td>
+                    <td class="govuk-table__cell" data-testid="other-post16-pan">@post16PublishedAdmissionNumber.OtherPost16</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><strong>Total</strong></td>
+                    <td class="govuk-table__cell" data-testid="total-post16-pan">
+                        @post16PublishedAdmissionNumber.Total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editPost16PanLink" data-testid="edit-post16-pan">Edit Post-16 PAN</a>
+
+
+        <table class="govuk-table govuk-table__border--full">
+            <caption class="govuk-table__caption govuk-table__caption--l">Recruitment and viability</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                    <th scope="col" class="govuk-table__header">Minimum viable number (MVN) for first year</th>
+                    <th scope="col" class="govuk-table__header">Applications received</th>
+                    <th scope="col" class="govuk-table__header">Percentage received compared to MVN</th>
+                    <th scope="col" class="govuk-table__header">Percentage received compared to published admission number (PAN)</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Reception to year 6</td>
+                    <td class="govuk-table__cell" data-testid="reception-to-year6-mvn">@recruitmentAndViability.ReceptionToYear6.MinimumViableNumber</td>
+                    <td class="govuk-table__cell" data-testid="reception-to-year6-applications-received">@recruitmentAndViability.ReceptionToYear6.ApplicationsReceived</td>
+                    <td class="govuk-table__cell" data-testid="reception-to-year6-mvn-ratio">@recruitmentAndViability.ReceptionToYear6.PercentageComparedToMinimumViable.ToPercentageWith2Dp()</td>
+                    <td class="govuk-table__cell" data-testid="reception-to-year6-pan-ratio">@recruitmentAndViability.ReceptionToYear6.PercentageComparedToPublishedAdmissionNumber.ToPercentageWith2Dp()</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 7 to year 11</td>
+                    <td class="govuk-table__cell" data-testid="year7-to-year11-mvn">@recruitmentAndViability.Year7ToYear11.MinimumViableNumber</td>
+                    <td class="govuk-table__cell" data-testid="year7-to-year11-applications-received">@recruitmentAndViability.Year7ToYear11.ApplicationsReceived</td>
+                    <td class="govuk-table__cell" data-testid="year7-to-year11-mvn-ratio">@recruitmentAndViability.Year7ToYear11.PercentageComparedToMinimumViable.ToPercentageWith2Dp()</td>
+                    <td class="govuk-table__cell" data-testid="year7-to-year11-pan-ratio">@recruitmentAndViability.Year7ToYear11.PercentageComparedToPublishedAdmissionNumber.ToPercentageWith2Dp()</td>
+                </tr>
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell">Year 12 to year 14</td>
+                    <td class="govuk-table__cell" data-testid="year12-to-year14-mvn">@recruitmentAndViability.Year12ToYear14.MinimumViableNumber</td>
+                    <td class="govuk-table__cell" data-testid="year12-to-year14-applications-received">@recruitmentAndViability.Year12ToYear14.ApplicationsReceived</td>
+                    <td class="govuk-table__cell" data-testid="year12-to-year14-mvn-ratio">@recruitmentAndViability.Year12ToYear14.PercentageComparedToMinimumViable.ToPercentageWith2Dp()</td>
+                    <td class="govuk-table__cell" data-testid="year12-to-year14-pan-ratio">@recruitmentAndViability.Year12ToYear14.PercentageComparedToPublishedAdmissionNumber.ToPercentageWith2Dp()</td>
+                </tr>
+
+                <tr class="govuk-table__row">
+                    <td class="govuk-table__cell"><strong>Total</strong></td>
+                    <td class="govuk-table__cell" data-testid="total-mvn">
+                        @recruitmentAndViability.Total.MinimumViableNumber
+                    </td>
+                    <td class="govuk-table__cell" data-testid="total-applications-received">
+                        @recruitmentAndViability.Total.ApplicationsReceived
+                    </td>
+                    <td class="govuk-table__cell">
+                    </td>
+                    <td class="govuk-table__cell">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editRecruitmentAndViabilityLink" data-testid="edit-recruitment-and-viability">Edit Recruitment and viability</a>
+
+        <table class="govuk-table govuk-table__border--full">
+            <caption class="govuk-table__caption govuk-table__caption--l">Pre-16 capacity build-up</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                    <th scope="col" class="govuk-table__header">Current capacity (if school is open)</th>
+                    <th scope="col" class="govuk-table__header">First year</th>
+                    <th scope="col" class="govuk-table__header">Second year</th>
+                    <th scope="col" class="govuk-table__header">Third year</th>
+                    <th scope="col" class="govuk-table__header">Fourth year</th>
+                    <th scope="col" class="govuk-table__header">Fifth year</th>
+                    <th scope="col" class="govuk-table__header">Sixth year</th>
+                    <th scope="col" class="govuk-table__header">Seventh year</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <govuk-capacity-buildup-row label="Nursery" asp-for="@pre16CapacityBuildup.Nursery" />
+                <govuk-capacity-buildup-row label="Reception" asp-for="@pre16CapacityBuildup.Reception" />
+                <govuk-capacity-buildup-row label="Year 1" asp-for="@pre16CapacityBuildup.Year1" />
+                <govuk-capacity-buildup-row label="Year 2" asp-for="@pre16CapacityBuildup.Year2" />
+                <govuk-capacity-buildup-row label="Year 3" asp-for="@pre16CapacityBuildup.Year3" />
+                <govuk-capacity-buildup-row label="Year 4" asp-for="@pre16CapacityBuildup.Year4" />
+                <govuk-capacity-buildup-row label="Year 5" asp-for="@pre16CapacityBuildup.Year5" />
+                <govuk-capacity-buildup-row label="Year 6" asp-for="@pre16CapacityBuildup.Year6" />
+                <govuk-capacity-buildup-row label="Year 7" asp-for="@pre16CapacityBuildup.Year7" />
+                <govuk-capacity-buildup-row label="Year 8" asp-for="@pre16CapacityBuildup.Year8" />
+                <govuk-capacity-buildup-row label="Year 9" asp-for="@pre16CapacityBuildup.Year9" />
+                <govuk-capacity-buildup-row label="Year 10" asp-for="@pre16CapacityBuildup.Year10" />
+                <govuk-capacity-buildup-row label="Year 11" asp-for="@pre16CapacityBuildup.Year11" />
+                <govuk-capacity-buildup-row label="Total" bold-label=true asp-for="@pre16CapacityBuildup.Total" id-prefix="pre16-total" />
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editPre16CapacityBuildupLink" data-testid="edit-pre16-capacity-buildup">Edit Pre-16 capacity buildup</a>
+
+
+        <table class="govuk-table govuk-table__border--full">
+            <caption class="govuk-table__caption govuk-table__caption--l">Post-16 capacity build-up</caption>
+            <thead class="govuk-table__head">
+                <tr class="govuk-table__row">
+                    <th scope="col" class="govuk-table__header mfsp-pupil-numbers-table__first-header">School year</th>
+                    <th scope="col" class="govuk-table__header">Current capacity (if school is open)</th>
+                    <th scope="col" class="govuk-table__header">First year</th>
+                    <th scope="col" class="govuk-table__header">Second year</th>
+                    <th scope="col" class="govuk-table__header">Third year</th>
+                    <th scope="col" class="govuk-table__header">Fourth year</th>
+                    <th scope="col" class="govuk-table__header">Fifth year</th>
+                    <th scope="col" class="govuk-table__header">Sixth year</th>
+                    <th scope="col" class="govuk-table__header">Seventh year</th>
+                </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+                <govuk-capacity-buildup-row label="Year 12" asp-for="@post16CapacityBuildup.Year12" />
+                <govuk-capacity-buildup-row label="Year 13" asp-for="@post16CapacityBuildup.Year13" />
+                <govuk-capacity-buildup-row label="Year 14" asp-for="@post16CapacityBuildup.Year14" />
+                <govuk-capacity-buildup-row label="Total" bold-label=true asp-for="@post16CapacityBuildup.Total" id-prefix="post16-total" />
+            </tbody>
+        </table>
+
+        <a class="govuk-button govuk-!-margin-bottom-9" href="@editPost16CapacityBuildupLink" data-testid="edit-post16-capacity-buildup">Edit Post-16 capacity buildup</a>
+
+        <div class="govuk-grid-row govuk-!-margin-top-6">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h2 class="govuk-heading-m">
+                    Related tasks
+                </h2>
+
+                <p class="govuk-body">You may want to complete the following related tasks.</p>
+
+                <ol class="app-task-list">
+                    <govuk-task-summary-item asp-for="@Model.ProjectTaskListSummary.ApplicationsEvidence" href="@applicationsEvidenceLink" label="Applications evidence" />
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

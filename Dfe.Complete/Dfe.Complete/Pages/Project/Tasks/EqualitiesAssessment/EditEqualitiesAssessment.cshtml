@@ -1,0 +1,45 @@
+﻿@page "/projects/{projectId}/tasks/equalitiesassessment/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.TagHelpers
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.EqualitiesAssessment.EditEqualitiesAssessmentTaskModel
+@{
+    ViewData["Title"] = $"Edit Equalities assessment - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewEqualitiesAssessmentTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary"/>
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>Edit Equalities assessment
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="Completed the equalities process record (EPR)"
+                                  asp-for="@Model.CompletedEqualitiesProcessRecord"
+                                  name="completed-the-equalities-process-record"
+                                  id="completed-the-equalities-process-record"
+                                  test-id="completed-the-equalities-process-record"
+                                  add-margin=false />
+            <govuk-checkbox-input label="Saved the EPR in Workplaces folder"
+                                  asp-for="@Model.SavedEPRInWorkplacesFolder"
+                                  name="saved-epr-in-workplaces-folder"
+                                  id="saved-epr-in-workplaces-folder"
+                                  test-id="saved-epr-in-workplaces-folder"
+                                  add-margin=false />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@page "/projects/{projectId}/tasks/ofsted-pre-registration"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.OfstedPreRegistration.ViewOfstedPreRegistrationModel
+@{
+    ViewData["Title"] = $"Ofsted pre-registration - {Model.Project.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.TaskList, Model.ProjectId);
+    var editBeforelink = string.Format(RouteConstants.EditBeforeOfstedInspectionTask, Model.ProjectId);
+    var editAfterlink = string.Format(RouteConstants.EditAfterOfstedInspectionTask, Model.ProjectId);
+    var ofstedPreRegistration = Model.Project.OfstedInspection;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Ofsted pre-registration
+        </h1>
+
+        <h2 class="govuk-heading-l">
+            Before the inspection
+        </h2>
+        <govuk-summary-list>
+            <govuk-summary-item label="Provided the trust with details about the process" asp-for="@ofstedPreRegistration.ProcessDetailsProvided" href="@editBeforelink" id="beforepagelink"/>
+            <govuk-summary-item label="Decided on the inspection block" asp-for="@ofstedPreRegistration.InspectionBlockDecided" href="@editBeforelink"/>
+            <govuk-summary-item label="Confirmed contact details for Ofsted and the trust to liaise with each other" asp-for="@ofstedPreRegistration.OfstedAndTrustLiaisonDetailsConfirmed" href="@editBeforelink"/>
+            <govuk-summary-item label="Added the block and contact details to openers spreadsheet" asp-for="@ofstedPreRegistration.BlockAndContentDetailsToOpenersSpreadSheet" href="@editBeforelink"/>
+       </govuk-summary-list>
+        
+        <h2 class="govuk-heading-l">
+            After the inspection
+        </h2>
+        
+        <govuk-summary-list>
+            <govuk-summary-item label="Shared the outcome with the trust" asp-for="@ofstedPreRegistration.SharedOutcomeWithTrust" href="@editAfterlink" id="afterpagelink" />
+            <govuk-summary-item label="Any actions to meet conditions have been taken - if applicable" asp-for="@ofstedPreRegistration.InspectionConditionsMet" href="@editAfterlink" />
+            <govuk-summary-item label="Requested that the school is changed to 'proposed to open' on GIAS" asp-for="@ofstedPreRegistration.ProposedToOpenOnGias" href="@editAfterlink"/>
+            <govuk-summary-item label="Saved inspection documents and G6 agreement in Workplaces folder" asp-for="@ofstedPreRegistration.SavedToWorkplaces" href="@editAfterlink" />
+        </govuk-summary-list>
+        
+        <form method="post">
+            <govuk-checkbox-input label="Mark this section as complete, you can still make changes later"
+                                  asp-for="MarkAsCompleted"
+                                  name="mark-as-completed"
+                                  id="mark-as-completed" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="confirm">
+                Confirm and continue
+            </button>
+
+        </form>
+    </div>
+</div>

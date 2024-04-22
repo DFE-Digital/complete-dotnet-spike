@@ -1,0 +1,52 @@
+@page "/projects/{projectId}/tasks/applications-evidence/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.ApplicationsEvidence.EditApplicationsEvidenceTaskModel
+@{
+    ViewData["Title"] = $"Edit Applications evidence - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewApplicationsEvidenceTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Applications evidence 
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="Confirmed that the trust has provided minimum viable pupil numbers"
+                                  asp-for="@Model.ConfirmedPupilNumbers"
+                                  name="confirmed-pupil-numbers"
+                                  id="confirmed-pupil-numbers"
+                                  add-margin=false />
+
+            <govuk-textarea-input id="comments" name="comments" bold-label="true" label="Comments" rows="5" asp-for="@Model.Comments" add-margin="true" hint="For example, if the local authority will underwrite any shortfall in pupil numbers" />
+
+            <govuk-checkbox-input label="Saved the pupil place build-up form in Workplaces folder"
+                                  asp-for="@Model.BuildUpFormInWorkplaces"
+                                  name="build-up-form-in-workplaces"
+                                  id="build-up-form-in-workplaces"
+                                  add-margin="false"/>
+            
+            <govuk-checkbox-input label="Saved the underwriting agreement from the local authority in Workplaces folder (if applicable)"
+                                              asp-for="@Model.UnderwritingAgreementInWorkplaces"
+                                              name="underwriting-agreement-in-workplaces"
+                                              id="underwriting-agreement-in-workplaces"
+                                              add-margin="false"/>
+            
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

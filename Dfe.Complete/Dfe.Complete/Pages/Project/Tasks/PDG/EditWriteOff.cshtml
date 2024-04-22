@@ -1,0 +1,37 @@
+﻿@page "/projects/{projectId}/tasks/pdg/edit-write-off"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.PDG.EditWriteOffModel
+@{
+    ViewData["Title"] = $"Edit Write-off - {Model.CurrentFreeSchoolName}";
+    var backLink = string.Format(RouteConstants.ViewPDG, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backLink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">
+        @Model.CurrentFreeSchoolName
+    </span>
+    Edit Write-off
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+            <govuk-textarea-input id="write-off-reason" name="write-off-reason" bold-label="true" label="Write-off reason" rows="5" asp-for="@Model.WriteOffReason" test-id="write-off-reason" />
+            <govuk-decimal-input id="write-off-amount" name="write-off-amount" asp-for="@Model.WriteOffAmount" data-testid="write-off-amount" label="Write-off amount" isMonetary="true" />
+            <govuk-date-input id="write-off-date" name="write-off-date" asp-for="@Model.WriteOffDate" data-testid="write-off-date" label="Write-off date" hint="For example, 27 3 2021" />
+            <govuk-text-input id="finance-partner" name="finance-partner" asp-for="@Model.FinanceBusinessPartnerApprovalReceivedFrom" label="Finance business partner approval received from" hint="For example, George Smith" bold-label="true" data-testid="finance-partner" />
+            <govuk-date-input id="approval-date" name="approval-date" asp-for="@Model.ApprovalDate" data-testid="approval-date" label="Approval date" hint="For example, 27 3 2021" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

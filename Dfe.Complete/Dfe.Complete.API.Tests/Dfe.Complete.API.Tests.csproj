@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+
+        <IsPackable>false</IsPackable>
+
+        <UserSecretsId>98bff7f2-ac39-4bca-a8d1-799eea25223f</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="DatabaseModels\**" />
+      <Compile Remove="Validators\**" />
+      <EmbeddedResource Remove="DatabaseModels\**" />
+      <EmbeddedResource Remove="Validators\**" />
+      <None Remove="DatabaseModels\**" />
+      <None Remove="Validators\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoFixture.Idioms" Version="4.18.0" />
+        <PackageReference Include="AutoFixture.Xunit2" Version="4.18.0" />
+        <PackageReference Include="FluentAssertions" Version="6.12.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.23" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.23" />
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.7.2" />
+        <PackageReference Include="NBuilder" Version="6.1.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="NSubstitute" Version="5.0.0" />
+        <PackageReference Include="System.Net.Http.Json" Version="7.0.1" />
+        <PackageReference Include="xunit" Version="2.5.3" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="coverlet.collector" Version="6.0.0">
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Dfe.Complete.API\Dfe.Complete.API.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="appsettings.tests.json">
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+    </ItemGroup>
+</Project>

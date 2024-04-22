@@ -1,0 +1,54 @@
+@page "/projects/{projectId}/tasks/ofsted-pre-registration/edit-before-inspection"
+@using Dfe.ManageFreeSchoolProjects.Constants
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.OfstedPreRegistration.EditOfstedPreRegistrationBeforeTaskModel
+@{
+    ViewData["Title"] = $"Edit Before the inspection - Ofsted pre-registration - {Model.SchoolName}";
+    var backlink = string.Format(RouteConstants.ViewOfstedPreRegistrationTask, Model.ProjectId);
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit Before the inspection - Ofsted pre-registration 
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input label="Provided the trust with details about the process"
+                                  asp-for="@Model.ProcessDetailsProvided"
+                                  name="process-details-provided"
+                                  id="process-details-provided"
+                                  add-margin="false"/>
+            
+            <govuk-checkbox-input label="Decided on the inspection block"
+                                  asp-for="@Model.InspectionBlockDecided"
+                                  name="inspection-block-decided"
+                                  id="inspection-block-decided"
+                                  add-margin="false"/>
+
+            <govuk-checkbox-input label="Confirmed contact details for Ofsted and the trust to liaise with each other"
+                                  asp-for="@Model.OfstedAndTrustLiaisonDetailsConfirmed"
+                                  name="ofsted-and-trust-liaison-details-confirmed"
+                                  id="ofsted-and-trust-liaison-details-confirmed"
+                                  add-margin="false"/>
+
+            <govuk-checkbox-input label="Added the block and contact details to openers spreadsheet"
+                                  asp-for="@Model.BlockAndContentDetailsToOpenersSpreadSheet"
+                                  name="block-and-content-details-to-openers-spreadsheet"
+                                  id="block-and-content-details-to-openers-spreadsheet"
+                                  add-margin="false"/>
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+    </div>
+</div>

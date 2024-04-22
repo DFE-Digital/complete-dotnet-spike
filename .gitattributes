@@ -1,0 +1,4 @@
+* text=auto
+
+# Set script files to lf line endings
+*.sh text eol=lf

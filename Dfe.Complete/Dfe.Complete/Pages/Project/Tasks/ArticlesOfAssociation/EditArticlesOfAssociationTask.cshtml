@@ -1,0 +1,39 @@
+﻿@page "/projects/{projectId}/tasks/articlesofassociation/edit"
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.ArticlesOfAssociation.EditArticlesOfAssociationTaskModel
+@{
+    ViewData["Title"] = $"Edit articles of association - {Model.SchoolName}";
+
+    var backlink = string.Format(RouteConstants.ViewArticlesOfAssociation, Model.ProjectId);
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<partial name="_ErrorSummary" />
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Edit articles of association
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <form method="post">
+            <govuk-checkbox-input id="checked-submitted-articles-match" name="checked-submitted-articles-match" asp-for="@Model.CheckedSubmittedArticlesMatch" heading-label="Checked that the submitted articles match the model articles" label="Done"/>
+            <govuk-checkbox-input id="chair-have-submitted-confirmation" name="chair-have-submitted-confirmation" asp-for="@Model.ChairHaveSubmittedConfirmation" heading-label="Chair of trustees and senior executive lead have submitted confirmation" label="Done" />
+            <govuk-checkbox-input id="arrangements-match-governance-plans" name="arrangements-match-governance-plans" asp-for="@Model.ArrangementsMatchGovernancePlans" heading-label="Governance arrangements match the details given in governance plans" label="Done" />
+            <govuk-date-input id="forecast-date" name="forecast-date" asp-for="@Model.ForecastDate" data-testid="forecast-date" label="Forecast date" hint="For example, 27 3 2021" />
+            <govuk-date-input id="actual-date" name="actual-date" asp-for="@Model.ActualDate" data-testid="actual-date" label="Actual date" hint="For example, 27 3 2021" />
+            <govuk-text-input id="comments-on-decision" name="comments-on-decision" bold-label="true" label="Comments on decision to approve (if applicable)" asp-for="@Model.CommentsOnDecision" add-margin="true" data-testid="comments-on-decision" />
+            <govuk-text-input id="sharepoint-link" name="sharepoint-link" bold-label="true" label="SharePoint link" asp-for="@Model.SharepointLink" add-margin="true" data-testid="sharepoint-link" />
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Save and continue
+            </button>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,57 @@
+﻿@model RiskFormModel
+@using Dfe.ManageFreeSchoolProjects.Constants;
+@using Dfe.ManageFreeSchoolProjects.Pages.Project.Risk;
+@{
+    var ratingLabels = RiskRatingLabelBuilder.Build();
+
+    var labels = new List<string>();
+    var values = new List<string>();
+    var testIds = new List<string>();
+
+    ratingLabels.ForEach(entry =>
+    {
+        labels.Add(entry.Label);
+        values.Add(((int)entry.RiskRating).ToString());
+        testIds.Add($"risk-rating-{entry.RiskRating.ToString()}");
+    });
+
+}
+
+<partial name="_ErrorSummary" />
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+            @Model.Heading
+        </h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form class="form" method="post">
+
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l govuk-!-font-size-27 govuk-!-margin-bottom-6">Risk rating</legend>
+            <govuk-radios-input id="risk-rating"
+                                name="risk-rating"
+                                asp-for="@Model.RiskRating"
+                                values="@values.ToArray()"
+                                test-ids="@testIds.ToArray()"
+                                html-labels="@labels.ToArray()" />
+
+            <label class="govuk-label govuk-heading-l govuk-!-font-size-27 govuk-!-margin-bottom-6" for="summary">
+                Risk summary
+            </label>
+            <govuk-textarea-input id="summary"
+                                  name="summary"
+                                  asp-for="@Model.Summary"
+                                  test-id="risk-summary"
+                                  rows="10" />
+
+            <button class="govuk-button" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

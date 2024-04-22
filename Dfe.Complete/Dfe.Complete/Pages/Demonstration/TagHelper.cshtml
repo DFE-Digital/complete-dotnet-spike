@@ -1,0 +1,73 @@
+﻿@page
+@using Dfe.ManageFreeSchoolProjects.Pages.Project;
+@model Dfe.ManageFreeSchoolProjects.Pages.Demonstration.TagHelperModel
+
+@{
+    var values = new[] { "hello", "world" };
+
+    var checkboxValues = new[] { "first", "second", "third" };
+    var checkboxLabels = new[] { "First", "Second", "Third" };
+}
+
+<div class="text-center">
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <partial name="_ErrorSummary" />
+
+            <h2 class="govuk-heading-l govuk-!-margin-bottom-2">Create Project</h2>
+            <div class="app-task-list">
+                <form class="govuk-form-group" method="POST" id="create-project-form">
+
+                    <govuk-date-input id="project-date" name="project-date" asp-for="@Model.ProjectDate" data-testid="project-date-input" label="Project date" />
+
+                    <govuk-textarea-input id="project-description" name="project-description" asp-for="@Model.ProjectDescription" data-testid="project-description-input" label="Project description" />
+
+                    <govuk-decimal-input id="project-cost" name="project-cost" asp-for="@Model.ProjectCost" data-testid="project-cost-input" label="Project cost" />
+
+                    <govuk-radios-input 
+                        id="project-options" 
+                        name="project-options" 
+                        asp-for="@Model.ProjectOptions" 
+                        data-testid="project-options-input"
+                        label="Project options"
+                        values="@values"
+                        labels="@values"/>
+
+                    <div class="govuk-form-group">
+                        <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+                            <div class="govuk-checkboxes__item">
+                                <input asp-for="@Model.ProjectApproved" class="govuk-checkboxes__input" type="checkbox" id="project-approved" name="project-approved">
+                                <label asp-for="@Model.ProjectApproved" class="govuk-label govuk-checkboxes__label">
+                                    Project Approved?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <govuk-text-input id="project-id" name="project-id" asp-for="@Model.ProjectID" data-testid="project-id-input" label="Project ID" />
+
+                    <govuk-text-input id="school-name" name="school-name" asp-for="@Model.SchoolName" data-testid="school-name-input" label="School name" />
+
+                    <govuk-text-input id="application-number" name="application-number" asp-for="@Model.ApplicationNumber" data-testid="application-number-input" label="Application number" />
+
+                    <govuk-text-input id="application-wave" name="application-wave" asp-for="@Model.ApplicationWave" data-testid="application-wave-input" label="Application wave" />
+
+                    <govuk-checkbox-list id="stamps" name="stamps" asp-for="@Model.Stamps" data-testid="stamps-input" label="Stamps" values="@checkboxValues" labels="@checkboxLabels" />
+
+                    <div class="govuk-button-group">
+                        <button data-prevent-double-click="true"
+                                class="govuk-button govuk-!-margin-top-6"
+                                data-module="govuk-button"
+                                role="button"
+                                id="create"
+                                name="action"
+                                value="create"
+                                data-testid="create-project-button">
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

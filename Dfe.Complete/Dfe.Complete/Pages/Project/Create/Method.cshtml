@@ -1,0 +1,36 @@
+﻿@page "/project/create/method"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project;
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Create.MethodModel
+@{
+    ViewData["Title"] = "Create new free school projects";
+    var labels = new[] { "Create one project", "Upload multiple projects" };
+    var values = new[] { ProjectCreateMethod.Individual.ToString(), ProjectCreateMethod.Bulk.ToString() };
+    var hints = new[] {
+        "Presumption route only",
+        "Wave route only"
+    };
+}
+@section BeforeMain {
+    <div class="govuk-width-container">
+        <a href="/" class="govuk-back-link">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <partial name="_ErrorSummary" />
+    <div class="govuk-grid-column-two-thirds">
+        <form class="govuk-form-group" method="post">
+
+            <govuk-radios-input id="method"
+                                name="method"
+                                asp-for="@Model.Method"
+                                labels="@labels"
+                                values="@values"
+                                hints="@hints"
+                                label="What do you want to do?" 
+                                xl-heading-label="true"/>
+            <button class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" data-testid="continue">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>

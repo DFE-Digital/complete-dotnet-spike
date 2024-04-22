@@ -1,0 +1,57 @@
+﻿@page "/projects/{projectId}/tasks/region-and-localauthority/region/edit"
+@using Dfe.ManageFreeSchoolProjects.API.Contracts.Project
+@model Dfe.ManageFreeSchoolProjects.Pages.Project.Tasks.RegionAndLA.EditRegion
+
+@{
+    ViewData["Title"] = $"Edit region - {Model.CurrentFreeSchoolName}";
+
+    var regions = Enum.GetValues(typeof(ProjectRegion));
+    var labels = new List<string>();
+    var values = new List<string>();
+
+    foreach (var region in regions)
+    {
+        labels.Add(region.ToDescription());
+        values.Add(region.ToDescription());
+    }
+
+    var backlink = $"/projects/{Model.ProjectId}/tasks/region-and-localauthority";
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l" data-testid="school-name"> @Model.CurrentFreeSchoolName </span>
+            Edit region
+        </h1>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+            <partial name="_ErrorSummary"/>
+
+            <form method="post">
+                <div class="govuk-form-group">
+                    <govuk-radios-input
+                        name="region"
+                        asp-for="@Model.Region"
+                        data-testid="region"
+                        labels="@labels.ToArray()"
+                        values="@values.ToArray()"/>
+                </div>
+
+                <button class="govuk-button" data-module="govuk-button">
+                    Save and continue
+                </button>
+
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

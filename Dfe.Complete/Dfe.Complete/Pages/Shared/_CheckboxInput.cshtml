@@ -1,0 +1,47 @@
+﻿@using DocumentFormat.OpenXml.Office2010.Excel
+@model Dfe.ManageFreeSchoolProjects.ViewModels.CheckboxInputViewModel
+@{
+    var showError = !string.IsNullOrWhiteSpace(Model.ErrorMessage);
+
+    var margin = Model.AddMargin ? "govuk-!-margin-bottom-6" : "";
+}
+
+<div class="govuk-form-group">
+    <fieldset class="govuk-fieldset">
+
+        @if (!string.IsNullOrEmpty(Model.HeadingLabel))
+        {
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                @Model.HeadingLabel
+            </legend>
+        }
+
+        @if (showError)
+        {
+            <span id="@Model.Id-error" class="govuk-error-message">
+                <span class="govuk-visually-hidden">Error:</span> @Model.ErrorMessage
+            </span>
+        }
+
+        <div class="govuk-checkboxes govuk-fieldset__legend--m @margin">
+            <div class="govuk-checkboxes__item">
+                <input name="@Model.Name-hidden" type="hidden" value="false"/>
+                <input class="govuk-checkboxes__input" id="@Model.Id" name="@Model.Name" type="checkbox" value="true" checked="@("true".Equals(Model.Value, StringComparison.OrdinalIgnoreCase))" data-testid="@Model.TestId">
+                @if (@Model.BoldLabel == true)
+                {
+                    <label class="govuk-body-l govuk-checkboxes__label" for="@Model.Id">
+                        <strong>
+                            @Model.Label
+                        </strong>
+                    </label>
+                }
+                else
+                {
+                    <label class="govuk-label govuk-checkboxes__label" for="@Model.Id">
+                        @Model.Label
+                    </label>
+                }
+            </div>
+        </div>
+    </fieldset>
+</div>

@@ -1,0 +1,135 @@
+﻿<#@ template hostSpecific="true" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Design" #>
+<#@ assembly name="Microsoft.EntityFrameworkCore.Relational" #>
+<#@ assembly name="Microsoft.Extensions.DependencyInjection.Abstractions" #>
+<#@ parameter name="EntityType" type="Microsoft.EntityFrameworkCore.Metadata.IEntityType" #>
+<#@ parameter name="Options" type="Microsoft.EntityFrameworkCore.Scaffolding.ModelCodeGenerationOptions" #>
+<#@ parameter name="NamespaceHint" type="System.String" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore.Design" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore.Infrastructure" #>
+<#@ import namespace="Microsoft.EntityFrameworkCore.Scaffolding" #>
+<#@ import namespace="Microsoft.Extensions.DependencyInjection" #>
+<#
+    if (!ProductInfo.GetVersion().StartsWith("7.0"))
+    {
+        Warning("Your templates were created using an older version of Entity Framework. Additional features and bug fixes may be available. See https://aka.ms/efcore-docs-updating-templates for more information.");
+    }
+
+    var services = (IServiceProvider)Host;
+    var providerCode = services.GetRequiredService<IProviderConfigurationCodeGenerator>();
+    var annotationCodeGenerator = services.GetRequiredService<IAnnotationCodeGenerator>();
+    var code = services.GetRequiredService<ICSharpHelper>();
+
+    var usings = new List<string>
+    {
+        "System",
+        "System.Collections.Generic",
+        "Microsoft.EntityFrameworkCore",
+        "Microsoft.EntityFrameworkCore.Metadata.Builders"
+    };
+
+    if (NamespaceHint != Options.ModelNamespace
+        && !string.IsNullOrEmpty(Options.ModelNamespace))
+    {
+        usings.Add(Options.ModelNamespace);
+    }
+
+#>
+namespace <#= NamespaceHint #>
+{
+	public partial class <#= EntityType.Name #>Configuration : IEntityTypeConfiguration< <#= EntityType.Name #>>
+	{
+		public void Configure(EntityTypeBuilder<<#= EntityType.Name #>> builder)
+		{
+<#
+        var key = EntityType.FindPrimaryKey();
+        if (key != null)
+        {
+            var keyFluentApiCalls = key.GetFluentApiCalls(annotationCodeGenerator);
+            if (keyFluentApiCalls != null 
+                || (!key.IsHandledByConvention() && !Options.UseDataAnnotations))
+            {
+                usings.AddRange(keyFluentApiCalls.GetRequiredUsings());
+            }
+#>
+            builder.HasKey(<#= code.Lambda(key.Properties, "e") #>)<#= code.Fragment(keyFluentApiCalls, indent: 4) #>;
+<#
+        }
+
+        var EntityTypeFluentApiCalls = EntityType.GetFluentApiCalls(annotationCodeGenerator)
+            ?.FilterChain(c => !(Options.UseDataAnnotations&& c.IsHandledByDataAnnotations));
+        if (EntityTypeFluentApiCalls != null)
+        {
+            usings.AddRange(EntityTypeFluentApiCalls.GetRequiredUsings());
+#>
+            builder<#= code.Fragment(EntityTypeFluentApiCalls, indent: 4) #>;
+<#
+        }
+
+       foreach (var index in EntityType.GetIndexes()
+            .Where(i => !(Options.UseDataAnnotations && i.IsHandledByDataAnnotations(annotationCodeGenerator))))
+        {
+
+            var indexFluentApiCalls = index.GetFluentApiCalls(annotationCodeGenerator);
+            if (indexFluentApiCalls != null)
+            {
+                usings.AddRange(indexFluentApiCalls.GetRequiredUsings());
+            }
+#>
+            builder.HasIndex(<#= code.Lambda(index.Properties, "e") #>, <#= code.Literal(index.GetDatabaseName()) #>)<#= code.Fragment(indexFluentApiCalls, indent: 4) #>;
+<#
+        }
+
+      
+        var firstProperty = true;
+        foreach (var property in EntityType.GetProperties())
+        {
+            var propertyFluentApiCalls = property.GetFluentApiCalls(annotationCodeGenerator)
+                ?.FilterChain(c => !(Options.UseDataAnnotations && c.IsHandledByDataAnnotations)
+                    && !(c.Method == "IsRequired" && Options.UseNullableReferenceTypes && !property.ClrType.IsValueType));
+            if (propertyFluentApiCalls == null)
+            {
+                continue;
+            }
+
+            usings.AddRange(propertyFluentApiCalls.GetRequiredUsings());
+
+            if (firstProperty)
+            {
+                WriteLine("");
+            }
+      
+#>
+            builder.Property(e => e.<#= property.Name #>)<#= code.Fragment(propertyFluentApiCalls, indent: 4) #>;
+<#
+            firstProperty = false;
+        }
+
+
+        
+#>
+
+		}
+	}
+
+}
+<#
+    var mainEnvironment = GenerationEnvironment;
+    GenerationEnvironment = new StringBuilder();
+
+    foreach (var ns in usings.Distinct().OrderBy(x => x, new NamespaceComparer()))
+    {
+#>
+using <#= ns #>;
+<#
+    }
+
+    WriteLine("");
+
+    GenerationEnvironment.Append(mainEnvironment);
+#>
