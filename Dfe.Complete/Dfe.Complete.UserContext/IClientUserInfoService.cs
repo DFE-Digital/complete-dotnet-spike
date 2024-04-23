@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Dfe.ManageFreeSchoolProjects.UserContext;
+namespace Dfe.Complete.UserContext;
 
 public interface IClientUserInfoService
 {

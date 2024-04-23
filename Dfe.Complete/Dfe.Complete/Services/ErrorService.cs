@@ -1,9 +1,9 @@
-﻿using Dfe.ManageFreeSchoolProjects.Models;
+﻿using Dfe.Complete.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
 	public class ErrorService
 	{

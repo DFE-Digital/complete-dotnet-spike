@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
 	public interface IDateValidationMessageProvider
 	{

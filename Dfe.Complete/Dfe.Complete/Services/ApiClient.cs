@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.API.Contracts.Http;
+﻿using Dfe.Complete.API.Contracts.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -9,7 +9,7 @@ using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
     public abstract class ApiClient
     {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
 	public class SubMenuLinkTagHelper : AnchorTagHelper
 	{

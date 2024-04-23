@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.ManageFreeSchoolProjects.Models
+namespace Dfe.Complete.Models
 {
 	public class SupportGrantValidatorAttribute : ValidationAttribute
 	{

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 
-namespace Dfe.ManageFreeSchoolProjects.Security
+namespace Dfe.Complete.Security
 {	
 	public static class SecurityHeadersDefinitions
 	{

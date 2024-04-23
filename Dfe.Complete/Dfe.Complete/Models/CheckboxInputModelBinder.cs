@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.Models
+namespace Dfe.Complete.Models
 {
 	public class CheckboxInputModelBinder : IModelBinder
 	{

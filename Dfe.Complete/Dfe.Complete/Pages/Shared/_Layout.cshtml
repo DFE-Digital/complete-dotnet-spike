@@ -1,5 +1,5 @@
 ﻿@inject Microsoft.Extensions.Configuration.IConfiguration _configuration
-@inject Dfe.ManageFreeSchoolProjects.Services.IAnalyticsConsentService _analytisConsentService
+@inject Dfe.Complete.Services.IAnalyticsConsentService _analytisConsentService
 
 @{
     var showAnalytics = _configuration["GoogleAnalytics:Enable"] == "Yes" && _analytisConsentService.HasConsent();

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class EnumExtensions
 	{

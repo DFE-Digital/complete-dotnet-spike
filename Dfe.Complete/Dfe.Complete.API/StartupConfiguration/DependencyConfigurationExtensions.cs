@@ -1,10 +1,10 @@
-﻿using Dfe.ManageFreeSchoolProjects.API.UseCases;
-using Dfe.ManageFreeSchoolProjects.Logging;
-using Dfe.ManageFreeSchoolProjects.UserContext;
+﻿using Dfe.Complete.API.UseCases;
+using Dfe.Complete.Logging;
+using Dfe.Complete.UserContext;
 using FluentValidation;
 using System.Reflection;
 
-namespace Dfe.ManageFreeSchoolProjects.API.StartupConfiguration
+namespace Dfe.Complete.API.StartupConfiguration
 {
     public static class DependencyConfigurationExtensions
 	{

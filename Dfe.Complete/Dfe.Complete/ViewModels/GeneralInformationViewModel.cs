@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.ViewModels
+﻿namespace Dfe.Complete.ViewModels
 {
 	public class GeneralInformationViewModel
 	{

@@ -1,6 +1,6 @@
 ﻿using Ardalis.GuardClauses;
 
-namespace Dfe.ManageFreeSchoolProjects.Logging;
+namespace Dfe.Complete.Logging;
 
 public record CorrelationContext() : ICorrelationContext
 {

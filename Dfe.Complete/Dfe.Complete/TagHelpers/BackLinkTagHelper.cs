@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-back-link", TagStructure = TagStructure.WithoutEndTag)]
 	public class BackLinkTagHelper : TagHelper

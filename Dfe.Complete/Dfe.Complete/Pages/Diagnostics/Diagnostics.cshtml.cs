@@ -1,4 +1,4 @@
-using Dfe.ManageFreeSchoolProjects.Attributes;
+using Dfe.Complete.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
 
-namespace Dfe.ManageFreeSchoolProjects.Pages.Diagnostics
+namespace Dfe.Complete.Pages.Diagnostics
 {
     public class DiagnosticsModel : PageModel
     {
@@ -32,7 +32,7 @@ namespace Dfe.ManageFreeSchoolProjects.Pages.Diagnostics
 
         public void OnGet()
         {
-            ReleaseTag = _configuration["Dfe.ManageFreeSchoolProjects:ReleaseTag"];
+            ReleaseTag = _configuration["Dfe.Complete:ReleaseTag"];
 
             if (_env.IsDevelopment() || _env.IsStaging())
             {

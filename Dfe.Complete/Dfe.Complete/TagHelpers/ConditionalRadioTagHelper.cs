@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-conditional-radio", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class ConditionalRadioTagHelper : TagHelper

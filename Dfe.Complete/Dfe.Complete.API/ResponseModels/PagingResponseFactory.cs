@@ -1,7 +1,7 @@
 using Dfe.Complete.API.Contracts.Common;
 using Microsoft.AspNetCore.Http.Extensions;
 
-namespace Dfe.ManageFreeSchoolProjects.API.ResponseModels
+namespace Dfe.Complete.API.ResponseModels
 {
     public static class PagingResponseFactory
 	{

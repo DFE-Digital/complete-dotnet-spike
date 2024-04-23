@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.Logging
+﻿namespace Dfe.Complete.Logging
 {
 	public interface ICorrelationContext
 	{

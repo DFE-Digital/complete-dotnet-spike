@@ -1,11 +1,11 @@
 using Dfe.Complete.API.Contracts.Common;
-using Dfe.ManageFreeSchoolProjects.API.ResponseModels;
+using Dfe.Complete.API.ResponseModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using System.Collections.Generic;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Factories
+namespace Dfe.Complete.API.Tests.Factories
 {
     public class PagingResponseFactoryTests
     {

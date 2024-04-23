@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.API.UseCases
+﻿namespace Dfe.Complete.API.UseCases
 {
     public interface ISfaApiKeyValidationService
     {

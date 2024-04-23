@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Utils
+namespace Dfe.Complete.API.Tests.Utils
 {
     public class ScopeFactoryStub : IServiceScopeFactory
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class DateTimeExtensions
 	{

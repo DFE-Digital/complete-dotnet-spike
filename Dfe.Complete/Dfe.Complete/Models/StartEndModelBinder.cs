@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.Services;
+﻿using Dfe.Complete.Services;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.Models
+namespace Dfe.Complete.Models
 {
 	public class StartEndModelBinder : IModelBinder
 	{

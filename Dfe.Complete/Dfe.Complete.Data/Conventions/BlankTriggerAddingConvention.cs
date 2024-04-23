@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 
-namespace Dfe.ManageFreeSchoolProjects.Data.Conventions;
+namespace Dfe.Complete.Data.Conventions;
 
 // https://learn.microsoft.com/en-us/ef/core/providers/sql-server/misc#savechanges-and-database-triggers
 public class BlankTriggerAddingConvention : IModelFinalizingConvention

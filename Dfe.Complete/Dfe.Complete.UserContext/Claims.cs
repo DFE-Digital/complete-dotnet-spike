@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.UserContext
+﻿namespace Dfe.Complete.UserContext
 {
 	public abstract class Claims
 	{

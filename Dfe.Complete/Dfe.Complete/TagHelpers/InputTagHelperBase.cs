@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
 	public abstract class InputTagHelperBase : TagHelper
 	{

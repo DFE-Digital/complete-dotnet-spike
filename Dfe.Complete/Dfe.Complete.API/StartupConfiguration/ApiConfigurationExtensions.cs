@@ -1,6 +1,6 @@
 using System.Net.Mime;
 
-namespace Dfe.ManageFreeSchoolProjects.API.StartupConfiguration;
+namespace Dfe.Complete.API.StartupConfiguration;
 
 public static class ApiConfigurationExtensions
 {

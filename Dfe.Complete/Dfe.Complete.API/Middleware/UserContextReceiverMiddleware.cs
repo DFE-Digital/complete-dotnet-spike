@@ -1,9 +1,9 @@
 ﻿using Ardalis.GuardClauses;
-using Dfe.ManageFreeSchoolProjects.UserContext;
+using Dfe.Complete.UserContext;
 using System.Net;
 using System.Text;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Middleware
+namespace Dfe.Complete.API.Middleware
 {
 	public class UserContextReceiverMiddleware
 	{

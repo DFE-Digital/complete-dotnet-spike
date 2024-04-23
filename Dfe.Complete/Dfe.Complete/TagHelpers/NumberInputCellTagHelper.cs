@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     /// <summary>
     /// This tag helper is to be used on table cells that contain number inputs.

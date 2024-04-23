@@ -1,10 +1,10 @@
 ﻿using Ardalis.GuardClauses;
-using Dfe.ManageFreeSchoolProjects.Logging;
+using Dfe.Complete.Logging;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
 
-namespace Dfe.ManageFreeSchoolProjects.Middleware
+namespace Dfe.Complete.Middleware
 {
 	/// <summary>
 	/// Middleware that checks incoming requests for a correlation and causation id header. If not found then default values will be created.

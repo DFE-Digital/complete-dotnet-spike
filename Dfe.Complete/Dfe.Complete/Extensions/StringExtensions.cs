@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class StringExtensions
 	{

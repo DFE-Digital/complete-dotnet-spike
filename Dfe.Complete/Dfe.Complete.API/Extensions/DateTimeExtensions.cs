@@ -1,6 +1,6 @@
 ﻿using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Extensions
+namespace Dfe.Complete.API.Extensions
 {
     public static class DateTimeExtensions
     {

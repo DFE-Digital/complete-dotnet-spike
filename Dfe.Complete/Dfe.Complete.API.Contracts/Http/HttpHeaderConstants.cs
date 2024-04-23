@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Contracts.Http
+namespace Dfe.Complete.API.Contracts.Http
 {
     public static class HttpHeaderConstants
     {

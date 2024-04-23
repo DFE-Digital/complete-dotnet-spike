@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dfe.ManageFreeSchoolProjects.Models.ApplicationForm
+namespace Dfe.Complete.Models.ApplicationForm
 {
 	public abstract class BaseFormSection : FormSubSection
 	{

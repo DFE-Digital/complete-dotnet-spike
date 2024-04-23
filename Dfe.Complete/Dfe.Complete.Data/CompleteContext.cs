@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dfe.ManageFreeSchoolProjects.Data;
+namespace Dfe.Complete.Data;
 
 public partial class CompleteContext : DbContext
 {

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Dfe.ManageFreeSchoolProjects.API.StartupConfiguration
+namespace Dfe.Complete.API.StartupConfiguration
 {
     public class SwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     {

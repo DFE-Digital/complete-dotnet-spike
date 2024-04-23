@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Reflection;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Extensions
+namespace Dfe.Complete.API.Extensions
 {
 	public static class EnumExtensions
 	{

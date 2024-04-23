@@ -2,7 +2,7 @@
 using AutoFixture.Kernel;
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Utils
+namespace Dfe.Complete.API.Tests.Utils
 {
     internal class RandomDateGenerator : ISpecimenBuilder
     {

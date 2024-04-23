@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.API.ResponseModels
+namespace Dfe.Complete.API.ResponseModels
 {
     public class ApiUser
     {

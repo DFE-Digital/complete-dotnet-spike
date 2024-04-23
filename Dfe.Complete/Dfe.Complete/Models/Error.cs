@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dfe.ManageFreeSchoolProjects.Models
+namespace Dfe.Complete.Models
 {
 	public class Error
 	{

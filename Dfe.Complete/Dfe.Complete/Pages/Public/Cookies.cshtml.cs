@@ -1,6 +1,6 @@
-using Dfe.ManageFreeSchoolProjects.Configuration;
-using Dfe.ManageFreeSchoolProjects.Models;
-using Dfe.ManageFreeSchoolProjects.Services;
+using Dfe.Complete.Configuration;
+using Dfe.Complete.Models;
+using Dfe.Complete.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.Pages.Public
+namespace Dfe.Complete.Pages.Public
 {
 	public class Cookies : PageModel
 	{

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
-namespace Dfe.ManageFreeSchoolProjects.Authorization
+namespace Dfe.Complete.Authorization
 {
     //Handler is registered from the method RequireAuthenticatedUser()
     public class HeaderRequirementHandler : AuthorizationHandler<DenyAnonymousAuthorizationRequirement>,

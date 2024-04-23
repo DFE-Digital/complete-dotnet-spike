@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.UserContext;
+﻿using Dfe.Complete.UserContext;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.ObjectModel.Utilities;
 using System;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit.Sdk;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Contracts.Tests.Context
+namespace Dfe.Complete.API.Contracts.Tests.Context
 {
 	public class UserInfoTests
 	{

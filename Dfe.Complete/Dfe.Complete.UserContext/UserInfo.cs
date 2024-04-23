@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;
 
-namespace Dfe.ManageFreeSchoolProjects.UserContext
+namespace Dfe.Complete.UserContext
 {
 	public class UserInfo
 	{

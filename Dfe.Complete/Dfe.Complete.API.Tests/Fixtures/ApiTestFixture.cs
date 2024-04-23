@@ -1,6 +1,6 @@
-﻿using Dfe.ManageFreeSchoolProjects.Data;
-using Dfe.ManageFreeSchoolProjects.Logging;
-using Dfe.ManageFreeSchoolProjects.UserContext;
+﻿using Dfe.Complete.Data;
+using Dfe.Complete.Logging;
+using Dfe.Complete.UserContext;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +13,7 @@ using System.Net.Http;
 using System.Net.Mime;
 using System.Reflection;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
+namespace Dfe.Complete.API.Tests.Fixtures
 {
     public class ApiTestFixture : IDisposable
 	{

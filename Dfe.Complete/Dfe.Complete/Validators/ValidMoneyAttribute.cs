@@ -1,8 +1,8 @@
-﻿using Dfe.ManageFreeSchoolProjects.Constants;
+﻿using Dfe.Complete.Constants;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.ManageFreeSchoolProjects.Validators
+namespace Dfe.Complete.Validators
 {
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
         AllowMultiple = false)]

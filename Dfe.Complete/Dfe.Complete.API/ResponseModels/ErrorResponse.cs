@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace Dfe.ManageFreeSchoolProjects.API.ResponseModels
+namespace Dfe.Complete.API.ResponseModels
 {
 	public class ErrorResponse
 	{

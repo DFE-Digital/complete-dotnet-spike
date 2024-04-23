@@ -1,10 +1,10 @@
-﻿using Dfe.ManageFreeSchoolProjects.ViewModels;
+﻿using Dfe.Complete.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-create-title", TagStructure = TagStructure.WithoutEndTag)]
     public class CreateTitleTagHelper: TagHelper

@@ -5,7 +5,7 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Formatting.Compact;
 
-namespace Dfe.ManageFreeSchoolProjects;
+namespace Dfe.Complete;
 
 public static class Program
 {

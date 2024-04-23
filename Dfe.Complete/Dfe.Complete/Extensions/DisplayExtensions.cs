@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class DisplayExtensions
 	{

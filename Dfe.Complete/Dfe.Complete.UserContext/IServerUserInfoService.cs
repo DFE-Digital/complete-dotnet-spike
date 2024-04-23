@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Dfe.ManageFreeSchoolProjects.UserContext;
+namespace Dfe.Complete.UserContext;
 
 public interface IServerUserInfoService
 {

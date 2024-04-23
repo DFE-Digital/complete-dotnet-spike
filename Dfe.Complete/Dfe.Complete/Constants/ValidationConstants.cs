@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.Constants
+﻿namespace Dfe.Complete.Constants
 {
     public class ValidationConstants
     {

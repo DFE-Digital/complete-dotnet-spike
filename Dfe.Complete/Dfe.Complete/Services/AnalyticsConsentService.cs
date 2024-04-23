@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
     public interface IAnalyticsConsentService
     {

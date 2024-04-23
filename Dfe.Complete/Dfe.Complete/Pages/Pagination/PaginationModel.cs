@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.Pages.Pagination
+﻿namespace Dfe.Complete.Pages.Pagination
 {
     public class PaginationModel
     {

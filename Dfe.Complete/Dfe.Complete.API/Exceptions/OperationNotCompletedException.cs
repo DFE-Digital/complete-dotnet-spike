@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.API.Exceptions;
+namespace Dfe.Complete.API.Exceptions;
 
 public class OperationNotCompletedException : Exception
 {

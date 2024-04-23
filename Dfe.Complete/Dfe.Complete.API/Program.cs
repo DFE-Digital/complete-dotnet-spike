@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.API
+namespace Dfe.Complete.API
 {
 	public class Program
 	{

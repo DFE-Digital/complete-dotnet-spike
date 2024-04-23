@@ -1,10 +1,10 @@
-﻿using Dfe.ManageFreeSchoolProjects.Extensions;
+﻿using Dfe.Complete.Extensions;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Globalization;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-summary-item", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SummaryItemTagHelper : TagHelper

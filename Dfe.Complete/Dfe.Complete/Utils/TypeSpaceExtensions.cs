@@ -2,7 +2,7 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Dfe.ManageFreeSchoolProjects.Utils;
+namespace Dfe.Complete.Utils;
 
 public static class TypespaceExtensions
 {

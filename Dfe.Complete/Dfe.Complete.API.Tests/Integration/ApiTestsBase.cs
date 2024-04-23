@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures;
+﻿using Dfe.Complete.API.Tests.Fixtures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Integration
+namespace Dfe.Complete.API.Tests.Integration
 {
     public class ApiTestsBase
     {

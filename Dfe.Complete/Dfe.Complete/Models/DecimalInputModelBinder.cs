@@ -5,7 +5,7 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.Models
+namespace Dfe.Complete.Models
 {
 	public class DecimalInputModelBinder : IModelBinder
 	{

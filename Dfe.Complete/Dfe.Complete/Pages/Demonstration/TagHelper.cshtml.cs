@@ -1,12 +1,12 @@
-using Dfe.ManageFreeSchoolProjects.Constants;
-using Dfe.ManageFreeSchoolProjects.Models;
-using Dfe.ManageFreeSchoolProjects.Services;
+using Dfe.Complete.Constants;
+using Dfe.Complete.Models;
+using Dfe.Complete.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Dfe.ManageFreeSchoolProjects.Pages.Demonstration
+namespace Dfe.Complete.Pages.Demonstration
 {
     public class TagHelperModel : PageModel
     {

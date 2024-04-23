@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.Models.ApplicationForm
+namespace Dfe.Complete.Models.ApplicationForm
 {
 	public class FormField
 	{

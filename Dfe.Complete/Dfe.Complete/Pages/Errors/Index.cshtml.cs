@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Dfe.ManageFreeSchoolProjects.Pages.Errors
+namespace Dfe.Complete.Pages.Errors
 {
 	public class IndexModel : PageModel
 	{

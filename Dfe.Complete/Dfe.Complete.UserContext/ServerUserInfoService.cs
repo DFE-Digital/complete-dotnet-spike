@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Principal;
 
-namespace Dfe.ManageFreeSchoolProjects.UserContext;
+namespace Dfe.Complete.UserContext;
 
 public class ServerUserInfoService : IServerUserInfoService
 {

@@ -1,6 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Common;
 
-namespace Dfe.ManageFreeSchoolProjects.Pages.Pagination
+namespace Dfe.Complete.Pages.Pagination
 {
     public static class PaginationMapping
     {

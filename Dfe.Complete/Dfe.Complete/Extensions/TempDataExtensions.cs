@@ -1,7 +1,7 @@
-﻿using Dfe.ManageFreeSchoolProjects.Models;
+﻿using Dfe.Complete.Models;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class TempDataExtensions
 	{

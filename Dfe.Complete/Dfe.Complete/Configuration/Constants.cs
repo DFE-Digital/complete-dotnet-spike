@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.Configuration
+﻿namespace Dfe.Complete.Configuration
 {
 	public static class Constants
 	{

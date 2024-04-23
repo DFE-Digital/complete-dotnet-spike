@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Net.Mime;
 using System.Text;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Helpers
+namespace Dfe.Complete.API.Tests.Helpers
 {
     public static class HttpExtensions
 	{

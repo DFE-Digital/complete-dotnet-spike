@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.WebUtilities;
 using System.Web;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Middleware
+namespace Dfe.Complete.API.Middleware
 {
     public class UrlDecoderMiddleware
     {

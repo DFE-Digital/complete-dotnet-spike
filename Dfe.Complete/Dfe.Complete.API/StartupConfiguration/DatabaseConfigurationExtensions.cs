@@ -1,6 +1,6 @@
-using Dfe.ManageFreeSchoolProjects.Data;
+using Dfe.Complete.Data;
 
-namespace Dfe.ManageFreeSchoolProjects.API.StartupConfiguration;
+namespace Dfe.Complete.API.StartupConfiguration;
 
 public static class DatabaseConfigurationExtensions
 {

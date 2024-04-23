@@ -1,6 +1,6 @@
 using System;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
 	public class DateRangeValidationService
 	{

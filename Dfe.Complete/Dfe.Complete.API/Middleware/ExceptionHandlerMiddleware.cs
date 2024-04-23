@@ -1,9 +1,9 @@
-using Dfe.ManageFreeSchoolProjects.API.Exceptions;
-using Dfe.ManageFreeSchoolProjects.API.ResponseModels;
+using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.ResponseModels;
 using System.Net;
 using System.Text;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Middleware;
+namespace Dfe.Complete.API.Middleware;
 
 public class ExceptionHandlerMiddleware
 {

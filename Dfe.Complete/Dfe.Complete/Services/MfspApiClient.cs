@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Net.Http;
 
-namespace Dfe.ManageFreeSchoolProjects.Services
+namespace Dfe.Complete.Services
 {
     public class MfspApiClient : ApiClient
     {

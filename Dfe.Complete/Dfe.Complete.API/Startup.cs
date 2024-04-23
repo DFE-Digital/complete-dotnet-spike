@@ -1,10 +1,10 @@
-using Dfe.ManageFreeSchoolProjects.API.Extensions;
-using Dfe.ManageFreeSchoolProjects.API.Middleware;
-using Dfe.ManageFreeSchoolProjects.API.StartupConfiguration;
-using Dfe.ManageFreeSchoolProjects.Middleware;
+using Dfe.Complete.API.Extensions;
+using Dfe.Complete.API.Middleware;
+using Dfe.Complete.API.StartupConfiguration;
+using Dfe.Complete.Middleware;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace Dfe.ManageFreeSchoolProjects.API
+namespace Dfe.Complete.API
 {
     public class Startup
     {

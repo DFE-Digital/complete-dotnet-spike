@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
-using Dfe.ManageFreeSchoolProjects.Constants;
-namespace Dfe.ManageFreeSchoolProjects.Validators;
+using Dfe.Complete.Constants;
+namespace Dfe.Complete.Validators;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
     AllowMultiple = false)]

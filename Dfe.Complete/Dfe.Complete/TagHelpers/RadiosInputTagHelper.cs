@@ -1,11 +1,11 @@
-﻿using Dfe.ManageFreeSchoolProjects.Services;
-using Dfe.ManageFreeSchoolProjects.ViewModels;
+﻿using Dfe.Complete.Services;
+using Dfe.Complete.ViewModels;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Threading.Tasks;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-radios-input", TagStructure = TagStructure.WithoutEndTag)]
 	public class RadiosInputTagHelper : InputTagHelperBase

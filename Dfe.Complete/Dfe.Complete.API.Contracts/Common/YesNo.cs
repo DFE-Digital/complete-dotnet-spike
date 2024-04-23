@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.API.Contracts.Common
+﻿namespace Dfe.Complete.API.Contracts.Common
 {
     public enum YesNo
     {

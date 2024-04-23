@@ -37,13 +37,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<AssemblyAttribute Include="Dfe.ManageFreeSchoolProjects.Attributes.BuildTimeAttribute">
+		<AssemblyAttribute Include="Dfe.Complete.Attributes.BuildTimeAttribute">
 			<_Parameter1>"$(BuildDateTime)"</_Parameter1>
 		</AssemblyAttribute>
-		<AssemblyAttribute Include="Dfe.ManageFreeSchoolProjects.Attributes.BuildGuidAttribute">
+		<AssemblyAttribute Include="Dfe.Complete.Attributes.BuildGuidAttribute">
 			<_Parameter1>"$(BuildGuid)"</_Parameter1>
 		</AssemblyAttribute>
-		<AssemblyAttribute Include="Dfe.ManageFreeSchoolProjects.Attributes.CustomBuildMessageAttribute">
+		<AssemblyAttribute Include="Dfe.Complete.Attributes.CustomBuildMessageAttribute">
 			<_Parameter1>"$(CustomBuildMessage)"</_Parameter1>
 		</AssemblyAttribute>
 	</ItemGroup>

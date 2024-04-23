@@ -1,7 +1,7 @@
 ﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-summary-list", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SummaryListTagHelper : TagHelper

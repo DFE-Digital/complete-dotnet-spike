@@ -1,4 +1,4 @@
-﻿namespace Dfe.ManageFreeSchoolProjects.Models
+﻿namespace Dfe.Complete.Models
 {
 	public enum NotificationType
 	{

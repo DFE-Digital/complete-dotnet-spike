@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.Authorization;
+﻿using Dfe.Complete.Authorization;
 using FluentAssertions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -8,7 +8,7 @@ using Microsoft.Net.Http.Headers;
 using NSubstitute;
 using NSubstitute.Core;
 
-namespace Dfe.ManageFreeSchoolProjects.Tests.Authorization
+namespace Dfe.Complete.Tests.Authorization
 {
     public class AutomationHandlerTests
     {

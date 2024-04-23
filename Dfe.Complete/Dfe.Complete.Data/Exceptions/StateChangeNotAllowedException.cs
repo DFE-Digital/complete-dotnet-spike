@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.Data.Exceptions;
+namespace Dfe.Complete.Data.Exceptions;
 
 // Should be used when an operation on an object is not allowable due to its state.
 // For example, an entity in a closed state may not be closed.

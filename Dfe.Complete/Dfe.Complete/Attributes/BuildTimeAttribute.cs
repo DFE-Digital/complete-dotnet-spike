@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dfe.ManageFreeSchoolProjects.Attributes
+namespace Dfe.Complete.Attributes
 {
     [AttributeUsage(AttributeTargets.Assembly, Inherited = false, AllowMultiple = false)]
     public sealed class BuildTimeAttribute : Attribute

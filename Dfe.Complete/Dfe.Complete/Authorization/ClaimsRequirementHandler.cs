@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Dfe.ManageFreeSchoolProjects.UserContext;
+using Dfe.Complete.UserContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
-namespace Dfe.ManageFreeSchoolProjects.Authorization
+namespace Dfe.Complete.Authorization
 {
     public class ClaimsRequirementHandler : AuthorizationHandler<ClaimsAuthorizationRequirement>, IAuthorizationRequirement
     {

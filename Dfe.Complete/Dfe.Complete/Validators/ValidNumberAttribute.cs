@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using Dfe.ManageFreeSchoolProjects.Constants;
+using Dfe.Complete.Constants;
 
-namespace Dfe.ManageFreeSchoolProjects.Models;
+namespace Dfe.Complete.Models;
 
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,
     AllowMultiple = false)]

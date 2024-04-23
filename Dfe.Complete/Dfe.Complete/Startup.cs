@@ -1,8 +1,8 @@
 using Azure.Storage.Blobs;
-using Dfe.ManageFreeSchoolProjects.Authorization;
-using Dfe.ManageFreeSchoolProjects.Configuration;
-using Dfe.ManageFreeSchoolProjects.Security;
-using Dfe.ManageFreeSchoolProjects.Services;
+using Dfe.Complete.Authorization;
+using Dfe.Complete.Configuration;
+using Dfe.Complete.Security;
+using Dfe.Complete.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -20,7 +20,7 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
 
-namespace Dfe.ManageFreeSchoolProjects;
+namespace Dfe.Complete;
 
 public class Startup
 {

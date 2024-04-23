@@ -1,8 +1,8 @@
-﻿using Dfe.ManageFreeSchoolProjects.Utils;
+﻿using Dfe.Complete.Utils;
 using FluentAssertions;
 
 
-namespace Dfe.ManageFreeSchoolProjects.Tests.Utils
+namespace Dfe.Complete.Tests.Utils
 {
     public class StringChunkerTests
     {

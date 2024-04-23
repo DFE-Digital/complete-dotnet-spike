@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Dfe.ManageFreeSchoolProjects.Extensions
+namespace Dfe.Complete.Extensions
 {
 	public static class DecimalExtensions
 	{

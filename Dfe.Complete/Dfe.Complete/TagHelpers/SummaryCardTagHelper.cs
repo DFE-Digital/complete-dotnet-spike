@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Reflection.Emit;
 
-namespace Dfe.ManageFreeSchoolProjects.TagHelpers
+namespace Dfe.Complete.TagHelpers
 {
     [HtmlTargetElement("govuk-summary-card", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SummaryCardTagHelper: TagHelper

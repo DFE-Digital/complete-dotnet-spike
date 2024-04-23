@@ -1,6 +1,6 @@
-using Dfe.ManageFreeSchoolProjects.API.UseCases;
+using Dfe.Complete.API.UseCases;
 
-namespace Dfe.ManageFreeSchoolProjects.API.Middleware
+namespace Dfe.Complete.API.Middleware
 {
     public class ApiKeyMiddleware
     {

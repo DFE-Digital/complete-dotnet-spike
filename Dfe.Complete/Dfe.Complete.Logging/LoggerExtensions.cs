@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Runtime.CompilerServices;
 
-namespace Dfe.ManageFreeSchoolProjects.Logging
+namespace Dfe.Complete.Logging
 {
 	public static class LoggerExtensions
 	{

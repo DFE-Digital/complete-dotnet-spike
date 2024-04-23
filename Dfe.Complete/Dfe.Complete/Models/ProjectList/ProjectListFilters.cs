@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dfe.ManageFreeSchoolProjects.Models.ProjectList;
+namespace Dfe.Complete.Models.ProjectList;
 
 public class ProjectListFilters
 {

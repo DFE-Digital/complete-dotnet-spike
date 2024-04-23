@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
-namespace Dfe.ManageFreeSchoolProjects.API.StartupConfiguration;
+namespace Dfe.Complete.API.StartupConfiguration;
 
 public static class OpenApiConfigurationExtensions
 {

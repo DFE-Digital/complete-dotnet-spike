@@ -1,6 +1,6 @@
 ﻿using AutoFixture.Kernel;
 using System.Reflection;
-namespace Dfe.ManageFreeSchoolProjects.API.Tests.Helpers
+namespace Dfe.Complete.API.Tests.Helpers
 {
     /// <summary>
     /// Class that allows to omit nested properties when creating an object with AutoFixture

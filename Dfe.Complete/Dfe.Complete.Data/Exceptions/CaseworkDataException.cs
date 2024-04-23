@@ -1,4 +1,4 @@
-namespace Dfe.ManageFreeSchoolProjects.Data.Exceptions;
+namespace Dfe.Complete.Data.Exceptions;
 
 public class CaseworkDataException : Exception
 {

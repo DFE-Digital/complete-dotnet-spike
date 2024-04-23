@@ -1,6 +1,6 @@
 using Dfe.PrepareConversions.Data.Models.Application;
 
-namespace Dfe.ManageFreeSchoolProjects.Models.ApplicationForm
+namespace Dfe.Complete.Models.ApplicationForm
 {
 	public class LinkFormField : FormField
 	{
