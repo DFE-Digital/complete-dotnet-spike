@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.Data
 {
-    public partial class MfspContext : DbContext
+    public partial class CompleteContext : DbContext
     {
         public virtual DbSet<Entities.Project> Projects { get; set; }
     }

@@ -37,7 +37,7 @@
 #>
 namespace Dfe.Complete.Data
 {
-    public partial class MfspContext : DbContext
+    public partial class CompleteContext : DbContext
     {
         public virtual DbSet<Entities.Existing.<#= EntityType.Name #>> <#= EntityType.GetDbSetName() #> { get; set; }
     }
