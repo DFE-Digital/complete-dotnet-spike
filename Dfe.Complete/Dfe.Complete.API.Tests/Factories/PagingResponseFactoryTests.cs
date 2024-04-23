@@ -1,4 +1,4 @@
-using Dfe.ManageFreeSchoolProjects.API.Contracts.ResponseModels;
+using Dfe.Complete.API.Contracts.Common;
 using Dfe.ManageFreeSchoolProjects.API.ResponseModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Primitives;

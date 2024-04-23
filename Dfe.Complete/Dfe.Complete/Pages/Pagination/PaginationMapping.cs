@@ -1,4 +1,4 @@
-﻿using Dfe.ManageFreeSchoolProjects.API.Contracts.ResponseModels;
+﻿using Dfe.Complete.API.Contracts.Common;
 
 namespace Dfe.ManageFreeSchoolProjects.Pages.Pagination
 {

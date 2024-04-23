@@ -1,5 +1,4 @@
 ﻿using Dfe.ManageFreeSchoolProjects.Data;
-using Dfe.ManageFreeSchoolProjects.Data.Entities;
 using Dfe.ManageFreeSchoolProjects.Logging;
 using Dfe.ManageFreeSchoolProjects.UserContext;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -76,11 +75,6 @@ namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
 					context.Database.Migrate();
 					_isInitialised = true;
 
-					context.Users.Add(new User()
-					{
-                        Email = DefaultUser,
-                    });
-
 					context.SaveChanges();
 				}
 			}
@@ -115,7 +109,7 @@ namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
 			return result;
 		}
 
-		public MfspContext GetContext() => new MfspContext(_dbContextOptions, null);
+		public MfspContext GetContext() => new MfspContext(_dbContextOptions);
 
 		public void Dispose()
 		{

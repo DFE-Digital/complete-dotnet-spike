@@ -28,7 +28,8 @@
       <ProjectReference Include="..\Dfe.Complete.UserContext\Dfe.Complete.UserContext.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <Folder Include="Migrations\" />
+      <Folder Include="Configuration\" />
+      <Folder Include="Entities\" />
     </ItemGroup>
 
 </Project>

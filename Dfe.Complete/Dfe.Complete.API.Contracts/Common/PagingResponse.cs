@@ -1,4 +1,10 @@
-namespace Dfe.ManageFreeSchoolProjects.API.Contracts.ResponseModels
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Dfe.Complete.API.Contracts.Common
 {
     public class PagingResponse
     {

@@ -18,7 +18,6 @@
 	  <Content Remove="ViewComponents\**" />
 	  <EmbeddedResource Remove="ViewComponents\**" />
 	  <None Remove="ViewComponents\**" />
-	  <None Remove="Pages\Project\Tasks\RiskAppraisalMeeting\" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -77,18 +76,12 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\src\images" />
-	  <Folder Include="Services\Trust\" />
-	  <Folder Include="Pages\Project\Tasks\RiskAppraisalMeeting\" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Dfe.Complete.API.Contracts\Dfe.Complete.API.Contracts.csproj" />
 	  <ProjectReference Include="..\Dfe.Complete.Logging\Dfe.Complete.Logging.csproj" />
 	  <ProjectReference Include="..\Dfe.Complete.UserContext\Dfe.Complete.UserContext.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Remove="Pages\Project\Tasks\Date\EditDateTask.cshtml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Update="appsettings.json">

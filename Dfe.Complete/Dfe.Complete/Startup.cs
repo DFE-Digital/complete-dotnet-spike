@@ -3,13 +3,6 @@ using Dfe.ManageFreeSchoolProjects.Authorization;
 using Dfe.ManageFreeSchoolProjects.Configuration;
 using Dfe.ManageFreeSchoolProjects.Security;
 using Dfe.ManageFreeSchoolProjects.Services;
-using Dfe.ManageFreeSchoolProjects.Services.Constituency;
-using Dfe.ManageFreeSchoolProjects.Services.Contacts;
-using Dfe.ManageFreeSchoolProjects.Services.Dashboard;
-using Dfe.ManageFreeSchoolProjects.Services.Project;
-using Dfe.ManageFreeSchoolProjects.Services.Tasks;
-using Dfe.ManageFreeSchoolProjects.Services.Trust;
-using Dfe.ManageFreeSchoolProjects.Services.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -26,7 +19,6 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
-using Dfe.ManageFreeSchoolProjects.Services.Reports;
 
 namespace Dfe.ManageFreeSchoolProjects;
 
@@ -72,38 +64,8 @@ public class Startup
         services.AddControllersWithViews()
            .AddMicrosoftIdentityUI();
         SetupDataprotection(services);
-        services.AddScoped<IGetDashboardService, GetDashboardService>();
         services.AddScoped<MfspApiClient, MfspApiClient>();
-        services.AddScoped<ICreateUserService, CreateUserService>();
-        services.AddScoped<ICreateProjectCache, CreateProjectCache>();
-        services.AddScoped<IGetProjectOverviewService, GetProjectOverviewService>();
-        services.AddScoped<IProjectTableReader, ProjectTableReader>();
-        services.AddScoped<ICreateBulkProjectValidator, CreateBulkProjectValidator>();
-        services.AddScoped<IGetProjectByTaskService, GetProjectByTaskService>();
-        services.AddScoped<IUpdateProjectByTaskService, UpdateProjectByTaskService>();
-        services.AddScoped<IGetProjectByTaskSummaryService, GetProjectByTaskSummaryService>();
-        services.AddScoped<IGetLocalAuthoritiesService, GetLocalAuthoritiesService>();
-        services.AddScoped<ICreateProjectService, CreateProjectService>();
-        services.AddScoped<IGetTaskStatusService, GetTaskStatusService>();
-        services.AddScoped<IUpdateTaskStatusService, UpdateTaskStatusService>();
-        services.AddScoped<ICreateTasksService, CreateTasksService>();
-        services.AddScoped<IGetProjectRiskService, GetProjectRiskService>();
-        services.AddScoped<ICreateProjectRiskCache, CreateProjectRiskCache>();
-        services.AddScoped<ICreateProjectRiskService, CreateProjectRiskService>();
-        services.AddScoped<IGetTrustByRefService, GetTrustByRefService>();
-        services.AddScoped<ISearchTrustByRefService, SearchTrustByRefService>();
-        services.AddScoped<IGetContactsService, GetContactsService>();
-        services.AddScoped<IAddContactsService, AddContactsService>();
-        services.AddScoped<ISearchConstituency, SearchConstituency>();
-        services.AddScoped<IAgeRangeCleanerService, AgeRangeCleanerService>();
-        services.AddScoped<INotifyUserService, NotifyUserService>();
-        services.AddScoped<IGetProjectManagersService, GetProjectManagersService>();
         services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
-        services.AddScoped<IAllProjectsReportService, AllProjectsReportService>();
-        services.AddScoped<IGetProjectSitesService, GetProjectSitesService>();
-        services.AddScoped<IUpdateProjectSitesService, UpdateProjectSitesService>();
-        services.AddScoped<IGetPupilNumbersService, GetPupilNumbersService>();
-        services.AddScoped<IUpdatePupilNumbersService, UpdatePupilNumbersService>();
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>

@@ -1,5 +1,5 @@
+using Dfe.Complete.API.Contracts.Common;
 using Microsoft.AspNetCore.Http.Extensions;
-using Dfe.ManageFreeSchoolProjects.API.Contracts.ResponseModels;
 
 namespace Dfe.ManageFreeSchoolProjects.API.ResponseModels
 {

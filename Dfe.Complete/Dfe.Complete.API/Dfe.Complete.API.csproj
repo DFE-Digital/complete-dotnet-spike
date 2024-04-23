@@ -50,5 +50,9 @@
       <ProjectReference Include="..\Dfe.Complete.Logging\Dfe.Complete.Logging.csproj" />
       <ProjectReference Include="..\Dfe.Complete.UserContext\Dfe.Complete.UserContext.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controllers\" />
+    </ItemGroup>
   
 </Project>
