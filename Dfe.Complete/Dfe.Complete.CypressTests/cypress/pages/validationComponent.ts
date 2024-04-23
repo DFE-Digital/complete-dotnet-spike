@@ -1,11 +1,11 @@
 class ValidationComponent {
     public hasValidationError(message: string): this {
-        cy.getByTestId("error-summary").should("contain.text", message);
+        cy.get(".govuk-error-summary").should("contain.text", message);
         return this;
     }
 
     public hasLinkedValidationError(message: string): this {
-        cy.getByTestId("error-summary").contains(message).parent()
+        cy.get(".govuk-error-summary").contains(message).parent()
             .find("a")
             .invoke('attr', "href")
             .then((href: string | undefined) => {

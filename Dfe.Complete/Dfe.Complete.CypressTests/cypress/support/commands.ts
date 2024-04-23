@@ -53,11 +53,14 @@ Cypress.Commands.add("login", (params) => {
     cy.clearCookies();
     cy.clearLocalStorage();
 
-    // Intercept all browser requests and add our special auth header
-    // Means we don't have to use azure to authenticate
-    new AuthenticationInterceptor().register(params);
+    // // Intercept all browser requests and add our special auth header
+    // // Means we don't have to use azure to authenticate
+    // new AuthenticationInterceptor().register(params);
+
+    // cy.visit("/");
 
     cy.visit("/");
+    cy.contains('button', 'Sign in with your DfE Microsoft account').click();
 });
 
 Cypress.Commands.add("executeAccessibilityTests", (ruleOverride?: RuleObject) => {
@@ -84,7 +87,7 @@ Cypress.Commands.add("executeAccessibilityTests", (ruleOverride?: RuleObject) =>
 
 Cypress.Commands.add('typeFast', { prevSubject: 'element' }, (subject: JQuery<HTMLElement>, text: string) => {
     cy.wrap(subject).invoke('val', text);
-  });
+});
 
 Cypress.Commands.add("enterDate", (idPrefix: string, day: string, month: string, year: string) => {
 
