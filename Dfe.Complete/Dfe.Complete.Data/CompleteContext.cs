@@ -2,13 +2,13 @@
 
 namespace Dfe.ManageFreeSchoolProjects.Data;
 
-public partial class MfspContext : DbContext
+public partial class CompleteContext : DbContext
 {
-    public MfspContext()
+    public CompleteContext()
     { 
     }
 
-    public MfspContext(DbContextOptions<MfspContext> options)
+    public CompleteContext(DbContextOptions<CompleteContext> options)
         : base(options)
     {
     }
@@ -17,7 +17,7 @@ public partial class MfspContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseMfspSqlServer("Server=localhost;Database=mfsp;Integrated Security=true;TrustServerCertificate=True");
+            optionsBuilder.UseCompleteSqlServer("Server=localhost;Database=complete;Integrated Security=true;TrustServerCertificate=True");
         }
     }
 

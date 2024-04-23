@@ -4,7 +4,7 @@ namespace Dfe.ManageFreeSchoolProjects.Data;
 
 public static class DbContextExtensions
 {
-	public static DbContextOptionsBuilder UseMfspSqlServer(this DbContextOptionsBuilder optionsBuilder, string connectionString)
+	public static DbContextOptionsBuilder UseCompleteSqlServer(this DbContextOptionsBuilder optionsBuilder, string connectionString)
 	{
 		optionsBuilder.UseSqlServer(
 			connectionString,

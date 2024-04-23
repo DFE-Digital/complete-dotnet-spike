@@ -23,7 +23,7 @@ namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
 
 		public string DefaultUser { get; } = "API.TestFixture@test.gov.uk";
 
-		private DbContextOptions<MfspContext> _dbContextOptions { get; init; }
+		private DbContextOptions<CompleteContext> _dbContextOptions { get; init; }
 
 		private static readonly object _lock = new();
 		private static bool _isInitialised = false;
@@ -66,7 +66,7 @@ namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
 
 					Client = CreateHttpClient(fakeUserInfo);
 
-					_dbContextOptions = new DbContextOptionsBuilder<MfspContext>()
+					_dbContextOptions = new DbContextOptionsBuilder<CompleteContext>()
 						.UseSqlServer(connectionString)
 						.Options;
 
@@ -109,7 +109,7 @@ namespace Dfe.ManageFreeSchoolProjects.API.Tests.Fixtures
 			return result;
 		}
 
-		public MfspContext GetContext() => new MfspContext(_dbContextOptions);
+		public CompleteContext GetContext() => new CompleteContext(_dbContextOptions);
 
 		public void Dispose()
 		{
