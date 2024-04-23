@@ -10,7 +10,8 @@ namespace Dfe.Complete.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Event> builder)
         {
-            builder.HasKey(e => e.Id).HasName("PK__events__3213E83FD57E1CB0");
+            builder.HasKey(e => e.Id).HasName("PK__events__3213E83F15C45895");
+
             builder.ToTable("events", "complete");
 
             builder.Property(e => e.Id)

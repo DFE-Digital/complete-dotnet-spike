@@ -10,7 +10,8 @@ namespace Dfe.Complete.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Contact> builder)
         {
-            builder.HasKey(e => e.Id).HasName("PK__contacts__3213E83F18693201");
+            builder.HasKey(e => e.Id).HasName("PK__contacts__3213E83FCB461086");
+
             builder.ToTable("contacts", "complete");
 
             builder.Property(e => e.Id)
@@ -47,6 +48,9 @@ namespace Dfe.Complete.Data.Configuration
                 .HasPrecision(6)
                 .HasColumnName("updated_at");
 
+            builder.HasOne(d => d.Project).WithMany(p => p.Contacts)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("fk_rails_b0485f0dbc");
         }
     }
 

@@ -10,7 +10,8 @@ namespace Dfe.Complete.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<ArInternalMetadatum> builder)
         {
-            builder.HasKey(e => e.Key).HasName("PK__ar_inter__DFD83CAEB2BD03D7");
+            builder.HasKey(e => e.Key).HasName("PK__ar_inter__DFD83CAE19B4E06F");
+
             builder.ToTable("ar_internal_metadata", "complete");
 
             builder.Property(e => e.Key)

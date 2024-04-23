@@ -85,6 +85,22 @@ namespace Dfe.Complete.Data.Configuration
                 .HasColumnName("updated_at");
             builder.Property(e => e.Urn).HasColumnName("urn");
 
+            builder.HasOne(d => d.AssignedTo).WithMany(p => p.ProjectAssignedTos)
+                .HasForeignKey(d => d.AssignedToId)
+                .HasConstraintName("fk_rails_9cf9d80ba9");
+
+            builder.HasOne(d => d.Caseworker).WithMany(p => p.ProjectCaseworkers)
+                .HasForeignKey(d => d.CaseworkerId)
+                .HasConstraintName("fk_rails_246548228c");
+
+            builder.HasOne(d => d.RegionalDeliveryOfficer).WithMany(p => p.ProjectRegionalDeliveryOfficers)
+                .HasForeignKey(d => d.RegionalDeliveryOfficerId)
+                .HasConstraintName("fk_rails_bba1c6b145");
+
+            builder.HasOne(d => d.TeamLeader).WithMany(p => p.ProjectTeamLeaders)
+                .HasForeignKey(d => d.TeamLeaderId)
+                .HasConstraintName("fk_rails_990d8727b5");
+
         }
     }
 

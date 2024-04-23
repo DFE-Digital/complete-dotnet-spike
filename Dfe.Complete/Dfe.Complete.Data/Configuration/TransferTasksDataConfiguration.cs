@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dfe.Complete.Data.Configuration
 {
-    public partial class TransferTasksDatumConfiguration : IEntityTypeConfiguration<TransferTasksDatum>
+    public partial class TransferTasksDataConfiguration : IEntityTypeConfiguration<TransferTasksDatum>
     {
         public void Configure(EntityTypeBuilder<TransferTasksDatum> builder)
         {

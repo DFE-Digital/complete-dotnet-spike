@@ -6,11 +6,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dfe.Complete.Data.Configuration
 {
-    public partial class ConversionTasksDatumConfiguration : IEntityTypeConfiguration<ConversionTasksDatum>
+    public partial class ConversionTasksDataConfiguration : IEntityTypeConfiguration<ConversionTasksDatum>
     {
         public void Configure(EntityTypeBuilder<ConversionTasksDatum> builder)
         {
-            builder.HasKey(e => e.Id).HasName("PK__conversi__3213E83F6CD973B6");
+            builder.HasKey(e => e.Id).HasName("PK__conversi__3213E83F5864AE8A");
+
             builder.ToTable("conversion_tasks_data", "complete");
 
             builder.Property(e => e.Id)

@@ -30,6 +30,14 @@ namespace Dfe.Complete.Data.Configuration
                 .HasColumnName("updated_at");
             builder.Property(e => e.UserId).HasColumnName("user_id");
 
+            builder.HasOne(d => d.Project).WithMany(p => p.Notes)
+                .HasForeignKey(d => d.ProjectId)
+                .HasConstraintName("fk_rails_99e097b079");
+
+            builder.HasOne(d => d.User).WithMany(p => p.Notes)
+                .HasForeignKey(d => d.UserId)
+                .HasConstraintName("fk_rails_7f2323ad43");
+
         }
     }
 

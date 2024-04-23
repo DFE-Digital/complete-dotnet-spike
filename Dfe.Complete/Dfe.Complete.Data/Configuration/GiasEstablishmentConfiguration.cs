@@ -10,7 +10,8 @@ namespace Dfe.Complete.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<GiasEstablishment> builder)
         {
-            builder.HasKey(e => e.Id).HasName("PK__gias_est__3213E83FBFC5AF93");
+            builder.HasKey(e => e.Id).HasName("PK__gias_est__3213E83FA2A1F9EF");
+
             builder.ToTable("gias_establishments", "complete");
 
             builder.Property(e => e.Id)
