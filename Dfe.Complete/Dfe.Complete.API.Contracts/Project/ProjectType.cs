@@ -17,7 +17,7 @@ namespace Dfe.Complete.API.Contracts.Project
         private const string ConversionProjectType = "Conversion::Project";
         private const string TransferProjectType = "Transfer::Project";
 
-        public static string ToProjectTypeString(this ProjectType projectType)
+        public static string ToProjectTypeString(this ProjectType? projectType)
         {
             // We haven't controlled this since it came from the Ruby code, but it defines one of only 2 types of project
             // If we get something that I haven't seen supported we should throw an exception, to make sure we do not corrupt the data

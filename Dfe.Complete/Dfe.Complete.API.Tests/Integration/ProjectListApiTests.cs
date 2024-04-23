@@ -29,7 +29,7 @@ namespace Dfe.Complete.API.Tests.Integration
                 Id = Guid.NewGuid(),
                 Urn = 123456,
                 SignificantDate = DateTime.Now,
-                Type = ProjectType.Conversion.ToProjectTypeString()
+                Type = ProjectType.Conversion
             };
 
             context.Projects.Add(dbProject);

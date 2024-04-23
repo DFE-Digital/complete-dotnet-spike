@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Dfe.Complete.API.Contracts.Project;
 
 namespace Dfe.Complete.Data.Configuration
 {
@@ -79,7 +80,11 @@ namespace Dfe.Complete.Data.Configuration
                 .HasColumnName("two_requires_improvement");
             builder.Property(e => e.Type)
                 .HasMaxLength(4000)
-                .HasColumnName("type");
+                .HasColumnName("type")
+                .HasConversion(
+                    v => v.ToProjectTypeString(),
+                    v => ProjectTypeExtensions.ToProjectType(v)
+                );
             builder.Property(e => e.UpdatedAt)
                 .HasPrecision(6)
                 .HasColumnName("updated_at");

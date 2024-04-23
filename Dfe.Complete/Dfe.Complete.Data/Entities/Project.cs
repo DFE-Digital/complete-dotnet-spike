@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Dfe.Complete.API.Contracts.Project;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.Data
@@ -42,7 +43,7 @@ public partial class Project
 
     public string IncomingTrustSharepointLink { get; set; }
 
-    public string Type { get; set; }
+    public ProjectType? Type { get; set; }
 
     public Guid? AssignedToId { get; set; }
 

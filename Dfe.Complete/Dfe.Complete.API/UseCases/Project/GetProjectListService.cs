@@ -25,7 +25,7 @@ namespace Dfe.Complete.API.UseCases.Project
                 Id = p.Id,
                 Urn = p.Urn,
                 ConversionOrTransferDate = p.SignificantDate,
-                ProjectType = ProjectTypeExtensions.ToProjectType(p.Type),
+                ProjectType = p.Type,
             }).ToListAsync();
 
             return result;
