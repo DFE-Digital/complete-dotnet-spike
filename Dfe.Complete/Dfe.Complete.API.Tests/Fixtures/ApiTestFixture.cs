@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.Data;
+using Dfe.Complete.Data.Entities;
 using Dfe.Complete.Logging;
 using Dfe.Complete.UserContext;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -75,7 +76,9 @@ namespace Dfe.Complete.API.Tests.Fixtures
 					context.Database.Migrate();
 					_isInitialised = true;
 
-					context.SaveChanges();
+                    CreateEstablishments(context);
+
+                    context.SaveChanges();
 				}
 			}
 		}
@@ -107,6 +110,16 @@ namespace Dfe.Complete.API.Tests.Fixtures
 			var result = sqlBuilder.ToString();
 
 			return result;
+		}
+
+		private static void CreateEstablishments(CompleteContext context)
+		{
+			context.GiasEstablishments.AddRange(
+            [
+                new GiasEstablishment { Name = "Establishment 1", Urn = 1001 },
+                new GiasEstablishment { Name = "Establishment 2", Urn = 1002 },
+                new GiasEstablishment { Name = "Establishment 3", Urn = 1003 },
+            ]);
 		}
 
 		public CompleteContext GetContext() => new CompleteContext(_dbContextOptions);

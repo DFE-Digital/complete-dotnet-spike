@@ -3,6 +3,7 @@ using Dfe.Complete.Authorization;
 using Dfe.Complete.Configuration;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
+using Dfe.Complete.Services.Project;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -64,8 +65,10 @@ public class Startup
         services.AddControllersWithViews()
            .AddMicrosoftIdentityUI();
         SetupDataprotection(services);
-        services.AddScoped<MfspApiClient, MfspApiClient>();
+
+        services.AddScoped<CompleteApiClient, CompleteApiClient>();
         services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
+        services.AddScoped<IGetProjectListService, GetProjectListService>();
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>
@@ -96,9 +99,9 @@ public class Startup
 
         services.AddApplicationInsightsTelemetry();
 
-        services.AddHttpClient("MfspClient", (_, client) =>
+        services.AddHttpClient("CompleteClient", (_, client) =>
         {
-            MfspOptions mfspOptions = GetTypedConfigurationFor<MfspOptions>();
+            CompleteOptions mfspOptions = GetTypedConfigurationFor<CompleteOptions>();
             client.BaseAddress = new Uri(mfspOptions.ApiEndpoint);
             client.DefaultRequestHeaders.Add("ApiKey", mfspOptions.ApiKey);
         });

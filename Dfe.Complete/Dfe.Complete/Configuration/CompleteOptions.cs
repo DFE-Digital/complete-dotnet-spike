@@ -1,6 +1,6 @@
 ﻿namespace Dfe.Complete.Configuration
 {
-    public class MfspOptions
+    public class CompleteOptions
     {
         public string ApiEndpoint { get; set; }
         public string ApiKey { get; set; }

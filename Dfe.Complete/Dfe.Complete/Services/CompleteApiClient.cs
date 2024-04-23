@@ -4,13 +4,13 @@ using System.Net.Http;
 
 namespace Dfe.Complete.Services
 {
-    public class MfspApiClient : ApiClient
+    public class CompleteApiClient : ApiClient
     {
-        public MfspApiClient(
+        public CompleteApiClient(
             IHttpClientFactory clientFactory, 
             ILogger<ApiClient> logger,
             IHttpContextAccessor httpContextAccessor,
-            string httpClientName = "MfspClient") : base(clientFactory, logger, httpContextAccessor, httpClientName)
+            string httpClientName = "CompleteClient") : base(clientFactory, logger, httpContextAccessor, httpClientName)
         {
             
         }

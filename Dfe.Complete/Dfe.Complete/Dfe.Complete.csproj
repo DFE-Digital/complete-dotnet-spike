@@ -75,6 +75,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Pages\Projects\Team\" />
+	  <Folder Include="Pages\Projects\Your\" />
 	  <Folder Include="wwwroot\src\images" />
 	</ItemGroup>
 
