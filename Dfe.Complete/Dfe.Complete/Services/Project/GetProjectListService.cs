@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using Dfe.Complete.API.Contracts.Common;
+using Dfe.Complete.API.Contracts.Project;
+using System.Threading.Tasks;
 
 namespace Dfe.Complete.Services.Project
 {
     public interface IGetProjectListService
     {
-        public Task Execute();
+        public Task<ApiListWrapper<ProjectListEntryResponse>> Execute();
     }
 
     public class GetProjectListService : IGetProjectListService
@@ -16,9 +18,11 @@ namespace Dfe.Complete.Services.Project
             _apiClient = apiClient;
         }
 
-        public async Task Execute()
+        public async Task<ApiListWrapper<ProjectListEntryResponse>> Execute()
         {
-            var response = await _apiClient.Get<string>("/client/v1/projects/list");
+            var response = await _apiClient.Get<ApiListWrapper<ProjectListEntryResponse>>("/api/v1/client/projects/list");
+
+            return response;
         }
     }
 }

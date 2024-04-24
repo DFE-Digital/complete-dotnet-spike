@@ -22,16 +22,19 @@ namespace Dfe.Complete.API.Tests.Fixtures
 
 		public HttpClient Client { get; init; }
 
-		public string DefaultUser { get; } = "API.TestFixture@test.gov.uk";
+		public User DefaultUser { get; } = new User { Email = "API.TestFixture@test.gov.uk", FirstName = "Automation", LastName = "User" };
 
-		private DbContextOptions<CompleteContext> _dbContextOptions { get; init; }
+        private DbContextOptions<CompleteContext> _dbContextOptions { get; init; }
 
 		private static readonly object _lock = new();
 		private static bool _isInitialised = false;
 
 		private const string ConnectionStringKey = "ConnectionStrings:DefaultConnection";
 
-		public ApiTestFixture()
+        public CompleteContext GetContext() => new CompleteContext(_dbContextOptions);
+
+
+        public ApiTestFixture()
 		{
 			lock (_lock)
 			{
@@ -63,7 +66,7 @@ namespace Dfe.Complete.API.Tests.Fixtures
 						});
 
                     var fakeUserInfo = new UserInfo()
-						{ Name = DefaultUser, Roles = new[] { Claims.CaseWorkerRoleClaim } };
+						{ Name = DefaultUser.Email, Roles = new[] { Claims.CaseWorkerRoleClaim } };
 
 					Client = CreateHttpClient(fakeUserInfo);
 
@@ -77,13 +80,20 @@ namespace Dfe.Complete.API.Tests.Fixtures
 					_isInitialised = true;
 
                     CreateEstablishments(context);
+					CreateUsers(context);
 
                     context.SaveChanges();
 				}
 			}
 		}
 
-		private HttpClient CreateHttpClient(UserInfo userInfo)
+        public void Dispose()
+        {
+            Application.Dispose();
+            Client.Dispose();
+        }
+
+        private HttpClient CreateHttpClient(UserInfo userInfo)
 		{
 			var client = Application.CreateClient();
 			client.DefaultRequestHeaders.Add("ApiKey", "app-key");
@@ -122,12 +132,12 @@ namespace Dfe.Complete.API.Tests.Fixtures
             ]);
 		}
 
-		public CompleteContext GetContext() => new CompleteContext(_dbContextOptions);
-
-		public void Dispose()
+		private void CreateUsers(CompleteContext context)
 		{
-			Application.Dispose();
-			Client.Dispose();
+			context.Users.AddRange(
+			[
+				DefaultUser
+			]);
 		}
 	}
 

@@ -17,7 +17,7 @@ namespace Dfe.Complete.API.UseCases
         public bool Execute(string keyToValidate)
         {
 	        var keyExists = _configuration
-		        .GetSection("ManageFreeSchoolProjects:ApiKeys")
+		        .GetSection("Complete:ApiKeys")
 		        .AsEnumerable()
 		        .Any(k => k.Value == keyToValidate);
 	        

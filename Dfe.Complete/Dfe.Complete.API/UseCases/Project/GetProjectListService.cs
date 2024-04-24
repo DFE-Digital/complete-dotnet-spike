@@ -20,13 +20,18 @@ namespace Dfe.Complete.API.UseCases.Project
 
         public async Task<List<ProjectListEntryResponse>> Execute()
         {
-            var result = await _context.Projects.Select(p => new ProjectListEntryResponse
-            {
-                Id = p.Id,
-                Urn = p.Urn,
-                ConversionOrTransferDate = p.SignificantDate,
-                ProjectType = p.Type,
-            }).ToListAsync();
+            var result = await _context.Projects
+                .Include(p => p.AssignedTo)
+                .Select(p => new ProjectListEntryResponse
+                {
+                    Id = p.Id,
+                    Urn = p.Urn,
+                    ConversionOrTransferDate = p.SignificantDate,
+                    ProjectType = p.Type,
+                    AssignedTo = $"{p.AssignedTo.FirstName} {p.AssignedTo.LastName}"
+                })
+                .OrderBy(p => p.ConversionOrTransferDate)
+                .ToListAsync();
 
             return result;
         }
