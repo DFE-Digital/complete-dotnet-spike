@@ -27,8 +27,5 @@
       <ProjectReference Include="..\Dfe.Complete.API.Contracts\Dfe.Complete.API.Contracts.csproj" />
       <ProjectReference Include="..\Dfe.Complete.UserContext\Dfe.Complete.UserContext.csproj" />
     </ItemGroup>
-    <ItemGroup>
-      <Folder Include="Entities\" />
-    </ItemGroup>
 
 </Project>

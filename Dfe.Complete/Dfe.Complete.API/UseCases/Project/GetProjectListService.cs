@@ -1,5 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.Data;
+using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.API.UseCases.Project
@@ -22,6 +23,7 @@ namespace Dfe.Complete.API.UseCases.Project
         {
             var result = await _context.Projects
                 .Include(p => p.AssignedTo)
+                .Where(p => p.State == ProjectState.Active && p.AssignedToId != null)
                 .Select(p => new ProjectListEntryResponse
                 {
                     Id = p.Id,

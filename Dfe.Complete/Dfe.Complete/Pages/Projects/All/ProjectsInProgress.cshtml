@@ -25,9 +25,9 @@
                         <a href="/projects/@project.Id">Not set</a>
                     </td>
                     <td class="govuk-table__cell">@project.Urn</td>
-                    <td class="govuk-table__cell">@project.ConversionOrTransferDate.ToDateString()</td>
+                    <td class="govuk-table__cell">@project.ConversionOrTransferDate.ToDateMonthYearString()</td>
                     <td class="govuk-table__cell">@project.ProjectType.ToString()</td>
-                    <td class="govuk-table__cell">@project.IsFormAMatProject</td>
+                    <td class="govuk-table__cell">@project.IsFormAMatProject.ToYesNoString()</td>
                     <td class="govuk-table__cell">@project.AssignedTo</td>
                 </tr>
             }

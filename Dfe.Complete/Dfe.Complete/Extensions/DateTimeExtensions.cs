@@ -31,5 +31,15 @@ namespace Dfe.Complete.Extensions
 			var yearsToAdd = (thisMonth.Month + monthsToAdd - 1) / 12;
 			return new DateTime(thisMonth.Year + yearsToAdd, month, 1);
 		}
-	}
+
+        public static string ToDateMonthYearString(this DateTime? dateTime)
+        {
+			if (!dateTime.HasValue)
+			{
+				return string.Empty;
+			}
+
+            return dateTime.Value.ToString("MMM yyyy");
+        }
+    }
 }
