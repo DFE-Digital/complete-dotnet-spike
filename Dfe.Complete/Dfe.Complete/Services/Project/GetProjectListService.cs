@@ -48,9 +48,7 @@ namespace Dfe.Complete.Services.Project
             query = query.Add("page", parameters.Page.ToString());
             query = query.Add("count", parameters.Count.ToString());
 
-            var endpoint = $"/api/v1/client/projects/list{query}";
-
-            var response = await _apiClient.Get<ApiListWrapper<ProjectListEntryResponse>>(endpoint);
+            var response = await _apiClient.Get<ApiListWrapper<ProjectListEntryResponse>>($"/api/v1/client/projects/list{query}");
 
             return response;
         }
