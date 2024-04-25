@@ -63,6 +63,8 @@ namespace Dfe.Complete.API.Tests.Integration
 
             await context.SaveChangesAsync();
 
+            var test = $"api/v1/client/projects/list?status={ProjectStatusQueryParameter.InProgress}";
+
             var response = await _client.GetAsync($"api/v1/client/projects/list?status={ProjectStatusQueryParameter.InProgress}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 

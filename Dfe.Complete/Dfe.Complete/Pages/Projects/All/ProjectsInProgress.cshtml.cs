@@ -1,7 +1,9 @@
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.Pages.Pagination;
 using Dfe.Complete.Services.Project;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,6 +14,11 @@ namespace Dfe.Complete.Pages.Projects.All
     {
         private readonly IGetProjectListService _getProjectListService;
 
+        [BindProperty(SupportsGet = true)]
+        public int PageNumber { get; set; } = 1;
+
+        public PaginationModel Pagination { get; set; } = new();
+
         public List<ProjectListEntryResponse> Projects { get; set; }
 
         public ProjectsInProgressModel(IGetProjectListService getProjectListService)
@@ -21,8 +28,24 @@ namespace Dfe.Complete.Pages.Projects.All
 
         public async Task OnGet()
         {
-            var response = await _getProjectListService.Execute();
+            var parameters = new GetProjectListServiceParameters()
+            {
+                Status = ProjectStatusQueryParameter.InProgress,
+                Page = PageNumber,
+                Count = 20
+            };
+
+            var response = await _getProjectListService.Execute(parameters);
             Projects = response.Data.ToList();
+
+            var paginationModel = PaginationMapping.ToModel(response.Paging);
+            paginationModel.Url = "?handler=movePage";
+            Pagination = paginationModel;
+        }
+
+        public async Task OnGetMovePage()
+        {
+            await OnGet();
         }
     }
 }
