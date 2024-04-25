@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dfe.Complete.Data.Configuration
 {
-    public partial class TransferTasksDataConfiguration : IEntityTypeConfiguration<TransferTasksDatum>
+    public partial class TransferTasksDataConfiguration : IEntityTypeConfiguration<TransferTasksData>
     {
-        public void Configure(EntityTypeBuilder<TransferTasksDatum> builder)
+        public void Configure(EntityTypeBuilder<TransferTasksData> builder)
         {
             builder.HasKey(e => e.Id).HasName("PK__transfer__3213E83F06874456");
             builder.ToTable("transfer_tasks_data", "complete");
