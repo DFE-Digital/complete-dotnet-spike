@@ -6,13 +6,15 @@ namespace Dfe.Complete.API.Tests.Helpers
 {
     public static class DatabaseModelBuilder
     {
+        public static Fixture _fixture = new();
+
         public static Project BuildProject()
         {
             var result = new Project()
             {
                 Id = Guid.NewGuid(),
                 Urn = 1001,
-                SignificantDate = DateTime.Now,
+                SignificantDate = _fixture.Create<DateTime>(),
                 Type = ProjectType.Conversion,
             };
 

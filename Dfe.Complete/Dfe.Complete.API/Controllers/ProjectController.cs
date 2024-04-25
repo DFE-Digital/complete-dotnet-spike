@@ -1,5 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Common;
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.ResponseModels;
 using Dfe.Complete.API.UseCases.Project;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,18 +21,33 @@ namespace Dfe.Complete.API.Controllers
         [Route("list")]
         [HttpGet]
         public async Task<ActionResult<ApiListWrapper<ProjectListEntryResponse>>> GetProjectList(
-            ProjectStatusQueryParameter? status)
+            Guid? userId,
+            ProjectStatusQueryParameter? status,
+            int? page = 1,
+            int? count = 5)
         {
             var parameters = new GetProjectListServiceParameters()
             {
-                Status = status
+                Status = status,
+                UserId = userId,
+                Page = page.Value,
+                Count = count.Value
             };
 
-            var projects = await _getProjectListService.Execute(parameters);
+            var (projects, recordCount) = await _getProjectListService.Execute(parameters);
 
-            var response = new ApiListWrapper<ProjectListEntryResponse>(projects, null);
+            PagingResponse pagingResponse = BuildPaginationResponse(recordCount, page, count);
+
+            var response = new ApiListWrapper<ProjectListEntryResponse>(projects, pagingResponse);
 
             return response;
+        }
+
+        private PagingResponse BuildPaginationResponse(int recordCount, int? page, int? count)
+        {
+            PagingResponse result = PagingResponseFactory.Create(page.Value, count.Value, recordCount, Request);
+
+            return result;
         }
     }
 }
