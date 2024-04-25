@@ -1,3 +1,4 @@
+using Dfe.Complete.API.Configuration;
 using Dfe.Complete.API.Extensions;
 using Dfe.Complete.API.Middleware;
 using Dfe.Complete.API.StartupConfiguration;
@@ -15,11 +16,29 @@ namespace Dfe.Complete.API
 
         public IConfiguration Configuration { get; }
 
+        private IConfigurationSection GetConfigurationSectionFor<T>()
+        {
+            string sectionName = typeof(T).Name.Replace("Options", string.Empty);
+            return Configuration.GetRequiredSection(sectionName);
+        }
+
+        private T GetTypedConfigurationFor<T>()
+        {
+            return GetConfigurationSectionFor<T>().Get<T>();
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry();
 
             services.AddMfspApiProject(Configuration);
+
+            services.AddHttpClient("AcademiesClient", (_, client) =>
+            {
+                AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
+                client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
+                client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

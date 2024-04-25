@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.UseCases;
+using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project;
 using Dfe.Complete.Logging;
 using Dfe.Complete.UserContext;
@@ -15,10 +16,13 @@ namespace Dfe.Complete.API.StartupConfiguration
 			
 			services.AddScoped<ICorrelationContext, CorrelationContext>();
 
+			services.AddScoped<AcademiesApiClient, AcademiesApiClient>();
+
 			services.AddScoped<IApiKeyValidationService, ApiKeyValidationService>();
 			services.AddScoped<IConstructApiKeyValidationService, ConstructApiKeyValidationService>();
 			services.AddScoped<ISfaApiKeyValidationService, SfaApiKeyValidationService>();
 			services.AddScoped<IGetProjectListService, GetProjectListService>();
+			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
 
             services.AddValidatorsFromAssembly(Assembly.Load(Assembly.GetExecutingAssembly().FullName));
 

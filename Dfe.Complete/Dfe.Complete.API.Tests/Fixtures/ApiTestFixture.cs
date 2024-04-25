@@ -1,4 +1,6 @@
-﻿using Dfe.Complete.Data;
+﻿using Dfe.Complete.API.Tests.FakeApi;
+using Dfe.Complete.API.UseCases.Academies;
+using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Dfe.Complete.Logging;
 using Dfe.Complete.UserContext;
@@ -30,6 +32,8 @@ namespace Dfe.Complete.API.Tests.Fixtures
 		private static bool _isInitialised = false;
 
 		private const string ConnectionStringKey = "ConnectionStrings:DefaultConnection";
+
+		private readonly FakeAcademiesApi _fakeAcademies;
 
         public CompleteContext GetContext() => new CompleteContext(_dbContextOptions);
 
@@ -70,7 +74,10 @@ namespace Dfe.Complete.API.Tests.Fixtures
 
 					Client = CreateHttpClient(fakeUserInfo);
 
-					_dbContextOptions = new DbContextOptionsBuilder<CompleteContext>()
+					_fakeAcademies = new FakeAcademiesApi();
+					_fakeAcademies.Start();
+
+                    _dbContextOptions = new DbContextOptionsBuilder<CompleteContext>()
 						.UseSqlServer(connectionString)
 						.Options;
 
@@ -91,6 +98,7 @@ namespace Dfe.Complete.API.Tests.Fixtures
         {
             Application.Dispose();
             Client.Dispose();
+			_fakeAcademies.Stop();
         }
 
         private HttpClient CreateHttpClient(UserInfo userInfo)
@@ -126,9 +134,9 @@ namespace Dfe.Complete.API.Tests.Fixtures
 		{
 			context.GiasEstablishments.AddRange(
             [
-                new GiasEstablishment { Name = "Establishment 1", Urn = 1001 },
-                new GiasEstablishment { Name = "Establishment 2", Urn = 1002 },
-                new GiasEstablishment { Name = "Establishment 3", Urn = 1003 },
+                new GiasEstablishment { Name = "DB Establishment 1", Urn = 1001 },
+                new GiasEstablishment { Name = "DB Establishment 2", Urn = 1002 },
+                new GiasEstablishment { Name = "DB Establishment 3", Urn = 1003 },
             ]);
 		}
 

@@ -19,9 +19,15 @@ namespace Dfe.Complete.API.Controllers
 
         [Route("list")]
         [HttpGet]
-        public async Task<ActionResult<ApiListWrapper<ProjectListEntryResponse>>> GetProjectList()
+        public async Task<ActionResult<ApiListWrapper<ProjectListEntryResponse>>> GetProjectList(
+            ProjectStatusQueryParameter? status)
         {
-            var projects = await _getProjectListService.Execute();
+            var parameters = new GetProjectListServiceParameters()
+            {
+                Status = status
+            };
+
+            var projects = await _getProjectListService.Execute(parameters);
 
             var response = new ApiListWrapper<ProjectListEntryResponse>(projects, null);
 

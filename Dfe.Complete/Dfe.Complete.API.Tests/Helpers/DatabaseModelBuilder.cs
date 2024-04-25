@@ -11,7 +11,7 @@ namespace Dfe.Complete.API.Tests.Helpers
             var result = new Project()
             {
                 Id = Guid.NewGuid(),
-                Urn = 123457,
+                Urn = 1001,
                 SignificantDate = DateTime.Now,
                 Type = ProjectType.Conversion,
             };
