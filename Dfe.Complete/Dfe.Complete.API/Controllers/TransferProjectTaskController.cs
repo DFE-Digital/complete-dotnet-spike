@@ -11,17 +11,22 @@ namespace Dfe.Complete.API.Controllers
     public class TransferProjectTaskController : ControllerBase
     {
         private readonly IUpdateTransferProjectByTaskService _updateTransferProjectByTaskService;
+        private readonly IGetTransferProjectByTaskService _getTransferProjectByTaskService;
 
         public TransferProjectTaskController(
-            IUpdateTransferProjectByTaskService updateTransferProjectByTaskService)
+            IUpdateTransferProjectByTaskService updateTransferProjectByTaskService,
+            IGetTransferProjectByTaskService getTransferProjectByTaskService)
         {
             _updateTransferProjectByTaskService = updateTransferProjectByTaskService;
+            _getTransferProjectByTaskService = getTransferProjectByTaskService;
         }
 
         [HttpGet]
         public async Task<ActionResult<GetTransferProjectByTaskResponse>> GetTransferTasks(Guid projectId, TransferProjectTaskName taskName)
         {
-            return new GetTransferProjectByTaskResponse();
+            var result = await _getTransferProjectByTaskService.Execute(projectId, taskName);
+
+            return new OkObjectResult(result);
         }
 
         [HttpPatch]

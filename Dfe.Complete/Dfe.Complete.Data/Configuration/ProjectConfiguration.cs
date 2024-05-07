@@ -70,7 +70,11 @@ namespace Dfe.Complete.Data.Configuration
             builder.Property(e => e.TasksDataId).HasColumnName("tasks_data_id");
             builder.Property(e => e.TasksDataType)
                 .HasMaxLength(4000)
-                .HasColumnName("tasks_data_type");
+                .HasColumnName("tasks_data_type")
+                .HasConversion(
+                    v => v.ToTaskTypeString(),
+                    v => TaskTypeExtensions.ToTaskType(v)
+                );
             builder.Property(e => e.Team)
                 .HasMaxLength(4000)
                 .HasColumnName("team");

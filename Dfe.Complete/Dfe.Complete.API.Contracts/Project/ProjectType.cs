@@ -25,7 +25,7 @@ namespace Dfe.Complete.API.Contracts.Project
             {
                 ProjectType.Conversion => ConversionProjectType,
                 ProjectType.Transfer => TransferProjectType,
-                _ => throw new ArgumentNullException("Unknown project type '{projectType}'")
+                _ => throw new ArgumentNullException($"Unknown project type '{projectType}'")
             };
         }
 

@@ -1,4 +1,6 @@
-﻿using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +23,19 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task<GetTransferProjectByTaskResponse> Execute(Guid projectId, TransferProjectTaskName taskName)
         {
-            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId && p.Type == ProjectType.Transfer);
+
+            if (project == null)
+            {
+                throw new NotFoundException($"Project with id {projectId} not found");
+            }
 
             var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
+
+            if (transferTaskData == null)
+            {
+                transferTaskData = new Data.Entities.TransferTasksData();
+            }
 
             var parameters = new GetTransferTaskServiceParameters
             {

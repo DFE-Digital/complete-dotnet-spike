@@ -59,7 +59,7 @@ namespace Dfe.Complete.Data.Entities
 
         public Guid? TasksDataId { get; set; }
 
-        public string TasksDataType { get; set; }
+        public TaskType? TasksDataType { get; set; }
 
         public Guid? FundingAgreementContactId { get; set; }
 

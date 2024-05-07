@@ -139,7 +139,7 @@ namespace Dfe.Complete.API.Tests.Integration
             var user = new User() { Email = "pagination.user@education.gov.uk", FirstName = "Pagination", LastName = "User" };
             context.Add(user);
 
-            var projects = new List<Project>
+            var projects = new List<Data.Entities.Project>
             {
                 DatabaseModelBuilder.BuildInProgressProject(user),
                 DatabaseModelBuilder.BuildInProgressProject(user),
