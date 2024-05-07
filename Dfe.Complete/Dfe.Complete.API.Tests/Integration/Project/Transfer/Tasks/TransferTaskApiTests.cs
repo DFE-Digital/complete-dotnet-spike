@@ -28,7 +28,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         [Fact]
         public async Task Get_ProjectExists_TypeIsNotTransfer_Returns_404()
         {
-            var context = _testFixture.GetContext();
+            using var context = _testFixture.GetContext();
             var project = DatabaseModelBuilder.BuildProject();
             project.Type = ProjectType.Conversion;
             var projectId = project.Id;
@@ -42,7 +42,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         [Fact]
         public async Task Get_TransferTaskDoesNotExist_Returns_EmptyTask_200()
         {
-            var context = _testFixture.GetContext();
+            using var context = _testFixture.GetContext();
             var project = DatabaseModelBuilder.BuildProject();
             project.Type = ProjectType.Transfer;
             var projectId = project.Id;
@@ -82,7 +82,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         {
             var request = new UpdateTransferProjectByTaskRequest();
 
-            var context = _testFixture.GetContext();
+            using var context = _testFixture.GetContext();
             var project = DatabaseModelBuilder.BuildProject();
             project.Type = ProjectType.Conversion;
             var projectId = project.Id;
@@ -104,7 +104,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
                 }
             };
 
-            var context = _testFixture.GetContext();
+            using var context = _testFixture.GetContext();
             var project = DatabaseModelBuilder.BuildProject();
             project.Type = ProjectType.Transfer;
             var projectId = project.Id;

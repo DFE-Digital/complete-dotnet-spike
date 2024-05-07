@@ -21,7 +21,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         [Fact]
         public async Task Update_HanderWithDeliveryOfficerTask_Returns_200()
         {
-            var context = _testFixture.GetContext();
+            using var context = _testFixture.GetContext();
             var user = context.Users.FirstOrDefault(u => u.Email == _testFixture.DefaultUser.Email);
 
             var project = DatabaseModelBuilder.BuildInProgressProject(user);

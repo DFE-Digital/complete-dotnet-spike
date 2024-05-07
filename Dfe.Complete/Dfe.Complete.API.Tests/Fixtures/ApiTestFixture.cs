@@ -84,14 +84,15 @@ namespace Dfe.Complete.API.Tests.Fixtures
 					using var context = GetContext();
 					context.Database.EnsureDeleted();
 					context.Database.Migrate();
-					_isInitialised = true;
 
                     CreateEstablishments(context);
 					CreateUsers(context);
 
                     context.SaveChanges();
-				}
-			}
+
+                    _isInitialised = true;
+                }
+            }
 		}
 
         public void Dispose()

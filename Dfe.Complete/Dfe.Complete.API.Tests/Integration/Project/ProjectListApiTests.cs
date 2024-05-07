@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.API.Tests.Integration
+namespace Dfe.Complete.API.Tests.Integration.Project
 {
     [Collection(ApiTestCollection.ApiTestCollectionName)]
     public class ProjectListApiTests : ApiTestsBase
