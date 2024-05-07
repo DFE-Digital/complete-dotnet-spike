@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.UseCases;
 using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project;
+using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Logging;
@@ -29,7 +30,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			// Transfer tasks
 			services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
 			services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();
-			services.AddScoped<IUpdateTransferTaskService, UpdateHandoverWithDeliveryOfficerTaskService>();
+			services.AddScoped<IGetTransferProjectByTaskSummaryService, GetTransferProjectByTaskSummaryService>();
 
             services.AddValidatorsFromAssembly(Assembly.Load(Assembly.GetExecutingAssembly().FullName));
 

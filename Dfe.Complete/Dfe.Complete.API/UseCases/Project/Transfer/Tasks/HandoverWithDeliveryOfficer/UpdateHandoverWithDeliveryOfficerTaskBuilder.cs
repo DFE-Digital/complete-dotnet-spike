@@ -3,16 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer
 {
-    public class UpdateHandoverWithDeliveryOfficerTaskService : IUpdateTransferTaskService
+    public static class UpdateHandoverWithDeliveryOfficerTaskBuilder
     {
-        private readonly CompleteContext _context;
-
-        public UpdateHandoverWithDeliveryOfficerTaskService(CompleteContext context)
-        {
-            _context = context;
-        }
-
-        public void Execute(UpdateTransferTaskServiceParameters parameters)
+        public static void Execute(UpdateTransferTaskServiceParameters parameters)
         {
             var task = parameters.Request.HandoverWithDeliveryOfficer;
             var dbTransferTask = parameters.TransferTasksData;

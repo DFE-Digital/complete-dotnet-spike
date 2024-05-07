@@ -1,13 +1,12 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+using Dfe.Complete.Data.Entities;
 
 namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer
 {
-    public class GetHandoverWithDeliveryOfficerTaskService
+    public static class HandoverWithDeliveryOfficerTaskBuilder
     {
-        public HandoverWithDeliveryOfficerTask Execute(GetTransferTaskServiceParameters parameters)
+        public static HandoverWithDeliveryOfficerTask Execute(TransferTasksData task)
         {
-            var task = parameters.TransferTasksData;
-
             return new HandoverWithDeliveryOfficerTask
             {
                 ReviewProjectInformation = task.HandoverReview,

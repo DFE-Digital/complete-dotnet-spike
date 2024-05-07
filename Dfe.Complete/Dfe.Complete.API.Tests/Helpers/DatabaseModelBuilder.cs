@@ -8,9 +8,9 @@ namespace Dfe.Complete.API.Tests.Helpers
     {
         public static Fixture _fixture = new();
 
-        public static Project BuildProject()
+        public static Data.Entities.Project BuildProject()
         {
-            var result = new Project()
+            var result = new Data.Entities.Project()
             {
                 Id = Guid.NewGuid(),
                 Urn = 1001,
@@ -21,7 +21,7 @@ namespace Dfe.Complete.API.Tests.Helpers
             return result;
         }
 
-        public static Project BuildInProgressProject(User user)
+        public static Data.Entities.Project BuildInProgressProject(User user)
         {
             var result = BuildProject();
             result.State = ProjectState.Active;
@@ -30,7 +30,7 @@ namespace Dfe.Complete.API.Tests.Helpers
             return result;
         }
 
-        public static Project BuildCompletedProject()
+        public static Data.Entities.Project BuildCompletedProject()
         {
             var result = BuildProject();
             result.AssignedTo = null;

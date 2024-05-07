@@ -37,17 +37,12 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
                 transferTaskData = new Data.Entities.TransferTasksData();
             }
 
-            var parameters = new GetTransferTaskServiceParameters
-            {
-                TransferTasksData = transferTaskData
-            };
-
             GetTransferProjectByTaskResponse response = new GetTransferProjectByTaskResponse();
 
             switch (taskName)
             {
                 case TransferProjectTaskName.HandoverWithDeliveryOfficer:
-                    response.HandoverWithRegionalDeliveryOfficer = new GetHandoverWithDeliveryOfficerTaskService().Execute(parameters);
+                    response.HandoverWithRegionalDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(transferTaskData);
                     break;
 
                 default:

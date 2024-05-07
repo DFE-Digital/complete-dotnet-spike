@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,14 +15,11 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
     public class UpdateTransferProjectByTaskService : IUpdateTransferProjectByTaskService
     {
         private readonly CompleteContext _context;
-        private readonly IEnumerable<IUpdateTransferTaskService> _updateTaskServices;
 
         public UpdateTransferProjectByTaskService(
-            CompleteContext context,
-            IEnumerable<IUpdateTransferTaskService> updateTransferTaskServices)
+            CompleteContext context)
         {
             _context = context;
-            _updateTaskServices = updateTransferTaskServices;
         }
 
         public async Task Execute(Guid projectId, UpdateTransferProjectByTaskRequest request)
@@ -46,10 +44,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
                 TransferTasksData = transferTaskData
             };
 
-            foreach (var updateTaskService in _updateTaskServices)
-            {
-                updateTaskService.Execute(updateTaskParameters);
-            }
+            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(updateTaskParameters);
 
             await _context.SaveChangesAsync();
         }

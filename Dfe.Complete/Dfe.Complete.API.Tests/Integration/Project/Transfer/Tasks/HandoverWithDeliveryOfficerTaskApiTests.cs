@@ -61,5 +61,43 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             updatedTask.HandoverWithRegionalDeliveryOfficer.MakeNotes.Should().BeTrue();
             updatedTask.HandoverWithRegionalDeliveryOfficer.ReviewProjectInformation.Should().BeTrue();
         }
+
+        [Fact]
+        public async Task Get_TaskSummary_Returns_200()
+        {
+            using var context = _testFixture.GetContext();
+            var user = context.Users.FirstOrDefault(u => u.Email == _testFixture.DefaultUser.Email);
+
+            var project = DatabaseModelBuilder.BuildInProgressProject(user);
+            project.Type = ProjectType.Transfer;
+            context.Projects.AddRange(project);
+
+            var task = new TransferTasksData();
+            task.Id = Guid.NewGuid();
+            project.TasksDataId = task.Id;
+            project.TasksDataType = TaskType.Transfer;
+
+            context.TransferTasksData.Add(task);
+
+            await context.SaveChangesAsync();
+
+            var request = new UpdateTransferProjectByTaskRequest()
+            {
+                HandoverWithDeliveryOfficer = new HandoverWithDeliveryOfficerTask()
+                {
+                    AttendHandoverMeeting = true
+                }
+            };
+
+            var updateResponse = await _client.PatchAsync($"api/v1/client/projects/{project.Id}/transfer/tasks", request.ConvertToJson());
+            updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var getResponse = await _client.GetAsync($"api/v1/client/projects/{project.Id}/transfer/tasks/summary");
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var summary = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
+
+            summary.HandoverWithDeliveryOfficer.Status.Should().Be(ProjectTaskStatus.InProgress);
+        }
     }
 }
