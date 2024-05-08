@@ -25,14 +25,14 @@ namespace Dfe.Complete.API.UseCases.Project
     public class GetProjectListService : IGetProjectListService
     {
         private readonly CompleteContext _context;
-        private readonly IGetEstablishmentsBulkService _getEstablishmentBulkService;
+        private readonly ISetProjectSchoolNameService _setProjectSchoolNameService;
 
         public GetProjectListService(
             CompleteContext context,
-            IGetEstablishmentsBulkService getEstablishmentBulkService)
+            ISetProjectSchoolNameService setProjectSchoolNameService)
         {
             _context = context;
-            _getEstablishmentBulkService = getEstablishmentBulkService;
+            _setProjectSchoolNameService = setProjectSchoolNameService;
         }
 
         public async Task<(List<ProjectListEntryResponse>, int)> Execute(GetProjectListServiceParameters parameters)
@@ -57,35 +57,14 @@ namespace Dfe.Complete.API.UseCases.Project
                          ConversionOrTransferDate = project.SignificantDate,
                          ProjectType = project.Type,
                          AssignedTo = $"{project.AssignedTo.FirstName} {project.AssignedTo.LastName}",
-                         SchoolOrAcademy = establishment.Name
+                         SchoolName = establishment.Name
                      }).AsQueryable();
 
             var result = await queryResult.Paginate(parameters.Page, parameters.Count).ToListAsync();
 
-            var urns = result.Where(r => string.IsNullOrEmpty(r.SchoolOrAcademy)).Select(r => r.Urn).Distinct().ToArray();
-            await SetEstablishmentName(result, urns);
+            await _setProjectSchoolNameService.Execute(result);
 
             return (result, count);
-        }
-
-        private async Task SetEstablishmentName(List<ProjectListEntryResponse> result, int[] urns)
-        {
-            if (!urns.Any())
-            {
-                return;
-            }
-
-            var establishments = await _getEstablishmentBulkService.Execute(urns);
-
-            var establishmentLookup = establishments.ToDictionary(e => e.Urn);
-
-            foreach (var entry in result)
-            {
-                if (string.IsNullOrEmpty(entry.SchoolOrAcademy) && establishmentLookup.ContainsKey(entry.Urn.ToString()))
-                {
-                    entry.SchoolOrAcademy = establishmentLookup[entry.Urn.ToString()].Name;
-                }
-            }
         }
 
         private static IQueryable<Data.Entities.Project> ApplyUserFilter(IQueryable<Data.Entities.Project> query, Guid? userId)

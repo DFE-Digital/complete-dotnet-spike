@@ -1,0 +1,33 @@
+﻿@page "/projects/{projectId}/transfer/tasks/handover"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer.ViewHandoverWithDeliveryOfficerTaskModel
+@{
+    var backlink = string.Format(RouteConstants.TransferProjectTaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.EditHandoverWithDeliveryOfficerTask, Model.ProjectId);
+    var taskList = string.Format(RouteConstants.TransferProjectTaskList, Model.ProjectId);
+
+    var handoverWithDeliveryOfficer = Model.Project.HandoverWithDeliveryOfficer;
+}
+
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Handover with regional delivery officer
+        </h1>
+        <govuk-summary-list>
+            <govuk-summary-item label="Not applicable" asp-for="@handoverWithDeliveryOfficer.NotApplicable" href="@editlink" />
+            <govuk-summary-item label="Review the project information and carry out research" asp-for="@handoverWithDeliveryOfficer.ReviewProjectInformation" href="@editlink" />
+            <govuk-summary-item label="Make notes and write questions to ask the regional delivery officer" asp-for="@handoverWithDeliveryOfficer.MakeNotes" href="@editlink" />
+            <govuk-summary-item label="Attend handover meeting with regional delivery officer" asp-for="@handoverWithDeliveryOfficer.AttendHandoverMeeting" href="@editlink" />
+        </govuk-summary-list>
+    </div>
+</div>

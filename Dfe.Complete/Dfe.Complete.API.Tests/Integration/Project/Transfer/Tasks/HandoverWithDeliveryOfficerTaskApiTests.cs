@@ -56,10 +56,10 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             var updatedTask = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskResponse>();
 
-            updatedTask.HandoverWithRegionalDeliveryOfficer.NotApplicable.Should().BeTrue();
-            updatedTask.HandoverWithRegionalDeliveryOfficer.AttendHandoverMeeting.Should().BeTrue();
-            updatedTask.HandoverWithRegionalDeliveryOfficer.MakeNotes.Should().BeTrue();
-            updatedTask.HandoverWithRegionalDeliveryOfficer.ReviewProjectInformation.Should().BeTrue();
+            updatedTask.HandoverWithDeliveryOfficer.NotApplicable.Should().BeTrue();
+            updatedTask.HandoverWithDeliveryOfficer.AttendHandoverMeeting.Should().BeTrue();
+            updatedTask.HandoverWithDeliveryOfficer.MakeNotes.Should().BeTrue();
+            updatedTask.HandoverWithDeliveryOfficer.ReviewProjectInformation.Should().BeTrue();
         }
 
         [Fact]

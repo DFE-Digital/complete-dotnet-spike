@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dfe.Complete.TagHelpers
 {
-    [HtmlTargetElement("govuk-checkbox-input", TagStructure = TagStructure.WithoutEndTag)]
+    [HtmlTargetElement("govuk-checkbox-input", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class CheckboxInputTagHelper : InputTagHelperBase
     {
         [HtmlAttributeName("heading-label")]

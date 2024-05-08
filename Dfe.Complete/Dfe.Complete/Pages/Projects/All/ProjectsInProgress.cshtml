@@ -1,4 +1,5 @@
 ﻿@page "/projects/all/in-progress/all"
+@using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.All.ProjectsInProgressModel
 @{
     ViewData["Title"] = "All projects in progress";
@@ -20,9 +21,11 @@
 
             @foreach(var project in Model.Projects)
             {
+                var projectSummaryUrl = string.Format(RouteConstants.TransferProjectTaskList, project.Id);
+
                 <tr class="govuk-table__row">
                     <td class="govuk-table__header govuk-table__cell">
-                        <a href="/projects/@project.Id">@project.SchoolOrAcademy</a>
+                        <a href="@projectSummaryUrl">@project.SchoolName</a>
                     </td>
                     <td class="govuk-table__cell">@project.Urn</td>
                     <td class="govuk-table__cell">@project.ConversionOrTransferDate.ToDateMonthYearString()</td>

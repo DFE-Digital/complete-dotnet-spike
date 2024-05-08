@@ -1,0 +1,69 @@
+﻿@page "/projects/{projectId}/transfer/tasks/handover/edit"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer.EditHandoverWithDeliveryOfficerTaskModel
+@{
+    var backlink = string.Format(RouteConstants.ViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
+}
+@section BeforeMain {
+    <div role="navigation" class="govuk-width-container msfp-wider-page">
+        <a href=@backlink class="govuk-back-link">Back</a>
+    </div>
+}
+
+<h1 class="govuk-heading-xl" data-testid="title">
+    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+    Handover with regional delivery officer
+</h1>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+
+            <govuk-checkbox-input label="Not applicable"
+                                  asp-for="@Model.NotApplicable"
+                                  name="not-applicable"
+                                  id="not-applicable" add-margin=false />
+
+            <govuk-checkbox-input label="Review the project information and carry out research"
+                                  asp-for="@Model.ReviewProjectInformation"
+                                  name="review-project-information"
+                                  id="review-project-information"
+                                  add-margin=false />
+
+            <govuk-checkbox-input label="Make notes and write questions to ask the regional delivery officer"
+                                  asp-for="@Model.MakeNotes"
+                                  name="make-notes"
+                                  id="make-notes"
+                                  add-margin=false />
+
+            <govuk-checkbox-input label="Attend handover meeting with regional delivery officer"
+                                  asp-for="@Model.AttendHandoverMeeting"
+                                  name="attend-handover-meeting"
+                                  id="attend-handover-meeting"
+                                  add-margin=false />
+
+            <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save and return</button>
+        </form>
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <aside>
+            <h2 class="govuk-heading-m">Task notes</h2>
+
+            <a data-module="govuk-button" draggable="false" role="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-3" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes/new?task_identifier=handover">Add a new task note</a>
+
+            <ul class="list-style-none">
+                <li>
+                    <p class="govuk-body govuk-!-margin-bottom-0">16 April 2024</p>
+                    <h3 class="govuk-heading-s govuk-!-padding-top-0">Mike Stock</h3>
+                    <p class="govuk-body"></p><p class="govuk-body-m">These are my handover notes</p><p></p>
+
+                    <a class="govuk-link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes/B7979325-EB62-471E-BEAF-F15D8383C798/edit">Edit note</a>
+
+                    <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+                </li>
+            </ul>
+        </aside>
+
+    </div>
+</div>

@@ -3,7 +3,6 @@ using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project;
 using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
-using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Logging;
 using Dfe.Complete.UserContext;
 using FluentValidation;
@@ -26,6 +25,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<ISfaApiKeyValidationService, SfaApiKeyValidationService>();
 			services.AddScoped<IGetProjectListService, GetProjectListService>();
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
+			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
 
 			// Transfer tasks
 			services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();

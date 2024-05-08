@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dfe.Complete.API.Contracts.Project.Transfer.Tasks
 {
-    public class GetTransferProjectByTaskResponse
+    public record GetTransferProjectByTaskResponse : ProjectBaseResponse
     {
-        public HandoverWithDeliveryOfficerTask HandoverWithRegionalDeliveryOfficer { get; set; }
+        public HandoverWithDeliveryOfficerTask HandoverWithDeliveryOfficer { get; set; }
     }
 }

@@ -54,8 +54,9 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             var taskResponse = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskResponse>();
             
-            taskResponse.HandoverWithRegionalDeliveryOfficer.Should().NotBeNull();
-            taskResponse.HandoverWithRegionalDeliveryOfficer.AttendHandoverMeeting.Should().BeNull();
+            taskResponse.HandoverWithDeliveryOfficer.Should().NotBeNull();
+            taskResponse.HandoverWithDeliveryOfficer.AttendHandoverMeeting.Should().BeNull();
+            taskResponse.SchoolName.Should().Be("Establishment 1");
         }
 
         [Fact]

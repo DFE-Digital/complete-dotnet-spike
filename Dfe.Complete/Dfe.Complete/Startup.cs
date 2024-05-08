@@ -69,6 +69,9 @@ public class Startup
         services.AddScoped<CompleteApiClient, CompleteApiClient>();
         services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
         services.AddScoped<IGetProjectListService, GetProjectListService>();
+        services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
+        services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();
+        services.AddScoped<IGetTransferProjectByTaskSummaryService, GetTransferProjectByTaskSummaryService>();
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>

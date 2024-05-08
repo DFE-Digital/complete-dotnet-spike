@@ -47,7 +47,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             existingProject.ConversionOrTransferDate.Value.Date.Should().Be(dbInProgressProject.SignificantDate.Value.Date);
             existingProject.ProjectType.Should().Be(ProjectType.Conversion);
             existingProject.AssignedTo.Should().Be($"{user.FirstName} {user.LastName}");
-            existingProject.SchoolOrAcademy.Should().Be("Establishment 1");
+            existingProject.SchoolName.Should().Be("Establishment 1");
         }
 
         [Fact]
@@ -99,7 +99,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             var projects = content.Data;
 
             var project = projects.FirstOrDefault(p => p.Id == dbCompletedProject.Id);
-            project.SchoolOrAcademy.Should().Be("DB Establishment 1");
+            project.SchoolName.Should().Be("DB Establishment 1");
         }
 
         [Fact]
