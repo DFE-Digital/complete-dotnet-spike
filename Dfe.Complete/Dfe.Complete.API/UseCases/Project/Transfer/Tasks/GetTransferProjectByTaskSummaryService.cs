@@ -28,7 +28,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
             if (project == null)
             {
-                throw new NotFoundException($"Project with project id {projectId} not found");
+                throw new NotFoundException($"Project with id {projectId} not found");
             }
 
             var transferTasks = await _context.TransferTasksData

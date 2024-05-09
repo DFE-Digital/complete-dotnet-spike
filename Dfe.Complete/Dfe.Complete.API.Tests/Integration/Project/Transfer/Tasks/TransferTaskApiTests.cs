@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -21,8 +22,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         {
             var projectId = Guid.NewGuid();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{projectId}/transfer/tasks?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var error = await response.Content.ReadAsStringAsync();
+            error.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
@@ -35,8 +39,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             context.Projects.Add(project);
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{projectId}/transfer/tasks?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var error = await response.Content.ReadAsStringAsync();
+            error.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
@@ -49,7 +56,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             context.Projects.Add(project);
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{projectId}/transfer/tasks?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var taskResponse = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskResponse>();
@@ -64,7 +71,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         {
             var projectId = Guid.NewGuid();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{projectId}/transfer/tasks?taskName=Invalid");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName=Invalid");
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
@@ -74,8 +81,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             var projectId = Guid.NewGuid();
             var request = new UpdateTransferProjectByTaskRequest();
 
-            var response = await _client.PatchAsync($"api/v1/client/projects/{projectId}/transfer/tasks", request.ConvertToJson());
+            var response = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}", request.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var error = await response.Content.ReadAsStringAsync();
+            error.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
@@ -90,8 +100,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             context.Projects.Add(project);
             await context.SaveChangesAsync();
 
-            var response = await _client.PatchAsync($"api/v1/client/projects/{projectId}/transfer/tasks", request.ConvertToJson());
+            var response = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}", request.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var error = await response.Content.ReadAsStringAsync();
+            error.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
@@ -112,7 +125,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
             context.Projects.Add(project);
             await context.SaveChangesAsync();
 
-            var updateResponse = await _client.PatchAsync($"api/v1/client/projects/{projectId}/transfer/tasks", request.ConvertToJson());
+            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}", request.ConvertToJson());
             updateResponse.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
         }
     }

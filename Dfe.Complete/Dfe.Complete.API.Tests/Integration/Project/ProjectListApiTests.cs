@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Common;
+using Dfe.Complete.API.Contracts.Http;
 using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -32,7 +33,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/list?userId={user.Id}");
+            var response = await _client.GetAsync($"{RouteConstants.ProjectList}?userId={user.Id}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var content = await response.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
@@ -65,7 +66,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var test = $"api/v1/client/projects/list?status={ProjectStatusQueryParameter.InProgress}";
 
-            var response = await _client.GetAsync($"api/v1/client/projects/list?status={ProjectStatusQueryParameter.InProgress}");
+            var response = await _client.GetAsync($"{RouteConstants.ProjectList}?status={ProjectStatusQueryParameter.InProgress}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var content = await response.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
@@ -91,7 +92,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/list");
+            var response = await _client.GetAsync(RouteConstants.ProjectList);
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var content = await response.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
@@ -119,7 +120,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/list?userId={user.Id}");
+            var response = await _client.GetAsync($"{RouteConstants.ProjectList}?userId={user.Id}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var content = await response.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
@@ -158,7 +159,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
 
             // Page one
-            var pageOneResponse = await _client.GetAsync($"api/v1/client/projects/list?userId={user.Id}&page=1&count=2");
+            var pageOneResponse = await _client.GetAsync($"{RouteConstants.ProjectList}?userId={user.Id}&page=1&count=2");
             pageOneResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var pageOneResult = await pageOneResponse.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
@@ -174,7 +175,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             pageOneResult.Data.Should().Contain(r => r.Id == orderedProjects[1].Id);
 
             // Page three
-            var pageThreeResponse = await _client.GetAsync($"api/v1/client/projects/list?userId={user.Id}&page=3&count=2");
+            var pageThreeResponse = await _client.GetAsync($"{RouteConstants.ProjectList}?userId={user.Id}&page=3&count=2");
             pageThreeResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var pageThreeResult = await pageThreeResponse.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();

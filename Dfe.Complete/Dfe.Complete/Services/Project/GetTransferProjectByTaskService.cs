@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using System.Threading.Tasks;
 
 namespace Dfe.Complete.Services.Project
@@ -19,7 +20,7 @@ namespace Dfe.Complete.Services.Project
 
         public async Task<GetTransferProjectByTaskResponse> Execute(string projectId, TransferProjectTaskName taskName)
         {
-            var endpoint = $"api/v1/client/projects/{projectId}/transfer/tasks?taskName={taskName}";
+            var endpoint = $"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName={taskName}";
 
             var result = await _completeApiClient.Get<GetTransferProjectByTaskResponse>(endpoint);
 

@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Common;
+using Dfe.Complete.API.Contracts.Http;
 using Dfe.Complete.API.Contracts.Project;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -48,7 +49,7 @@ namespace Dfe.Complete.Services.Project
             query = query.Add("page", parameters.Page.ToString());
             query = query.Add("count", parameters.Count.ToString());
 
-            var response = await _apiClient.Get<ApiListWrapper<ProjectListEntryResponse>>($"/api/v1/client/projects/list{query}");
+            var response = await _apiClient.Get<ApiListWrapper<ProjectListEntryResponse>>($"{RouteConstants.ProjectList}{query}");
 
             return response;
         }

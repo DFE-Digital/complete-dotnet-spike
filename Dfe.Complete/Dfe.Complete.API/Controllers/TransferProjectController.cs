@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Dfe.Complete.API.Controllers
 {
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/client/projects/{projectId}/transfer")]
+    [Route("api/v{version:apiVersion}/client/transfer-projects/{projectId}")]
     [Tags("Transfer Project (Client only)")]
     [ApiController]
     public class ClientTransferProjectController : ControllerBase
@@ -58,7 +58,7 @@ namespace Dfe.Complete.API.Controllers
     }
 
     [ApiVersion("1.0")]
-    [Route("api/v{version:apiVersion}/projects/transfer")]
+    [Route("api/v{version:apiVersion}/transfer-projects")]
     [Tags("Transfer Project")]
     [ApiController]
     public class TransferProjectController

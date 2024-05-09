@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -22,8 +23,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         {
             var projectId = Guid.NewGuid();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{projectId}/transfer/tasks/summary");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTaskSummary, projectId)}");
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var error = await response.Content.ReadAsStringAsync();
+            error.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
@@ -38,7 +42,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             await context.SaveChangesAsync();
 
-            var response = await _client.GetAsync($"api/v1/client/projects/{project.Id}/transfer/tasks/summary");
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTaskSummary, project.Id)}");
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var taskSummary = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();

@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -48,10 +49,10 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
                 }
             };
 
-            var updateResponse = await _client.PatchAsync($"api/v1/client/projects/{project.Id}/transfer/tasks", request.ConvertToJson());
+            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, project.Id)}", request.ConvertToJson());
             updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var getResponse = await _client.GetAsync($"api/v1/client/projects/{project.Id}/transfer/tasks?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
+            var getResponse = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, project.Id)}?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
             getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var updatedTask = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskResponse>();
@@ -89,10 +90,10 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
                 }
             };
 
-            var updateResponse = await _client.PatchAsync($"api/v1/client/projects/{project.Id}/transfer/tasks", request.ConvertToJson());
+            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, project.Id)}", request.ConvertToJson());
             updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var getResponse = await _client.GetAsync($"api/v1/client/projects/{project.Id}/transfer/tasks/summary");
+            var getResponse = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTaskSummary, project.Id)}");
             getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var summary = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();

@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Project.Transfer;
+﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
     [Collection(ApiTestCollection.ApiTestCollectionName)]
     public class TransferProjectApiTests : ApiTestsBase
     {
+        private const string ApiUrl = "api/v1/transfer-projects";
+
         public TransferProjectApiTests(ApiTestFixture apiTestFixture) : base(apiTestFixture)
         {
         }
@@ -20,7 +23,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
         {
             var request = new CreateTransferProjectRequest();
 
-            var response = await _client.PostAsync("api/v1/projects/transfer", request.ConvertToJson());
+            var response = await _client.PostAsync(ApiUrl, request.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.Created);
 
             var project = await response.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
