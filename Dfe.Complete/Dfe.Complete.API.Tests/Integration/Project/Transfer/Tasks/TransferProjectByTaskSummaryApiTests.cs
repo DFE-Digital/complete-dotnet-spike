@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
+namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 {
     [Collection(ApiTestCollection.ApiTestCollectionName)]
     public class TransferProjectByTaskSummaryApiTests : ApiTestsBase

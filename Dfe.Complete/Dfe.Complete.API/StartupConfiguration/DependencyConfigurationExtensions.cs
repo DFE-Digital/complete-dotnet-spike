@@ -27,6 +27,9 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
 			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
 
+			// Transfer projects
+			services.AddScoped<ICreateTransferProjectService, CreateTransferProjectService>();
+
 			// Transfer tasks
 			services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
 			services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();

@@ -1,4 +1,5 @@
 ﻿using Azure;
+using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
@@ -8,14 +9,15 @@ namespace Dfe.Complete.API.Controllers
 {
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/client/projects/{projectId}/transfer")]
+    [Tags("Transfer Project (Client only)")]
     [ApiController]
-    public class TransferProjectController : ControllerBase
+    public class ClientTransferProjectController : ControllerBase
     {
         private readonly IUpdateTransferProjectByTaskService _updateTransferProjectByTaskService;
         private readonly IGetTransferProjectByTaskService _getTransferProjectByTaskService;
         private readonly IGetTransferProjectByTaskSummaryService _getTransferProjectByTaskSummaryService;
 
-        public TransferProjectController(
+        public ClientTransferProjectController(
             IUpdateTransferProjectByTaskService updateTransferProjectByTaskService,
             IGetTransferProjectByTaskService getTransferProjectByTaskService,
             IGetTransferProjectByTaskSummaryService getTransferProjectByTaskSummaryService)
@@ -52,6 +54,31 @@ namespace Dfe.Complete.API.Controllers
             await _updateTransferProjectByTaskService.Execute(projectId, request);
 
             return new OkResult();
+        }
+    }
+
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/projects/transfer")]
+    [Tags("Transfer Project")]
+    [ApiController]
+    public class TransferProjectController
+    {
+        private readonly ICreateTransferProjectService _createTransferProjectService;
+
+        public TransferProjectController(ICreateTransferProjectService createTransferProjectService)
+        {
+            _createTransferProjectService = createTransferProjectService;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<GetTransferProjectByTaskSummaryResponse>> AddTransferProject(CreateTransferProjectRequest request)
+        {
+            var result = await _createTransferProjectService.Execute(request);
+
+            return new ObjectResult(result)
+            {
+                StatusCode = StatusCodes.Status201Created
+            };
         }
     }
 }

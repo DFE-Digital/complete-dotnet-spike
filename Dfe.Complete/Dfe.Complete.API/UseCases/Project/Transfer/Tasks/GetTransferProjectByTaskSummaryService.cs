@@ -6,7 +6,7 @@ using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Dfe.Complete.API.UseCases.Project.Transfer
+namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 {
     public interface IGetTransferProjectByTaskSummaryService
     {
