@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -34,6 +35,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
 
             var dbProject = testContext.Projects.FirstOrDefault(p => p.Id == project.Id);
             dbProject.Should().NotBeNull();
+            dbProject.TasksDataType.Should().Be(TaskType.Transfer);
+            dbProject.Type.Should().Be(ProjectType.Transfer);
+
+            var task = testContext.TransferTasksData.FirstOrDefault(t => t.Id == dbProject.TasksDataId);
+            task.Should().NotBeNull();
         }
     }
 }

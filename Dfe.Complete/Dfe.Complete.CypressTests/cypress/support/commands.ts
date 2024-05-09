@@ -55,9 +55,14 @@ Cypress.Commands.add("login", (params) => {
 
     // // Intercept all browser requests and add our special auth header
     // // Means we don't have to use azure to authenticate
-    // new AuthenticationInterceptor().register(params);
+    new AuthenticationInterceptor().register(params);
 
-    // cy.visit("/");
+    cy.visit("/");
+});
+
+Cypress.Commands.add("loginRuby", () => {
+    cy.clearCookies();
+    cy.clearLocalStorage();
 
     cy.visit("/");
     cy.contains('button', 'Sign in with your DfE Microsoft account').click();

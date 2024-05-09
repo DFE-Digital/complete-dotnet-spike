@@ -1,5 +1,7 @@
-﻿using Dfe.Complete.API.Contracts.Project.Transfer;
+﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.Data;
+using Dfe.Complete.Data.Entities;
 
 namespace Dfe.Complete.API.UseCases.Project.Transfer
 {
@@ -19,13 +21,29 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
 
         public async Task<CreateTransferProjectResponse> Execute(CreateTransferProjectRequest request)
         {
+            var projectId = Guid.NewGuid();
+            var taskId = Guid.NewGuid();
+
             var project = new Data.Entities.Project
             {
+                Id = projectId,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
+                TasksDataType = TaskType.Transfer,
+                Type = ProjectType.Transfer,
+                TasksDataId = taskId,
+            };
+
+            var task = new TransferTasksData
+            {
+                Id = taskId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
 
+            _context.TransferTasksData.Add(task);
             _context.Projects.Add(project);
+
             await _context.SaveChangesAsync();
 
             return new CreateTransferProjectResponse

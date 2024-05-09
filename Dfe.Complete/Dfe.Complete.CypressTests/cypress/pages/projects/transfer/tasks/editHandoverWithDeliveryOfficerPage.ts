@@ -1,6 +1,6 @@
 import { TaskPageBase } from "cypress/pages/taskPageBase";
 
-class HandoverWithRegionalDeliveryOfficerPage extends TaskPageBase {
+class EditHandoverWithDeliveryOfficerPage extends TaskPageBase {
     public selectReviewProjectInformation(): this {
         cy.getById("transfer_task_handover_task_form_review").click();
 
@@ -20,6 +20,6 @@ class HandoverWithRegionalDeliveryOfficerPage extends TaskPageBase {
     }
 }
 
-const handoverWithRegionalDeliveryOfficerPage = new HandoverWithRegionalDeliveryOfficerPage();
+const editHandoverWithDeliveryOfficerPage = new EditHandoverWithDeliveryOfficerPage();
 
-export default handoverWithRegionalDeliveryOfficerPage;
+export default editHandoverWithDeliveryOfficerPage;
