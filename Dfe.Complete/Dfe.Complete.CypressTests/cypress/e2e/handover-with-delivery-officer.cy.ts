@@ -21,7 +21,7 @@ describe("POC for automation", () => {
 
     it("Should be able to move around the complete service", () => {
 
-        cy.visit(`/projects/${projectId}/transfer/tasks`);
+        cy.visit(`/transfer-projects/${projectId}/tasks`);
 
         cy.executeAccessibilityTests();
 
