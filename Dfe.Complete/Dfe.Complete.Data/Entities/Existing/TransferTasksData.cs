@@ -12,8 +12,8 @@ namespace Dfe.Complete.Data
 
 namespace Dfe.Complete.Data.Entities
 {
-public partial class TransferTasksData
-{
+public partial class TransferTasksData : IProjectTasksData
+    {
     public Guid Id { get; set; }
 
     public DateTime CreatedAt { get; set; }

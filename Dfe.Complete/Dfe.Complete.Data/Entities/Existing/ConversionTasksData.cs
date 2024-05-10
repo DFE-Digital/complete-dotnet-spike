@@ -12,8 +12,8 @@ namespace Dfe.Complete.Data
 
 namespace Dfe.Complete.Data.Entities
 {
-public partial class ConversionTasksData
-{
+public partial class ConversionTasksData : IProjectTasksData
+    {
     public Guid Id { get; set; }
 
     public bool? HandoverReview { get; set; }

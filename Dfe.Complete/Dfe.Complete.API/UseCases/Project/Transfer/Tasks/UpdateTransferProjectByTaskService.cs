@@ -1,7 +1,6 @@
-﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+﻿using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
-using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,13 +37,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
                 throw new UnprocessableContentException($"Project with id {projectId} does not have any transfer tasks data");
             }
 
-            var updateTaskParameters = new UpdateTransferTaskServiceParameters
-            {
-                Request = request,
-                TransferTasksData = transferTaskData
-            };
-
-            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(updateTaskParameters);
+            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, transferTaskData);
 
             await _context.SaveChangesAsync();
         }

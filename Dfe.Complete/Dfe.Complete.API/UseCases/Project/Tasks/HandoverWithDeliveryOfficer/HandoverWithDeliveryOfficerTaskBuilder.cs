@@ -1,11 +1,11 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.Data.Entities;
 
-namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer
+namespace Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer
 {
     public static class HandoverWithDeliveryOfficerTaskBuilder
     {
-        public static HandoverWithDeliveryOfficerTask Execute(TransferTasksData task)
+        public static HandoverWithDeliveryOfficerTask Execute(IProjectTasksData task)
         {
             return new HandoverWithDeliveryOfficerTask
             {

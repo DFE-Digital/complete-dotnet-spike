@@ -1,8 +1,7 @@
-﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Tasks;
+﻿using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
-using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;

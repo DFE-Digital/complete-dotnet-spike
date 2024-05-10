@@ -1,7 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Academies;
-using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -56,7 +56,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                     break;
 
                 default:
-                    throw new ArgumentException($"Unknown project transfer task name {taskName}");
+                    throw new ArgumentException($"Unknown project conversion task name {taskName}");
             }
 
             return response;

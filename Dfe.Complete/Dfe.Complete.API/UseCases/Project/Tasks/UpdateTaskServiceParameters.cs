@@ -1,9 +1,9 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.Data.Entities;
 
-namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
+namespace Dfe.Complete.API.UseCases.Project.Tasks
 {
-    public record UpdateConversionTaskServiceParameters
+    public class UpdateTaskServiceParameters
     {
         public UpdateConversionProjectByTaskRequest Request { get; set; }
 

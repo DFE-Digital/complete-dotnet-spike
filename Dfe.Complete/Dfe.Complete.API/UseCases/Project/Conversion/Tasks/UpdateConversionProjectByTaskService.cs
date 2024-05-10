@@ -1,7 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
-using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,20 +31,14 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                 throw new NotFoundException($"Project with id {projectId} not found");
             }
 
-            var transferTaskData = await _context.ConversionTasksData.FirstOrDefaultAsync(t => t.Id == queryResult.Project.TasksDataId);
+            var conversionTaskData = await _context.ConversionTasksData.FirstOrDefaultAsync(t => t.Id == queryResult.Project.TasksDataId);
 
-            if (transferTaskData == null)
+            if (conversionTaskData == null)
             {
                 throw new UnprocessableContentException($"Project with id {projectId} does not have any conversion tasks data");
             }
 
-            var updateTaskParameters = new UpdateConversionTaskServiceParameters
-            {
-                Request = request,
-                ConversionTasksData = transferTaskData
-            };
-
-            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(updateTaskParameters);
+            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
 
             await _context.SaveChangesAsync();
         }
