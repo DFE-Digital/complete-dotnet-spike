@@ -1,4 +1,4 @@
-﻿namespace Dfe.Complete.API.Contracts.Project
+﻿namespace Dfe.Complete.API.Contracts.Project.Tasks
 {
     public enum TaskType
     {

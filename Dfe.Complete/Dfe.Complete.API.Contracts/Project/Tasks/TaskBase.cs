@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.API.Contracts.Project
+namespace Dfe.Complete.API.Contracts.Project.Tasks
 {
-    public class TaskSummaryResponse
+    public class TaskBase
     {
-        public ProjectTaskStatus Status { get; set; }
+        public bool? NotApplicable { get; set; }
     }
 }

@@ -6,13 +6,13 @@ namespace Dfe.Complete.Data
 {
     public partial class CompleteContext : DbContext
     {
-        public virtual DbSet<Entities.ConversionTasksDatum> ConversionTasksData { get; set; }
+        public virtual DbSet<Entities.ConversionTasksData> ConversionTasksData { get; set; }
     }
 }
 
 namespace Dfe.Complete.Data.Entities
 {
-public partial class ConversionTasksDatum
+public partial class ConversionTasksData
 {
     public Guid Id { get; set; }
 

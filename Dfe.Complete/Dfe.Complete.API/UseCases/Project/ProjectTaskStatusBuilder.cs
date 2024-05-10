@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using System.Reflection;
 
 namespace Dfe.Complete.API.UseCases.Project

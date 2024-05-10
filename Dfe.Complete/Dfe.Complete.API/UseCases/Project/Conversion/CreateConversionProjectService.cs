@@ -1,26 +1,26 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.Contracts.Project.Tasks;
-using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 
-namespace Dfe.Complete.API.UseCases.Project.Transfer
+namespace Dfe.Complete.API.UseCases.Project.Conversion
 {
-    public interface ICreateTransferProjectService
+    public interface ICreateConversionProjectService
     {
-        public Task<CreateTransferProjectResponse> Execute(CreateTransferProjectRequest request);
+        public Task<CreateConversionProjectResponse> Execute(CreateConversionProjectRequest request);
     }
 
-    public class CreateTransferProjectService : ICreateTransferProjectService
+    public class CreateConversionProjectService : ICreateConversionProjectService
     {
         private readonly CompleteContext _context;
 
-        public CreateTransferProjectService(CompleteContext context)
+        public CreateConversionProjectService(CompleteContext context)
         {
             _context = context;
         }
 
-        public async Task<CreateTransferProjectResponse> Execute(CreateTransferProjectRequest request)
+        public async Task<CreateConversionProjectResponse> Execute(CreateConversionProjectRequest request)
         {
             var projectId = Guid.NewGuid();
             var taskId = Guid.NewGuid();
@@ -30,24 +30,24 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 Id = projectId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                TasksDataType = TaskType.Transfer,
-                Type = ProjectType.Transfer,
+                TasksDataType = TaskType.Conversion,
+                Type = ProjectType.Conversion,
                 TasksDataId = taskId,
             };
 
-            var task = new TransferTasksData
+            var task = new ConversionTasksData
             {
                 Id = taskId,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
             };
 
-            _context.TransferTasksData.Add(task);
+            _context.ConversionTasksData.Add(task);
             _context.Projects.Add(project);
 
             await _context.SaveChangesAsync();
 
-            return new CreateTransferProjectResponse
+            return new CreateConversionProjectResponse
             {
                 Id = project.Id,
             };

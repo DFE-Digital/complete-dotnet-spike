@@ -1,5 +1,5 @@
-﻿using Dfe.Complete.API.Contracts.Http;
-using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
@@ -9,14 +9,14 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
+namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
 {
     [Collection(ApiTestCollection.ApiTestCollectionName)]
-    public class TransferProjectApiTests : ApiTestsBase
+    public class ConversionProjectApiTests : ApiTestsBase
     {
-        private const string ApiUrl = "api/v1/transfer-projects";
+        private const string ApiUrl = "api/v1/conversion-projects";
 
-        public TransferProjectApiTests(ApiTestFixture apiTestFixture) : base(apiTestFixture)
+        public ConversionProjectApiTests(ApiTestFixture apiTestFixture) : base(apiTestFixture)
         {
         }
 
@@ -28,7 +28,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             var response = await _client.PostAsync(ApiUrl, request.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.Created);
 
-            var project = await response.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
+            var project = await response.Content.ReadFromJsonAsync<CreateConversionProjectResponse>();
 
             project.Id.Should().NotBeEmpty();
 
@@ -36,10 +36,10 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
 
             var dbProject = testContext.Projects.FirstOrDefault(p => p.Id == project.Id);
             dbProject.Should().NotBeNull();
-            dbProject.TasksDataType.Should().Be(TaskType.Transfer);
-            dbProject.Type.Should().Be(ProjectType.Transfer);
+            dbProject.TasksDataType.Should().Be(TaskType.Conversion);
+            dbProject.Type.Should().Be(ProjectType.Conversion);
 
-            var task = testContext.TransferTasksData.FirstOrDefault(t => t.Id == dbProject.TasksDataId);
+            var task = testContext.ConversionTasksData.FirstOrDefault(t => t.Id == dbProject.TasksDataId);
             task.Should().NotBeNull();
         }
     }

@@ -20,5 +20,20 @@ namespace Dfe.Complete.API.UseCases.Project
 
             return result;
         }
+
+        public static IQueryable<ProjectWithEstablishment> GetConversionProjects(this CompleteContext context, Guid projectId)
+        {
+            var result = (from project in context.Projects
+                          join establishment in context.GiasEstablishments on project.AcademyUrn equals establishment.Urn into joinedEstablishment
+                          from establishment in joinedEstablishment.DefaultIfEmpty()
+                          where project.Id == projectId && project.Type == ProjectType.Conversion
+                          select new ProjectWithEstablishment
+                          {
+                              Project = project,
+                              Establishment = establishment
+                          });
+
+            return result;
+        }
     }
 }

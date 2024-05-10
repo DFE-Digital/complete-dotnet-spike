@@ -1,4 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Project.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;

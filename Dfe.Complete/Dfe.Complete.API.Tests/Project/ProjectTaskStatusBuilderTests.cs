@@ -1,5 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.UseCases.Project;
 namespace Dfe.Complete.API.Tests.Project
 {

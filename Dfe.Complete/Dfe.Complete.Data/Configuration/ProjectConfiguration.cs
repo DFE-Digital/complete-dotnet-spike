@@ -4,6 +4,7 @@ using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 
 namespace Dfe.Complete.Data.Configuration
 {

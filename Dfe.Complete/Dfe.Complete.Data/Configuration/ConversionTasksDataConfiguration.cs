@@ -6,9 +6,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Dfe.Complete.Data.Configuration
 {
-    public partial class ConversionTasksDataConfiguration : IEntityTypeConfiguration<ConversionTasksDatum>
+    public partial class ConversionTasksDataConfiguration : IEntityTypeConfiguration<ConversionTasksData>
     {
-        public void Configure(EntityTypeBuilder<ConversionTasksDatum> builder)
+        public void Configure(EntityTypeBuilder<ConversionTasksData> builder)
         {
             builder.HasKey(e => e.Id).HasName("PK__conversi__3213E83F5864AE8A");
 

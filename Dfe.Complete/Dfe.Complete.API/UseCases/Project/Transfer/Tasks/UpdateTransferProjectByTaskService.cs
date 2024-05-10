@@ -24,14 +24,14 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task Execute(Guid projectId, UpdateTransferProjectByTaskRequest request)
         {
-            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId && p.Type == ProjectType.Transfer);
+            var queryResult = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
 
-            if (project == null)
+            if (queryResult == null)
             {
                 throw new NotFoundException($"Project with id {projectId} not found");
             }
 
-            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
+            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == queryResult.Project.TasksDataId);
 
             if (transferTaskData == null)
             {

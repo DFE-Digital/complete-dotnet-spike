@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dfe.Complete.API.Contracts.Http
+﻿namespace Dfe.Complete.API.Contracts.Http
 {
     public class RouteConstants
     {
@@ -14,5 +8,10 @@ namespace Dfe.Complete.API.Contracts.Http
         public const string TransferProject = "api/v1/client/transfer-projects";
         public const string TransferProjectTask = TransferProject + "/{0}/tasks";
         public const string TransferProjectTaskSummary = TransferProjectTask + "/summary";
+
+        // Conversion
+        public const string ConversionProject = "api/v1/client/conversion-projects";
+        public const string ConversionProjectTask = ConversionProject + "/{0}/tasks";
+        public const string ConversionProjectTaskSummary = ConversionProjectTask + "/summary";
     }
 }

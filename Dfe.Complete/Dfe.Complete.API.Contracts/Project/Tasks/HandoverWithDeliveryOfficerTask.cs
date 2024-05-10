@@ -1,4 +1,4 @@
-﻿namespace Dfe.Complete.API.Contracts.Project.Transfer.Tasks
+﻿namespace Dfe.Complete.API.Contracts.Project.Tasks
 {
     public class HandoverWithDeliveryOfficerTask : TaskBase
     {

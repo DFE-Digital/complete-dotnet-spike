@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks.HandoverWithDeliveryOfficer;
@@ -24,15 +25,15 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task<GetTransferProjectByTaskSummaryResponse> Execute(Guid projectId)
         {
-            var project = await _context.Projects.FirstOrDefaultAsync(p => p.Id == projectId && p.Type == ProjectType.Transfer);
+            var queryResult = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
 
-            if (project == null)
+            if (queryResult == null)
             {
                 throw new NotFoundException($"Project with id {projectId} not found");
             }
 
             var transferTasks = await _context.TransferTasksData
-                .Where(t => t.Id == project.TasksDataId)
+                .Where(t => t.Id == queryResult.Project.TasksDataId)
                 .FirstOrDefaultAsync();
 
             if (transferTasks == null)

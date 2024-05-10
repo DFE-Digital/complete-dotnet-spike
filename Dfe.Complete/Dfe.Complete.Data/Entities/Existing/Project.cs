@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.Data
