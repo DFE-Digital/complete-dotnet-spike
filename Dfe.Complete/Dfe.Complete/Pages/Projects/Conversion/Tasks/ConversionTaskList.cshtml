@@ -109,12 +109,7 @@
                             Project kick-off
                         </h3>
                         <ul class="app-task-list__items">
-                            <li class="app-task-list__item">
-                                <span class="app-task-list__task-name">
-                                    <a aria-describedby="handover-with-regional-delivery-officer-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/handover">Handover with regional delivery officer</a>
-                                </span>
-                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="handover-with-regional-delivery-officer-status">Not started</strong>
-                            </li>
+                            <govuk-task-summary-item asp-for="@Model.Tasks.HandoverWithDeliveryOfficer" label="Handover with regional delivery officer" href="@handoverWithDeliveryOfficerLink" />
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
                                     <a aria-describedby="external-stakeholder-kick-off-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/stakeholder_kick_off">External stakeholder kick-off</a>

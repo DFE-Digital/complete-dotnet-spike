@@ -20,7 +20,7 @@ namespace Dfe.Complete.Services.Project.Transfer
 
         public async Task Execute(string projectId, UpdateTransferProjectByTaskRequest request)
         {
-            var endpoint = string.Format(RouteConstants.ConversionProjectTask, projectId);
+            var endpoint = string.Format(RouteConstants.TransferProjectTask, projectId);
 
             await _completeApiClient.Patch<UpdateTransferProjectByTaskRequest, object>(endpoint, request);
         }

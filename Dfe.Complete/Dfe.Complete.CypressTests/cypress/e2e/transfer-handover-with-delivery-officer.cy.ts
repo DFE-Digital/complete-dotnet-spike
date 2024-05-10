@@ -26,7 +26,7 @@ describe("Transfer handover with delivery officer task", () => {
         cy.executeAccessibilityTests();
 
         projectSummarySection
-            .hasAcademyUrn("116564")
+            .hasUrn("116564")
             .hasTransferBadge()
             .hasSchoolName("Southlands School")
             .hasTransferDate("1 June 2025");

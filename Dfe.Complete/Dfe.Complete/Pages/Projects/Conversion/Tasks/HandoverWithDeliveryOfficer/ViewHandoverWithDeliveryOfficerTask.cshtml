@@ -2,9 +2,9 @@
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.Conversion.Tasks.HandoverWithDeliveryOfficer.ViewHandoverWithDeliveryOfficerTaskModel
 @{
-    var backlink = string.Format(RouteConstants.TransferProjectTaskList, Model.ProjectId);
-    var editlink = string.Format(RouteConstants.TransferEditHandoverWithDeliveryOfficerTask, Model.ProjectId);
-    var taskList = string.Format(RouteConstants.TransferProjectTaskList, Model.ProjectId);
+    var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.ConversionEditHandoverWithDeliveryOfficerTask, Model.ProjectId);
+    var taskList = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
 
     var handoverWithDeliveryOfficer = Model.Project.HandoverWithDeliveryOfficer;
 }

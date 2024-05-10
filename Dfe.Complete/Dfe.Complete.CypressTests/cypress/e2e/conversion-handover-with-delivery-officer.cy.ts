@@ -26,10 +26,10 @@ describe("Conversion handover with delivery officer task", () => {
         cy.executeAccessibilityTests();
 
         projectSummarySection
-            .hasAcademyUrn("116564")
+            .hasUrn("112209")
             .hasConversionBadge()
-            .hasSchoolName("Southlands School")
-            .hasConversionDate("1 June 2025");
+            .hasSchoolName("Vickerstown School")
+            .hasConversionDate("1 May 2023");
 
         Logger.log("Task has status not started");
         taskListPage

@@ -1,6 +1,6 @@
 export class ProjectSummarySection {
-    public hasAcademyUrn(value: string): this {
-        cy.contains("span", `Academy URN ${value}`);
+    public hasUrn(value: string): this {
+        cy.contains("span", `URN ${value}`);
 
         return this;
     }
