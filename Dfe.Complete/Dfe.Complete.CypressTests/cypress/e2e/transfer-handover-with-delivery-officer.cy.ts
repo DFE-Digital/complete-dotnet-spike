@@ -1,11 +1,11 @@
 import transferProjectApi from "cypress/api/transferProjectApi";
 import { Logger } from "cypress/common/logger";
-import summaryPage from "cypress/pages/projects/SummaryPage";
-import editHandoverWithDeliveryOfficerPage from "cypress/pages/projects/transfer/tasks/editHandoverWithDeliveryOfficerPage";
-import transferProjectSummarySection from "cypress/pages/projects/transfer/transferProjectSummarySection";
-import transferTaskListPage, { TransferTaskNames } from "cypress/pages/projects/transfer/transferTaskListPage";
+import editHandoverWithDeliveryOfficerPage from "cypress/pages/projects/tasks/editHandoverWithDeliveryOfficerPage";
+import projectSummarySection from "cypress/pages/projects/projectSummarySection";
+import taskListPage, { TransferTaskNames } from "cypress/pages/projects/taskListPage";
+import summaryPage from "cypress/pages/projects/summaryPage";
 
-describe("POC for automation", () => {
+describe("Transfer handover with delivery officer task", () => {
 
     let projectId: string;
 
@@ -13,7 +13,7 @@ describe("POC for automation", () => {
         cy.login();
 
         transferProjectApi
-            .createTransferProject({})
+            .createProject({})
             .then(response => {
                 projectId = response.id;
             });
@@ -25,14 +25,14 @@ describe("POC for automation", () => {
 
         cy.executeAccessibilityTests();
 
-        transferProjectSummarySection
+        projectSummarySection
             .hasAcademyUrn("116564")
             .hasTransferBadge()
             .hasSchoolName("Southlands School")
             .hasTransferDate("1 June 2025");
 
         Logger.log("Task has status not started");
-        transferTaskListPage
+        taskListPage
             .withTask(TransferTaskNames.HandoverWithRegionalDeliveryOfficer)
             .then(task => {
                 task
@@ -67,7 +67,7 @@ describe("POC for automation", () => {
 
         summaryPage.clickBack();
 
-        transferTaskListPage
+        taskListPage
             .withTask(TransferTaskNames.HandoverWithRegionalDeliveryOfficer)
             .then(task => {
                 task
@@ -92,7 +92,7 @@ describe("POC for automation", () => {
 
         summaryPage.clickBack();
 
-        transferTaskListPage
+        taskListPage
             .withTask(TransferTaskNames.HandoverWithRegionalDeliveryOfficer)
             .then(task => {
                 task
@@ -117,7 +117,7 @@ describe("POC for automation", () => {
 
         summaryPage.clickBack();
 
-        transferTaskListPage
+        taskListPage
             .withTask(TransferTaskNames.HandoverWithRegionalDeliveryOfficer)
             .then(task => {
                 task

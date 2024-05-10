@@ -1,4 +1,5 @@
 ﻿@page "/projects/all/in-progress/all"
+@using Dfe.Complete.API.Contracts.Project
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.All.ProjectsInProgressModel
 @{
@@ -21,7 +22,16 @@
 
             @foreach(var project in Model.Projects)
             {
-                var projectSummaryUrl = string.Format(RouteConstants.TransferProjectTaskList, project.Id);
+                string projectSummaryUrl;
+
+                if (project.ProjectType == ProjectType.Conversion)
+                {
+                    projectSummaryUrl = string.Format(RouteConstants.ConversionProjectTaskList, project.Id);
+                }
+                else
+                {
+                    projectSummaryUrl = string.Format(RouteConstants.TransferProjectTaskList, project.Id);
+                }
 
                 <tr class="govuk-table__row">
                     <td class="govuk-table__header govuk-table__cell">

@@ -1,4 +1,4 @@
-export class TransferProjectSummarySection {
+export class ProjectSummarySection {
     public hasAcademyUrn(value: string): this {
         cy.contains("span", `Academy URN ${value}`);
 
@@ -7,6 +7,12 @@ export class TransferProjectSummarySection {
 
     public hasTransferBadge(): this {
         cy.contains("strong", "Transfer");
+
+        return this;
+    }
+
+    public hasConversionBadge(): this {
+        cy.contains("strong", "Conversion");
 
         return this;
     }
@@ -25,8 +31,17 @@ export class TransferProjectSummarySection {
 
         return this;
     }
+
+    public hasConversionDate(value: string) {
+        cy.contains("dt", "Conversion date")
+            .then(el => {
+                cy.wrap(el).siblings().contains("dd", value);
+            });
+
+        return this;
+    }
 }
 
-const transferProjectSummarySection = new TransferProjectSummarySection();
+const projectSummarySection = new ProjectSummarySection();
 
-export default transferProjectSummarySection;
+export default projectSummarySection;

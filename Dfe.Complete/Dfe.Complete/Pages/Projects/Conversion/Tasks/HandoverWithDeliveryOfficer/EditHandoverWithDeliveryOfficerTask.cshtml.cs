@@ -1,17 +1,17 @@
+using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Contracts.Project.Tasks;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.Constants;
-using Dfe.Complete.Services.Project.Transfer;
+using Dfe.Complete.Services.Project.Conversion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer
+namespace Dfe.Complete.Pages.Projects.Conversion.Tasks.HandoverWithDeliveryOfficer
 {
     public class EditHandoverWithDeliveryOfficerTaskModel : PageModel
     {
-        private readonly IGetTransferProjectByTaskService _getTransferProjectByTaskService;
-        private readonly IUpdateTransferProjectByTaskService _updateTransferProjectByTaskService;
+        private readonly IGetConversionProjectByTaskService _getConversionProjectByTaskService;
+        private readonly IUpdateConversionProjectByTaskService _updateConversionProjectByTaskService;
 
         [BindProperty(SupportsGet = true, Name = "projectId")]
         public string ProjectId { get; set; }
@@ -23,7 +23,7 @@ namespace Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer
 
         [BindProperty(Name = "review-project-information")]
         public bool? ReviewProjectInformation { get; set; }
-
+        
         [BindProperty(Name = "make-notes")]
         public bool? MakeNotes { get; set; }
 
@@ -31,16 +31,16 @@ namespace Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer
         public bool? AttendHandoverMeeting { get; set; }
 
         public EditHandoverWithDeliveryOfficerTaskModel(
-            IGetTransferProjectByTaskService getTransferProjectByTaskService,
-            IUpdateTransferProjectByTaskService updateTransferProjectByTaskService)
+            IGetConversionProjectByTaskService getConversionProjectByTaskService,
+            IUpdateConversionProjectByTaskService updateConversionProjectByTaskService)
         {
-            _getTransferProjectByTaskService = getTransferProjectByTaskService;
-            _updateTransferProjectByTaskService = updateTransferProjectByTaskService;
+            _getConversionProjectByTaskService = getConversionProjectByTaskService;
+            _updateConversionProjectByTaskService = updateConversionProjectByTaskService;
         }
 
         public async Task OnGet()
         {
-            var project = await _getTransferProjectByTaskService.Execute(ProjectId, TransferProjectTaskName.HandoverWithDeliveryOfficer);
+            var project = await _getConversionProjectByTaskService.Execute(ProjectId, ConversionProjectTaskName.HandoverWithDeliveryOfficer);
 
             NotApplicable = project.HandoverWithDeliveryOfficer.NotApplicable;
             ReviewProjectInformation = project.HandoverWithDeliveryOfficer.ReviewProjectInformation;
@@ -51,7 +51,7 @@ namespace Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer
 
         public async Task<IActionResult> OnPost()
         {
-            var request = new UpdateTransferProjectByTaskRequest()
+            var request = new UpdateConversionProjectByTaskRequest()
             {
                 HandoverWithDeliveryOfficer = new HandoverWithDeliveryOfficerTask()
                 {
@@ -62,9 +62,9 @@ namespace Dfe.Complete.Pages.Projects.Transfer.Tasks.HandoverWithDeliveryOfficer
                 }
             };
 
-            await _updateTransferProjectByTaskService.Execute(ProjectId, request);
+            await _updateConversionProjectByTaskService.Execute(ProjectId, request);
 
-            return Redirect(string.Format(RouteConstants.TransferViewHandoverWithDeliveryOfficerTask, ProjectId));
+            return Redirect(string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, ProjectId));
         }
     }
 }

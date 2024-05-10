@@ -4,6 +4,8 @@ using Dfe.Complete.Configuration;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
 using Dfe.Complete.Services.Project;
+using Dfe.Complete.Services.Project.Conversion;
+using Dfe.Complete.Services.Project.Transfer;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -69,9 +71,16 @@ public class Startup
         services.AddScoped<CompleteApiClient, CompleteApiClient>();
         services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
         services.AddScoped<IGetProjectListService, GetProjectListService>();
+
+        // Transfers
         services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
         services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();
         services.AddScoped<IGetTransferProjectByTaskSummaryService, GetTransferProjectByTaskSummaryService>();
+
+        // Conversions
+        services.AddScoped<IGetConversionProjectByTaskService, GetConversionProjectByTaskService>();
+        services.AddScoped<IUpdateConversionProjectByTaskService, UpdateConversionProjectByTaskService>();
+        services.AddScoped<IGetConversionProjectByTaskSummaryService, GetConversionProjectByTaskSummaryService>();
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>

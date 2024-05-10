@@ -2,7 +2,7 @@
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.Services.Project
+namespace Dfe.Complete.Services.Project.Transfer
 {
     public interface IGetTransferProjectByTaskSummaryService
     {

@@ -1,0 +1,327 @@
+﻿@page "/conversion-projects/{projectId}/tasks"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.Tasks.ConversionTaskListModel
+@{
+    var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <span class="govuk-caption-l">
+            School URN 112209
+            <strong class="govuk-tag govuk-tag--purple">Conversion</strong>
+        </span>
+        <h1 class="govuk-heading-xl">Vickerstown School</h1>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__header">
+                <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+                    Important
+                </h2>
+            </div>
+            <div class="govuk-notification-banner__content flash">
+                <h3>Not assigned to project</h3><p>This project is not assigned to you and cannot be changed, you can add notes or contacts if required.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-three-quarters">
+        <dl class="govuk-summary-list dfe-summary-list--project-summary" id="project-summary"><div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Conversion date</dt><dd class="govuk-summary-list__value">1 May 2023</dd></div><div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">Incoming trust</dt><dd class="govuk-summary-list__value">The Diocese Of Norwich Education And Academies Trust</dd></div><div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">LA and region</dt><dd class="govuk-summary-list__value">Pre-LGR 2023 Cumbria, North West</dd></div><div class="govuk-summary-list__row"><dt class="govuk-summary-list__key">SharePoint links</dt><dd class="govuk-summary-list__value"><a target="_blank" href="https://educationgovuk.sharepoint.com/:f:/r/sites/ServiceDeliveryDirectorate/Shared%20Documents/A2C%20and%20Interventions/Complete%20conversions,%20transfers%20and%20changes/Technical?csf=1&amp;web=1&amp;e=FWzEMP">School folder (opens in new tab)</a> | <a target="_blank" href="https://educationgovuk.sharepoint.com/:f:/r/sites/ServiceDeliveryDirectorate/Shared%20Documents/A2C%20and%20Interventions/Complete%20conversions,%20transfers%20and%20changes/Technical?csf=1&amp;web=1&amp;e=FWzEMP">Trust folder (opens in new tab)</a></dd></div></dl>
+
+    </div>
+</div>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <nav class="moj-sub-navigation" aria-label="Project sub-navigation">
+            <ul class="moj-sub-navigation__list">
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" aria-current="page" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks">Task list</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/information">About the project</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/notes">Notes</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/external-contacts">External contacts</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/internal-contacts">Internal contacts</a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full-width">
+        <div class="govuk-grid-column-one-quarter">
+            <nav>
+                <h2 class="govuk-heading-m">Jump to section</h2>
+                <ul class="list-style-none govuk-!-padding-0">
+                    <li>
+                        <a class="govuk-link govuk-link--no-visited-state" href="#project_kick_off">Project kick-off</a>
+                    </li>
+
+                    <li>
+                        <a class="govuk-link govuk-link--no-visited-state" href="#legal_documents">Clear and sign legal documents</a>
+                    </li>
+
+                    <li>
+                        <a class="govuk-link govuk-link--no-visited-state" href="#get_ready_for_opening">Get ready for opening</a>
+                    </li>
+
+                    <li>
+                        <a class="govuk-link govuk-link--no-visited-state" href="#after_opening">After opening</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="govuk-grid-column-three-quarters">
+            <div class="govuk-grid-row">
+                <h2 class="govuk-heading-l">Task list</h2>
+            </div>
+            <div class="govuk-grid-row">
+                <ol class="app-task-list">
+                    <li>
+                        <h3 class="app-task-list__section" id="project_kick_off">
+                            Project kick-off
+                        </h3>
+                        <ul class="app-task-list__items">
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="handover-with-regional-delivery-officer-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/handover">Handover with regional delivery officer</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="handover-with-regional-delivery-officer-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="external-stakeholder-kick-off-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/stakeholder_kick_off">External stakeholder kick-off</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--orange app-task-list__tag" id="external-stakeholder-kick-off-status">In progress</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="check-accuracy-of-high-needs-places-information-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/check_accuracy_of_higher_needs">Check accuracy of high needs places information</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="check-accuracy-of-high-needs-places-information-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="complete-a-notification-of-changes-to-funded-high-needs-places-form-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/complete_notification_of_change">Complete a notification of changes to funded high needs places form</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="complete-a-notification-of-changes-to-funded-high-needs-places-form-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="process-conversion-grant-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/conversion_grant">Process conversion grant</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="process-conversion-grant-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-and-process-the-sponsored-support-grant-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/sponsored_support_grant">Confirm and process the sponsored support grant</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="confirm-and-process-the-sponsored-support-grant-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-academy-name-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/academy_details">Confirm the academy name</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--turquoise app-task-list__tag" id="confirm-the-academy-name-status">Completed</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-main-contact-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/main_contact">Confirm the main contact</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="confirm-the-main-contact-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="add-chair-of-governors-contact-details-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/chair_of_governors_contact">Add chair of governors' contact details</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="add-chair-of-governors-contact-details-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-proposed-capacity-of-the-academy-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/proposed_capacity_of_the_academy">Confirm the proposed capacity of the academy</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--turquoise app-task-list__tag" id="confirm-the-proposed-capacity-of-the-academy-status">Completed</strong>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="app-task-list__section" id="legal_documents">
+                            Clear and sign legal documents
+                        </h3>
+                        <ul class="app-task-list__items">
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="land-questionnaire-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/land_questionnaire">Land questionnaire</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="land-questionnaire-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="land-registry-title-plans-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/land_registry">Land registry title plans</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="land-registry-title-plans-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="supplemental-funding-agreement-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/supplemental_funding_agreement">Supplemental funding agreement</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="supplemental-funding-agreement-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="church-supplemental-agreement-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/church_supplemental_agreement">Church supplemental agreement</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="church-supplemental-agreement-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="master-funding-agreement-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/master_funding_agreement">Master funding agreement</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="master-funding-agreement-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="articles-of-association-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/articles_of_association">Articles of association</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="articles-of-association-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="deed-of-variation-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/deed_of_variation">Deed of variation</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="deed-of-variation-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="trust-modification-order-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/trust_modification_order">Trust modification order</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="trust-modification-order-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="direction-to-transfer-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/direction_to_transfer">Direction to transfer</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="direction-to-transfer-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="125-year-lease-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/one_hundred_and_twenty_five_year_lease">125 year lease</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="125-year-lease-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="subleases-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/subleases">Subleases</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="subleases-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="tenancy-at-will-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/tenancy_at_will">Tenancy at will</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="tenancy-at-will-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="commercial-transfer-agreement-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/commercial_transfer_agreement">Commercial transfer agreement</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="commercial-transfer-agreement-status">Not started</strong>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="app-task-list__section" id="get_ready_for_opening">
+                            Get ready for opening
+                        </h3>
+                        <ul class="app-task-list__items">
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-academy-s-risk-protection-arrangements-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/risk_protection_arrangement">Confirm the academy's risk protection arrangements</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="confirm-the-academy-s-risk-protection-arrangements-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="complete-and-send-single-worksheet-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/single_worksheet">Complete and send single worksheet</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="complete-and-send-single-worksheet-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-school-has-completed-all-actions-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/school_completed">Confirm the school has completed all actions</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="confirm-the-school-has-completed-all-actions-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-all-conditions-have-been-met-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/conditions_met">Confirm all conditions have been met</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="confirm-all-conditions-have-been-met-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="share-the-grant-certificate-and-information-about-opening-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/share_information">Share the grant certificate and information about opening</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="share-the-grant-certificate-and-information-about-opening-status">Not started</strong>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3 class="app-task-list__section" id="after_opening">
+                            After opening
+                        </h3>
+                        <ul class="app-task-list__items">
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="confirm-the-date-the-academy-opened-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/confirm_date_academy_opened">Confirm the date the academy opened</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--turquoise app-task-list__tag" id="confirm-the-date-the-academy-opened-status">Completed</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="redact-and-send-documents-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/redact_and_send">Redact and send documents</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="redact-and-send-documents-status">Not started</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="receive-grant-payment-certificate-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/receive_grant_payment_certificate">Receive grant payment certificate</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="receive-grant-payment-certificate-status">Not started</strong>
+                            </li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            <div class="govuk-grid-row">
+            </div>
+        </div>
+    </div>
+</div>

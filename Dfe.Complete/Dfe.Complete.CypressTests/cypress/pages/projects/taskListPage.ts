@@ -1,4 +1,4 @@
-class TransferTaskListPage {
+class TaskListPage {
     public withTask(task: string): Cypress.Chainable<TaskSummary> {
         return cy.contains("a", task).parents("li.app-task-list__item")
             .then(el => {
@@ -51,10 +51,14 @@ class TaskSummary {
     }
 }
 
+export const ConversionTaskNames = {
+    HandoverWithRegionalDeliveryOfficer: "Handover with regional delivery officer"
+}
+
 export const TransferTaskNames = {
     HandoverWithRegionalDeliveryOfficer: "Handover with regional delivery officer"
 }
 
-const transferTaskListPage = new TransferTaskListPage();
+const taskListPage = new TaskListPage();
 
-export default transferTaskListPage;
+export default taskListPage;
