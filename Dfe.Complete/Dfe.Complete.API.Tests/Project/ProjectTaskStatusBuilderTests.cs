@@ -1,6 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Tasks;
-using Dfe.Complete.API.UseCases.Project;
+using Dfe.Complete.API.UseCases.Project.Tasks;
 namespace Dfe.Complete.API.Tests.Project
 {
     public class ProjectTaskStatusBuilderTests

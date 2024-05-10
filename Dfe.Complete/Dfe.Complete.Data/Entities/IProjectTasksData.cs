@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dfe.Complete.Data.Entities
 {
@@ -13,12 +9,16 @@ namespace Dfe.Complete.Data.Entities
     /// </summary>
     public class IProjectTasksData
     {
+        [NotMapped]
         public bool? HandoverReview { get; set; }
 
+        [NotMapped]
         public bool? HandoverNotes { get; set; }
 
+        [NotMapped]
         public bool? HandoverMeeting { get; set; }
 
+        [NotMapped]
         public bool? HandoverNotApplicable { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.UseCases.Project.Tasks;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;

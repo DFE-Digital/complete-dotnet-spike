@@ -2,18 +2,20 @@
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using System.Reflection;
 
-namespace Dfe.Complete.API.UseCases.Project
+namespace Dfe.Complete.API.UseCases.Project.Tasks
 {
     public static class ProjectTaskStatusBuilder
     {
-        public static ProjectTaskStatus Build(TaskBase task)
+        public static ProjectTaskStatus Build(object task)
         {
-            if (task.NotApplicable == true)
+            var notApplicableTask = task as INotApplicableTask;
+
+            if (notApplicableTask != null && notApplicableTask.NotApplicable == true)
             {
                 return ProjectTaskStatus.NotApplicable;
             }
 
-            var properties = task.GetType().GetProperties().Where(p => p.Name != "NotApplicable").ToList();
+            var properties = task.GetType().GetProperties().Where(p => p.Name != nameof(INotApplicableTask.NotApplicable)).ToList();
 
             var numberOfSetProperties = properties.Count(p => HasValue(p, task));
 
@@ -30,7 +32,7 @@ namespace Dfe.Complete.API.UseCases.Project
             return ProjectTaskStatus.NotStarted;
         }
 
-        private static bool HasValue(PropertyInfo property, TaskBase task)
+        private static bool HasValue(PropertyInfo property, object task)
         {
             if (property.PropertyType == typeof(bool?))
             {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dfe.Complete.API.Contracts.Project.Tasks
 {
-    public class TaskBase
+    public interface INotApplicableTask
     {
         public bool? NotApplicable { get; set; }
     }
