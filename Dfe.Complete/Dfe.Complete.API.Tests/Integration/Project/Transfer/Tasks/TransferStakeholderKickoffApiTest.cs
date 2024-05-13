@@ -12,49 +12,46 @@ using System.Threading.Tasks;
 namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 {
     [Collection(ApiTestCollection.ApiTestCollectionName)]
-    public class TransferHandoverWithDeliveryOfficerTaskApiTests : ApiTestsBase
+    public class TransferStakeholderKickoffApiTest : ApiTestsBase
     {
-        public TransferHandoverWithDeliveryOfficerTaskApiTests(ApiTestFixture apiTestFixture) : base(apiTestFixture)
+        public TransferStakeholderKickoffApiTest(ApiTestFixture apiTestFixture) : base(apiTestFixture)
         {
         }
 
         [Fact]
-        public async Task Update_HandoverWithDeliveryOfficerTask_Returns_200()
+        public async Task Update_StakeholderKickoffTask_Returns_200()
         {
             var createProjectRequest = new CreateTransferProjectRequest();
             var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
             createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
 
-            var createdProject = await createResponse.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
-            var projectId = createdProject.Id;
+            var project = await createResponse.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
 
             var request = new UpdateTransferProjectByTaskRequest()
             {
-                HandoverWithDeliveryOfficer = new HandoverWithDeliveryOfficerTask()
+                StakeholderKickoff = new StakeholderKickoffTask()
                 {
-                    AttendHandoverMeeting = true,
-                    MakeNotes = true,
-                    ReviewProjectInformation = true,
-                    NotApplicable = true
+                    HostMeetingOrCall = true,
+                    SendIntroEmails = true,
+                    SendInvites = true
                 }
             };
 
-            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}", request.ConvertToJson());
+            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.TransferProjectTask, project.Id)}", request.ConvertToJson());
             updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            var getResponse = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, projectId)}?taskName={TransferProjectTaskName.HandoverWithDeliveryOfficer}");
+            var getResponse = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTask, project.Id)}?taskName={TransferProjectTaskName.StakeholderKickoff}");
             getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var updatedTask = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskResponse>();
 
-            updatedTask.HandoverWithDeliveryOfficer.NotApplicable.Should().BeTrue();
-            updatedTask.HandoverWithDeliveryOfficer.AttendHandoverMeeting.Should().BeTrue();
-            updatedTask.HandoverWithDeliveryOfficer.MakeNotes.Should().BeTrue();
-            updatedTask.HandoverWithDeliveryOfficer.ReviewProjectInformation.Should().BeTrue();
+            updatedTask.StakeholderKickoff.HostMeetingOrCall.Should().BeTrue();
+            updatedTask.StakeholderKickoff.SendIntroEmails.Should().BeTrue();
+            updatedTask.StakeholderKickoff.SendInvites.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Get_HandoverWithDeliveryOffer_TaskSummary_Returns_200()
+        public async Task Get_StakeholderKickoff_TaskSummary_Returns_200()
         {
             var createProjectRequest = new CreateTransferProjectRequest();
             var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
@@ -65,9 +62,9 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             var request = new UpdateTransferProjectByTaskRequest()
             {
-                HandoverWithDeliveryOfficer = new HandoverWithDeliveryOfficerTask()
+                StakeholderKickoff = new()
                 {
-                    AttendHandoverMeeting = true
+                    HostMeetingOrCall = true,
                 }
             };
 
@@ -79,7 +76,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             var summary = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
 
-            summary.HandoverWithDeliveryOfficer.Status.Should().Be(ProjectTaskStatus.InProgress);
+            summary.StakeholderKickoff.Status.Should().Be(ProjectTaskStatus.InProgress);
         }
     }
 }

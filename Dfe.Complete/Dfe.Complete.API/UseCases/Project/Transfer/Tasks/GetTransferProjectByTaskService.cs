@@ -2,6 +2,7 @@
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -53,6 +54,10 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
             {
                 case TransferProjectTaskName.HandoverWithDeliveryOfficer:
                     response.HandoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(transferTaskData);
+                    break;
+
+                case TransferProjectTaskName.StakeholderKickoff:
+                    response.StakeholderKickoff = StakeholderKickoffTaskBuilder.Execute(transferTaskData);
                     break;
 
                 default:

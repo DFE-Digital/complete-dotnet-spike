@@ -1,5 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
+﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
@@ -38,7 +37,8 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                 throw new UnprocessableContentException($"Project with id {projectId} does not have any conversion tasks data");
             }
 
-            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
+            if (request.HandoverWithDeliveryOfficer != null)
+                UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
 
             await _context.SaveChangesAsync();
         }

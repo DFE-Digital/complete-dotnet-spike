@@ -7,11 +7,6 @@ namespace Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer
     {
         public static void Execute(HandoverWithDeliveryOfficerTask task, IProjectTasksData dbTask)
         {
-            if (task == null)
-            {
-                return;
-            }
-
             dbTask.HandoverReview = task.ReviewProjectInformation;
             dbTask.HandoverNotes = task.MakeNotes;
             dbTask.HandoverMeeting = task.AttendHandoverMeeting;

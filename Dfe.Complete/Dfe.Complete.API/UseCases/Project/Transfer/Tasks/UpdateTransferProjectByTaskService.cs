@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,7 +38,11 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
                 throw new UnprocessableContentException($"Project with id {projectId} does not have any transfer tasks data");
             }
 
-            UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, transferTaskData);
+            if (request.HandoverWithDeliveryOfficer != null)
+                UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, transferTaskData);
+
+            if (request.StakeholderKickoff != null)
+                UpdateStakeholderKickoffTaskBuilder.Execute(request.StakeholderKickoff, transferTaskData);
 
             await _context.SaveChangesAsync();
         }

@@ -3,6 +3,7 @@ using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Tasks;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -42,13 +43,18 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
             }
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(transferTasks);
+            var stakeholderKickoff = StakeholderKickoffTaskBuilder.Execute(transferTasks);
 
             var result = new GetTransferProjectByTaskSummaryResponse
             {
                 HandoverWithDeliveryOfficer = new TaskSummaryResponse()
                 {
                     Status = ProjectTaskStatusBuilder.Build(handoverWithDeliveryOfficer),
-                }
+                },
+                StakeholderKickoff = new TaskSummaryResponse()
+                {
+                    Status = ProjectTaskStatusBuilder.Build(stakeholderKickoff),
+                },
             };
 
             return result;

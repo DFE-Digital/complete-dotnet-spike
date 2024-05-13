@@ -10,5 +10,6 @@ namespace Dfe.Complete.API.Contracts.Project.Transfer.Tasks
     public class GetTransferProjectByTaskSummaryResponse
     {
         public TaskSummaryResponse HandoverWithDeliveryOfficer { get; set; } = new();
+        public TaskSummaryResponse StakeholderKickoff { get; set; } = new();
     }
 }
