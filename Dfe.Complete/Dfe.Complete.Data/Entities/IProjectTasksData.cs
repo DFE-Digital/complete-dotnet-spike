@@ -16,5 +16,11 @@ namespace Dfe.Complete.Data.Entities
         public bool? HandoverMeeting { get; set; }
 
         public bool? HandoverNotApplicable { get; set; }
+
+        public bool? StakeholderKickOffIntroductoryEmails { get; set; }
+
+        public bool? StakeholderKickOffSetupMeeting { get; set; }
+
+        public bool? StakeholderKickOffMeeting { get; set; }
     }
 }

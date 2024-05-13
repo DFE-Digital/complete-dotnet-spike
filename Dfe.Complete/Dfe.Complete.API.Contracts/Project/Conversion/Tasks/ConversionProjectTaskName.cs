@@ -9,6 +9,7 @@ namespace Dfe.Complete.API.Contracts.Project.Conversion.Tasks
     public enum ConversionProjectTaskName
     {
         Unknown,
-        HandoverWithDeliveryOfficer
+        HandoverWithDeliveryOfficer,
+        StakeholderKickoff
     }
 }

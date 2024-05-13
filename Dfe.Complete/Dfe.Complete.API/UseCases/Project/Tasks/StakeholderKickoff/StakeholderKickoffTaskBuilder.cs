@@ -3,9 +3,9 @@ using Dfe.Complete.Data.Entities;
 
 namespace Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff
 {
-    public class StakeholderKickoffTaskBuilder
+    public static class StakeholderKickoffTaskBuilder
     {
-        public static StakeholderKickoffTask Execute(TransferTasksData task)
+        public static StakeholderKickoffTask Execute(IProjectTasksData task)
         {
             return new StakeholderKickoffTask()
             {

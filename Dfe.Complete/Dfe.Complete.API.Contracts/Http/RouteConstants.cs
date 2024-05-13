@@ -11,6 +11,7 @@
         public const string TransferProjectTaskSummary = TransferProjectTask + "/summary";
 
         // Conversion
+        public const string CreateConversionProject = "api/v1/conversion-projects";
         public const string ConversionProject = "api/v1/client/conversion-projects";
         public const string ConversionProjectTask = ConversionProject + "/{0}/tasks";
         public const string ConversionProjectTaskSummary = ConversionProjectTask + "/summary";

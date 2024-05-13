@@ -1,6 +1,8 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
+using Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,6 +41,9 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
             if (request.HandoverWithDeliveryOfficer != null)
                 UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
+
+            if (request.StakeholderKickoff != null)
+                UpdateConversionStakeholderKickoffTaskBuilder.Execute(request.StakeholderKickoff, conversionTaskData);
 
             await _context.SaveChangesAsync();
         }

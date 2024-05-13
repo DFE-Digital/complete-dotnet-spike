@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Academies;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
@@ -53,6 +54,10 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
             {
                 case ConversionProjectTaskName.HandoverWithDeliveryOfficer:
                     response.HandoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(conversionTaskData);
+                    break;
+
+                case ConversionProjectTaskName.StakeholderKickoff:
+                    response.StakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTaskData);
                     break;
 
                 default:
