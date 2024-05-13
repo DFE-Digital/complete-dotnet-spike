@@ -15,5 +15,8 @@
 
         public const string TransferViewHandoverWithDeliveryOfficerTask = TransferProjectTaskList + "/handover";
         public const string TransferEditHandoverWithDeliveryOfficerTask = TransferViewHandoverWithDeliveryOfficerTask + "/edit";
+
+        public const string TransferViewStakeholderKickoffTask = TransferProjectTaskList + "/stakeholder-kickoff";
+        public const string TransferEditStakeholderKickoffTask = TransferViewStakeholderKickoffTask + "/edit";
     }
 }

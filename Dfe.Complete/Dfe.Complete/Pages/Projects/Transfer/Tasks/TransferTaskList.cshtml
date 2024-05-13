@@ -3,6 +3,7 @@
 @model Dfe.Complete.Pages.Projects.Transfer.Tasks.TransferTaskListModel
 @{
     var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.TransferViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
+    var stakeholderKickoff = string.Format(RouteConstants.TransferViewStakeholderKickoffTask, Model.ProjectId);
 }
 
 <div class="govuk-grid-row">
@@ -94,12 +95,7 @@
                         </h3>
                         <ul class="app-task-list__items">
                             <govuk-task-summary-item asp-for="@Model.Tasks.HandoverWithDeliveryOfficer" label="Handover with regional delivery officer" href="@handoverWithDeliveryOfficerLink" />
-                            <li class="app-task-list__item">
-                                <span class="app-task-list__task-name">
-                                    <a aria-describedby="external-stakeholder-kick-off-status" class="govuk-link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/tasks/stakeholder_kick_off">External stakeholder kick-off</a>
-                                </span>
-                                <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="external-stakeholder-kick-off-status">Not started</strong>
-                            </li>
+                            <govuk-task-summary-item asp-for="@Model.Tasks.StakeholderKickoff" label="External stakeholder kick-off" href="@stakeholderKickoff" />
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
                                     <a aria-describedby="confirm-the-main-contact-status" class="govuk-link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/tasks/main_contact">Confirm the main contact</a>
