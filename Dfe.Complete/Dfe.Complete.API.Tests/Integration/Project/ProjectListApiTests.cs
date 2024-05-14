@@ -81,29 +81,6 @@ namespace Dfe.Complete.API.Tests.Integration.Project
         }
 
         [Fact]
-        public async Task GetProjectList_AcademyUrn_Returns_NameFromGiasEstablishments_200()
-        {
-            using var context = _testFixture.GetContext();
-
-            var dbCompletedProject = DatabaseModelBuilder.BuildCompletedProject();
-            dbCompletedProject.AcademyUrn = 1001;
-
-            context.Projects.AddRange(dbCompletedProject);
-
-            await context.SaveChangesAsync();
-
-            var response = await _client.GetAsync(RouteConstants.ProjectList);
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            var content = await response.Content.ReadFromJsonAsync<ApiListWrapper<ProjectListEntryResponse>>();
-
-            var projects = content.Data;
-
-            var project = projects.FirstOrDefault(p => p.Id == dbCompletedProject.Id);
-            project.SchoolName.Should().Be("DB Establishment 1");
-        }
-
-        [Fact]
         public async Task GetProjectList_ByUserId_Returns_200()
         {
             using var context = _testFixture.GetContext();

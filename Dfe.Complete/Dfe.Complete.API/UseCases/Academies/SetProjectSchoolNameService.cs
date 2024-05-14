@@ -27,11 +27,10 @@ namespace Dfe.Complete.API.UseCases.Academies
 
         public async Task Execute(IEnumerable<ProjectBaseResponse> projects)
         {
-            var projectsMissingName = projects.Where(p => string.IsNullOrEmpty(p.SchoolName)).ToList();
-            await SetSchoolNameLookup(projectsMissingName);
+            await SetSchoolNameLookup(projects);
         }
 
-        private async Task SetSchoolNameLookup(List<ProjectBaseResponse> projects)
+        private async Task SetSchoolNameLookup(IEnumerable<ProjectBaseResponse> projects)
         {
             var urns = projects.Select(r => r.Urn).Distinct().ToArray();
 

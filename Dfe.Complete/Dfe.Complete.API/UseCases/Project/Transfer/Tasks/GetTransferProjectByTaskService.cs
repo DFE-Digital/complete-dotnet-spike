@@ -28,14 +28,14 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task<GetTransferProjectByTaskResponse> Execute(Guid projectId, TransferProjectTaskName taskName)
         {
-            var queryResult = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
+            var project = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
 
-            if (queryResult == null)
+            if (project == null)
             {
                 throw new NotFoundException($"Project with id {projectId} not found");
             }
 
-            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == queryResult.Project.TasksDataId);
+            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
 
             if (transferTaskData == null)
             {
@@ -44,8 +44,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
             GetTransferProjectByTaskResponse response = new GetTransferProjectByTaskResponse()
             {
-                Urn = queryResult.Project.Urn,
-                SchoolName = queryResult.Establishment?.Name,
+                Urn = project.Urn,
             };
 
             await _setProjectSchoolNameService.Execute(response);

@@ -47,8 +47,6 @@ namespace Dfe.Complete.API.UseCases.Project
             var count = await filteredQuery.CountAsync();
 
             var queryResult = (from project in filteredQuery
-                     join establishment in _context.GiasEstablishments on project.AcademyUrn equals establishment.Urn into joinedEstablishment
-                     from establishment in joinedEstablishment.DefaultIfEmpty()
                      orderby project.SignificantDate
                      select new ProjectListEntryResponse()
                      {
@@ -57,7 +55,6 @@ namespace Dfe.Complete.API.UseCases.Project
                          ConversionOrTransferDate = project.SignificantDate,
                          ProjectType = project.Type,
                          AssignedTo = $"{project.AssignedTo.FirstName} {project.AssignedTo.LastName}",
-                         SchoolName = establishment.Name
                      }).AsQueryable();
 
             var result = await queryResult.Paginate(parameters.Page, parameters.Count).ToListAsync();

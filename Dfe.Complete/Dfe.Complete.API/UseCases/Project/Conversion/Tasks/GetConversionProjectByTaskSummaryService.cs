@@ -26,15 +26,15 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
         public async Task<GetConversionProjectByTaskSummaryResponse> Execute(Guid projectId)
         {
-            var queryResult = await _context.GetConversionProjects(projectId).FirstOrDefaultAsync();
+            var project = await _context.GetConversionProjects(projectId).FirstOrDefaultAsync();
 
-            if (queryResult == null)
+            if (project == null)
             {
                 throw new NotFoundException($"Project with id {projectId} not found");
             }
 
             var conversionTasks = await _context.ConversionTasksData
-                .Where(t => t.Id == queryResult.Project.TasksDataId)
+                .Where(t => t.Id == project.TasksDataId)
                 .FirstOrDefaultAsync();
 
             if (conversionTasks == null)
