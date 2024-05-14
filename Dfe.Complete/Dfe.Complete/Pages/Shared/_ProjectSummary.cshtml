@@ -23,7 +23,7 @@
             }
             else if (Model.ProjectType == ProjectType.Transfer)
             {
-                <strong class="govuk-tag govuk-tag--blue">Transfer</strong>
+                <strong class="govuk-tag govuk-tag--purple">Transfer</strong>
             }
         </span>
         <h1 class="govuk-heading-xl">@Model.Name</h1>
@@ -50,8 +50,21 @@
         <dl class="govuk-summary-list dfe-summary-list--project-summary" id="project-summary">
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">@dateLabel</dt>
-                <dd class="govuk-summary-list__value">@Model.Date.ToDateString()</dd>
+                <dd class="govuk-summary-list__value">
+                    @Model.Date.ToDateString()
+                    @if (Model.IsDateProvisional == true)
+                    {
+                        <strong class="govuk-tag govuk-tag--grey">provisional</strong>
+                    }
+                </dd>
             </div>
+            @if (Model.ProjectType == ProjectType.Transfer)
+            {
+                <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">Outgoing trust</dt>
+                    <dd class="govuk-summary-list__value">@Model.OutgoingTrustName</dd>
+                </div>
+            }
             <div class="govuk-summary-list__row">
                 <dt class="govuk-summary-list__key">Incoming trust</dt>
                 <dd class="govuk-summary-list__value">@Model.IncomingTrustName</dd>

@@ -19,6 +19,11 @@ namespace Dfe.Complete.API.UseCases.Academies
 
         public async Task<List<GetTrustResponse>> Execute(int[] ukprns)
         {
+            if (!ukprns.Any())
+            {
+                return new List<GetTrustResponse>();
+            }
+
             NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
 
             foreach (var urn in ukprns)
