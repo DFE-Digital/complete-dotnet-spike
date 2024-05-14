@@ -19,6 +19,11 @@ namespace Dfe.Complete.API.UseCases.Academies
 
         public async Task<List<GetEstablishmentResponse>> Execute(int[] urns)
         {
+            if (!urns.Any())
+            {
+                return new List<GetEstablishmentResponse>();
+            }
+
             NameValueCollection queryString = HttpUtility.ParseQueryString(string.Empty);
 
             foreach(var urn in urns)

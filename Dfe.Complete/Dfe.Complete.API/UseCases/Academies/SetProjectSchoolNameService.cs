@@ -34,11 +34,6 @@ namespace Dfe.Complete.API.UseCases.Academies
         {
             var urns = projects.Select(r => r.Urn).Distinct().ToArray();
 
-            if (!urns.Any())
-            {
-                return;
-            }
-
             var establishments = await _getEstablishmentBulkService.Execute(urns);
 
             var establishmentLookup = establishments.ToDictionary(e => e.Urn);

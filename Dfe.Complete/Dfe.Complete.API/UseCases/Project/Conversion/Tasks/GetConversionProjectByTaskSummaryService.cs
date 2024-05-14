@@ -18,10 +18,15 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
     public class GetConversionProjectByTaskSummaryService : IGetConversionProjectByTaskSummaryService
     {
         private readonly CompleteContext _context;
+        private readonly IGetProjectDetailsService _getProjectDetailsService;
 
-        public GetConversionProjectByTaskSummaryService(CompleteContext context)
+
+        public GetConversionProjectByTaskSummaryService(
+            CompleteContext context,
+            IGetProjectDetailsService getProjectDetailsService)
         {
             _context = context;
+            _getProjectDetailsService = getProjectDetailsService;
         }
 
         public async Task<GetConversionProjectByTaskSummaryResponse> Execute(Guid projectId)
@@ -44,9 +49,11 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(conversionTasks);
             var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks);
+            var projectDetails = await _getProjectDetailsService.Execute(project);
 
             var result = new GetConversionProjectByTaskSummaryResponse
             {
+                ProjectDetails = projectDetails,
                 HandoverWithDeliveryOfficer = new TaskSummaryResponse()
                 {
                     Status = ProjectTaskStatusBuilder.Build(handoverWithDeliveryOfficer),

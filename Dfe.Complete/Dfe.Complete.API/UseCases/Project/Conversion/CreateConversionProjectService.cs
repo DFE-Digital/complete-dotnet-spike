@@ -33,6 +33,11 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 TasksDataType = TaskType.Conversion,
                 Type = ProjectType.Conversion,
                 TasksDataId = taskId,
+                SignificantDate = request.Date,
+                SignificantDateProvisional = request.IsDateProvisional,
+                OutgoingTrustUkprn = request.OutgoingTrustUkprn,
+                IncomingTrustUkprn = request.IncomingTrustUkprn,
+                Region = request.Region,
             };
 
             var task = new ConversionTasksData

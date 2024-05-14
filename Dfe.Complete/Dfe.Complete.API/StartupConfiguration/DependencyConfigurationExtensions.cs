@@ -28,6 +28,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IGetProjectListService, GetProjectListService>();
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
 			services.AddScoped<IGetTrustsBulkService, GetTrustsBulkService>();
+			services.AddScoped<IGetEstablishmentAndTrustService, GetEstablishmentAndTrustService>();
 			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
 			services.AddScoped<IGetProjectDetailsService, GetProjectDetailsService>();
 
