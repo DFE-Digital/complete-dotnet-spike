@@ -4,6 +4,7 @@
     {
         public string Urn { get; set; }
         public string Name { get; set; }
+        public string LocalAuthorityName { get; set; }
     }
 
     public record GetTrustResponse

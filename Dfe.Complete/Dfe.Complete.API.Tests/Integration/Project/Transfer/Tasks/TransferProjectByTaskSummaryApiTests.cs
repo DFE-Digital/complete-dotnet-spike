@@ -56,8 +56,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         {
             var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
-            createProjectRequest.OutgoingTrustUkprn = 10000001;
-            createProjectRequest.IncomingTrustUkprn = 10000002;
+            createProjectRequest.IncomingTrustUkprn = 10000001;
+            createProjectRequest.OutgoingTrustUkprn = 10000002;
 
             var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
             createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -72,11 +72,14 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             taskSummary.ProjectDetails.Date.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             taskSummary.ProjectDetails.IsDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
-            taskSummary.ProjectDetails.OutgoingTrustUkprn.Should().Be(createProjectRequest.OutgoingTrustUkprn);
-            taskSummary.ProjectDetails.OutgoingTrustName.Should().Be("Trust 1");
             taskSummary.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustUkprn);
-            taskSummary.ProjectDetails.IncomingTrustName.Should().Be("Trust 2");
+            taskSummary.ProjectDetails.IncomingTrustName.Should().Be("Trust 1");
+            taskSummary.ProjectDetails.OutgoingTrustUkprn.Should().Be(createProjectRequest.OutgoingTrustUkprn);
+            taskSummary.ProjectDetails.OutgoingTrustName.Should().Be("Trust 2");
             taskSummary.ProjectDetails.Region.Should().Be("North West");
+            taskSummary.ProjectDetails.ProjectType.Should().Be(ProjectType.Transfer);
+            taskSummary.ProjectDetails.LocalAuthority.Should().Be("Local authority 1");
+            taskSummary.ProjectDetails.Name.Should().Be("Establishment 1");
         }
     }
 }

@@ -4,6 +4,8 @@
     {
         public int Urn { get; set; }
 
+        public string Name { get; set; }
+
         public DateTime? Date { get; set; }
 
         public bool? IsDateProvisional { get; set; }
@@ -16,7 +18,7 @@
 
         public string OutgoingTrustName { get; set; }
 
-        public ProjectType ProjectType { get; set; }
+        public ProjectType? ProjectType { get; set; }
 
         public string LocalAuthority { get; set; }
 

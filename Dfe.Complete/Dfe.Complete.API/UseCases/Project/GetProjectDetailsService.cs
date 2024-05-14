@@ -12,10 +12,14 @@ namespace Dfe.Complete.API.UseCases.Project
     public class GetProjectDetailsService : IGetProjectDetailsService
     {
         private readonly IGetTrustsBulkService _getTrustsBulkService;
+        private readonly IGetEstablishmentsBulkService _getEstablishmentsBulkService;
 
-        public GetProjectDetailsService(IGetTrustsBulkService getTrustsBulkService)
+        public GetProjectDetailsService(
+            IGetTrustsBulkService getTrustsBulkService,
+            IGetEstablishmentsBulkService getEstablishmentsBulkService)
         {
             _getTrustsBulkService = getTrustsBulkService;
+            _getEstablishmentsBulkService = getEstablishmentsBulkService;
         }
 
         public async Task<ProjectDetails> Execute(Data.Entities.Project project)
@@ -26,30 +30,21 @@ namespace Dfe.Complete.API.UseCases.Project
                 Date = project.SignificantDate,
                 IsDateProvisional = project.SignificantDateProvisional,
                 IncomingTrustUkprn = project.IncomingTrustUkprn,
-                OutgoingTrustUkprn = project.OutgoingTrustUkprn,
-                Region = project.Region.ToDescription()
+                Region = project.Region.ToDescription(),
+                ProjectType = project.Type,
             };
 
-            var trusts = await _getTrustsBulkService.Execute([project.IncomingTrustUkprn.Value, project.OutgoingTrustUkprn.Value]);
+            var trusts = await _getTrustsBulkService.Execute([project.IncomingTrustUkprn.Value]);
+            var establishments = await _getEstablishmentsBulkService.Execute([project.Urn]);
 
-            var trustLookup = trusts.ToDictionary(t => t.Ukprn);
+            var establishment = establishments.FirstOrDefault();
+            var trust = trusts.FirstOrDefault();
 
-            projectDetails.IncomingTrustName = GetTrustName(project.IncomingTrustUkprn, trustLookup);
-            projectDetails.OutgoingTrustName = GetTrustName(project.OutgoingTrustUkprn, trustLookup);
+            projectDetails.IncomingTrustName = trust?.Name;
+            projectDetails.Name = establishment?.Name;
+            projectDetails.LocalAuthority = establishment?.LocalAuthorityName;
 
             return projectDetails;
-        }
-
-        private string GetTrustName(int? ukPrn, Dictionary<string, GetTrustResponse> trustLookup)
-        {
-            string result = null;
-
-            if (ukPrn.HasValue && trustLookup.ContainsKey(ukPrn.ToString()))
-            {
-                result = trustLookup[ukPrn.ToString()].Name;
-            }
-
-            return result;
         }
     }
 }

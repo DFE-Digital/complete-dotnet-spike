@@ -24,13 +24,14 @@ namespace Dfe.Complete.API.Tests.FakeApi
                             new GetEstablishmentResponse()
                             {
                                 Urn = "1001",
-                                Name = "Establishment 1"
+                                Name = "Establishment 1",
+                                LocalAuthorityName = "Local authority 1"
                             }
                         };
 
                         await context.Response.WriteAsJsonAsync(response);
                     }
-                    if (context.Request.Method == HttpMethods.Get && context.Request.Path == "/v4/trusts/bulk")
+                    else if (context.Request.Method == HttpMethods.Get && context.Request.Path == "/v4/trusts/bulk")
                     {
                         var response = new List<GetTrustResponse>()
                         {
