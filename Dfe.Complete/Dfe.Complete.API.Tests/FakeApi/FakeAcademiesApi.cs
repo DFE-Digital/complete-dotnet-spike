@@ -30,6 +30,24 @@ namespace Dfe.Complete.API.Tests.FakeApi
 
                         await context.Response.WriteAsJsonAsync(response);
                     }
+                    if (context.Request.Method == HttpMethods.Get && context.Request.Path == "/v4/trusts/bulk")
+                    {
+                        var response = new List<GetTrustResponse>()
+                        {
+                            new GetTrustResponse()
+                            {
+                                Ukprn = "10000001",
+                                Name = "Trust 1"
+                            },
+                            new GetTrustResponse()
+                            {
+                                Ukprn = "10000002",
+                                Name = "Trust 2"
+                            }
+                        };
+
+                        await context.Response.WriteAsJsonAsync(response);
+                    }
                     else
                     {
                         context.Response.StatusCode = StatusCodes.Status404NotFound;

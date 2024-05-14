@@ -1,5 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Http;
-using Dfe.Complete.API.Contracts.Project;
+﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
@@ -23,7 +22,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
         [Fact]
         public async Task Post_Returns_200()
         {
-            var request = new CreateTransferProjectRequest();
+            var request = _autoFixture.Create<CreateTransferProjectRequest>();
 
             var response = await _client.PostAsync(ApiUrl, request.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -38,6 +37,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             dbProject.Should().NotBeNull();
             dbProject.TasksDataType.Should().Be(TaskType.Transfer);
             dbProject.Type.Should().Be(ProjectType.Transfer);
+            dbProject.SignificantDate.Value.Date.Should().Be(request.Date.Value.Date);
+            dbProject.SignificantDateProvisional.Should().Be(request.IsDateProvisional);
+            dbProject.OutgoingTrustUkprn.Should().Be(request.OutgoingTrustUkprn);
+            dbProject.IncomingTrustUkprn.Should().Be(request.IncomingTrustUkprn);
+            dbProject.Region.Should().Be(request.Region);
 
             var task = testContext.TransferTasksData.FirstOrDefault(t => t.Id == dbProject.TasksDataId);
             task.Should().NotBeNull();

@@ -1,5 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Http;
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
+using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
@@ -47,6 +49,34 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
 
             var taskSummary = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
             taskSummary.HandoverWithDeliveryOfficer.Status.Should().Be(ProjectTaskStatus.NotStarted);
+        }
+
+        [Fact]
+        public async Task Get_ProjectDetails_Returns_200()
+        {
+            var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
+            createProjectRequest.Region = Region.NorthWest;
+            createProjectRequest.OutgoingTrustUkprn = 10000001;
+            createProjectRequest.IncomingTrustUkprn = 10000002;
+
+            var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            var createdProject = await createResponse.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
+            var projectId = createdProject.Id;
+
+            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTaskSummary, projectId)}");
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var taskSummary = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
+
+            taskSummary.ProjectDetails.Date.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
+            taskSummary.ProjectDetails.IsDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
+            taskSummary.ProjectDetails.OutgoingTrustUkprn.Should().Be(createProjectRequest.OutgoingTrustUkprn);
+            taskSummary.ProjectDetails.OutgoingTrustName.Should().Be("Trust 1");
+            taskSummary.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            taskSummary.ProjectDetails.IncomingTrustName.Should().Be("Trust 2");
+            taskSummary.ProjectDetails.Region.Should().Be("North West");
         }
     }
 }

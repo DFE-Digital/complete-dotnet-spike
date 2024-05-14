@@ -33,6 +33,11 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 TasksDataType = TaskType.Transfer,
                 Type = ProjectType.Transfer,
                 TasksDataId = taskId,
+                SignificantDate = request.Date,
+                SignificantDateProvisional = request.IsDateProvisional,
+                OutgoingTrustUkprn = request.OutgoingTrustUkprn,
+                IncomingTrustUkprn = request.IncomingTrustUkprn,
+                Region = request.Region,
             };
 
             var task = new TransferTasksData

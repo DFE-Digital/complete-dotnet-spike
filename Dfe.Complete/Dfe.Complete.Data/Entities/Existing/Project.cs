@@ -54,7 +54,7 @@ namespace Dfe.Complete.Data.Entities
 
         public bool? DirectiveAcademyOrder { get; set; }
 
-        public string Region { get; set; }
+        public Region? Region { get; set; }
 
         public int? AcademyUrn { get; set; }
 

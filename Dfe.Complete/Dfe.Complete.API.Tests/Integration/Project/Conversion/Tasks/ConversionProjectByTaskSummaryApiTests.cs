@@ -1,5 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Http;
 using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;

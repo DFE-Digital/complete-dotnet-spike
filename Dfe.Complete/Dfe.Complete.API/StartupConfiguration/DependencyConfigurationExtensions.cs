@@ -27,7 +27,9 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<ISfaApiKeyValidationService, SfaApiKeyValidationService>();
 			services.AddScoped<IGetProjectListService, GetProjectListService>();
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
+			services.AddScoped<IGetTrustsBulkService, GetTrustsBulkService>();
 			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
+			services.AddScoped<IGetProjectDetailsService, GetProjectDetailsService>();
 
 			// Conversion projects
 			services.AddScoped<ICreateConversionProjectService, CreateConversionProjectService>();

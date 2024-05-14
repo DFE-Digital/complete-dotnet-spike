@@ -59,7 +59,11 @@ namespace Dfe.Complete.Data.Configuration
             builder.Property(e => e.OutgoingTrustUkprn).HasColumnName("outgoing_trust_ukprn");
             builder.Property(e => e.Region)
                 .HasMaxLength(4000)
-                .HasColumnName("region");
+                .HasColumnName("region")
+                .HasConversion(
+                    v => v.ToRegionCode(),
+                    v => RegionExtensions.ToRegion(v)
+                );
             builder.Property(e => e.RegionalDeliveryOfficerId).HasColumnName("regional_delivery_officer_id");
             builder.Property(e => e.SignificantDate)
                 .HasColumnType("date")
