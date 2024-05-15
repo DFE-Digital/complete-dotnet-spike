@@ -1,0 +1,182 @@
+﻿@page "/transfer-projects/{projectId}/information"
+@model Dfe.Complete.Pages.Projects.Transfer.AboutTransferProjectModel
+@{
+    var projectDetails = Model.Project.ProjectDetails;
+    var reasonForTransfer = Model.Project.ReasonForTheTransfer;
+    var advisoryBoardDetails = Model.Project.AdvisoryBoardDetails;
+    var schoolDetails = Model.Project.SchoolDetails;
+    var incomingTrustDetails = Model.Project.IncomingTrustDetails;
+    var outgoingTrustDetails = Model.Project.OutgoingTrustDetails;
+}
+
+<partial name="_ProjectSummary" model="@projectDetails" />
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <nav class="moj-sub-navigation" aria-label="Project sub-navigation">
+            <ul class="moj-sub-navigation__list">
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/tasks">Task list</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" aria-current="page" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/information">About the project</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes">Notes</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/external-contacts">External contacts</a>
+                </li>
+
+
+                <li class="moj-sub-navigation__item">
+                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/internal-contacts">Internal contacts</a>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-one-quarter">
+        <nav>
+            <h2 class="govuk-heading-m">Jump to section</h2>
+            <ul class="list-style-none govuk-!-padding-0">
+                <li>
+                    <a class="govuk-link govuk-link--no-visited-state" href="#projectDetails">Project details</a>
+                </li>
+
+                <li>
+                    <a class="govuk-link govuk-link--no-visited-state" href="#advisoryBoardDetails">Advisory board details</a>
+                </li>
+
+                <li>
+                    <a class="govuk-link govuk-link--no-visited-state" href="#academyDetails">Academy details</a>
+                </li>
+
+                <li>
+                    <a class="govuk-link govuk-link--no-visited-state" href="#incomingTrustDetails">Incoming trust details</a>
+                </li>
+
+                <li>
+                    <a class="govuk-link govuk-link--no-visited-state" href="#outgoingTrustDetails">Outgoing trust details</a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+    <div class="govuk-grid-column-three-quarters" id="projectInformationList">
+        <h2 class="govuk-heading-l">About the project</h2>
+
+        <div id="projectDetails" class="project-information-block">
+            <h3 class="govuk-heading-m">Project details</h3>
+            <govuk-summary-list>
+                <govuk-summary-item label="Type" asp-for="@projectDetails.ProjectType" />
+                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+                    <dt class="govuk-summary-list__key">Transfer date</dt>
+                    <dd class="govuk-summary-list__value">
+                        @projectDetails.Date.ToDateString()
+                        @if (projectDetails.IsDateProvisional == true)
+                        {
+                            <strong class="govuk-tag govuk-tag--grey">provisional</strong>
+                        }
+
+                    </dd>
+                </div>
+                <govuk-summary-item label="Local authority" asp-for="@projectDetails.LocalAuthority" />
+                <govuk-summary-item label="Diocese" asp-for="@projectDetails.LocalAuthority" />
+                <govuk-summary-item label="Region" asp-for="@projectDetails.Region" />
+            </govuk-summary-list>
+        </div>
+
+
+        <div id="reasonsFor" class="project-information-block">
+            <h3 class="govuk-heading-m">Reasons for the transfer</h3>
+
+            <govuk-summary-list>
+                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForTransfer.IsDueTo2RI" />
+                <govuk-summary-item label="Is this transfer due to an inadequate Ofsted rating?" asp-for="@reasonForTransfer.IsDueToOfstedRating" />
+                <govuk-summary-item label="Is this transfer due to financial, safeguarding or governance issues?" asp-for="@reasonForTransfer.IsDueToIssues" />
+
+            </govuk-summary-list>
+        </div>
+
+
+        <div id="advisoryBoardDetails" class="project-information-block">
+            <h3 class="govuk-heading-m">Advisory board details</h3>
+
+            <govuk-summary-list>
+                <govuk-summary-item label="Date of advisory board" asp-for="@advisoryBoardDetails.Date" />
+                <govuk-summary-item label="Conditions from advisory board" asp-for="@advisoryBoardDetails.Conditions" />
+            </govuk-summary-list>
+
+        </div>
+
+
+        <div id="academyDetails" class="project-information-block">
+            <h3 class="govuk-heading-m">Academy details</h3>
+            <govuk-summary-list>
+                <govuk-summary-item label="Name" asp-for="@schoolDetails.Name" />
+                <govuk-summary-item label="Academy URN (unique reference number)" asp-for="@schoolDetails.Urn" />
+                <govuk-summary-item label="Type" asp-for="@schoolDetails.Type" />
+                <govuk-summary-item label="AgeRange" asp-for="@schoolDetails.AgeRange" />
+                <govuk-summary-item label="Phase" asp-for="@schoolDetails.Phase" />
+            </govuk-summary-list>
+        </div>
+
+
+        <div id="incomingTrustDetails" class="project-information-block">
+            <h3 class="govuk-heading-m">Incoming trust details</h3>
+
+            <govuk-summary-list>
+                <govuk-summary-item label="Name" asp-for="@incomingTrustDetails.Name" />
+                <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@incomingTrustDetails.UkPrn" />
+                <govuk-summary-item label="Group ID (identifier)" asp-for="@incomingTrustDetails.GroupId" />
+                <govuk-summary-item label="Companies house number" asp-for="@incomingTrustDetails.CompaniesHouseNumber" />
+                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+                    <dt class="govuk-summary-list__key">Address</dt>
+                    <dd class="govuk-summary-list__value">
+                        <address class="govuk-address">
+                            Winchester Road<br>
+                            Countesthorpe<br>
+                            LE8 5PR
+                        </address>
+                    </dd>
+                </div>
+            </govuk-summary-list>
+        </div>
+
+        <div id="outgoingTrustDetails" class="project-information-block">
+            <h3 class="govuk-heading-m">Outgoing trust details</h3>
+
+            <govuk-summary-list>
+                <govuk-summary-item label="Name" asp-for="@outgoingTrustDetails.Name" />
+                <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@outgoingTrustDetails.UkPrn" />
+                <govuk-summary-item label="Group ID (identifier)" asp-for="@outgoingTrustDetails.GroupId" />
+                <govuk-summary-item label="Companies house number" asp-for="@outgoingTrustDetails.CompaniesHouseNumber" />
+                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
+                    <dt class="govuk-summary-list__key">Address</dt>
+                    <dd class="govuk-summary-list__value">
+                        <address class="govuk-address">
+                            Winchester Road<br>
+                            Countesthorpe<br>
+                            LE8 5PR
+                        </address>
+                    </dd>
+                </div>
+            </govuk-summary-list>
+        </div>
+    </div>
+</div>

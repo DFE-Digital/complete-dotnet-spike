@@ -7,6 +7,7 @@
         // Transfer
         public const string CreateTransferProject = "api/v1/transfer-projects";
         public const string TransferProject = "api/v1/client/transfer-projects";
+        public const string TransferProjectById = TransferProject + "/{0}";
         public const string TransferProjectTask = TransferProject + "/{0}/tasks";
         public const string TransferProjectTaskSummary = TransferProjectTask + "/summary";
 

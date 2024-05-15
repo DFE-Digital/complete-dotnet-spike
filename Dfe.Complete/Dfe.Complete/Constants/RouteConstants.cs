@@ -11,7 +11,9 @@
         public const string ConversionEditHandoverWithDeliveryOfficerTask = ConversionViewHandoverWithDeliveryOfficerTask + "/edit";
 
         // Transfer
-        public const string TransferProjectTaskList = "/transfer-projects/{0}/tasks";
+        public const string TransferProject = "/transfer-projects/{0}";
+        public const string TransferProjectTaskList = TransferProject + "/tasks";
+        public const string TransferProjectAbout = TransferProject + "/information";
 
         public const string TransferViewHandoverWithDeliveryOfficerTask = TransferProjectTaskList + "/handover";
         public const string TransferEditHandoverWithDeliveryOfficerTask = TransferViewHandoverWithDeliveryOfficerTask + "/edit";

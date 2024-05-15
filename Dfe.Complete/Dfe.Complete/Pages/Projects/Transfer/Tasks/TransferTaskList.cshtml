@@ -4,6 +4,7 @@
 @{
     var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.TransferViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
     var stakeholderKickoff = string.Format(RouteConstants.TransferViewStakeholderKickoffTask, Model.ProjectId);
+    var aboutTransferProject = string.Format(RouteConstants.TransferProjectAbout, Model.ProjectId);
 }
 
 <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
@@ -19,7 +20,7 @@
 
 
                 <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/information">About the project</a>
+                    <a class="moj-sub-navigation__link" href="@aboutTransferProject">About the project</a>
                 </li>
 
 

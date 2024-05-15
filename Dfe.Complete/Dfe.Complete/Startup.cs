@@ -76,6 +76,7 @@ public class Startup
         services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
         services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();
         services.AddScoped<IGetTransferProjectByTaskSummaryService, GetTransferProjectByTaskSummaryService>();
+        services.AddScoped<IGetTransferProjectService, GetTransferProjectService>();
 
         // Conversions
         services.AddScoped<IGetConversionProjectByTaskService, GetConversionProjectByTaskService>();

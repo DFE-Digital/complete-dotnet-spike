@@ -34,7 +34,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
 
             createProjectResponse.Id.Should().NotBeEmpty();
 
-            var getProjectResponse = await _client.GetAsync($"{RouteConstants.TransferProject}/{createProjectResponse.Id}");
+            var getProjectResponse = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectById, createProjectResponse.Id)}");
             getProjectResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var project = await getProjectResponse.Content.ReadFromJsonAsync<GetTransferProjectResponse>();
