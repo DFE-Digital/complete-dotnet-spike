@@ -42,6 +42,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 
 			// Transfer projects
 			services.AddScoped<ICreateTransferProjectService, CreateTransferProjectService>();
+			services.AddScoped<IGetTransferProjectService, GetTransferProjectService>();
 
 			// Transfer tasks
 			services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();

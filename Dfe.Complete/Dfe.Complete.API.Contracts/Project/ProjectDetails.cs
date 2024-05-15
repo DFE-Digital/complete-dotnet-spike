@@ -2,7 +2,7 @@
 {
     public record ProjectDetails
     {
-        public int Urn { get; set; }
+        public string Urn { get; set; }
 
         public string Name { get; set; }
 
@@ -10,11 +10,11 @@
 
         public bool? IsDateProvisional { get; set; }
 
-        public int? IncomingTrustUkprn { get; set; }
+        public string IncomingTrustUkprn { get; set; }
 
         public string IncomingTrustName { get; set; }
 
-        public int? OutgoingTrustUkprn { get; set; }
+        public string OutgoingTrustUkprn { get; set; }
 
         public string OutgoingTrustName { get; set; }
 

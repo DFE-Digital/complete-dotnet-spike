@@ -25,7 +25,17 @@ namespace Dfe.Complete.API.Tests.FakeApi
                             {
                                 Urn = "1001",
                                 Name = "Establishment 1",
-                                LocalAuthorityName = "Local authority 1"
+                                LocalAuthorityName = "Local authority 1",
+                                EstablishmentType = new() { Name = "Voluntary aided school" },
+                                PhaseOfEducation = new() { Name = "Primary" },
+                                StatutoryLowAge = "3",
+                                StatutoryHighAge = "16",
+                                Address = new()
+                                {
+                                    Street = "Establishment 1 Street",
+                                    Town = "Establishment 1 Town",
+                                    Postcode = "Establishment 1 Postcode"
+                                }
                             }
                         };
 
@@ -38,12 +48,28 @@ namespace Dfe.Complete.API.Tests.FakeApi
                             new GetTrustResponse()
                             {
                                 Ukprn = "10000001",
-                                Name = "Trust 1"
+                                Name = "Trust 1",
+                                CompaniesHouseNumber = "00001",
+                                ReferenceNumber = "TR0001",
+                                Address = new()
+                                {
+                                    Street = "Trust 1 Street",
+                                    Town = "Trust 1 Town",
+                                    Postcode = "Trust 1 Postcode"
+                                }
                             },
                             new GetTrustResponse()
                             {
                                 Ukprn = "10000002",
-                                Name = "Trust 2"
+                                Name = "Trust 2",                        
+                                CompaniesHouseNumber = "00002",
+                                ReferenceNumber = "TR0002",
+                                Address = new()
+                                {
+                                    Street = "Trust 2 Street",
+                                    Town = "Trust 2 Town",
+                                    Postcode = "Trust 2 Postcode"
+                                }
                             }
                         };
 

@@ -57,7 +57,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
         {
             var createProjectRequest = _autoFixture.Create<CreateConversionProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
-            createProjectRequest.IncomingTrustUkprn = 10000001;
+            createProjectRequest.IncomingTrustUkprn = "10000001";
             createProjectRequest.OutgoingTrustUkprn = null;
 
             var createResponse = await _client.PostAsync(RouteConstants.CreateConversionProject, createProjectRequest.ConvertToJson());

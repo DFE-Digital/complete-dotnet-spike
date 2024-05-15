@@ -1,6 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.Contracts.Project.Tasks;
+using Dfe.Complete.API.Extensions;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 
@@ -35,8 +36,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 TasksDataId = taskId,
                 SignificantDate = request.Date,
                 SignificantDateProvisional = request.IsDateProvisional,
-                OutgoingTrustUkprn = request.OutgoingTrustUkprn,
-                IncomingTrustUkprn = request.IncomingTrustUkprn,
+                IncomingTrustUkprn = request.IncomingTrustUkprn.ToInt(),
                 Region = request.Region,
             };
 
