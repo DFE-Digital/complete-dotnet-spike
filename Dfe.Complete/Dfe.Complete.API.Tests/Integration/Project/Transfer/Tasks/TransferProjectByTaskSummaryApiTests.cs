@@ -33,25 +33,6 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer.Tasks
         }
 
         [Fact]
-        public async Task Get_ProjectExists_NoTask_Returns_EmptyTask_200()
-        {
-            using var context = _testFixture.GetContext();
-            var user = context.Users.FirstOrDefault(u => u.Email == _testFixture.DefaultUser.Email);
-
-            var project = DatabaseModelBuilder.BuildInProgressProject(user);
-            project.Type = ProjectType.Transfer;
-            context.Projects.AddRange(project);
-
-            await context.SaveChangesAsync();
-
-            var response = await _client.GetAsync($"{string.Format(RouteConstants.TransferProjectTaskSummary, project.Id)}");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            var taskSummary = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
-            taskSummary.HandoverWithDeliveryOfficer.Status.Should().Be(ProjectTaskStatus.NotStarted);
-        }
-
-        [Fact]
         public async Task Get_ProjectDetails_Returns_200()
         {
             var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();

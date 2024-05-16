@@ -25,19 +25,9 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
 
         public async Task<GetTransferProjectResponse> Execute(Guid projectId)
         {
-            var project = _context.GetTransferProjects(projectId).FirstOrDefault();
-
-            if (project == null) 
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var task = _context.TransferTasksData.Where(t => t.Id == project.TasksDataId).FirstOrDefault();
-
-            if (task == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} does not have any transfer tasks data");
-            }
+            var queryResult = await _context.GetTransferProjectById(projectId);
+            var project = queryResult.Project;
+            var task = queryResult.TaskData;
 
             var establishmentAndTrust = await _getEstablishmentAndTrustService.Execute(project.Urn, project.IncomingTrustUkprn, project.OutgoingTrustUkprn);
 

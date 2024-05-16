@@ -24,19 +24,9 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task Execute(Guid projectId, UpdateTransferProjectByTaskRequest request)
         {
-            var project = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
-
-            if (transferTaskData == null)
-            {
-                throw new UnprocessableContentException($"Project with id {projectId} does not have any transfer tasks data");
-            }
+            var queryResult = await _context.GetTransferProjectById(projectId);
+            var project = queryResult.Project;
+            var transferTaskData = queryResult.TaskData;
 
             if (request.HandoverWithDeliveryOfficer != null)
                 UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, transferTaskData);

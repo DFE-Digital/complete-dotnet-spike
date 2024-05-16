@@ -28,19 +28,9 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task<GetTransferProjectByTaskResponse> Execute(Guid projectId, TransferProjectTaskName taskName)
         {
-            var project = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var transferTaskData = await _context.TransferTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
-
-            if (transferTaskData == null)
-            {
-                transferTaskData = new Data.Entities.TransferTasksData();
-            }
+            var queryResult = await _context.GetTransferProjectById(projectId);
+            var project = queryResult.Project;
+            var transferTaskData = queryResult.TaskData;
 
             GetTransferProjectByTaskResponse response = new GetTransferProjectByTaskResponse()
             {

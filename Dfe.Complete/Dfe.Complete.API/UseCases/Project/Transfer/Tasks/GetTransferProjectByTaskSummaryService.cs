@@ -30,21 +30,9 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer.Tasks
 
         public async Task<GetTransferProjectByTaskSummaryResponse> Execute(Guid projectId)
         {
-            var project = await _context.GetTransferProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var transferTasks = await _context.TransferTasksData
-                .Where(t => t.Id == project.TasksDataId)
-                .FirstOrDefaultAsync();
-
-            if (transferTasks == null)
-            {
-                transferTasks = new TransferTasksData();
-            }
+            var queryResult = await _context.GetTransferProjectById(projectId);
+            var project = queryResult.Project;
+            var transferTasks = queryResult.TaskData;
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(transferTasks);
             var stakeholderKickoff = StakeholderKickoffTaskBuilder.Execute(transferTasks);
