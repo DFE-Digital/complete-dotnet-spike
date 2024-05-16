@@ -34,6 +34,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 
 			// Conversion projects
 			services.AddScoped<ICreateConversionProjectService, CreateConversionProjectService>();
+			services.AddScoped<IGetConversionProjectService, GetConversionProjectService>();
 
 			// Conversion tasks
 			services.AddScoped<IGetConversionProjectByTaskService, GetConversionProjectByTaskService>();

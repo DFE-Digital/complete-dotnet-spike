@@ -48,26 +48,6 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
         }
 
         [Fact]
-        public async Task Get_ConversionTaskDoesNotExist_Returns_EmptyTask_200()
-        {
-            using var context = _testFixture.GetContext();
-            var project = DatabaseModelBuilder.BuildProject();
-            project.Type = ProjectType.Conversion;
-            var projectId = project.Id;
-            context.Projects.Add(project);
-            await context.SaveChangesAsync();
-
-            var response = await _client.GetAsync($"{string.Format(RouteConstants.ConversionProjectTask, projectId)}?taskName={ConversionProjectTaskName.HandoverWithDeliveryOfficer}");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            var taskResponse = await response.Content.ReadFromJsonAsync<GetConversionProjectByTaskResponse>();
-            
-            taskResponse.HandoverWithDeliveryOfficer.Should().NotBeNull();
-            taskResponse.HandoverWithDeliveryOfficer.AttendHandoverMeeting.Should().BeNull();
-            taskResponse.SchoolName.Should().Be("Establishment 1");
-        }
-
-        [Fact]
         public async Task Get_ConversionTaskTypeInvalid_Returns_400()
         {
             var projectId = Guid.NewGuid();
@@ -106,28 +86,6 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
 
             var error = await response.Content.ReadAsStringAsync();
             error.Should().Contain($"Project with id {projectId} not found");
-        }
-
-        [Fact]
-        public async Task Update_ConversionTaskDoesNotExist_Returns_422()
-        {
-            var request = new UpdateConversionProjectByTaskRequest()
-            {
-                HandoverWithDeliveryOfficer = new HandoverWithDeliveryOfficerTask()
-                {
-                    AttendHandoverMeeting = true
-                }
-            };
-
-            using var context = _testFixture.GetContext();
-            var project = DatabaseModelBuilder.BuildProject();
-            project.Type = ProjectType.Conversion;
-            var projectId = project.Id;
-            context.Projects.Add(project);
-            await context.SaveChangesAsync();
-
-            var updateResponse = await _client.PatchAsync($"{string.Format(RouteConstants.ConversionProjectTask, projectId)}", request.ConvertToJson());
-            updateResponse.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
         }
     }
 }

@@ -14,6 +14,7 @@
         // Conversion
         public const string CreateConversionProject = "api/v1/conversion-projects";
         public const string ConversionProject = "api/v1/client/conversion-projects";
+        public const string ConversionProjectById = ConversionProject + "/{0}";
         public const string ConversionProjectTask = ConversionProject + "/{0}/tasks";
         public const string ConversionProjectTaskSummary = ConversionProjectTask + "/summary";
     }

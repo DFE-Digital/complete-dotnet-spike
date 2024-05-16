@@ -34,31 +34,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
         }
 
         [Fact]
-        public async Task Get_ProjectExists_NoTask_Returns_EmptyTask_200()
-        {
-            using var context = _testFixture.GetContext();
-            var user = context.Users.FirstOrDefault(u => u.Email == _testFixture.DefaultUser.Email);
-
-            var project = DatabaseModelBuilder.BuildInProgressProject(user);
-            project.Type = ProjectType.Conversion;
-            context.Projects.AddRange(project);
-
-            await context.SaveChangesAsync();
-
-            var response = await _client.GetAsync($"{string.Format(RouteConstants.ConversionProjectTaskSummary, project.Id)}");
-            response.StatusCode.Should().Be(HttpStatusCode.OK);
-
-            var taskSummary = await response.Content.ReadFromJsonAsync<GetTransferProjectByTaskSummaryResponse>();
-            taskSummary.HandoverWithDeliveryOfficer.Status.Should().Be(ProjectTaskStatus.NotStarted);
-        }
-
-        [Fact]
         public async Task Get_ProjectDetails_Returns_200()
         {
             var createProjectRequest = _autoFixture.Create<CreateConversionProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
             createProjectRequest.IncomingTrustUkprn = "10000001";
-            createProjectRequest.OutgoingTrustUkprn = null;
 
             var createResponse = await _client.PostAsync(RouteConstants.CreateConversionProject, createProjectRequest.ConvertToJson());
             createResponse.StatusCode.Should().Be(HttpStatusCode.Created);

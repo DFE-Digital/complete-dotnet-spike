@@ -15,15 +15,26 @@ namespace Dfe.Complete.API.Controllers
         private readonly IUpdateConversionProjectByTaskService _updateConversionProjectByTaskService;
         private readonly IGetConversionProjectByTaskService _getConversionProjectByTaskService;
         private readonly IGetConversionProjectByTaskSummaryService _getConversionProjectByTaskSummaryService;
+        private readonly IGetConversionProjectService _getConversionProjectService;
 
         public ClientConversionProjectController(
             IUpdateConversionProjectByTaskService updateConversionProjectByTaskService,
             IGetConversionProjectByTaskService getConversionProjectByTaskService,
-            IGetConversionProjectByTaskSummaryService getConversionProjectByTaskSummaryService)
+            IGetConversionProjectByTaskSummaryService getConversionProjectByTaskSummaryService,
+            IGetConversionProjectService getConversionProjectService)
         {
             _updateConversionProjectByTaskService = updateConversionProjectByTaskService;
             _getConversionProjectByTaskService = getConversionProjectByTaskService;
             _getConversionProjectByTaskSummaryService = getConversionProjectByTaskSummaryService;
+            _getConversionProjectService = getConversionProjectService;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<GetConversionProjectResponse>> GetConversionProject(Guid projectId)
+        {
+            var result = await _getConversionProjectService.Execute(projectId);
+
+            return new OkObjectResult(result);
         }
 
         [HttpGet]

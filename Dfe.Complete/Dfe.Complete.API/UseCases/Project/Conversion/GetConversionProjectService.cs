@@ -1,21 +1,21 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Transfer;
+using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.Data;
 
-namespace Dfe.Complete.API.UseCases.Project.Transfer
+namespace Dfe.Complete.API.UseCases.Project.Conversion
 {
-    public interface IGetTransferProjectService
+    public interface IGetConversionProjectService
     {
-        public Task<GetTransferProjectResponse> Execute(Guid projectId);
+        public Task<GetConversionProjectResponse> Execute(Guid projectId);
     }
 
-    public class GetTransferProjectService : IGetTransferProjectService
+    public class GetConversionProjectService : IGetConversionProjectService
     {
         private readonly CompleteContext _context;
         private IGetEstablishmentAndTrustService _getEstablishmentAndTrustService;
 
-        public GetTransferProjectService(
+        public GetConversionProjectService(
             CompleteContext context,
             IGetEstablishmentAndTrustService getEstablishmentAndTrustService)
         {
@@ -23,22 +23,20 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
             _getEstablishmentAndTrustService = getEstablishmentAndTrustService;
         }
 
-        public async Task<GetTransferProjectResponse> Execute(Guid projectId)
+        public async Task<GetConversionProjectResponse> Execute(Guid projectId)
         {
-            var queryResult = await _context.GetTransferProjectById(projectId);
+            var queryResult = await _context.GetConversionProjectById(projectId);
             var project = queryResult.Project;
-            var task = queryResult.TaskData;
 
             var establishmentAndTrust = await _getEstablishmentAndTrustService.Execute(project.Urn, project.IncomingTrustUkprn, project.OutgoingTrustUkprn);
 
-            var result = new GetTransferProjectResponse()
+            var result = new GetConversionProjectResponse()
             {
                 ProjectDetails = ProjectDetailsBuilder.Execute(project, establishmentAndTrust),
-                ReasonForTheTransfer = new ReasonForTheTransfer()
+                ReasonForConversion = new ReasonForConversion()
                 {
                     IsDueTo2RI = project.TwoRequiresImprovement,
-                    IsDueToOfstedRating = task.InadequateOfsted,
-                    IsDueToIssues = task.FinancialSafeguardingGovernanceIssues
+                    HasAcademyOrderBeenIssued = project.DirectiveAcademyOrder,
                 },
                 AdvisoryBoardDetails = new AdvisoryBoardDetails()
                 {
@@ -46,7 +44,6 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                     Conditions = project.AdvisoryBoardConditions
                 },
                 IncomingTrustDetails = BuildTrustDetails(establishmentAndTrust.IncomingTrust, project.IncomingTrustSharepointLink),
-                OutgoingTrustDetails = BuildTrustDetails(establishmentAndTrust.OutgoingTrust, project.OutgoingTrustSharepointLink),
                 SchoolDetails = BuildSchoolDetails(establishmentAndTrust.Establishment, project.EstablishmentSharepointLink)
             };
 
@@ -55,7 +52,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
 
         private SchoolDetails BuildSchoolDetails(GetEstablishmentResponse establishmentResponse, string sharepointLink)
         {
-            if (establishmentResponse == null) 
+            if (establishmentResponse == null)
             {
                 return new();
             }

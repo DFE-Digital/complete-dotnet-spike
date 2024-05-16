@@ -1,4 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Project.Transfer;
+﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.Extensions;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;

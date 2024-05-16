@@ -31,21 +31,9 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
         public async Task<GetConversionProjectByTaskSummaryResponse> Execute(Guid projectId)
         {
-            var project = await _context.GetConversionProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var conversionTasks = await _context.ConversionTasksData
-                .Where(t => t.Id == project.TasksDataId)
-                .FirstOrDefaultAsync();
-
-            if (conversionTasks == null)
-            {
-                conversionTasks = new ConversionTasksData();
-            }
+            var queryResult = await _context.GetConversionProjectById(projectId);
+            var project = queryResult.Project;
+            var conversionTasks = queryResult.TaskData;
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(conversionTasks);
             var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks);

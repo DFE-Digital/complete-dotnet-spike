@@ -29,6 +29,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
             var project = new Data.Entities.Project
             {
                 Id = projectId,
+                Urn = request.Urn.ToInt(),
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 TasksDataType = TaskType.Conversion,
@@ -38,6 +39,12 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 SignificantDateProvisional = request.IsDateProvisional,
                 IncomingTrustUkprn = request.IncomingTrustUkprn.ToInt(),
                 Region = request.Region,
+                TwoRequiresImprovement = request.IsIsDueTo2RI,
+                DirectiveAcademyOrder = request.HasAcademyOrderBeenIssued,
+                AdvisoryBoardDate = request.AdvisoryBoardDate,
+                AdvisoryBoardConditions = request.AdvisoryBoardConditions,
+                EstablishmentSharepointLink = request.EstablishmentSharePointLink,
+                IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
             };
 
             var task = new ConversionTasksData

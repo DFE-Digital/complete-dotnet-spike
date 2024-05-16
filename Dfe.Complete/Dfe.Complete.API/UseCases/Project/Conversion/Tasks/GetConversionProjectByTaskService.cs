@@ -4,7 +4,6 @@ using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 {
@@ -28,19 +27,9 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
         public async Task<GetConversionProjectByTaskResponse> Execute(Guid projectId, ConversionProjectTaskName taskName)
         {
-            var project = await _context.GetConversionProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var conversionTaskData = await _context.ConversionTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
-
-            if (conversionTaskData == null)
-            {
-                conversionTaskData = new Data.Entities.ConversionTasksData();
-            }
+            var queryResult = await _context.GetConversionProjectById(projectId);
+            var project = queryResult.Project;
+            var conversionTaskData = queryResult.TaskData;
 
             GetConversionProjectByTaskResponse response = new GetConversionProjectByTaskResponse()
             {

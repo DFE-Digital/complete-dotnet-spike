@@ -2,7 +2,6 @@
 using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
-using Dfe.Complete.API.UseCases.Project.Tasks.StakeholderKickoff;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,19 +24,9 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
         public async Task Execute(Guid projectId, UpdateConversionProjectByTaskRequest request)
         {
-            var project = await _context.GetConversionProjects(projectId).FirstOrDefaultAsync();
-
-            if (project == null)
-            {
-                throw new NotFoundException($"Project with id {projectId} not found");
-            }
-
-            var conversionTaskData = await _context.ConversionTasksData.FirstOrDefaultAsync(t => t.Id == project.TasksDataId);
-
-            if (conversionTaskData == null)
-            {
-                throw new UnprocessableContentException($"Project with id {projectId} does not have any conversion tasks data");
-            }
+            var queryResult = await _context.GetConversionProjectById(projectId);
+            var project = queryResult.Project;
+            var conversionTaskData = queryResult.TaskData;
 
             if (request.HandoverWithDeliveryOfficer != null)
                 UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
