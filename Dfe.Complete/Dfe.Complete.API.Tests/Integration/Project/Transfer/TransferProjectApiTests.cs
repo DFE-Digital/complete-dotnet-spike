@@ -4,6 +4,7 @@ using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
@@ -67,8 +68,12 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.IncomingTrustDetails.GroupId.Should().Be("TR0001");
             project.IncomingTrustDetails.CompaniesHouseNumber.Should().Be("00001");
             project.IncomingTrustDetails.Address.Street.Should().Be("Trust 1 Street");
+            project.IncomingTrustDetails.Address.Locality.Should().Be("Trust 1 Locality");
+            project.IncomingTrustDetails.Address.Additional.Should().Be("Trust 1 Additional");
             project.IncomingTrustDetails.Address.Town.Should().Be("Trust 1 Town");
+            project.IncomingTrustDetails.Address.County.Should().Be("Trust 1 County");
             project.IncomingTrustDetails.Address.Postcode.Should().Be("Trust 1 Postcode");
+            project.IncomingTrustDetails.SharePointLink.Should().Be(createProjectRequest.IncomingTrustSharePointLink);
 
             // Outgoing trust details
             project.OutgoingTrustDetails.Name.Should().Be("Trust 2");
@@ -76,8 +81,12 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.OutgoingTrustDetails.GroupId.Should().Be("TR0002");
             project.OutgoingTrustDetails.CompaniesHouseNumber.Should().Be("00002");
             project.OutgoingTrustDetails.Address.Street.Should().Be("Trust 2 Street");
+            project.OutgoingTrustDetails.Address.Locality.Should().Be("Trust 2 Locality");
+            project.OutgoingTrustDetails.Address.Additional.Should().Be("Trust 2 Additional");
             project.OutgoingTrustDetails.Address.Town.Should().Be("Trust 2 Town");
+            project.OutgoingTrustDetails.Address.County.Should().Be("Trust 2 County");
             project.OutgoingTrustDetails.Address.Postcode.Should().Be("Trust 2 Postcode");
+            project.OutgoingTrustDetails.SharePointLink.Should().Be(createProjectRequest.OutgoingTrustSharePointLink);
 
             // School details
             project.SchoolDetails.Name.Should().Be("Establishment 1");
@@ -88,8 +97,13 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.SchoolDetails.AgeRange.Should().Be("3 to 16");
             project.SchoolDetails.Phase.Should().Be("Primary");
             project.SchoolDetails.Address.Street.Should().Be("Establishment 1 Street");
+            project.SchoolDetails.Address.Locality.Should().Be("Establishment 1 Locality");
+            project.SchoolDetails.Address.Additional.Should().Be("Establishment 1 Additional");
             project.SchoolDetails.Address.Town.Should().Be("Establishment 1 Town");
+            project.SchoolDetails.Address.County.Should().Be("Establishment 1 County");
             project.SchoolDetails.Address.Postcode.Should().Be("Establishment 1 Postcode");
+            project.SchoolDetails.Diocese.Should().Be("St Pauls");
+            project.SchoolDetails.SharePointLink.Should().Be(createProjectRequest.EstablishmentSharePointLink);
 
             var testContext = _testFixture.GetContext();
 
@@ -98,6 +112,37 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             dbProject.Type.Should().Be(ProjectType.Transfer);
             dbProject.SignificantDate.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             dbProject.SignificantDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
+        }
+
+        [Fact]
+        public async Task Get_ProjectDoesNotExist_Returns_404()
+        {
+            var projectId = Guid.NewGuid();
+
+            var response = await _client.GetAsync(string.Format(RouteConstants.TransferProjectById, projectId));
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            content.Should().Contain($"Project with id {projectId} not found");
+        }
+
+        [Fact]
+        public async Task Get_ProjectDoesNotHaveTaskData_Returns_404()
+        {
+            var project = DatabaseModelBuilder.BuildProject();
+            project.Type = ProjectType.Transfer;
+
+            var context = _testFixture.GetContext();
+            context.Projects.Add(project);
+            context.SaveChanges();
+
+            var response = await _client.GetAsync(string.Format(RouteConstants.TransferProjectById, project.Id));
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            content.Should().Contain($"Project with id {project.Id} does not have any transfer tasks data");
         }
     }
 }

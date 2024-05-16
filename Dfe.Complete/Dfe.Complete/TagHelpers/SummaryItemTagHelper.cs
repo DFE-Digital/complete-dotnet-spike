@@ -1,4 +1,5 @@
-﻿using Dfe.Complete.Extensions;
+﻿using Dfe.Complete.API.Contracts.Project.Transfer;
+using Dfe.Complete.Extensions;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
@@ -71,10 +72,6 @@ namespace Dfe.Complete.TagHelpers
 
             if (For.ModelExplorer.ModelType == typeof(bool?))
             {
-                if(For.Model == null)
-                {
-                    return empty;
-                }
                 return ((bool)For.Model).ToYesNoString();
             }
 
@@ -85,10 +82,6 @@ namespace Dfe.Complete.TagHelpers
 
             if (For.ModelExplorer.ModelType == typeof(DateTime?))
             {
-                if (For.Model == null)
-                {
-                    return empty;
-                }
                 return ((DateTime)For.Model).ToDateString();
             }
 
@@ -111,21 +104,28 @@ namespace Dfe.Complete.TagHelpers
 
             if (For.ModelExplorer.ModelType == typeof(decimal?))
             {
-                if (For.Model == null)
-                {
-                    return empty;
-                }
                 return ((decimal)For.Model).ToString("C", new CultureInfo("en-GB"));
             }
 
             if (Nullable.GetUnderlyingType(For.ModelExplorer.ModelType)?.IsEnum == true)
             {
-                if (For.Model == null)
-                {
-                    return empty;
-                }
-
                 return For.Model.ToDescription();
+            }
+
+            if (For.ModelExplorer.ModelType == typeof(Address))
+            {
+                var address = (Address)For.Model;
+
+                return string.Join("<br />", address.ToArray());
+            }
+
+            if (For.ModelExplorer.ModelType == typeof(LinkSummaryItem))
+            {
+                var urlSummaryItem = (LinkSummaryItem)For.Model;
+
+                var labelHtml = string.IsNullOrEmpty(urlSummaryItem.Label) ? string.Empty : $@"{urlSummaryItem.Label}<br />";
+
+                return $@"{labelHtml}<a target=""_blank"" class=""govuk-link"" href=""{urlSummaryItem.Link}"">{urlSummaryItem.LinkText} (opens in a new tab)</a>";
             }
             
             var value = For.Model.ToString();
@@ -147,7 +147,6 @@ namespace Dfe.Complete.TagHelpers
 
             if (Id is not null)
             {
-
                 return $@"<dd class=""govuk-summary-list__actions"">
                         <a class=""govuk-link"" href={Href} Id={Id + "-changelink"}>
                             Change<span class=""govuk-visually-hidden"">{Label}</span>
@@ -161,5 +160,12 @@ namespace Dfe.Complete.TagHelpers
                         </a>                   
                      </dd>";
         }
+    }
+
+    public record LinkSummaryItem
+    {
+        public string Label { get; set; }
+        public string Link { get; set; }
+        public string LinkText { get; set; }
     }
 }

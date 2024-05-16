@@ -59,6 +59,10 @@
         public string Phase { get; set; }
 
         public Address Address { get; set; } = new();
+
+        public string Diocese { get; set; }
+
+        public string SharePointLink { get; set; }
     }
 
     public record TrustDetails
@@ -72,13 +76,26 @@
         public string CompaniesHouseNumber { get; set; }
 
         public Address Address { get; set; } = new();
+
+        public string SharePointLink { get; set; }
     }
 
     public record Address
     {
         public string Street { get; set; }
+        public string Locality { get; set; }
+        public string Additional { get; set; }
         public string Town { get; set; }
         public string County { get; set; }
         public string Postcode { get; set; }
+
+        public string[] ToArray()
+        {
+            var lines = new string[] { Street, Locality, Additional, Town, County, Postcode };
+
+            var result = lines.Where(line => !string.IsNullOrEmpty(line)).ToArray();
+
+            return result;
+        }
     }
 }

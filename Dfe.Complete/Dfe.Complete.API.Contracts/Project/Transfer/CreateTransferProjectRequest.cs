@@ -4,8 +4,11 @@
     {
         public string Urn { get; set; }
         public DateTime? Date { get; set; }
+        public string EstablishmentSharePointLink { get; set; }
         public string OutgoingTrustUkprn { get; set; }
+        public string OutgoingTrustSharePointLink { get; set; }
         public string IncomingTrustUkprn { get; set; }
+        public string IncomingTrustSharePointLink { get; set; }
         public bool? IsDateProvisional { get; set; }
         public Region? Region { get; set; }
         public bool? IsIsDueTo2RI { get; set; }

@@ -42,7 +42,10 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 Region = request.Region,
                 TwoRequiresImprovement = request.IsIsDueTo2RI,
                 AdvisoryBoardDate = request.AdvisoryBoardDate,
-                AdvisoryBoardConditions = request.AdvisoryBoardConditions
+                AdvisoryBoardConditions = request.AdvisoryBoardConditions,
+                EstablishmentSharepointLink = request.EstablishmentSharePointLink,
+                IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
+                OutgoingTrustSharepointLink = request.OutgoingTrustSharePointLink,
             };
 
             var task = new TransferTasksData

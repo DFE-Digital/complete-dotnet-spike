@@ -1,4 +1,6 @@
 ﻿@page "/transfer-projects/{projectId}/information"
+@using Dfe.Complete.Constants
+@using Dfe.Complete.TagHelpers
 @model Dfe.Complete.Pages.Projects.Transfer.AboutTransferProjectModel
 @{
     var projectDetails = Model.Project.ProjectDetails;
@@ -7,6 +9,59 @@
     var schoolDetails = Model.Project.SchoolDetails;
     var incomingTrustDetails = Model.Project.IncomingTrustDetails;
     var outgoingTrustDetails = Model.Project.OutgoingTrustDetails;
+
+    var schoolGiasLink = new LinkSummaryItem()
+            {
+                Label = schoolDetails.Name,
+                Link = string.Format(ExternalSiteConstants.GiasEstablishment, schoolDetails.Urn),
+                LinkText = "View the school's information in GIAS"
+            };
+
+    var schoolSharePointLink = new LinkSummaryItem()
+            {
+                Link = schoolDetails.SharePointLink,
+                LinkText = "View the academy SharePoint folder"
+            };
+
+    var incomingTrustGiasLink = new LinkSummaryItem()
+            {
+                Label = incomingTrustDetails.Name,
+                Link = string.Format(ExternalSiteConstants.GiasTrust, incomingTrustDetails.UkPrn),
+                LinkText = "View the trust information in GIAS"
+            };
+
+    var incomingTrustSharePointLink = new LinkSummaryItem()
+            {
+                Link = incomingTrustDetails.SharePointLink,
+                LinkText = "View the trust SharePoint folder"
+            };
+
+    var incomingTrustcompaniesHouse = new LinkSummaryItem()
+            {
+                Label = incomingTrustDetails.CompaniesHouseNumber,
+                Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, incomingTrustDetails.CompaniesHouseNumber),
+                LinkText = "View the Companies House information"
+            };
+
+    var outgoingTrustGiasLink = new LinkSummaryItem()
+            {
+                Label = outgoingTrustDetails.Name,
+                Link = string.Format(ExternalSiteConstants.GiasTrust, outgoingTrustDetails.UkPrn),
+                LinkText = "View the trust information in GIAS"
+            };
+
+    var outgoingTrustSharePointLink = new LinkSummaryItem()
+            {
+                Link = outgoingTrustDetails.SharePointLink,
+                LinkText = "View the trust SharePoint folder"
+            };
+
+    var outgoingTrustCompaniesHouse = new LinkSummaryItem()
+            {
+                Label = outgoingTrustDetails.CompaniesHouseNumber,
+                Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, outgoingTrustDetails.CompaniesHouseNumber),
+                LinkText = "View the Companies House information"
+            };
 }
 
 <partial name="_ProjectSummary" model="@projectDetails" />
@@ -96,7 +151,7 @@
                     </dd>
                 </div>
                 <govuk-summary-item label="Local authority" asp-for="@projectDetails.LocalAuthority" />
-                <govuk-summary-item label="Diocese" asp-for="@projectDetails.LocalAuthority" />
+                <govuk-summary-item label="Diocese" asp-for="@schoolDetails.Diocese" />
                 <govuk-summary-item label="Region" asp-for="@projectDetails.Region" />
             </govuk-summary-list>
         </div>
@@ -128,11 +183,12 @@
         <div id="academyDetails" class="project-information-block">
             <h3 class="govuk-heading-m">Academy details</h3>
             <govuk-summary-list>
-                <govuk-summary-item label="Name" asp-for="@schoolDetails.Name" />
+                <govuk-summary-item label="Name" asp-for="@schoolGiasLink" />
                 <govuk-summary-item label="Academy URN (unique reference number)" asp-for="@schoolDetails.Urn" />
                 <govuk-summary-item label="Type" asp-for="@schoolDetails.Type" />
                 <govuk-summary-item label="AgeRange" asp-for="@schoolDetails.AgeRange" />
                 <govuk-summary-item label="Phase" asp-for="@schoolDetails.Phase" />
+                <govuk-summary-item label="SharePoint folder" asp-for="@schoolSharePointLink" />
             </govuk-summary-list>
         </div>
 
@@ -141,20 +197,12 @@
             <h3 class="govuk-heading-m">Incoming trust details</h3>
 
             <govuk-summary-list>
-                <govuk-summary-item label="Name" asp-for="@incomingTrustDetails.Name" />
+                <govuk-summary-item label="Name" asp-for="@incomingTrustGiasLink" />
                 <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@incomingTrustDetails.UkPrn" />
                 <govuk-summary-item label="Group ID (identifier)" asp-for="@incomingTrustDetails.GroupId" />
-                <govuk-summary-item label="Companies house number" asp-for="@incomingTrustDetails.CompaniesHouseNumber" />
-                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
-                    <dt class="govuk-summary-list__key">Address</dt>
-                    <dd class="govuk-summary-list__value">
-                        <address class="govuk-address">
-                            Winchester Road<br>
-                            Countesthorpe<br>
-                            LE8 5PR
-                        </address>
-                    </dd>
-                </div>
+                <govuk-summary-item label="Companies house number" asp-for="@incomingTrustcompaniesHouse" />
+                <govuk-summary-item label="Address" asp-for="@incomingTrustDetails.Address" />
+                <govuk-summary-item label="SharePoint folder" asp-for="@incomingTrustSharePointLink" />
             </govuk-summary-list>
         </div>
 
@@ -162,20 +210,12 @@
             <h3 class="govuk-heading-m">Outgoing trust details</h3>
 
             <govuk-summary-list>
-                <govuk-summary-item label="Name" asp-for="@outgoingTrustDetails.Name" />
+                <govuk-summary-item label="Name" asp-for="@outgoingTrustGiasLink" />
                 <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@outgoingTrustDetails.UkPrn" />
                 <govuk-summary-item label="Group ID (identifier)" asp-for="@outgoingTrustDetails.GroupId" />
-                <govuk-summary-item label="Companies house number" asp-for="@outgoingTrustDetails.CompaniesHouseNumber" />
-                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
-                    <dt class="govuk-summary-list__key">Address</dt>
-                    <dd class="govuk-summary-list__value">
-                        <address class="govuk-address">
-                            Winchester Road<br>
-                            Countesthorpe<br>
-                            LE8 5PR
-                        </address>
-                    </dd>
-                </div>
+                <govuk-summary-item label="Companies house number" asp-for="@outgoingTrustCompaniesHouse" />
+                <govuk-summary-item label="Address" asp-for="@outgoingTrustDetails.Address" />
+                <govuk-summary-item label="SharePoint folder" asp-for="@outgoingTrustSharePointLink" />
             </govuk-summary-list>
         </div>
     </div>

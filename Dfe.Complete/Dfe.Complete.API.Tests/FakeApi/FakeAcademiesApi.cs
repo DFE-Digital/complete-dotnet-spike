@@ -33,9 +33,13 @@ namespace Dfe.Complete.API.Tests.FakeApi
                                 Address = new()
                                 {
                                     Street = "Establishment 1 Street",
+                                    Locality = "Establishment 1 Locality",
+                                    Additional = "Establishment 1 Additional",
                                     Town = "Establishment 1 Town",
+                                    County = "Establishment 1 County",
                                     Postcode = "Establishment 1 Postcode"
-                                }
+                                },
+                                Diocese = new() { Name = "St Pauls" }
                             }
                         };
 
@@ -54,7 +58,10 @@ namespace Dfe.Complete.API.Tests.FakeApi
                                 Address = new()
                                 {
                                     Street = "Trust 1 Street",
+                                    Locality = "Trust 1 Locality",
+                                    Additional = "Trust 1 Additional",
                                     Town = "Trust 1 Town",
+                                    County = "Trust 1 County",
                                     Postcode = "Trust 1 Postcode"
                                 }
                             },
@@ -67,7 +74,10 @@ namespace Dfe.Complete.API.Tests.FakeApi
                                 Address = new()
                                 {
                                     Street = "Trust 2 Street",
+                                    Locality = "Trust 2 Locality",
+                                    Additional = "Trust 2 Additional",
                                     Town = "Trust 2 Town",
+                                    County = "Trust 2 County",
                                     Postcode = "Trust 2 Postcode"
                                 }
                             }
