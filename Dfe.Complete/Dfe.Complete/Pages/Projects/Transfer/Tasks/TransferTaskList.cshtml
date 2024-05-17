@@ -1,4 +1,5 @@
 ﻿@page "/transfer-projects/{projectId}/tasks"
+@using Dfe.Complete.API.Contracts.Project
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.Transfer.Tasks.TransferTaskListModel
 @{
@@ -9,40 +10,7 @@
 
 <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
 
-<div class="govuk-grid-row">
-    <div class="govuk-grid-column-full">
-        <nav class="moj-sub-navigation" aria-label="Project sub-navigation">
-            <ul class="moj-sub-navigation__list">
-
-                <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" aria-current="page" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/tasks">Task list</a>
-                </li>
-
-
-                <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="@aboutTransferProject">About the project</a>
-                </li>
-
-
-                <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes">Notes</a>
-                </li>
-
-
-                <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/external-contacts">External contacts</a>
-                </li>
-
-
-                <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/internal-contacts">Internal contacts</a>
-                </li>
-
-
-            </ul>
-        </nav>
-    </div>
-</div>
+<govuk-project-tabs project-id="@Model.ProjectId" project-type="@ProjectType.Transfer" />
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full-width">
