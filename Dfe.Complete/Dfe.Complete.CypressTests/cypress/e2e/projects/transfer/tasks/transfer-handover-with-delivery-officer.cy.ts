@@ -16,13 +16,11 @@ describe("Transfer handover with delivery officer task", () => {
             .createProject({})
             .then(response => {
                 projectId = response.id;
+                cy.visit(`/transfer-projects/${projectId}/tasks`);
             });
     });
 
-    it("Should be able to move around the complete service", () => {
-
-        cy.visit(`/transfer-projects/${projectId}/tasks`);
-
+    it("Should be able to configure the handover with delivery officer task", () => {
         cy.executeAccessibilityTests();
 
         projectSummarySection

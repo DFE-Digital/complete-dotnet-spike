@@ -56,7 +56,8 @@ export const ConversionTaskNames = {
 }
 
 export const TransferTaskNames = {
-    HandoverWithRegionalDeliveryOfficer: "Handover with regional delivery officer"
+    HandoverWithRegionalDeliveryOfficer: "Handover with regional delivery officer",
+    ExternalStakeholderKickoff: "External stakeholder kick-off"
 }
 
 const taskListPage = new TaskListPage();
