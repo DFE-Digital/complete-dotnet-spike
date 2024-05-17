@@ -33,7 +33,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
             var result = new GetConversionProjectResponse()
             {
                 ProjectDetails = ProjectDetailsBuilder.Execute(project, establishmentAndTrust),
-                ReasonForConversion = new ReasonForConversion()
+                ReasonForTheConversion = new ReasonForTheConversion()
                 {
                     IsDueTo2RI = project.TwoRequiresImprovement,
                     HasAcademyOrderBeenIssued = project.DirectiveAcademyOrder,

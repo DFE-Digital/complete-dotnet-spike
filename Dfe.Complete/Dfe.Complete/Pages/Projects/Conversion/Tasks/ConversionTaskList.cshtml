@@ -3,6 +3,7 @@
 @model Dfe.Complete.Pages.Projects.Conversion.Tasks.ConversionTaskListModel
 @{
     var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
+    var aboutConversionProject = string.Format(RouteConstants.ConversionProjectAbout, Model.ProjectId);
 }
 
 <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
@@ -18,7 +19,7 @@
 
 
                 <li class="moj-sub-navigation__item">
-                    <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/information">About the project</a>
+                    <a class="moj-sub-navigation__link" href="@aboutConversionProject">About the project</a>
                 </li>
 
 
@@ -35,8 +36,6 @@
                 <li class="moj-sub-navigation__item">
                     <a class="moj-sub-navigation__link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/internal-contacts">Internal contacts</a>
                 </li>
-
-
             </ul>
         </nav>
     </div>

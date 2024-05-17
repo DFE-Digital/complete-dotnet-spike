@@ -1,14 +1,13 @@
-﻿@page "/transfer-projects/{projectId}/information"
+﻿@page "/conversion-projects/{projectId}/information"
 @using Dfe.Complete.Constants
 @using Dfe.Complete.TagHelpers
-@model Dfe.Complete.Pages.Projects.Transfer.AboutTransferProjectModel
+@model Dfe.Complete.Pages.Projects.Conversion.AboutConversionProjectModel
 @{
     var projectDetails = Model.Project.ProjectDetails;
-    var reasonForTransfer = Model.Project.ReasonForTheTransfer;
+    var reasonForConversion = Model.Project.ReasonForTheConversion;
     var advisoryBoardDetails = Model.Project.AdvisoryBoardDetails;
     var schoolDetails = Model.Project.SchoolDetails;
     var incomingTrustDetails = Model.Project.IncomingTrustDetails;
-    var outgoingTrustDetails = Model.Project.OutgoingTrustDetails;
 
     var schoolGiasLink = new LinkSummaryItem()
             {
@@ -100,7 +99,7 @@
             <govuk-summary-list>
                 <govuk-summary-item label="Type" asp-for="@projectDetails.ProjectType" />
                 <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
-                    <dt class="govuk-summary-list__key">Transfer date</dt>
+                    <dt class="govuk-summary-list__key">Conversion date</dt>
                     <dd class="govuk-summary-list__value">
                         @projectDetails.Date.ToDateString()
                         @if (projectDetails.IsDateProvisional == true)
@@ -118,13 +117,11 @@
 
 
         <div id="reasonsFor" class="project-information-block">
-            <h3 class="govuk-heading-m">Reasons for the transfer</h3>
+            <h3 class="govuk-heading-m">Reasons for the conversion</h3>
 
             <govuk-summary-list>
-                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForTransfer.IsDueTo2RI" />
-                <govuk-summary-item label="Is this transfer due to an inadequate Ofsted rating?" asp-for="@reasonForTransfer.IsDueToOfstedRating" />
-                <govuk-summary-item label="Is this transfer due to financial, safeguarding or governance issues?" asp-for="@reasonForTransfer.IsDueToIssues" />
-
+                <govuk-summary-item label="Has a directive academy order been issued?" asp-for="@reasonForConversion.HasAcademyOrderBeenIssued" />
+                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForConversion.IsDueTo2RI" />
             </govuk-summary-list>
         </div>
 
@@ -141,19 +138,19 @@
 
 
         <div id="academyDetails" class="project-information-block">
-            <h3 class="govuk-heading-m">Academy details</h3>
+            <h3 class="govuk-heading-m">School details</h3>
             <govuk-summary-list>
                 <govuk-summary-item label="Name" asp-for="@schoolGiasLink" />
                 <govuk-summary-item label="Academy URN (unique reference number)" asp-for="@schoolDetails.Urn" />
                 <govuk-summary-item label="Type" asp-for="@schoolDetails.Type" />
                 <govuk-summary-item label="Age range" asp-for="@schoolDetails.AgeRange" />
                 <govuk-summary-item label="Phase" asp-for="@schoolDetails.Phase" />
+                <govuk-summary-item label="Address" asp-for="@schoolDetails.Address" />
                 <govuk-summary-item label="SharePoint folder" asp-for="@schoolSharePointLink" />
             </govuk-summary-list>
         </div>
 
         <govuk-trust-details asp-for="@Model.Project.IncomingTrustDetails" id="incomingTrustDetails" label="Incoming trust details" />
-        <govuk-trust-details asp-for="@Model.Project.OutgoingTrustDetails" id="outgoingTrustDetails" label="Outgoing trust details" />
 
     </div>
 </div>

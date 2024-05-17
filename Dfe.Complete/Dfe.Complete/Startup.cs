@@ -82,6 +82,7 @@ public class Startup
         services.AddScoped<IGetConversionProjectByTaskService, GetConversionProjectByTaskService>();
         services.AddScoped<IUpdateConversionProjectByTaskService, UpdateConversionProjectByTaskService>();
         services.AddScoped<IGetConversionProjectByTaskSummaryService, GetConversionProjectByTaskSummaryService>();
+        services.AddScoped<IGetConversionProjectService, GetConversionProjectService>();
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>

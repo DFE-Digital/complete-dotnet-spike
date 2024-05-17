@@ -2,10 +2,10 @@
 {
     public record GetConversionProjectResponse : GetProjectResponse
     {
-        public ReasonForConversion ReasonForConversion { get; set; }
+        public ReasonForTheConversion ReasonForTheConversion { get; set; }
     }
 
-    public record ReasonForConversion
+    public record ReasonForTheConversion
     {
         public bool? HasAcademyOrderBeenIssued { get; set; }
         public bool? IsDueTo2RI { get; set; }

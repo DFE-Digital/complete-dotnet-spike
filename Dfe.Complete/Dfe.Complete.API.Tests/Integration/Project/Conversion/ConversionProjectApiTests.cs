@@ -4,6 +4,7 @@ using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
+using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
@@ -52,8 +53,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.ProjectDetails.Name.Should().Be("Establishment 1");
 
             // Reason for the conversion
-            project.ReasonForConversion.IsDueTo2RI.Should().Be(createProjectRequest.IsIsDueTo2RI);
-            project.ReasonForConversion.HasAcademyOrderBeenIssued.Should().Be(createProjectRequest.HasAcademyOrderBeenIssued);
+            project.ReasonForTheConversion.IsDueTo2RI.Should().Be(createProjectRequest.IsIsDueTo2RI);
+            project.ReasonForTheConversion.HasAcademyOrderBeenIssued.Should().Be(createProjectRequest.HasAcademyOrderBeenIssued);
 
             // Advisory board details
             project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(createProjectRequest.AdvisoryBoardDate.Value.Date);
@@ -96,6 +97,37 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             dbProject.Type.Should().Be(ProjectType.Conversion);
             dbProject.SignificantDate.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             dbProject.SignificantDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
+        }
+
+        [Fact]
+        public async Task Get_ProjectDoesNotExist_Returns_404()
+        {
+            var projectId = Guid.NewGuid();
+
+            var response = await _client.GetAsync(string.Format(RouteConstants.ConversionProjectById, projectId));
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            content.Should().Contain($"Project with id {projectId} not found");
+        }
+
+        [Fact]
+        public async Task Get_ProjectDoesNotHaveTaskData_Returns_404()
+        {
+            var project = DatabaseModelBuilder.BuildProject();
+            project.Type = ProjectType.Conversion;
+
+            var context = _testFixture.GetContext();
+            context.Projects.Add(project);
+            context.SaveChanges();
+
+            var response = await _client.GetAsync(string.Format(RouteConstants.ConversionProjectById, project.Id));
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            content.Should().Contain($"Project with id {project.Id} does not have any conversion tasks data");
         }
     }
 }

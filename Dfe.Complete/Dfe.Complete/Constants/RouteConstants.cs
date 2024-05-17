@@ -5,7 +5,9 @@
         public const string ProjectsInProgress = "/projects/all/in-progress/all";
 
         // Conversion
+        public const string ConversionProject = "/conversion-projects/{0}";
         public const string ConversionProjectTaskList = "/conversion-projects/{0}/tasks";
+        public const string ConversionProjectAbout = "/conversion-projects/{0}/information";
 
         public const string ConversionViewHandoverWithDeliveryOfficerTask = ConversionProjectTaskList + "/handover";
         public const string ConversionEditHandoverWithDeliveryOfficerTask = ConversionViewHandoverWithDeliveryOfficerTask + "/edit";
