@@ -43,7 +43,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 TwoRequiresImprovement = request.IsIsDueTo2RI,
                 AdvisoryBoardDate = request.AdvisoryBoardDate,
                 AdvisoryBoardConditions = request.AdvisoryBoardConditions,
-                EstablishmentSharepointLink = request.EstablishmentSharePointLink,
+                EstablishmentSharepointLink = request.SchoolSharePointLink,
                 IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
                 OutgoingTrustSharepointLink = request.OutgoingTrustSharePointLink,
             };

@@ -68,7 +68,7 @@ namespace Dfe.Complete.API.Tests.FakeApi
                             new GetTrustResponse()
                             {
                                 Ukprn = "10000002",
-                                Name = "Trust 2",                        
+                                Name = "Trust 2",
                                 CompaniesHouseNumber = "00002",
                                 ReferenceNumber = "TR0002",
                                 Address = new()
@@ -79,6 +79,38 @@ namespace Dfe.Complete.API.Tests.FakeApi
                                     Town = "Trust 2 Town",
                                     County = "Trust 2 County",
                                     Postcode = "Trust 2 Postcode"
+                                }
+                            },
+                            new GetTrustResponse()
+                            {
+                                Ukprn = "10000003",
+                                Name = "Trust 3",
+                                CompaniesHouseNumber = "00003",
+                                ReferenceNumber = "TR0003",
+                                Address = new()
+                                {
+                                    Street = "Trust 3 Street",
+                                    Locality = "Trust 3 Locality",
+                                    Additional = "Trust 3 Additional",
+                                    Town = "Trust 3 Town",
+                                    County = "Trust 3 County",
+                                    Postcode = "Trust 3 Postcode"
+                                }
+                            },
+                            new GetTrustResponse()
+                            {
+                                Ukprn = "10000004",
+                                Name = "Trust 4",
+                                CompaniesHouseNumber = "00004",
+                                ReferenceNumber = "TR0004",
+                                Address = new()
+                                {
+                                    Street = "Trust 4 Street",
+                                    Locality = "Trust 4 Locality",
+                                    Additional = "Trust 4 Additional",
+                                    Town = "Trust 4 Town",
+                                    County = "Trust 4 County",
+                                    Postcode = "Trust 4 Postcode"
                                 }
                             }
                         };

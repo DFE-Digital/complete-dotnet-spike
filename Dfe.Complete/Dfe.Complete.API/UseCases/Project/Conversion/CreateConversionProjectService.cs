@@ -43,7 +43,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 DirectiveAcademyOrder = request.HasAcademyOrderBeenIssued,
                 AdvisoryBoardDate = request.AdvisoryBoardDate,
                 AdvisoryBoardConditions = request.AdvisoryBoardConditions,
-                EstablishmentSharepointLink = request.EstablishmentSharePointLink,
+                EstablishmentSharepointLink = request.SchoolSharePointLink,
                 IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
             };
 

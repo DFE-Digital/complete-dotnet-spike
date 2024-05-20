@@ -17,24 +17,36 @@ namespace Dfe.Complete.API.Controllers
         private readonly IGetTransferProjectByTaskService _getTransferProjectByTaskService;
         private readonly IGetTransferProjectByTaskSummaryService _getTransferProjectByTaskSummaryService;
         private readonly IGetTransferProjectService _getTransferProjectService;
+        private readonly IUpdateTransferProjectService _updateTransferProjectService;
 
         public ClientTransferProjectController(
             IUpdateTransferProjectByTaskService updateTransferProjectByTaskService,
             IGetTransferProjectByTaskService getTransferProjectByTaskService,
             IGetTransferProjectByTaskSummaryService getTransferProjectByTaskSummaryService,
-            IGetTransferProjectService getTransferProjectService)
+            IGetTransferProjectService getTransferProjectService,
+            IUpdateTransferProjectService updateTransferProjectService)
         {
             _updateTransferProjectByTaskService = updateTransferProjectByTaskService;
             _getTransferProjectByTaskService = getTransferProjectByTaskService;
             _getTransferProjectByTaskSummaryService = getTransferProjectByTaskSummaryService;
             _getTransferProjectService = getTransferProjectService;
+            _updateTransferProjectService = updateTransferProjectService;
         }
 
+        [HttpGet]
         public async Task<ActionResult<GetTransferProjectResponse>> GetTransferProject(Guid projectId)
         {
             var result = await _getTransferProjectService.Execute(projectId);
 
             return new OkObjectResult(result);
+        }
+
+        [HttpPatch]
+        public async Task<ActionResult<object>> UpdateTransferProject(Guid projectId, UpdateTransferProjectRequest request)
+        {
+            await _updateTransferProjectService.Execute(projectId, request);
+
+            return new OkResult();
         }
 
         [HttpGet]

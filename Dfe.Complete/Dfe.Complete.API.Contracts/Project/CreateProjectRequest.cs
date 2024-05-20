@@ -10,7 +10,7 @@ namespace Dfe.Complete.API.Contracts.Project
     {
         public string Urn { get; set; }
         public DateTime? Date { get; set; }
-        public string EstablishmentSharePointLink { get; set; }
+        public string SchoolSharePointLink { get; set; }
         public string IncomingTrustUkprn { get; set; }
         public string IncomingTrustSharePointLink { get; set; }
         public bool? IsDateProvisional { get; set; }

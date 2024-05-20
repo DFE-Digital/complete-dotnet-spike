@@ -88,7 +88,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.SchoolDetails.Address.County.Should().Be("Establishment 1 County");
             project.SchoolDetails.Address.Postcode.Should().Be("Establishment 1 Postcode");
             project.SchoolDetails.Diocese.Should().Be("St Pauls");
-            project.SchoolDetails.SharePointLink.Should().Be(createProjectRequest.EstablishmentSharePointLink);
+            project.SchoolDetails.SharePointLink.Should().Be(createProjectRequest.SchoolSharePointLink);
 
             var testContext = _testFixture.GetContext();
 

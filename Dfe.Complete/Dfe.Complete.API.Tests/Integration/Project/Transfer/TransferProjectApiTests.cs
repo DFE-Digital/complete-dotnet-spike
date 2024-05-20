@@ -103,7 +103,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.SchoolDetails.Address.County.Should().Be("Establishment 1 County");
             project.SchoolDetails.Address.Postcode.Should().Be("Establishment 1 Postcode");
             project.SchoolDetails.Diocese.Should().Be("St Pauls");
-            project.SchoolDetails.SharePointLink.Should().Be(createProjectRequest.EstablishmentSharePointLink);
+            project.SchoolDetails.SharePointLink.Should().Be(createProjectRequest.SchoolSharePointLink);
 
             var testContext = _testFixture.GetContext();
 
@@ -112,6 +112,70 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             dbProject.Type.Should().Be(ProjectType.Transfer);
             dbProject.SignificantDate.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             dbProject.SignificantDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
+        }
+
+        [Fact]
+        public async Task Update_Returns_200()
+        {
+            var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
+            createProjectRequest.Region = Region.NorthWest;
+            createProjectRequest.Urn = "1001";
+            createProjectRequest.IncomingTrustUkprn = "10000001";
+            createProjectRequest.OutgoingTrustUkprn = "10000002";
+
+            var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            var createProjectResponse = await createResponse.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
+            var projectId = createProjectResponse.Id;
+
+            var updateProjectRequest = _autoFixture.Create<UpdateTransferProjectRequest>();
+            updateProjectRequest.IncomingTrustUkprn = "10000003";
+            updateProjectRequest.OutgoingTrustUkprn = "10000004";
+
+            var updateResponse = await _client.PatchAsync(string.Format(RouteConstants.TransferProjectById, projectId), updateProjectRequest.ConvertToJson());
+            updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.TransferProjectById, projectId));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var project = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectResponse>();
+
+            // Incoming trust
+            project.IncomingTrustDetails.Name.Should().Be("Trust 3");
+            project.IncomingTrustDetails.CompaniesHouseNumber.Should().Be("00003");
+            project.IncomingTrustDetails.UkPrn.Should().Be(updateProjectRequest.IncomingTrustUkprn);
+
+            // Outgoing trust
+            project.OutgoingTrustDetails.Name.Should().Be("Trust 4");
+            project.OutgoingTrustDetails.CompaniesHouseNumber.Should().Be("00004");
+            project.OutgoingTrustDetails.UkPrn.Should().Be(updateProjectRequest.OutgoingTrustUkprn);
+
+            // Advisory board details
+            project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(updateProjectRequest.AdvisoryBoardDetails.Date.Value.Date);
+            project.AdvisoryBoardDetails.Conditions.Should().Be(updateProjectRequest.AdvisoryBoardDetails.Conditions);
+
+            // Reason for the transfer
+            project.ReasonForTheTransfer.IsDueTo2RI.Should().Be(updateProjectRequest.ReasonForTheTransfer.IsDueTo2RI);
+            project.ReasonForTheTransfer.IsDueToOfstedRating.Should().Be(updateProjectRequest.ReasonForTheTransfer.IsDueToOfstedRating);
+            project.ReasonForTheTransfer.IsDueToIssues.Should().Be(updateProjectRequest.ReasonForTheTransfer.IsDueToIssues);
+
+            // School
+            project.SchoolDetails.SharePointLink.Should().Be(updateProjectRequest.SchoolSharePointLink);
+        }
+
+        [Fact]
+        public async Task Update_ProjectDoesNotExist_Returns_404()
+        {
+            var projectId = Guid.NewGuid();
+            var request = new UpdateTransferProjectRequest();
+
+            var response = await _client.PatchAsync(string.Format(RouteConstants.TransferProjectById, projectId), request.ConvertToJson());
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await response.Content.ReadAsStringAsync();
+
+            content.Should().Contain($"Project with id {projectId} not found");
         }
 
         [Fact]
