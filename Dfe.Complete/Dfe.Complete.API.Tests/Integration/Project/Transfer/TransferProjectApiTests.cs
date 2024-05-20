@@ -25,8 +25,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
             createProjectRequest.Urn = "1001";
-            createProjectRequest.IncomingTrustUkprn = "10000001";
-            createProjectRequest.OutgoingTrustUkprn = "10000002";
+            createProjectRequest.IncomingTrustDetails.Ukprn = "10000001";
+            createProjectRequest.OutgoingTrustDetails.Ukprn = "10000002";
 
             var response = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -44,9 +44,9 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.ProjectDetails.Urn.Should().Be(createProjectRequest.Urn);
             project.ProjectDetails.Date.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             project.ProjectDetails.IsDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
-            project.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            project.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustDetails.Ukprn);
             project.ProjectDetails.IncomingTrustName.Should().Be("Trust 1");
-            project.ProjectDetails.OutgoingTrustUkprn.Should().Be(createProjectRequest.OutgoingTrustUkprn);
+            project.ProjectDetails.OutgoingTrustUkprn.Should().Be(createProjectRequest.OutgoingTrustDetails.Ukprn);
             project.ProjectDetails.OutgoingTrustName.Should().Be("Trust 2");
             project.ProjectDetails.Region.Should().Be("North West");
             project.ProjectDetails.ProjectType.Should().Be(ProjectType.Transfer);
@@ -59,12 +59,12 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.ReasonForTheTransfer.IsDueToIssues.Should().Be(createProjectRequest.IsDueToIssues);
 
             // Advisory board details
-            project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(createProjectRequest.AdvisoryBoardDate.Value.Date);
-            project.AdvisoryBoardDetails.Conditions.Should().Be(createProjectRequest.AdvisoryBoardConditions);
+            project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(createProjectRequest.AdvisoryBoardDetails.Date.Value.Date);
+            project.AdvisoryBoardDetails.Conditions.Should().Be(createProjectRequest.AdvisoryBoardDetails.Conditions);
 
             // Incoming trust details
             project.IncomingTrustDetails.Name.Should().Be("Trust 1");
-            project.IncomingTrustDetails.UkPrn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            project.IncomingTrustDetails.UkPrn.Should().Be(createProjectRequest.IncomingTrustDetails.Ukprn);
             project.IncomingTrustDetails.GroupId.Should().Be("TR0001");
             project.IncomingTrustDetails.CompaniesHouseNumber.Should().Be("00001");
             project.IncomingTrustDetails.Address.Street.Should().Be("Trust 1 Street");
@@ -73,11 +73,11 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.IncomingTrustDetails.Address.Town.Should().Be("Trust 1 Town");
             project.IncomingTrustDetails.Address.County.Should().Be("Trust 1 County");
             project.IncomingTrustDetails.Address.Postcode.Should().Be("Trust 1 Postcode");
-            project.IncomingTrustDetails.SharePointLink.Should().Be(createProjectRequest.IncomingTrustSharePointLink);
+            project.IncomingTrustDetails.SharePointLink.Should().Be(createProjectRequest.IncomingTrustDetails.SharepointLink);
 
             // Outgoing trust details
             project.OutgoingTrustDetails.Name.Should().Be("Trust 2");
-            project.OutgoingTrustDetails.UkPrn.Should().Be(createProjectRequest.OutgoingTrustUkprn);
+            project.OutgoingTrustDetails.UkPrn.Should().Be(createProjectRequest.OutgoingTrustDetails.Ukprn);
             project.OutgoingTrustDetails.GroupId.Should().Be("TR0002");
             project.OutgoingTrustDetails.CompaniesHouseNumber.Should().Be("00002");
             project.OutgoingTrustDetails.Address.Street.Should().Be("Trust 2 Street");
@@ -86,7 +86,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.OutgoingTrustDetails.Address.Town.Should().Be("Trust 2 Town");
             project.OutgoingTrustDetails.Address.County.Should().Be("Trust 2 County");
             project.OutgoingTrustDetails.Address.Postcode.Should().Be("Trust 2 Postcode");
-            project.OutgoingTrustDetails.SharePointLink.Should().Be(createProjectRequest.OutgoingTrustSharePointLink);
+            project.OutgoingTrustDetails.SharePointLink.Should().Be(createProjectRequest.OutgoingTrustDetails.SharepointLink);
 
             // School details
             project.SchoolDetails.Name.Should().Be("Establishment 1");
@@ -120,8 +120,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
             createProjectRequest.Urn = "1001";
-            createProjectRequest.IncomingTrustUkprn = "10000001";
-            createProjectRequest.OutgoingTrustUkprn = "10000002";
+            createProjectRequest.IncomingTrustDetails.Ukprn = "10000001";
+            createProjectRequest.OutgoingTrustDetails.Ukprn = "10000002";
 
             var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
             createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -130,8 +130,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             var projectId = createProjectResponse.Id;
 
             var updateProjectRequest = _autoFixture.Create<UpdateTransferProjectRequest>();
-            updateProjectRequest.IncomingTrustUkprn = "10000003";
-            updateProjectRequest.OutgoingTrustUkprn = "10000004";
+            updateProjectRequest.IncomingTrustDetails.Ukprn = "10000003";
+            updateProjectRequest.OutgoingTrustDetails.Ukprn = "10000004";
 
             var updateResponse = await _client.PatchAsync(string.Format(RouteConstants.TransferProjectById, projectId), updateProjectRequest.ConvertToJson());
             updateResponse.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -144,12 +144,12 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             // Incoming trust
             project.IncomingTrustDetails.Name.Should().Be("Trust 3");
             project.IncomingTrustDetails.CompaniesHouseNumber.Should().Be("00003");
-            project.IncomingTrustDetails.UkPrn.Should().Be(updateProjectRequest.IncomingTrustUkprn);
+            project.IncomingTrustDetails.UkPrn.Should().Be(updateProjectRequest.IncomingTrustDetails.Ukprn);
 
             // Outgoing trust
             project.OutgoingTrustDetails.Name.Should().Be("Trust 4");
             project.OutgoingTrustDetails.CompaniesHouseNumber.Should().Be("00004");
-            project.OutgoingTrustDetails.UkPrn.Should().Be(updateProjectRequest.OutgoingTrustUkprn);
+            project.OutgoingTrustDetails.UkPrn.Should().Be(updateProjectRequest.OutgoingTrustDetails.Ukprn);
 
             // Advisory board details
             project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(updateProjectRequest.AdvisoryBoardDetails.Date.Value.Date);

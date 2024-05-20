@@ -25,7 +25,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             var createProjectRequest = _autoFixture.Create<CreateConversionProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
             createProjectRequest.Urn = "1001";
-            createProjectRequest.IncomingTrustUkprn = "10000001";
+            createProjectRequest.IncomingTrustDetails.Ukprn = "10000001";
 
             var response = await _client.PostAsync(RouteConstants.CreateConversionProject, createProjectRequest.ConvertToJson());
             response.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -43,7 +43,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.ProjectDetails.Urn.Should().Be(createProjectRequest.Urn);
             project.ProjectDetails.Date.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             project.ProjectDetails.IsDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
-            project.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            project.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustDetails.Ukprn);
             project.ProjectDetails.IncomingTrustName.Should().Be("Trust 1");
             project.ProjectDetails.OutgoingTrustUkprn.Should().BeNull();
             project.ProjectDetails.OutgoingTrustName.Should().BeNull();
@@ -57,12 +57,12 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.ReasonForTheConversion.HasAcademyOrderBeenIssued.Should().Be(createProjectRequest.HasAcademyOrderBeenIssued);
 
             // Advisory board details
-            project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(createProjectRequest.AdvisoryBoardDate.Value.Date);
-            project.AdvisoryBoardDetails.Conditions.Should().Be(createProjectRequest.AdvisoryBoardConditions);
+            project.AdvisoryBoardDetails.Date.Value.Date.Should().Be(createProjectRequest.AdvisoryBoardDetails.Date.Value.Date);
+            project.AdvisoryBoardDetails.Conditions.Should().Be(createProjectRequest.AdvisoryBoardDetails.Conditions);
 
             // Incoming trust details
             project.IncomingTrustDetails.Name.Should().Be("Trust 1");
-            project.IncomingTrustDetails.UkPrn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            project.IncomingTrustDetails.UkPrn.Should().Be(createProjectRequest.IncomingTrustDetails.Ukprn);
             project.IncomingTrustDetails.GroupId.Should().Be("TR0001");
             project.IncomingTrustDetails.CompaniesHouseNumber.Should().Be("00001");
             project.IncomingTrustDetails.Address.Street.Should().Be("Trust 1 Street");
@@ -71,7 +71,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.IncomingTrustDetails.Address.Town.Should().Be("Trust 1 Town");
             project.IncomingTrustDetails.Address.County.Should().Be("Trust 1 County");
             project.IncomingTrustDetails.Address.Postcode.Should().Be("Trust 1 Postcode");
-            project.IncomingTrustDetails.SharePointLink.Should().Be(createProjectRequest.IncomingTrustSharePointLink);
+            project.IncomingTrustDetails.SharePointLink.Should().Be(createProjectRequest.IncomingTrustDetails.SharepointLink);
 
             // School details
             project.SchoolDetails.Name.Should().Be("Establishment 1");

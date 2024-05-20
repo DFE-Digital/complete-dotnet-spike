@@ -37,15 +37,15 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 TasksDataId = taskId,
                 SignificantDate = request.Date,
                 SignificantDateProvisional = request.IsDateProvisional,
-                OutgoingTrustUkprn = request.OutgoingTrustUkprn.ToInt(),
-                IncomingTrustUkprn = request.IncomingTrustUkprn.ToInt(),
+                OutgoingTrustUkprn = request.OutgoingTrustDetails.Ukprn.ToInt(),
+                IncomingTrustUkprn = request.IncomingTrustDetails.Ukprn.ToInt(),
                 Region = request.Region,
                 TwoRequiresImprovement = request.IsIsDueTo2RI,
-                AdvisoryBoardDate = request.AdvisoryBoardDate,
-                AdvisoryBoardConditions = request.AdvisoryBoardConditions,
+                AdvisoryBoardDate = request.AdvisoryBoardDetails.Date,
+                AdvisoryBoardConditions = request.AdvisoryBoardDetails.Conditions,
                 EstablishmentSharepointLink = request.SchoolSharePointLink,
-                IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
-                OutgoingTrustSharepointLink = request.OutgoingTrustSharePointLink,
+                IncomingTrustSharepointLink = request.IncomingTrustDetails.SharepointLink,
+                OutgoingTrustSharepointLink = request.OutgoingTrustDetails.SharepointLink,
             };
 
             var task = new TransferTasksData

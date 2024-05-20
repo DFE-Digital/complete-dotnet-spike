@@ -4,16 +4,18 @@
     {
         public string SchoolSharePointLink { get; set; }
 
-        public string OutgoingTrustUkprn { get; set; }
+        public UpdateTrustDetails OutgoingTrustDetails { get; set; } = new();
 
-        public string OutgoingTrustSharePointLink { get; set; }
-
-        public string IncomingTrustUkprn { get; set; }
-
-        public string IncomingTrustSharePointLink { get; set; }
+        public UpdateTrustDetails IncomingTrustDetails { get; set; } = new();
 
         public ReasonForTheTransfer ReasonForTheTransfer { get; set; } = new();
 
         public AdvisoryBoardDetails AdvisoryBoardDetails { get; set; } = new();
+    }
+
+    public record UpdateTrustDetails
+    {
+        public string Ukprn { get; set; }
+        public string SharepointLink { get; set; }
     }
 }

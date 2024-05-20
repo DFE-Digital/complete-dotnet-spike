@@ -1,22 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Dfe.Complete.API.Contracts.Project
+﻿namespace Dfe.Complete.API.Contracts.Project
 {
     public record CreateProjectRequest
     {
         public string Urn { get; set; }
         public DateTime? Date { get; set; }
-        public string SchoolSharePointLink { get; set; }
-        public string IncomingTrustUkprn { get; set; }
-        public string IncomingTrustSharePointLink { get; set; }
         public bool? IsDateProvisional { get; set; }
+        public string SchoolSharePointLink { get; set; }
         public Region? Region { get; set; }
         public bool? IsIsDueTo2RI { get; set; }
-        public DateTime? AdvisoryBoardDate { get; set; }
-        public string AdvisoryBoardConditions { get; set; }
+        public AdvisoryBoardDetails AdvisoryBoardDetails { get; set; } = new();
+        public CreateTrustDetails IncomingTrustDetails { get; set; } = new();
+    }
+
+    public record CreateTrustDetails
+    {
+        public string Ukprn { get; set; }
+        public string SharepointLink { get; set; }
     }
 }

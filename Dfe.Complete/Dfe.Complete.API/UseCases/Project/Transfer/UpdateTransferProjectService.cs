@@ -24,10 +24,10 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
             var project = queryResult.Project;
             var task = queryResult.TaskData;
 
-            project.IncomingTrustUkprn = request.IncomingTrustUkprn.ToInt();
-            project.IncomingTrustSharepointLink = request.IncomingTrustSharePointLink;
-            project.OutgoingTrustUkprn = request.OutgoingTrustUkprn.ToInt();
-            project.OutgoingTrustSharepointLink = request.OutgoingTrustSharePointLink;
+            project.IncomingTrustUkprn = request.IncomingTrustDetails.Ukprn.ToInt();
+            project.IncomingTrustSharepointLink = request.IncomingTrustDetails.SharepointLink;
+            project.OutgoingTrustUkprn = request.OutgoingTrustDetails.Ukprn.ToInt();
+            project.OutgoingTrustSharepointLink = request.OutgoingTrustDetails.SharepointLink;
             project.EstablishmentSharepointLink = request.SchoolSharePointLink;
             project.AdvisoryBoardDate = request.AdvisoryBoardDetails.Date;
             project.AdvisoryBoardConditions = request.AdvisoryBoardDetails.Conditions;

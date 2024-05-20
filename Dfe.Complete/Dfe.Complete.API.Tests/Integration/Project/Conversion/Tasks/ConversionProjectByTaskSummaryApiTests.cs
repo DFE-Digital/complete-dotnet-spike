@@ -38,7 +38,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
         {
             var createProjectRequest = _autoFixture.Create<CreateConversionProjectRequest>();
             createProjectRequest.Region = Region.NorthWest;
-            createProjectRequest.IncomingTrustUkprn = "10000001";
+            createProjectRequest.IncomingTrustDetails.Ukprn = "10000001";
 
             var createResponse = await _client.PostAsync(RouteConstants.CreateConversionProject, createProjectRequest.ConvertToJson());
             createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
@@ -53,7 +53,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion.Tasks
 
             taskSummary.ProjectDetails.Date.Value.Date.Should().Be(createProjectRequest.Date.Value.Date);
             taskSummary.ProjectDetails.IsDateProvisional.Should().Be(createProjectRequest.IsDateProvisional);
-            taskSummary.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustUkprn);
+            taskSummary.ProjectDetails.IncomingTrustUkprn.Should().Be(createProjectRequest.IncomingTrustDetails.Ukprn);
             taskSummary.ProjectDetails.IncomingTrustName.Should().Be("Trust 1");
             taskSummary.ProjectDetails.OutgoingTrustUkprn.Should().BeNull();
             taskSummary.ProjectDetails.OutgoingTrustName.Should().BeNull();

@@ -37,14 +37,14 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 TasksDataId = taskId,
                 SignificantDate = request.Date,
                 SignificantDateProvisional = request.IsDateProvisional,
-                IncomingTrustUkprn = request.IncomingTrustUkprn.ToInt(),
+                IncomingTrustUkprn = request.IncomingTrustDetails.Ukprn.ToInt(),
                 Region = request.Region,
                 TwoRequiresImprovement = request.IsIsDueTo2RI,
                 DirectiveAcademyOrder = request.HasAcademyOrderBeenIssued,
-                AdvisoryBoardDate = request.AdvisoryBoardDate,
-                AdvisoryBoardConditions = request.AdvisoryBoardConditions,
+                AdvisoryBoardDate = request.AdvisoryBoardDetails.Date,
+                AdvisoryBoardConditions = request.AdvisoryBoardDetails.Conditions,
                 EstablishmentSharepointLink = request.SchoolSharePointLink,
-                IncomingTrustSharepointLink = request.IncomingTrustSharePointLink,
+                IncomingTrustSharepointLink = request.IncomingTrustDetails.SharepointLink
             };
 
             var task = new ConversionTasksData
