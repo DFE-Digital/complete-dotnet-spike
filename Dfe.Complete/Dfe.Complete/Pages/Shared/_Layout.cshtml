@@ -6,9 +6,6 @@
     var showAnalytics = _configuration["GoogleAnalytics:Enable"] == "Yes" && _analytisConsentService.HasConsent();
 
     var titleDescription = " - Complete conversions, transfers and changes";
-
-
-    var widePage = ViewData["WidePage"] != null ? "mfsp-wider-page" : string.Empty;
 }
 
 <!DOCTYPE html>
@@ -47,7 +44,7 @@
     <link rel="stylesheet" href="~/dist/site.css" />
     <link rel="stylesheet" href="~/dist/accessible-autocomplete.min.css" asp-add-nonce />
 </head>
-<body class="govuk-template__body @widePage">
+<body class="govuk-template__body">
 
     @if (showAnalytics)
     {
@@ -127,7 +124,7 @@
     <partial name="_BetaBanner" />
     @await RenderSectionAsync("BeforeMain", required: false)
     <div class="govuk-main-wrapper">
-        <main id="main-content" role="main" class="govuk-width-container @widePage">
+        <main id="main-content" role="main" class="dfe-width-container">
             <div class="govuk-grid-row">
                 <div class="govuk-grid-column-full">
                     <partial name="_NotificationSummary" />
@@ -137,7 +134,7 @@
         </main>
     </div>
     <footer class="govuk-footer " role="contentinfo">
-        <div class="govuk-width-container ">
+        <div class="dfe-width-container ">
             <div class="govuk-footer__navigation">
                 <div class="govuk-footer__section govuk-grid-column-two-thirds" data-cy="get-support-section">
                     <h2 class="govuk-footer__heading govuk-heading-m">Get help</h2>
@@ -167,7 +164,7 @@
 
         </div>
 
-        <div class="govuk-width-container ">
+        <div class="dfe-width-container ">
             <div class="govuk-footer__meta">
                 <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
                     <h2 class="govuk-visually-hidden">Support links</h2>

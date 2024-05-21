@@ -11,6 +11,7 @@ for details on configuring this project to bundle and minify static web assets. 
 @import "./css/risk.scss";
 @import "./css/project-overview.scss";
 @import "./css/pupil-numbers.scss";
+@import "./css//pagination.scss";
 
 .moj-sub-navigation__link {
 	font-weight: bold;
@@ -105,10 +106,6 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .prepare-project-listing__button--apply:hover {
 	background-color: govuk-colour("light-grey");
-}
-
-.dfe-width-container {
-	max-width: 960px;
 }
 
 .govuk-prototype-kit-common-templates-related-items {
