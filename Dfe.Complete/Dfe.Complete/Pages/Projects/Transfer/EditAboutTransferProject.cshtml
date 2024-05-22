@@ -1,0 +1,85 @@
+﻿@page "/transfer-projects/{projectId}/information/edit"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Transfer.EditAboutTransferProjectModel
+@{
+    var cancelLink = RouteConstants.AboutTransferProject;
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <partial name="_ErrorSummary" />
+
+        <form method="post" novalidate>
+
+            <govuk-text-input asp-for="@Model.OutgoingTrustUkprn"
+                              id="outgoing-trust-ukprn"
+                              name="outgoing-trust-ukprn"
+                              label="Outgoing trust UKPRN (UK Provider Reference Number)"
+                              width="10"
+                              bold-label="true" />
+
+            <govuk-text-input asp-for="@Model.IncomingTrustUkprn"
+                              id="incoming-trust-ukprn"
+                              name="incoming-trust-ukprn"
+                              label="Incoming trust UKPRN (UK Provider Reference Number)"
+                              width="10"
+                              bold-label="true" />
+
+            <govuk-date-input asp-for="@Model.DateOfAdvisoryBoard"
+                              id="date-of-advisory-board"
+                              name="date-of-advisory-board"
+                              label="Date of advisory board"
+                              bold-label="true" />
+
+            <govuk-textarea-input asp-for="@Model.AdvisoryBoardConditions"
+                                  id="advisory-board-conditions"
+                                  name="advisory-board-conditions"
+                                  label="Advisory board conditions"
+                                  bold-label="true"
+                                  rows="5" />
+
+            <govuk-text-input asp-for="@Model.SchoolSharePointFolder"
+                              id="school-sharepoint-folder"
+                              name="school-sharepoint-folder"
+                              label="School SharePoint folder link"
+                              bold-label="true" />
+
+            <govuk-text-input asp-for="@Model.IncomingTrustSharePointFolder"
+                              id="incoming-trust-sharepoint-folder"
+                              name="incoming-trust-sharepoint-folder"
+                              label="Incoming trust SharePoint folder link"
+                              bold-label="true" />
+
+            <govuk-text-input asp-for="@Model.OutgoingTrustSharePointFolder"
+                              id="outgoing-trust-sharepoint-folder"
+                              name="outgoing-trust-sharepoint-folder"
+                              label="Outgoing trust SharePoint folder link"
+                              bold-label="true" />
+
+            <govuk-yesno-input asp-for="@Model.IsDueTo2RI"
+                               id="is-due-to-2ri"
+                               name="is-due-to-2ri"
+                               label="Is this a transfer due to 2RI?"
+                               bold-label="true" />
+
+            <govuk-yesno-input asp-for="@Model.IsDueToOfstedRating"
+                               id="is-due-to-ofsted-rating"
+                               name="is-due-to-ofsted-rating"
+                               label="Is this transfer due to an inadequate Ofsted rating?"
+                               bold-label="true" />
+
+            <govuk-yesno-input asp-for="@Model.IsDueToIssues"
+                               id="is-due-to-issues"
+                               name="is-due-to-issues"
+                               label="Is this transfer due to financial, safeguarding or governance issues?"
+                               bold-label="true" />
+
+            <div class="govuk-button-group">
+                <button data-prevent-double-click="true" class="govuk-button" data-module="govuk-button" role="button" id="save">
+                    Continue
+                </button>
+                <a id="cancel-link-event" class="govuk-link" href="@cancelLink">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

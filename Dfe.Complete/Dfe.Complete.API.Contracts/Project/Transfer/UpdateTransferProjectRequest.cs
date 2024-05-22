@@ -16,6 +16,6 @@
     public record UpdateTrustDetails
     {
         public string Ukprn { get; set; }
-        public string SharepointLink { get; set; }
+        public string SharePointLink { get; set; }
     }
 }

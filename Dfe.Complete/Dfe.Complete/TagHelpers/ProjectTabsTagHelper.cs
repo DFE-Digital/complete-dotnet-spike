@@ -34,7 +34,7 @@ namespace Dfe.Complete.TagHelpers
             }
             else if (ProjectType == ProjectType.Transfer)
             {
-                aboutProjectLink = string.Format(Constants.RouteConstants.TransferProjectAbout, ProjectId);
+                aboutProjectLink = string.Format(Constants.RouteConstants.AboutTransferProject, ProjectId);
                 taskListLink = string.Format(Constants.RouteConstants.TransferProjectTaskList, ProjectId);
             }
             else

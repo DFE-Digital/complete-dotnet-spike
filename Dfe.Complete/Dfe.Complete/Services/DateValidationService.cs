@@ -65,12 +65,12 @@ namespace Dfe.Complete.Services
 		{
 			public string AllMissing(string displayName)
 			{
-				return $"Enter a date for the {displayName.ToLower()}";
+				return $"Enter a {displayName.ToLower()}, like 1 4 2023";
 			}
 
 			public string SomeMissing(string displayName, IEnumerable<string> missingParts)
 			{
-				return $"{displayName} must include a {string.Join(" and ", missingParts)}";
+				return $"Enter a valid date, like 1 4 2023";
 			}
 
 			public string DefaultMessage => "Enter a date in the correct format";

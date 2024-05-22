@@ -12,9 +12,6 @@ namespace Dfe.Complete.TagHelpers
 		[HtmlAttributeName("heading-label")]
 		public bool HeadingLabel { get; set; }
 		
-		[HtmlAttributeName("bold-label")]
-		public bool BoldLabel { get; set; }
-		
 		[HtmlAttributeName("rows")]
 		public int Rows { get; set; }
 
@@ -34,7 +31,7 @@ namespace Dfe.Complete.TagHelpers
 				Value = For.Model?.ToString(),
 				Rows = Rows,
 				Hint = Hint,
-				BoldLabel = BoldLabel,
+				BoldLabel = BoldLabel ?? false,
 				RichText = RichText,
 				HeadingLabel = HeadingLabel
 			};

@@ -23,6 +23,8 @@
                 Link = schoolDetails.SharePointLink,
                 LinkText = "View the academy SharePoint folder"
             };
+
+    var editLink = string.Format(RouteConstants.EditAboutTransferProject, Model.ProjectId);
 }
 
 <partial name="_ProjectSummary" model="@projectDetails" />
@@ -88,9 +90,9 @@
             <h3 class="govuk-heading-m">Reasons for the transfer</h3>
 
             <govuk-summary-list>
-                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForTransfer.IsDueTo2RI" />
-                <govuk-summary-item label="Is this transfer due to an inadequate Ofsted rating?" asp-for="@reasonForTransfer.IsDueToOfstedRating" />
-                <govuk-summary-item label="Is this transfer due to financial, safeguarding or governance issues?" asp-for="@reasonForTransfer.IsDueToIssues" />
+                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForTransfer.IsDueTo2RI" href="@editLink" />
+                <govuk-summary-item label="Is this transfer due to an inadequate Ofsted rating?" asp-for="@reasonForTransfer.IsDueToOfstedRating" href="@editLink" />
+                <govuk-summary-item label="Is this transfer due to financial, safeguarding or governance issues?" asp-for="@reasonForTransfer.IsDueToIssues" href="@editLink" />
 
             </govuk-summary-list>
         </div>
@@ -100,8 +102,8 @@
             <h3 class="govuk-heading-m">Advisory board details</h3>
 
             <govuk-summary-list>
-                <govuk-summary-item label="Date of advisory board" asp-for="@advisoryBoardDetails.Date" />
-                <govuk-summary-item label="Conditions from advisory board" asp-for="@advisoryBoardDetails.Conditions" />
+                <govuk-summary-item label="Date of advisory board" asp-for="@advisoryBoardDetails.Date" href="@editLink" />
+                <govuk-summary-item label="Conditions from advisory board" asp-for="@advisoryBoardDetails.Conditions" href="@editLink" />
             </govuk-summary-list>
 
         </div>
@@ -115,12 +117,12 @@
                 <govuk-summary-item label="Type" asp-for="@schoolDetails.Type" />
                 <govuk-summary-item label="Age range" asp-for="@schoolDetails.AgeRange" />
                 <govuk-summary-item label="Phase" asp-for="@schoolDetails.Phase" />
-                <govuk-summary-item label="SharePoint folder" asp-for="@schoolSharePointLink" />
+                <govuk-summary-item label="SharePoint folder" asp-for="@schoolSharePointLink" href="@editLink" />
             </govuk-summary-list>
         </div>
 
-        <govuk-trust-details asp-for="@Model.Project.IncomingTrustDetails" id="incomingTrustDetails" label="Incoming trust details" />
-        <govuk-trust-details asp-for="@Model.Project.OutgoingTrustDetails" id="outgoingTrustDetails" label="Outgoing trust details" />
+        <govuk-trust-details asp-for="@Model.Project.IncomingTrustDetails" id="incomingTrustDetails" label="Incoming trust details" href="@editLink" />
+        <govuk-trust-details asp-for="@Model.Project.OutgoingTrustDetails" id="outgoingTrustDetails" label="Outgoing trust details" href="@editLink" />
 
     </div>
 </div>

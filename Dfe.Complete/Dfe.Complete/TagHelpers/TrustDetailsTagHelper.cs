@@ -1,5 +1,4 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.Constants;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -19,6 +18,9 @@ namespace Dfe.Complete.TagHelpers
 
         [HtmlAttributeName("asp-for")]
         public ModelExpression For { get; set; }
+
+        [HtmlAttributeName("href")]
+        public string Href { get; set; } 
 
         [ViewContext]
         public ViewContext ViewContext { get; set; }
@@ -41,6 +43,7 @@ namespace Dfe.Complete.TagHelpers
             {
                 Id = Id,
                 Label = Label,
+                Href = Href,
                 TrustDetails = trustDetails
             };
             var content = await _htmlHelper.PartialAsync("_TrustDetails", model);
@@ -55,6 +58,8 @@ namespace Dfe.Complete.TagHelpers
         public string Id { get; set; }
 
         public string Label { get; set; }
+
+        public string Href { get; set; }
 
         public TrustDetails TrustDetails { get; set; }
     }

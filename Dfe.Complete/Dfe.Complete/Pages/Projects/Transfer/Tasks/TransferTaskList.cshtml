@@ -5,7 +5,7 @@
 @{
     var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.TransferViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
     var stakeholderKickoff = string.Format(RouteConstants.TransferViewStakeholderKickoffTask, Model.ProjectId);
-    var aboutTransferProject = string.Format(RouteConstants.TransferProjectAbout, Model.ProjectId);
+    var aboutTransferProject = string.Format(RouteConstants.AboutTransferProject, Model.ProjectId);
 }
 
 <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />

@@ -31,10 +31,10 @@
 
     <govuk-summary-list>
         <govuk-summary-item label="Name" asp-for="@trustGiasLink" />
-        <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@trustDetails.UkPrn" />
+        <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@trustDetails.UkPrn" href="@Model.Href" />
         <govuk-summary-item label="Group ID (identifier)" asp-for="@trustDetails.GroupId" />
         <govuk-summary-item label="Companies house number" asp-for="@trustcompaniesHouse" />
         <govuk-summary-item label="Address" asp-for="@trustDetails.Address" />
-        <govuk-summary-item label="SharePoint folder" asp-for="@trustSharePointLink" />
+        <govuk-summary-item label="SharePoint folder" asp-for="@trustSharePointLink" href="@Model.Href" />
     </govuk-summary-list>
 </div>
