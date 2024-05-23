@@ -1,5 +1,7 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.Constants;
 using Dfe.Complete.Extensions;
+using DocumentFormat.OpenXml.EMMA;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
@@ -10,7 +12,7 @@ namespace Dfe.Complete.TagHelpers
     [HtmlTargetElement("govuk-summary-item", TagStructure = TagStructure.NormalOrSelfClosing)]
     public class SummaryItemTagHelper : TagHelper
     {
-        const string empty = @"<span class=""empty"">Empty</span>";
+        const string empty = HtmlTagConstants.Empty;
 
         [HtmlAttributeName("label")]
         public string Label { get; set; }
@@ -60,82 +62,9 @@ namespace Dfe.Complete.TagHelpers
 
         private string GetValue()
         {
-            if(For.Model == null)
-            {
-                return empty;
-            }
+            var result = SummaryItemValueBuilder.Execute(For.Model, For.ModelExplorer.ModelType);
 
-            if (For.ModelExplorer.ModelType == typeof(bool))
-            {
-                return ((bool)For.Model).ToYesNoString();
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(bool?))
-            {
-                return ((bool)For.Model).ToYesNoString();
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(DateTime))
-            {
-                return ((DateTime)For.Model).ToDateString();
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(DateTime?))
-            {
-                return ((DateTime)For.Model).ToDateString();
-            }
-
-            if (For.ModelExplorer.ModelType.IsEnum)
-            {
-                var enumDescription = For.ModelExplorer.Model.ToDescription();
-                
-                if (enumDescription == "NotSet")
-                {
-                    return empty;
-                }
-
-                return For.Model.ToDescription();
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(decimal))
-            {
-                return ((decimal)For.Model).ToString("£0.00");
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(decimal?))
-            {
-                return ((decimal)For.Model).ToString("C", new CultureInfo("en-GB"));
-            }
-
-            if (Nullable.GetUnderlyingType(For.ModelExplorer.ModelType)?.IsEnum == true)
-            {
-                return For.Model.ToDescription();
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(Address))
-            {
-                var address = (Address)For.Model;
-
-                return string.Join("<br />", address.ToArray());
-            }
-
-            if (For.ModelExplorer.ModelType == typeof(LinkSummaryItem))
-            {
-                var urlSummaryItem = (LinkSummaryItem)For.Model;
-
-                var labelHtml = string.IsNullOrEmpty(urlSummaryItem.Label) ? string.Empty : $@"{urlSummaryItem.Label}<br />";
-
-                return $@"{labelHtml}<a target=""_blank"" class=""govuk-link"" href=""{urlSummaryItem.Link}"">{urlSummaryItem.LinkText} (opens in a new tab)</a>";
-            }
-            
-            var value = For.Model.ToString();
-
-            if (string.IsNullOrEmpty(value) || value == "NotSet")
-            {
-                return empty;
-            }
-
-            return value;
+            return result;
         }
 
         private string GetChangeLink()
@@ -159,6 +88,87 @@ namespace Dfe.Complete.TagHelpers
                             Change<span class=""govuk-visually-hidden"">{Label}</span>
                         </a>                   
                      </dd>";
+        }
+    }
+
+    public class SummaryItemValueBuilder
+    {
+        public static string Execute(object model, Type type)
+        {
+            if (model == null)
+            {
+                return HtmlTagConstants.Empty;
+            }
+
+            if (type == typeof(bool) || type == typeof(bool?))
+            {
+                return ((bool)model).ToYesNoString();
+            }
+
+            if (type == typeof(DateTime) || type == typeof(DateTime?))
+            {
+                return ((DateTime)model).ToDateString();
+            }
+
+            if (type.IsEnum || Nullable.GetUnderlyingType(type)?.IsEnum == true)
+            {
+                return BuildEnum(model);
+            }
+
+            if (type == typeof(decimal) || type == typeof(decimal?))
+            {
+                return ((decimal)model).ToString("C", new CultureInfo("en-GB"));
+            }
+
+            if (type == typeof(Address))
+            {
+                return BuildAddress((Address)model);
+            }
+
+            if (type == typeof(LinkSummaryItem))
+            {
+                return BuildLinkSummaryItem((LinkSummaryItem)model);
+            }
+
+            var value = model.ToString();
+
+            if (string.IsNullOrEmpty(value))
+            {
+                return HtmlTagConstants.Empty;
+            }
+
+            return value;
+        }
+
+        private static string BuildEnum(object value)
+        {
+            var result = value.ToDescription();
+
+            if (result == "NotSet")
+            {
+                return HtmlTagConstants.Empty;
+            }
+
+            return result;
+        }
+
+        private static string BuildAddress(Address address)
+        {
+            var addressLines = address.ToArray();
+
+            if (addressLines.Length == 0)
+            {
+                return HtmlTagConstants.Empty;
+            }
+
+            return string.Join("<br />", address.ToArray());
+        }
+
+        private static string BuildLinkSummaryItem(LinkSummaryItem linkSummaryItem)
+        {
+            var labelHtml = string.IsNullOrEmpty(linkSummaryItem.Label) ? string.Empty : $@"{linkSummaryItem.Label}<br />";
+
+            return $@"{labelHtml}<a target=""_blank"" class=""govuk-link"" href=""{linkSummaryItem.Link}"">{linkSummaryItem.LinkText} (opens in a new tab)</a>";
         }
     }
 

@@ -4,6 +4,7 @@ using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
+using Dfe.Complete.Data.Entities;
 using System;
 using System.Linq;
 using System.Net;
@@ -162,6 +163,35 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
 
             // School
             project.SchoolDetails.SharePointLink.Should().Be(updateProjectRequest.SchoolSharePointLink);
+        }
+
+        [Fact]
+        public async Task AcademiesReturns404_ReturnsEmptyTrustAndEstablishment() {
+            var createProjectRequest = _autoFixture.Create<CreateTransferProjectRequest>();
+            createProjectRequest.Region = Region.NorthWest;
+            createProjectRequest.Urn = "1111";
+            createProjectRequest.IncomingTrustDetails.Ukprn = "11111111";
+            createProjectRequest.OutgoingTrustDetails.Ukprn = "11111111";
+
+            var createResponse = await _client.PostAsync(RouteConstants.CreateTransferProject, createProjectRequest.ConvertToJson());
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+            var createProjectResponse = await createResponse.Content.ReadFromJsonAsync<CreateTransferProjectResponse>();
+
+            var projectId = createProjectResponse.Id;
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.TransferProjectById, projectId));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+            var project = await getResponse.Content.ReadFromJsonAsync<GetTransferProjectResponse>();
+
+            project.SchoolDetails.Name.Should().Be("1111");
+            project.SchoolDetails.Urn.Should().Be("1111");
+
+            project.IncomingTrustDetails.Name.Should().Be("11111111");
+            project.IncomingTrustDetails.UkPrn.Should().Be("11111111");
+
+            project.OutgoingTrustDetails.Name.Should().Be("11111111");
+            project.OutgoingTrustDetails.UkPrn.Should().Be("11111111");
+
         }
 
         [Fact]

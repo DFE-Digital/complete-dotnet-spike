@@ -18,12 +18,17 @@
                 LinkText = "View the trust SharePoint folder"
             };
 
-    var trustcompaniesHouse = new LinkSummaryItem()
-            {
-                Label = trustDetails.CompaniesHouseNumber,
-                Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, trustDetails.CompaniesHouseNumber),
-                LinkText = "View the Companies House information"
-            };
+    LinkSummaryItem trustcompaniesHouse = null;
+
+    if (!string.IsNullOrEmpty(trustDetails.CompaniesHouseNumber))
+    {
+        trustcompaniesHouse = new LinkSummaryItem()
+                {
+                    Label = trustDetails.CompaniesHouseNumber,
+                    Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, trustDetails.CompaniesHouseNumber),
+                    LinkText = "View the Companies House information"
+                };
+    }
 }
 
 <div id="@Model.Id" class="project-information-block">

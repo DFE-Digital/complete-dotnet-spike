@@ -44,12 +44,12 @@
 
             await Task.WhenAll(trustTask, establishmentTask);
 
-            var establishment = establishmentTask.Result.FirstOrDefault();
+            var establishments = establishmentTask.Result;
             var trustLookup = trustTask.Result.ToDictionary(t => t.Ukprn);
 
             var result = new GetEstablishmentAndTrustResponse
             {
-                Establishment = establishment,
+                Establishment = GetEstablishment(urn, establishments),
                 IncomingTrust = GetTrust(incomingTrustUkPrn, trustLookup),
                 OutgoingTrust = GetTrust(outgoingTrustUkPrn, trustLookup),
             };
@@ -57,13 +57,39 @@
             return result;
         }
 
+        private GetEstablishmentResponse GetEstablishment(int urn, List<GetEstablishmentResponse> establishments)
+        {
+            var result = establishments.FirstOrDefault();
+
+            if (result == null)
+            {
+                result = new GetEstablishmentResponse()
+                {
+                    Urn = urn.ToString(),
+                    Name = urn.ToString(),
+                };
+            }
+
+            return result;
+        }
+
         private GetTrustResponse GetTrust(int? ukPrn, Dictionary<string, GetTrustResponse> trustLookup)
         {
-            GetTrustResponse result = null;
+            GetTrustResponse result;
 
             if (ukPrn.HasValue && trustLookup.ContainsKey(ukPrn.ToString()))
             {
                 result = trustLookup[ukPrn.ToString()];
+            }
+            else
+            {
+                // If the trust cannot be found then then set the UK PRN that we tried to find
+                // Unlikely this happens, but has happened in the past when mistakes are made on GIAS
+                result = new GetTrustResponse()
+                {
+                    Ukprn = ukPrn?.ToString(),
+                    Name = ukPrn?.ToString(),
+                };
             }
 
             return result;

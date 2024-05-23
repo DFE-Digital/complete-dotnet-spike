@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Net;
 using System.Web;
 
 namespace Dfe.Complete.API.UseCases.Academies
@@ -33,9 +34,21 @@ namespace Dfe.Complete.API.UseCases.Academies
 
             var endpoint = $"/v4/trusts/bulk?{queryString}";
 
-            var result = await _apiClient.Get<List<GetTrustResponse>>(endpoint);
+            try
+            {
+                var result = await _apiClient.Get<List<GetTrustResponse>>(endpoint);
 
-            return result;
+                return result;
+            }
+            catch (HttpRequestException ex)
+            {
+                if (ex.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return new List<GetTrustResponse>();
+                }
+
+                throw;
+            }
         }
     }
 }
