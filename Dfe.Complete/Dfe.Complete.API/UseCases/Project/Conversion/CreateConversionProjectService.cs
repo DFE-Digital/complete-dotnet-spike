@@ -39,7 +39,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
                 SignificantDateProvisional = request.IsDateProvisional,
                 IncomingTrustUkprn = request.IncomingTrustDetails.Ukprn.ToInt(),
                 Region = request.Region,
-                TwoRequiresImprovement = request.IsIsDueTo2RI,
+                TwoRequiresImprovement = request.IsDueTo2RI,
                 DirectiveAcademyOrder = request.HasAcademyOrderBeenIssued,
                 AdvisoryBoardDate = request.AdvisoryBoardDetails.Date,
                 AdvisoryBoardConditions = request.AdvisoryBoardDetails.Conditions,

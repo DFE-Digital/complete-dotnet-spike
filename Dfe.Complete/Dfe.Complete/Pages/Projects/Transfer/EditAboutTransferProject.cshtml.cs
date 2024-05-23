@@ -10,6 +10,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
+using static Dfe.Complete.Services.DateRangeValidationService;
 
 namespace Dfe.Complete.Pages.Projects.Transfer
 {
@@ -19,21 +20,25 @@ namespace Dfe.Complete.Pages.Projects.Transfer
         public string ProjectId { get; set; }
 
         [BindProperty(Name = "outgoing-trust-ukprn")]
-        [Required(ErrorMessage="Enter a UKPRN")]
+        [GovukRequired]
+        [Ukprn]
+        [DisplayName("outgoing trust UKPRN")]
         public string OutgoingTrustUkprn { get;set; }
 
         [BindProperty(Name = "outgoing-trust-sharepoint-folder")]
-        [Required(ErrorMessage = "Enter an outgoing trust SharePoint link")]
+        [GovukRequired]
         [SharePointLink]
         [DisplayName("outgoing trust SharePoint link")]
         public string OutgoingTrustSharePointFolder { get; set; }
 
         [BindProperty(Name = "incoming-trust-ukprn")]
-        [Required(ErrorMessage = "Enter a UKPRN")]
+        [GovukRequired]
+        [Ukprn]
+        [DisplayName("incoming trust UKPRN")]
         public string IncomingTrustUkprn { get; set; }
 
         [BindProperty(Name = "incoming-trust-sharepoint-folder")]
-        [Required(ErrorMessage = "Enter an outgoing trust SharePoint link")]
+        [GovukRequired]
         [SharePointLink]
         [DisplayName("incoming trust SharePoint link")]
         public string IncomingTrustSharePointFolder { get; set; }
@@ -41,27 +46,31 @@ namespace Dfe.Complete.Pages.Projects.Transfer
         [BindProperty(Name = "date-of-advisory-board", BinderType = typeof(DateInputModelBinder))]
         [Required]
         [DisplayName("date for the advisory board")]
+        [DateValidation(DateRange.PastOrToday)]
         public DateTime? DateOfAdvisoryBoard { get; set; }
 
         [BindProperty(Name = "advisory-board-conditions")]
         public string AdvisoryBoardConditions { get; set; }
 
         [BindProperty(Name = "school-sharepoint-folder")]
-        [Required(ErrorMessage = "Enter a school SharePoint link")]
+        [GovukRequired]
         [SharePointLink]
         [DisplayName("school SharePoint link")]
         public string SchoolSharePointFolder { get; set; }
 
         [BindProperty(Name = "is-due-to-2ri")]
-        [Required]
+        [GovukRequired]
+        [DisplayName("is due to 2RI")]
         public bool? IsDueTo2RI { get; set; }
 
         [BindProperty(Name = "is-due-to-ofsted-rating")]
-        [Required]
+        [GovukRequired]
+        [DisplayName("is due to ofsted rating")]
         public bool? IsDueToOfstedRating { get; set; }
 
         [BindProperty(Name = "is-due-to-issues")]
-        [Required]
+        [GovukRequired]
+        [DisplayName("is due to issues")]
         public bool? IsDueToIssues { get; set; }
 
         private readonly ErrorService _errorService;

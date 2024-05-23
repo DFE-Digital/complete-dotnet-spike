@@ -53,7 +53,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Conversion
             project.ProjectDetails.Name.Should().Be("Establishment 1");
 
             // Reason for the conversion
-            project.ReasonForTheConversion.IsDueTo2RI.Should().Be(createProjectRequest.IsIsDueTo2RI);
+            project.ReasonForTheConversion.IsDueTo2RI.Should().Be(createProjectRequest.IsDueTo2RI);
             project.ReasonForTheConversion.HasAcademyOrderBeenIssued.Should().Be(createProjectRequest.HasAcademyOrderBeenIssued);
 
             // Advisory board details

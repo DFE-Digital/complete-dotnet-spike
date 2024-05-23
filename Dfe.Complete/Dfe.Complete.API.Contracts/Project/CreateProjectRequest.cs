@@ -7,7 +7,7 @@
         public bool? IsDateProvisional { get; set; }
         public string SchoolSharePointLink { get; set; }
         public Region? Region { get; set; }
-        public bool? IsIsDueTo2RI { get; set; }
+        public bool? IsDueTo2RI { get; set; }
         public AdvisoryBoardDetails AdvisoryBoardDetails { get; set; } = new();
         public CreateTrustDetails IncomingTrustDetails { get; set; } = new();
     }

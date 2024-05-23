@@ -11,7 +11,7 @@ namespace Dfe.Complete.Services
 				case DateRange.Past:
 					if (date >= DateTime.Today)
 					{
-						return (false, $"{displayName} date must be in the past");
+						return (false, $"The {displayName} must be in the past");
 					}
 
 					break;
@@ -19,7 +19,7 @@ namespace Dfe.Complete.Services
 				case DateRange.PastOrToday:
 					if (date > DateTime.Today)
 					{
-						return (false, $"{displayName} date must be today or in the past");
+						return (false, $"The {displayName} must be today or in the past");
 					}
 
 					break;
@@ -27,7 +27,7 @@ namespace Dfe.Complete.Services
 				case DateRange.Future:
 					if (date <= DateTime.Today)
 					{
-						return (false, $"{displayName} date must be in the future");
+						return (false, $"The {displayName} must be in the future");
 					}
 
 					break;
@@ -35,7 +35,7 @@ namespace Dfe.Complete.Services
 				case DateRange.FutureOrToday:
 					if (date < DateTime.Today)
 					{
-						return (false, $"{displayName} date must be today or in the future");
+						return (false, $"The {displayName} must be today or in the future");
 					}
 					break;
 				case DateRange.PastOrFuture:

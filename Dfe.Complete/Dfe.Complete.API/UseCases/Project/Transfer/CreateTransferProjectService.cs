@@ -40,7 +40,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
                 OutgoingTrustUkprn = request.OutgoingTrustDetails.Ukprn.ToInt(),
                 IncomingTrustUkprn = request.IncomingTrustDetails.Ukprn.ToInt(),
                 Region = request.Region,
-                TwoRequiresImprovement = request.IsIsDueTo2RI,
+                TwoRequiresImprovement = request.IsDueTo2RI,
                 AdvisoryBoardDate = request.AdvisoryBoardDetails.Date,
                 AdvisoryBoardConditions = request.AdvisoryBoardDetails.Conditions,
                 EstablishmentSharepointLink = request.SchoolSharePointLink,

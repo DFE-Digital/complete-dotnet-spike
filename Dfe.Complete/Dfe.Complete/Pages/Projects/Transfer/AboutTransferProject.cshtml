@@ -65,7 +65,7 @@
         <h2 class="govuk-heading-l">About the project</h2>
 
         <div id="projectDetails" class="project-information-block">
-            <h3 class="govuk-heading-m">Project details</h3>
+            <h3 class="govuk-heading-m" data-testid="title">Project details</h3>
             <govuk-summary-list>
                 <govuk-summary-item label="Type" asp-for="@projectDetails.ProjectType" />
                 <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
@@ -87,7 +87,7 @@
 
 
         <div id="reasonsFor" class="project-information-block">
-            <h3 class="govuk-heading-m">Reasons for the transfer</h3>
+            <h3 class="govuk-heading-m" data-testid="title">Reasons for the transfer</h3>
 
             <govuk-summary-list>
                 <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForTransfer.IsDueTo2RI" href="@editLink" />
@@ -99,7 +99,7 @@
 
 
         <div id="advisoryBoardDetails" class="project-information-block">
-            <h3 class="govuk-heading-m">Advisory board details</h3>
+            <h3 class="govuk-heading-m" data-testid="title">Advisory board details</h3>
 
             <govuk-summary-list>
                 <govuk-summary-item label="Date of advisory board" asp-for="@advisoryBoardDetails.Date" href="@editLink" />
@@ -110,7 +110,7 @@
 
 
         <div id="academyDetails" class="project-information-block">
-            <h3 class="govuk-heading-m">Academy details</h3>
+            <h3 class="govuk-heading-m" data-testid="title">Academy details</h3>
             <govuk-summary-list>
                 <govuk-summary-item label="Name" asp-for="@schoolGiasLink" />
                 <govuk-summary-item label="Academy URN (unique reference number)" asp-for="@schoolDetails.Urn" />

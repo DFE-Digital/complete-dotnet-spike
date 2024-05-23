@@ -54,7 +54,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project.Transfer
             project.ProjectDetails.Name.Should().Be("Establishment 1");
 
             // Reason for the transfer
-            project.ReasonForTheTransfer.IsDueTo2RI.Should().Be(createProjectRequest.IsIsDueTo2RI);
+            project.ReasonForTheTransfer.IsDueTo2RI.Should().Be(createProjectRequest.IsDueTo2RI);
             project.ReasonForTheTransfer.IsDueToOfstedRating.Should().Be(createProjectRequest.IsDueToOfstedRating);
             project.ReasonForTheTransfer.IsDueToIssues.Should().Be(createProjectRequest.IsDueToIssues);
 

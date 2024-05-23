@@ -27,7 +27,7 @@
 }
 
 <div id="@Model.Id" class="project-information-block">
-    <h3 class="govuk-heading-m">@Model.Label</h3>
+    <h3 class="govuk-heading-m" data-testid="title">@Model.Label</h3>
 
     <govuk-summary-list>
         <govuk-summary-item label="Name" asp-for="@trustGiasLink" />

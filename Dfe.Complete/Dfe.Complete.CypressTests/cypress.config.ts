@@ -7,7 +7,9 @@ export default defineConfig({
     watchForFileChanges: false,
     chromeWebSecurity: false,
     video: false,
-    retries: 1,
+    retries: {
+        runMode: 1
+    },
     userAgent: 'ManageFreeSchoolProjects/1.0 Cypress',
     reporter: "cypress-multi-reporters",
     reporterOptions: {

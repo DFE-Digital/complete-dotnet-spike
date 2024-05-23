@@ -3,6 +3,7 @@ class SummaryPage {
 
     public inOrder(): this {
         this.summaryCounter = -1
+        console.log(this.summaryCounter);
         return this;
     }
 
@@ -50,6 +51,11 @@ class SummaryPage {
         return this;
     }
 
+    public hasLink(value: string): this {
+        cy.get(".govuk-summary-list__value").eq(this.summaryCounter).find("a").should("have.attr", "href", value);
+        return this;
+    }
+
     public HasChangeLink(): this {
         cy.get(".govuk-summary-list__row").eq(this.summaryCounter).contains("Change");
         return this;
@@ -75,11 +81,6 @@ class SummaryPage {
 
     public clickChangeById(string): this {
         cy.getById(string).click();
-        return this;
-    }
-
-    public SummaryHasValue(name: string, value: string): this {
-        cy.get(".govuk-summary-list__key").contains(name).parent().should("contains.text", value);
         return this;
     }
 

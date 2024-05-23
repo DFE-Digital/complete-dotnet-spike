@@ -7,7 +7,12 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
         <partial name="_ErrorSummary" />
+
+        <h1 class="govuk-heading-xl" data-testid="title">
+            About the project
+        </h1>
 
         <form method="post" novalidate>
 
@@ -39,37 +44,37 @@
                                   rows="5" />
 
             <govuk-text-input asp-for="@Model.SchoolSharePointFolder"
-                              id="school-sharepoint-folder"
+                              id="establishment-sharepoint-link"
                               name="school-sharepoint-folder"
                               label="School SharePoint folder link"
                               bold-label="true" />
 
             <govuk-text-input asp-for="@Model.IncomingTrustSharePointFolder"
-                              id="incoming-trust-sharepoint-folder"
+                              id="incoming-trust-sharepoint-link"
                               name="incoming-trust-sharepoint-folder"
                               label="Incoming trust SharePoint folder link"
                               bold-label="true" />
 
             <govuk-text-input asp-for="@Model.OutgoingTrustSharePointFolder"
-                              id="outgoing-trust-sharepoint-folder"
+                              id="outgoing-trust-sharepoint-link"
                               name="outgoing-trust-sharepoint-folder"
                               label="Outgoing trust SharePoint folder link"
                               bold-label="true" />
 
             <govuk-yesno-input asp-for="@Model.IsDueTo2RI"
-                               id="is-due-to-2ri"
+                               id="two-requires-improvement"
                                name="is-due-to-2ri"
                                label="Is this a transfer due to 2RI?"
                                bold-label="true" />
 
             <govuk-yesno-input asp-for="@Model.IsDueToOfstedRating"
-                               id="is-due-to-ofsted-rating"
+                               id="inadequate-ofsted"
                                name="is-due-to-ofsted-rating"
                                label="Is this transfer due to an inadequate Ofsted rating?"
                                bold-label="true" />
 
             <govuk-yesno-input asp-for="@Model.IsDueToIssues"
-                               id="is-due-to-issues"
+                               id="financial-safeguarding-governance-issues"
                                name="is-due-to-issues"
                                label="Is this transfer due to financial, safeguarding or governance issues?"
                                bold-label="true" />
