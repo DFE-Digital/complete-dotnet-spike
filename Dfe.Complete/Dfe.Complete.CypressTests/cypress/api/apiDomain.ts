@@ -27,7 +27,17 @@ export type CreateTransferProjectResponse =
         id: string;
     };
 
-export type CreateConversionProjectRequest = {};
+export type CreateConversionProjectRequest = {
+    urn: string;
+    date: string;
+    isDateProvisional: boolean;
+    schoolSharePointLink: string;
+    region: Region;
+    isDueTo2RI: boolean;
+    hasAcademyOrderBeenIssued: boolean;
+    advisoryBoardDetails: AdvisoryBoardDetails;
+    incomingTrustDetails: CreateTrustDetails;
+};
 
 export type CreateConversionProjectResponse =
     {

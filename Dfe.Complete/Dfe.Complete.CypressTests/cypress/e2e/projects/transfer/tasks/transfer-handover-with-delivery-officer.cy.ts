@@ -4,6 +4,7 @@ import editHandoverWithDeliveryOfficerPage from "cypress/pages/projects/tasks/ed
 import projectSummarySection from "cypress/pages/projects/projectSummarySection";
 import taskListPage, { TransferTaskNames } from "cypress/pages/projects/taskListPage";
 import summaryPage from "cypress/pages/projects/summaryPage";
+import { ProjectBuilder } from "cypress/api/projectBuilder";
 
 describe("Transfer handover with delivery officer task", () => {
 
@@ -13,7 +14,7 @@ describe("Transfer handover with delivery officer task", () => {
         cy.login();
 
         transferProjectApi
-            .createProject({})
+            .createProject(ProjectBuilder.createTransferProjectRequest())
             .then(response => {
                 projectId = response.id;
                 cy.visit(`/transfer-projects/${projectId}/tasks`);
@@ -24,10 +25,10 @@ describe("Transfer handover with delivery officer task", () => {
         cy.executeAccessibilityTests();
 
         projectSummarySection
-            .hasUrn("116564")
+            .hasUrn("142277 ")
             .hasTransferBadge()
-            .hasSchoolName("Southlands School")
-            .hasTransferDate("1 June 2025");
+            .hasSchoolName("Newcastle Academy")
+            .hasTransferDate("1 March 2026");
 
         Logger.log("Task has status not started");
         taskListPage

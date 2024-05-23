@@ -4,6 +4,7 @@ import editHandoverWithDeliveryOfficerPage from "cypress/pages/projects/tasks/ed
 import projectSummarySection from "cypress/pages/projects/projectSummarySection";
 import taskListPage, { ConversionTaskNames } from "cypress/pages/projects/taskListPage";
 import summaryPage from "cypress/pages/projects/summaryPage";
+import { ProjectBuilder } from "cypress/api/projectBuilder";
 
 describe("Conversion handover with delivery officer task", () => {
 
@@ -13,7 +14,7 @@ describe("Conversion handover with delivery officer task", () => {
         cy.login();
 
         conversionProjectApi
-            .createProject({})
+            .createProject(ProjectBuilder.createConversionProjectRequest())
             .then(response => {
                 projectId = response.id;
             });
@@ -26,10 +27,10 @@ describe("Conversion handover with delivery officer task", () => {
         cy.executeAccessibilityTests();
 
         projectSummarySection
-            .hasUrn("112209")
+            .hasUrn("142277")
             .hasConversionBadge()
-            .hasSchoolName("Vickerstown School")
-            .hasConversionDate("1 May 2023");
+            .hasSchoolName("Newcastle Academy")
+            .hasConversionDate("1 March 2026");
 
         Logger.log("Task has status not started");
         taskListPage

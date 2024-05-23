@@ -1,3 +1,4 @@
+import { ProjectBuilder } from "cypress/api/projectBuilder";
 import transferProjectApi from "cypress/api/transferProjectApi";
 import { Logger } from "cypress/common/logger";
 import summaryPage from "cypress/pages/projects/summaryPage";
@@ -11,7 +12,7 @@ describe("Transfer external stakeholder kickoff task", () => {
         cy.login();
 
         transferProjectApi
-            .createProject({})
+            .createProject(ProjectBuilder.createTransferProjectRequest())
             .then(response => {
                 projectId = response.id;
                 cy.visit(`/transfer-projects/${projectId}/tasks`);
