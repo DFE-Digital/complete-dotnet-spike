@@ -1,7 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.Constants;
 using Dfe.Complete.Extensions;
-using DocumentFormat.OpenXml.EMMA;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;

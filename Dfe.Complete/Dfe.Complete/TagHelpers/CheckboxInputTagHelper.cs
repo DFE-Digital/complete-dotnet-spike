@@ -29,7 +29,8 @@ namespace Dfe.Complete.TagHelpers
                 HeadingLabel, 
                 BoldLabel = BoldLabel, 
                 Value = For.Model?.ToString(),
-                AddMargin = AddMargin
+                AddMargin = AddMargin,
+                Hint = Hint
 
             };
 

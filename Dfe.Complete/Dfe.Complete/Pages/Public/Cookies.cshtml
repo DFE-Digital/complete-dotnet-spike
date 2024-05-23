@@ -7,15 +7,13 @@
 }
 
 @section BeforeMain {
-    <div role="navigation" class="govuk-width-container">
-        <a href="@Model.returnPath" class="govuk-back-link">Back</a>
-    </div>
+    <a href="@Model.returnPath" class="govuk-back-link">Back</a>
 }
 
 @if (Model.PreferencesSet)
 {
     <div class="govuk-notification-banner govuk-notification-banner--success" role="alert"
-        aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+         aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
         <div class="govuk-notification-banner__header">
             <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
                 Success
@@ -24,8 +22,10 @@
         <div class="govuk-notification-banner__content">
             <p class="govuk-notification-banner__heading">
                 You’ve set your cookie preferences. <a class="govuk-notification-banner__link"
-                    data-test="success-banner-return-link" href="@Model.returnPath">Go back to the page you were looking
-                    at</a>.
+                                                       data-test="success-banner-return-link" href="@Model.returnPath">
+                    Go back to the page you were looking
+                    at
+                </a>.
             </p>
         </div>
     </div>
@@ -68,7 +68,8 @@
                 </tr>
                 <tr>
                     <td class="govuk-table__cell">.AspNetCore.Antiforgery.VyLW6ORzMgk</td>
-                    <td class="govuk-table__cell">Secures you and our website against Cross Site Request Forgery (CSRF)
+                    <td class="govuk-table__cell">
+                        Secures you and our website against Cross Site Request Forgery (CSRF)
                     </td>
                     <td class="govuk-table__cell">With browser settings (session)</td>
                 </tr>
@@ -105,10 +106,14 @@
             </tbody>
         </table>
         <h2 class="govuk-heading-l">Analytics cookies (optional)</h2>
-        <p class="govuk-body">With your permission, we use Google Analytics to collect data about how you use this
-            website. This information helps us to improve our website.</p>
-        <p class="govuk-body">Google Analytics is not allowed to use or share our analytics data with anyone.
-            Application Insights stores anonymised information about:</p>
+        <p class="govuk-body">
+            With your permission, we use Google Analytics to collect data about how you use this
+            website. This information helps us to improve our website.
+        </p>
+        <p class="govuk-body">
+            Google Analytics is not allowed to use or share our analytics data with anyone.
+            Application Insights stores anonymised information about:
+        </p>
         <ul class="govuk-list govuk-list--bullet">
             <li>how you got to this website</li>
             <li>the pages you visit on this website and how long you spend on them</li>
@@ -149,14 +154,14 @@
                     <div class="govuk-radios">
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="cookie-consent-accept" name="consent" type="radio"
-                                value="true" checked="@Model.Consent">
+                                   value="true" checked="@Model.Consent">
                             <label class="govuk-label govuk-radios__label" for="cookie-consent-accept">
                                 Yes
                             </label>
                         </div>
                         <div class="govuk-radios__item">
                             <input class="govuk-radios__input" id="cookie-consent-deny" name="consent" type="radio"
-                                value="false" checked="@(Model.Consent == false)">
+                                   value="false" checked="@(Model.Consent == false)">
                             <label class="govuk-label govuk-radios__label" for="cookie-consent-deny">
                                 No
                             </label>
@@ -165,7 +170,7 @@
                 </fieldset>
             </div>
             <input type="submit" name="commit" value="Save changes" class="govuk-button" data-qa="submit"
-                data-module="govuk-button" data-disable-with="Save changes">
+                   data-module="govuk-button" data-disable-with="Save changes">
         </form>
     </div>
 </div>

@@ -41,6 +41,12 @@
                         @Model.Label
                     </label>
                 }
+                @if (!string.IsNullOrEmpty(Model.Hint))
+                {
+                    <span id="@Model.Id-hint" class="govuk-hint govuk-checkboxes__hint">
+                        @Html.Raw(@Model.Hint)
+                    </span>
+                }
             </div>
         </div>
     </fieldset>

@@ -14,5 +14,6 @@
 		public bool AddMargin { get; set; }
 
         public string TestId { get; set; }
+		public string Hint { get; set; }
     }
 }
