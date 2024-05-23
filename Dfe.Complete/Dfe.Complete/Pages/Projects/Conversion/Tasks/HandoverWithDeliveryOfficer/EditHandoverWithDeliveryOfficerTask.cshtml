@@ -3,6 +3,43 @@
 @model Dfe.Complete.Pages.Projects.Conversion.Tasks.HandoverWithDeliveryOfficer.EditHandoverWithDeliveryOfficerTaskModel
 @{
     var backlink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
+
+    var reviewProjectInformationHint = @"
+    Check that no information is missing from the existing project documents and there are no errors.
+    <div class=""guidance"">
+        <details data-module=""govuk-details"" class=""govuk-details"">
+            <summary class=""govuk-details__summary"">
+                <span class=""govuk-details__summary-text"">What to check for</span>
+            </summary>
+            <div class=""govuk-details__text"">
+                <p>You should check existing project documents, including:</p>
+                <ul>
+                    <li>academy order</li>
+                    <li>application to convert</li> 
+                </ul>
+                <p>Check that no information is missing and there are no errors. You should also research the background of the project before you meet with the regional delivery officer.</p>
+                <p>Things to check during your background research include:</p> 
+                <ul>
+                    <li>project information, such as advisory board conditions</li>
+                    <li>school or trust website for more information about the school</li>
+                    <li>Google Maps for potential land issues</li>
+                </ul>
+             </div>
+         </details>
+     </div>";
+
+    var makeNotesHint = @"
+    <div class=""guidance"">
+        <details data-module=""govuk-details"" class=""govuk-details"">
+            <summary class=""govuk-details__summary"">
+                <span class=""govuk-details__summary-text"">What to check for</span>
+            </summary>
+            <div class=""govuk-details__text"">
+                <p>Note down things you want to ask and talk about with the regional delivery officer at the handover meeting.</p>
+                <p>This is an opportunity to clarify anything that you're unsure about after reviewing the project and doing your background research.</p>
+            </div>
+        </details>
+    </div>";
 }
 @section BeforeMain {
     <a href=@backlink class="govuk-back-link">Back</a>
@@ -26,18 +63,21 @@
                                   asp-for="@Model.ReviewProjectInformation"
                                   name="review-project-information"
                                   id="transfer_task_handover_task_form_review"
+                                  hint="@reviewProjectInformationHint"
                                   add-margin=false />
 
             <govuk-checkbox-input label="Make notes and write questions to ask the regional delivery officer"
                                   asp-for="@Model.MakeNotes"
                                   name="make-notes"
                                   id="transfer_task_handover_task_form_notes"
+                                  hint="@makeNotesHint"
                                   add-margin=false />
 
             <govuk-checkbox-input label="Attend handover meeting with regional delivery officer"
                                   asp-for="@Model.AttendHandoverMeeting"
                                   name="attend-handover-meeting"
                                   id="transfer_task_handover_task_form_meeting"
+                                  hint="Discuss any questions you have about the project in the meeting."
                                   add-margin=false />
 
             <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save and return</button>

@@ -31,7 +31,6 @@ namespace Dfe.Complete.TagHelpers
                 Value = For.Model?.ToString(),
                 AddMargin = AddMargin,
                 Hint = Hint
-
             };
 
             return await _htmlHelper.PartialAsync("_CheckboxInput", model);
