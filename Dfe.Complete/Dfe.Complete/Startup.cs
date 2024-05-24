@@ -1,11 +1,9 @@
 using Azure.Storage.Blobs;
 using Dfe.Complete.API.Configuration;
 using Dfe.Complete.API.Extensions;
-using Dfe.Complete.API.Middleware;
 using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Configuration;
-using Dfe.Complete.Middleware;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
 using Dfe.Complete.StartupConfiguration;

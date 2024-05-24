@@ -5,6 +5,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>disable</Nullable>
       <UserSecretsId>d62d3434-4dd0-41eb-b548-ce55f1614767</UserSecretsId>
+      <OutputType>Library</OutputType>
   </PropertyGroup>
 
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'ManageFreeSchoolProjects.API' " />

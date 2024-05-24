@@ -1,3 +1,5 @@
+using Dfe.Complete.API.Configuration;
+
 namespace Dfe.Complete.API.StartupConfiguration;
 
 public static class StartupConfigurationExtensions
@@ -7,7 +9,7 @@ public static class StartupConfigurationExtensions
 		services.AddApiDependencies();
 		services.AddDatabase(configuration);
 		services.AddApi(configuration);
-		
-		return services;
+
+        return services;
 	}
 }
