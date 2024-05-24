@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 
-namespace Dfe.Complete.Attributes
+namespace Dfe.Complete.Validators
 {
-    public class SharePointLinkAttribute : ValidationAttribute
+    public class UkprnAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
@@ -12,23 +12,17 @@ namespace Dfe.Complete.Attributes
             var displayAttribute = property?.GetCustomAttribute<DisplayAttribute>();
             var displayName = displayAttribute?.GetName() ?? validationContext.DisplayName;
 
-            var link = value as string;
+            var ukprn = value as string;
 
-            if (string.IsNullOrEmpty(link))
+            if (string.IsNullOrEmpty(ukprn))
             {
                 return ValidationResult.Success;
             }
 
-            if (!link.StartsWith("https://"))
+            if (ukprn.Length != 8)
             {
-                var errorMessage = $"The {displayName} must have the https scheme";
+                var errorMessage = $"The {displayName} must be 8 digits long and start with a 1. For example, 12345678.";
 
-                return new ValidationResult(errorMessage);
-            }
-
-            if (!link.StartsWith("https://educationgovuk.sharepoint.com"))
-            {
-                var errorMessage = $"Enter {displayName} in the correct format. SharePoint links start with 'https://educationgovuk.sharepoint.com' or 'https://educationgovuk-my.sharepoint.com/'";
                 return new ValidationResult(errorMessage);
             }
 

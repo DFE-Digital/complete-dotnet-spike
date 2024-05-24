@@ -5,7 +5,7 @@ using Microsoft.Extensions.Primitives;
 using NSubstitute;
 using System.Collections.Generic;
 
-namespace Dfe.Complete.API.Tests.Factories
+namespace Dfe.Complete.API.Tests.Paging
 {
     public class PagingResponseFactoryTests
     {
