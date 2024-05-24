@@ -31,7 +31,7 @@ namespace Dfe.Complete.API
         {
             services.AddApplicationInsightsTelemetry();
 
-            services.AddMfspApiProject(Configuration);
+            services.AddCompleteApiProject(Configuration);
 
             services.AddHttpClient("AcademiesClient", (_, client) =>
             {
@@ -43,7 +43,7 @@ namespace Dfe.Complete.API
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
-	        app.UseManageFreeSchoolProjectsSwagger(provider);
+	        app.UseCompleteSwagger(provider);
 
             if (env.IsDevelopment())
             {
@@ -62,7 +62,7 @@ namespace Dfe.Complete.API
 
             app.UseAuthorization();
 
-            app.UseManageFreeSchoolProjectsEndpoints();
+            app.UseCompleteEndpoints();
         }
     }
 }

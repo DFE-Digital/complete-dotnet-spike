@@ -50,7 +50,7 @@ public class ExceptionHandlerMiddleware
 		}
 	}
 
-	private bool IsApiRequest(string path) => path.StartsWith("/v2/");
+	private bool IsApiRequest(string path) => path.StartsWith("/api/");
 
 	private async Task<string> BodyToString(Stream requestBody)
 	{

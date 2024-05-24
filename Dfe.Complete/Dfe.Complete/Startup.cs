@@ -1,11 +1,14 @@
 using Azure.Storage.Blobs;
+using Dfe.Complete.API.Configuration;
+using Dfe.Complete.API.Extensions;
+using Dfe.Complete.API.Middleware;
+using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Configuration;
+using Dfe.Complete.Middleware;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
-using Dfe.Complete.Services.Project;
-using Dfe.Complete.Services.Project.Conversion;
-using Dfe.Complete.Services.Project.Transfer;
+using Dfe.Complete.StartupConfiguration;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -13,10 +16,10 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.FeatureManagement;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
@@ -68,28 +71,13 @@ public class Startup
            .AddMicrosoftIdentityUI();
         SetupDataprotection(services);
 
-        services.AddScoped<CompleteApiClient, CompleteApiClient>();
-        services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
-        services.AddScoped<IGetProjectListService, GetProjectListService>();
-
-        // Transfers
-        services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();
-        services.AddScoped<IUpdateTransferProjectByTaskService, UpdateTransferProjectByTaskService>();
-        services.AddScoped<IGetTransferProjectByTaskSummaryService, GetTransferProjectByTaskSummaryService>();
-        services.AddScoped<IGetTransferProjectService, GetTransferProjectService>();
-        services.AddScoped<IUpdateTransferProjectService, UpdateTransferProjectService>();
-
-        // Conversions
-        services.AddScoped<IGetConversionProjectByTaskService, GetConversionProjectByTaskService>();
-        services.AddScoped<IUpdateConversionProjectByTaskService, UpdateConversionProjectByTaskService>();
-        services.AddScoped<IGetConversionProjectByTaskSummaryService, GetConversionProjectByTaskSummaryService>();
-        services.AddScoped<IGetConversionProjectService, GetConversionProjectService>();
+        services.AddCompleteClientProject(Configuration);
 
         services.AddScoped(sp => sp.GetService<IHttpContextAccessor>()?.HttpContext?.Session);
         services.AddSession(options =>
         {
             options.IdleTimeout = _authenticationExpiration;
-            options.Cookie.Name = ".ManageFreeSchoolProjects.Session";
+            options.Cookie.Name = ".Complete.Session";
             options.Cookie.IsEssential = true;
         });
         services.AddHttpContextAccessor();
@@ -101,7 +89,7 @@ public class Startup
            options =>
            {
                options.AccessDeniedPath = "/access-denied";
-               options.Cookie.Name = ".ManageFreeSchoolProjects.Login";
+               options.Cookie.Name = ".Complete.Login";
                options.Cookie.HttpOnly = true;
                options.Cookie.IsEssential = true;
                options.ExpireTimeSpan = _authenticationExpiration;
@@ -126,7 +114,16 @@ public class Startup
         services.AddSingleton<IAuthorizationHandler, ClaimsRequirementHandler>();
 
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
- 
+
+        // API
+        services.AddCompleteApiProject(Configuration);
+
+        services.AddHttpClient("AcademiesClient", (_, client) =>
+        {
+            AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
+            client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
+            client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
+        });
     }
 
     private void SetupDataprotection(IServiceCollection services)
@@ -147,9 +144,9 @@ public class Startup
         }
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
     {
-        logger.LogInformation("Feature Flag - Use Academisation API: {usingAcademisationApi}", IsFeatureEnabled("hi"));
+        app.UseCompleteSwagger(provider);
 
         if (env.IsDevelopment())
         {
@@ -186,19 +183,13 @@ public class Startup
 
         app.UseEndpoints(endpoints =>
         {
-            //endpoints.MapGet("/", context =>
-            //{
-            //   context.Response.Redirect("project-type", false);
-            //   return Task.CompletedTask;
-            //});
             endpoints.MapRazorPages();
             endpoints.MapControllerRoute("default", "{controller}/{action}/");
         });
 
-        bool IsFeatureEnabled(string flag)
-        {
-            return (app.ApplicationServices.GetService(typeof(IFeatureManager)) as IFeatureManager)?.IsEnabledAsync(flag).Result ?? false;
-        }
+        // API
+        app.UseApiMiddleware();
+        app.UseCompleteEndpoints();
     }
 
     /// <summary>

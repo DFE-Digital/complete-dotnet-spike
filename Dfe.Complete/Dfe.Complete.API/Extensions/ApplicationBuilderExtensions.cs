@@ -5,7 +5,7 @@ namespace Dfe.Complete.API.Extensions;
 
 public static class ApplicationBuilderExtensions
 {
-	public static IApplicationBuilder UseManageFreeSchoolProjectsSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
+	public static IApplicationBuilder UseCompleteSwagger(this IApplicationBuilder app, IApiVersionDescriptionProvider provider)
 	{
 		app.UseSwagger();
 		app.UseSwaggerUI(c =>
@@ -21,7 +21,7 @@ public static class ApplicationBuilderExtensions
 		return app;
 	}
 	    
-	public static IApplicationBuilder UseManageFreeSchoolProjectsEndpoints(this IApplicationBuilder app)
+	public static IApplicationBuilder UseCompleteEndpoints(this IApplicationBuilder app)
 	{
 		app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 

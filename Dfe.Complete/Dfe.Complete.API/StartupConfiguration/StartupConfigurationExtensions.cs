@@ -2,7 +2,7 @@ namespace Dfe.Complete.API.StartupConfiguration;
 
 public static class StartupConfigurationExtensions
 {
-	public static IServiceCollection AddMfspApiProject(this IServiceCollection services, IConfiguration configuration)
+	public static IServiceCollection AddCompleteApiProject(this IServiceCollection services, IConfiguration configuration)
 	{
 		services.AddApiDependencies();
 		services.AddDatabase(configuration);
