@@ -5,8 +5,7 @@
     var backlink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
 
     var reviewProjectInformationHint = @"
-    Check that no information is missing from the existing project documents and there are no errors.
-    <div class=""guidance"">
+        Check that no information is missing from the existing project documents and there are no errors.
         <details data-module=""govuk-details"" class=""govuk-details"">
             <summary class=""govuk-details__summary"">
                 <span class=""govuk-details__summary-text"">What to check for</span>
@@ -24,12 +23,10 @@
                     <li>school or trust website for more information about the school</li>
                     <li>Google Maps for potential land issues</li>
                 </ul>
-             </div>
-         </details>
-     </div>";
+                </div>
+            </details>";
 
     var makeNotesHint = @"
-    <div class=""guidance"">
         <details data-module=""govuk-details"" class=""govuk-details"">
             <summary class=""govuk-details__summary"">
                 <span class=""govuk-details__summary-text"">What to check for</span>
@@ -38,8 +35,7 @@
                 <p>Note down things you want to ask and talk about with the regional delivery officer at the handover meeting.</p>
                 <p>This is an opportunity to clarify anything that you're unsure about after reviewing the project and doing your background research.</p>
             </div>
-        </details>
-    </div>";
+        </details>";
 }
 @section BeforeMain {
     <a href=@backlink class="govuk-back-link">Back</a>
