@@ -10,20 +10,7 @@
 
     <PropertyGroup Condition=" '$(RunConfiguration)' == 'ManageFreeSchoolProjects.API' " />
     <ItemGroup>
-      <Content Remove="appsettings.json" />
-      <Content Remove="appsettings.tests.json" />
-    </ItemGroup>
-    <ItemGroup>
       <AdditionalFiles Include="..\.sonarlint\dfe-digital_a2b-internal\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Include="appsettings.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
-      <None Include="appsettings.tests.json">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
     </ItemGroup>
 
     <ItemGroup>

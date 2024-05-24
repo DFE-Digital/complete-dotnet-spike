@@ -75,7 +75,7 @@ public class Startup
         services.AddSession(options =>
         {
             options.IdleTimeout = _authenticationExpiration;
-            options.Cookie.Name = ".Complete.Session";
+            options.Cookie.Name = ".Mfsp.Session";
             options.Cookie.IsEssential = true;
         });
         services.AddHttpContextAccessor();
@@ -152,7 +152,7 @@ public class Startup
            options =>
            {
                options.AccessDeniedPath = "/access-denied";
-               options.Cookie.Name = ".Complete.Login";
+               options.Cookie.Name = ".Mfsp.Login";
                options.Cookie.HttpOnly = true;
                options.Cookie.IsEssential = true;
                options.ExpireTimeSpan = _authenticationExpiration;
