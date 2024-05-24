@@ -18,34 +18,30 @@ namespace Dfe.Complete.API.Middleware
             IConstructApiKeyValidationService constructApiKeyValidationService,
             ISfaApiKeyValidationService sfaApiKeyValidationService)
         {
-	        if (IsApiCall(context))
-	        {
-		        if (!context.Request.Headers.TryGetValue(APIKEYNAME, out var extractedApiKey))
-		        {
-			        context.Response.StatusCode = 401;
-			        await context.Response.WriteAsync("Api Key was not provided.");
-			        return;
-		        }
+	        
+		    if (!context.Request.Headers.TryGetValue(APIKEYNAME, out var extractedApiKey))
+		    {
+			    context.Response.StatusCode = 401;
+			    await context.Response.WriteAsync("Api Key was not provided.");
+			    return;
+		    }
 
-		        var isKeyValid = apiKeyValidationService.Execute(extractedApiKey);
+		    var isKeyValid = apiKeyValidationService.Execute(extractedApiKey);
 
-		        if (!isKeyValid)
-		        {
-					var isConstructRouteWithValidKey = constructApiKeyValidationService.Execute(context, extractedApiKey);
-                    var isSfaRouteWithValidKey = sfaApiKeyValidationService.Execute(context, extractedApiKey);
+		    if (!isKeyValid)
+		    {
+				var isConstructRouteWithValidKey = constructApiKeyValidationService.Execute(context, extractedApiKey);
+                var isSfaRouteWithValidKey = sfaApiKeyValidationService.Execute(context, extractedApiKey);
 
-					if (!isConstructRouteWithValidKey && !isSfaRouteWithValidKey)
-					{
-                        context.Response.StatusCode = 401;
-                        await context.Response.WriteAsync("Unauthorized client.");
-                        return;
-                    }
-		        }
-	        }
-
+				if (!isConstructRouteWithValidKey && !isSfaRouteWithValidKey)
+				{
+                    context.Response.StatusCode = 401;
+                    await context.Response.WriteAsync("Unauthorized client.");
+                    return;
+                }
+		    }
+	        
 	        await _next(context);
         }
-
-        private bool IsApiCall(HttpContext context) => context.Request.Path.HasValue;
     }
 }

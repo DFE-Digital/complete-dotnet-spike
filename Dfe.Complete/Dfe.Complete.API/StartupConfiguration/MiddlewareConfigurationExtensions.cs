@@ -16,7 +16,6 @@ namespace Dfe.Complete.API.StartupConfiguration
                 appBuilder.UseMiddleware<ApiKeyMiddleware>();
                 appBuilder.UseMiddleware<UrlDecoderMiddleware>();
                 appBuilder.UseMiddleware<CorrelationIdMiddleware>();
-                appBuilder.UseMiddleware<UserContextReceiverMiddleware>();
             });
         }
     }

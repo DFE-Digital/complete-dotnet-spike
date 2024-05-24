@@ -1,11 +1,10 @@
-﻿using Ardalis.GuardClauses;
-using Dfe.Complete.UserContext;
+﻿using Dfe.Complete.UserContext;
 using System.Net;
 using System.Text;
 
 namespace Dfe.Complete.API.Middleware
 {
-	public class UserContextReceiverMiddleware
+    public class UserContextReceiverMiddleware
 	{
 		private readonly RequestDelegate _next;
 
@@ -16,21 +15,15 @@ namespace Dfe.Complete.API.Middleware
 
 		public async Task InvokeAsync(HttpContext httpContext, IServerUserInfoService userInfoService, ILogger<UserContextReceiverMiddleware> logger)
 		{
-			Guard.Against.Null(userInfoService, nameof(userInfoService));
-			Guard.Against.Null(logger, nameof(logger));
+			userInfoService.ReceiveRequestHeaders(httpContext.Request.Headers);
 
-			if (IsApiRequest(httpContext.Request.Path))
+			if (userInfoService.UserInfo == null)
 			{
-				userInfoService.ReceiveRequestHeaders(httpContext.Request.Headers);
-
-				if (userInfoService.UserInfo == null)
-				{
-					logger.LogError($"Call to {httpContext.Request.Path} received without user information headers. Responding with unauthorized request. Headers:{HeadersToStrings(httpContext.Request)}");
-					httpContext.Response.Clear();
-					httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-					await httpContext.Response.WriteAsync($"Unauthorized. Requests must supply user-context information. Requested path: {httpContext.Request.Path}, Headers:{HeadersToStrings(httpContext.Request)}");
-					return;
-				}
+				logger.LogError($"Call to {httpContext.Request.Path} received without user information headers. Responding with unauthorized request. Headers:{HeadersToStrings(httpContext.Request)}");
+				httpContext.Response.Clear();
+				httpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+				await httpContext.Response.WriteAsync($"Unauthorized. Requests must supply user-context information. Requested path: {httpContext.Request.Path}, Headers:{HeadersToStrings(httpContext.Request)}");
+				return;
 			}
 
 			await _next(httpContext);
@@ -43,7 +36,5 @@ namespace Dfe.Complete.API.Middleware
 			sb.AppendJoin(';', headerStrings);
 			return sb.ToString();
 		}
-
-		private bool IsApiRequest(string path) => path.StartsWith("/v2/") && !path.Contains("swagger");
 	}
 }

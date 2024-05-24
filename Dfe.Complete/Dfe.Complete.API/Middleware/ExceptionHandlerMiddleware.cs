@@ -17,7 +17,7 @@ public class ExceptionHandlerMiddleware
 	{
 		try
 		{
-			bool captureBadRequestsWithBodyAsWarnings = (logger.IsEnabled(LogLevel.Warning) && IsApiRequest(httpContext.Request.Path));
+			bool captureBadRequestsWithBodyAsWarnings = (logger.IsEnabled(LogLevel.Warning));
 			if (captureBadRequestsWithBodyAsWarnings)
 			{
 				httpContext.Request.EnableBuffering();
@@ -49,8 +49,6 @@ public class ExceptionHandlerMiddleware
 			await HandleHttpException(parameters);
 		}
 	}
-
-	private bool IsApiRequest(string path) => path.StartsWith("/api/");
 
 	private async Task<string> BodyToString(Stream requestBody)
 	{

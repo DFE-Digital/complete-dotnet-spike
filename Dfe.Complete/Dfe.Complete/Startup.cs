@@ -1,11 +1,9 @@
 using Azure.Storage.Blobs;
 using Dfe.Complete.API.Configuration;
 using Dfe.Complete.API.Extensions;
-using Dfe.Complete.API.Middleware;
 using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Configuration;
-using Dfe.Complete.Middleware;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
 using Dfe.Complete.StartupConfiguration;
@@ -24,7 +22,6 @@ using Microsoft.FeatureManagement;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System;
-using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 
 namespace Dfe.Complete;
@@ -70,7 +67,7 @@ public class Startup
 
         services.AddControllersWithViews()
            .AddMicrosoftIdentityUI();
-        SetupDataprotection(services);
+        SetupDataProtection(services);
 
         services.AddCompleteClientProject(Configuration);
 
@@ -86,29 +83,9 @@ public class Startup
         services.AddAuthorization(options => { options.DefaultPolicy = SetupAuthorizationPolicyBuilder().Build(); });
 
         services.AddMicrosoftIdentityWebAppAuthentication(Configuration);
-        services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme,
-           options =>
-           {
-               options.AccessDeniedPath = "/access-denied";
-               options.Cookie.Name = ".Complete.Login";
-               options.Cookie.HttpOnly = true;
-               options.Cookie.IsEssential = true;
-               options.ExpireTimeSpan = _authenticationExpiration;
-               options.SlidingExpiration = true;
-               if (string.IsNullOrEmpty(Configuration["CI"]))
-               {
-                   options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-               }
-           });
+        ConfigureCookies(services);
 
         services.AddApplicationInsightsTelemetry();
-
-        services.AddHttpClient("CompleteClient", (_, client) =>
-        {
-            CompleteOptions mfspOptions = GetTypedConfigurationFor<CompleteOptions>();
-            client.BaseAddress = new Uri(mfspOptions.ApiEndpoint);
-            client.DefaultRequestHeaders.Add("ApiKey", mfspOptions.ApiKey);
-        });
 
         services.AddScoped<ErrorService>();
         services.AddSingleton<IAuthorizationHandler, HeaderRequirementHandler>();
@@ -116,33 +93,10 @@ public class Startup
 
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
+        RegisterClients(services);
+
         // API
         services.AddCompleteApiProject(Configuration);
-
-        services.AddHttpClient("AcademiesClient", (_, client) =>
-        {
-            AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
-            client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
-            client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
-        });
-    }
-
-    private void SetupDataprotection(IServiceCollection services)
-    {
-        if (!string.IsNullOrEmpty(Configuration["ConnectionStrings:BlobStorage"]))
-        {
-            string blobName = "keys.xml";
-            BlobContainerClient container = new BlobContainerClient(new Uri(Configuration["ConnectionStrings:BlobStorage"]));
-
-            BlobClient blobClient = container.GetBlobClient(blobName);
-
-            services.AddDataProtection()
-                .PersistKeysToAzureBlobStorage(blobClient);
-        }
-        else
-        {
-            services.AddDataProtection();
-        }
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
@@ -182,7 +136,7 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-         app.UseApiMiddleware();
+        app.UseApiMiddleware();
 
         app.UseEndpoints(endpoints =>
         {
@@ -190,6 +144,59 @@ public class Startup
             endpoints.MapControllerRoute("default", "{controller}/{action}/");
             endpoints.MapControllers();
         });
+    }
+
+    private void ConfigureCookies(IServiceCollection services)
+    {
+        services.Configure<CookieAuthenticationOptions>(CookieAuthenticationDefaults.AuthenticationScheme,
+           options =>
+           {
+               options.AccessDeniedPath = "/access-denied";
+               options.Cookie.Name = ".Complete.Login";
+               options.Cookie.HttpOnly = true;
+               options.Cookie.IsEssential = true;
+               options.ExpireTimeSpan = _authenticationExpiration;
+               options.SlidingExpiration = true;
+               if (string.IsNullOrEmpty(Configuration["CI"]))
+               {
+                   options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+               }
+           });
+    }
+
+    private void RegisterClients(IServiceCollection services)
+    {
+        services.AddHttpClient("AcademiesClient", (_, client) =>
+        {
+            AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
+            client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
+            client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
+        });
+
+        services.AddHttpClient("CompleteClient", (_, client) =>
+        {
+            CompleteOptions completeOptions = GetTypedConfigurationFor<CompleteOptions>();
+            client.BaseAddress = new Uri(completeOptions.ApiEndpoint);
+            client.DefaultRequestHeaders.Add("ApiKey", completeOptions.ApiKey);
+        });
+    }
+
+    private void SetupDataProtection(IServiceCollection services)
+    {
+        if (!string.IsNullOrEmpty(Configuration["ConnectionStrings:BlobStorage"]))
+        {
+            string blobName = "keys.xml";
+            BlobContainerClient container = new BlobContainerClient(new Uri(Configuration["ConnectionStrings:BlobStorage"]));
+
+            BlobClient blobClient = container.GetBlobClient(blobName);
+
+            services.AddDataProtection()
+                .PersistKeysToAzureBlobStorage(blobClient);
+        }
+        else
+        {
+            services.AddDataProtection();
+        }
     }
 
     /// <summary>
