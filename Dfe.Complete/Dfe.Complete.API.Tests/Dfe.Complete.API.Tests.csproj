@@ -42,6 +42,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Dfe.Complete.API\Dfe.Complete.API.csproj" />
+      <ProjectReference Include="..\Dfe.Complete\Dfe.Complete.csproj" />
     </ItemGroup>
 
     <ItemGroup>

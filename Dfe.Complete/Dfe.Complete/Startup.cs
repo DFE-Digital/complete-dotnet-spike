@@ -1,9 +1,11 @@
 using Azure.Storage.Blobs;
 using Dfe.Complete.API.Configuration;
 using Dfe.Complete.API.Extensions;
+using Dfe.Complete.API.Middleware;
 using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Configuration;
+using Dfe.Complete.Middleware;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
 using Dfe.Complete.StartupConfiguration;
@@ -22,6 +24,7 @@ using Microsoft.FeatureManagement;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System;
+using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 
 namespace Dfe.Complete;
@@ -179,15 +182,14 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
+         app.UseApiMiddleware();
+
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapRazorPages();
             endpoints.MapControllerRoute("default", "{controller}/{action}/");
+            endpoints.MapControllers();
         });
-
-        // API
-        app.UseApiMiddleware();
-        app.UseCompleteEndpoints();
     }
 
     /// <summary>

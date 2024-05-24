@@ -1,5 +1,4 @@
 ﻿using Dfe.Complete.API.Tests.FakeApi;
-using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Dfe.Complete.Logging;

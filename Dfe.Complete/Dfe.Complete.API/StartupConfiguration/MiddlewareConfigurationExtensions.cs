@@ -7,11 +7,17 @@ namespace Dfe.Complete.API.StartupConfiguration
     {
         public static void UseApiMiddleware(this IApplicationBuilder app)
         {
-            app.UseMiddleware<ExceptionHandlerMiddleware>();
-            app.UseMiddleware<ApiKeyMiddleware>();
-            app.UseMiddleware<UrlDecoderMiddleware>();
-            app.UseMiddleware<CorrelationIdMiddleware>();
-            app.UseMiddleware<UserContextReceiverMiddleware>();
+            app.UseWhen(context =>
+            {
+                return context.Request.Path.StartsWithSegments("/api/v1");
+            }, appBuilder =>
+            {
+                appBuilder.UseMiddleware<ExceptionHandlerMiddleware>();
+                appBuilder.UseMiddleware<ApiKeyMiddleware>();
+                appBuilder.UseMiddleware<UrlDecoderMiddleware>();
+                appBuilder.UseMiddleware<CorrelationIdMiddleware>();
+                appBuilder.UseMiddleware<UserContextReceiverMiddleware>();
+            });
         }
     }
 }
