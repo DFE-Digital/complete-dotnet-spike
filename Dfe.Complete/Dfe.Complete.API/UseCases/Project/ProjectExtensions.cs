@@ -57,5 +57,29 @@ namespace Dfe.Complete.API.UseCases.Project
 
             return result;
         }
+
+        public static async Task<Data.Entities.Project> GetProjectById(this CompleteContext context, Guid projectId)
+        {
+            var project = await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);
+
+            if (project == null)
+            {
+                throw new NotFoundException($"Project with id {projectId} not found");
+            }
+
+            return project;
+        }
+
+        public static async Task<Note> GetProjectNoteById(this CompleteContext context, Guid projectId, Guid noteId)
+        {
+            var note = await context.Notes.FirstOrDefaultAsync(n => n.ProjectId == projectId && n.Id == noteId);
+
+            if (note == null)
+            {
+                throw new NotFoundException($"Project with id {projectId}, note with id {noteId} not found");
+            }
+
+            return note;
+        }
     }
 }

@@ -34,6 +34,7 @@ namespace Dfe.Complete.API.UseCases.Project.Transfer
             project.TwoRequiresImprovement = request.ReasonForTheTransfer.IsDueTo2RI;
             task.InadequateOfsted = request.ReasonForTheTransfer.IsDueToOfstedRating;
             task.FinancialSafeguardingGovernanceIssues = request.ReasonForTheTransfer.IsDueToIssues;
+            project.UpdatedAt = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
         }

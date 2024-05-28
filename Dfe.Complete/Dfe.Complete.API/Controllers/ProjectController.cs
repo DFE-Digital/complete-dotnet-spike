@@ -1,6 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Common;
 using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.ResponseModels;
 using Dfe.Complete.API.UseCases.Project;
 using Microsoft.AspNetCore.Mvc;

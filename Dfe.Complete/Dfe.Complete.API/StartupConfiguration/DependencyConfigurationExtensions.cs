@@ -3,6 +3,7 @@ using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.API.UseCases.Project;
 using Dfe.Complete.API.UseCases.Project.Conversion;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks;
+using Dfe.Complete.API.UseCases.Project.Notes;
 using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
 using Dfe.Complete.Logging;
@@ -29,8 +30,14 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
 			services.AddScoped<IGetTrustsBulkService, GetTrustsBulkService>();
 			services.AddScoped<IGetEstablishmentAndTrustService, GetEstablishmentAndTrustService>();
+
+			// Project
 			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
 			services.AddScoped<IGetProjectDetailsService, GetProjectDetailsService>();
+			services.AddScoped<ICreateProjectNoteService, CreateProjectNoteService>();
+			services.AddScoped<IGetProjectNoteService, GetProjectNoteService>();
+			services.AddScoped<IUpdateProjectNoteService, UpdateProjectNoteService>();
+			services.AddScoped<IDeleteProjectNoteService, DeleteProjectNoteService>();
 
 			// Conversion projects
 			services.AddScoped<ICreateConversionProjectService, CreateConversionProjectService>();

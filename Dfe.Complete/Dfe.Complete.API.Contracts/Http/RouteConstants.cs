@@ -4,6 +4,10 @@
     {
         public const string ProjectList = "api/v1/client/projects/list";
 
+        // Project
+        public const string ProjectNote = "api/v1/client/projects/{0}/notes";
+        public const string ProjectNoteById = ProjectNote + "/{1}";
+
         // Transfer
         public const string CreateTransferProject = "api/v1/transfer-projects";
         public const string TransferProject = "api/v1/client/transfer-projects";
