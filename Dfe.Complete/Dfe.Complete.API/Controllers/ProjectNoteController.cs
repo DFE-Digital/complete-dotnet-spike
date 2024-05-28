@@ -7,6 +7,7 @@ namespace Dfe.Complete.API.Controllers
 {
     [Route("api/v{version:apiVersion}/client/projects/{projectId}/notes")]
     [ApiController]
+    [Tags("Project Note (Client only)")]
     public class ProjectNoteController : ControllerBase
     {
         private readonly IGetProjectNoteService _getProjectNoteService;

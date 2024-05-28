@@ -6,6 +6,7 @@ using Dfe.Complete.API.UseCases.Project.Conversion.Tasks;
 using Dfe.Complete.API.UseCases.Project.Notes;
 using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
+using Dfe.Complete.API.UseCases.User;
 using Dfe.Complete.Logging;
 using Dfe.Complete.UserContext;
 using FluentValidation;
@@ -30,6 +31,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IGetEstablishmentsBulkService, GetEstablishmentsBulkService>();
 			services.AddScoped<IGetTrustsBulkService, GetTrustsBulkService>();
 			services.AddScoped<IGetEstablishmentAndTrustService, GetEstablishmentAndTrustService>();
+			services.AddScoped<ICreateUserService, CreateUserService>();
 
 			// Project
 			services.AddScoped<ISetProjectSchoolNameService, SetProjectSchoolNameService>();
