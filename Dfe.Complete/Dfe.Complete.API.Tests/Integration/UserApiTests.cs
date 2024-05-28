@@ -1,7 +1,6 @@
 ﻿using Dfe.Complete.API.Contracts.User;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
-using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -34,20 +33,18 @@ namespace Dfe.Complete.API.Tests.Integration
         }
 
         [Fact]
-        public async Task When_Post_UserExists_DoesNotCreateUser_Returns_200()
+        public async Task When_Post_UserExists_DoesNotCreateUser_Returns_409()
         {
             var request = _autoFixture.Create<CreateUserRequest>();
 
-            var firstPost = await _client.PostAsync($"/api/v1/client/users", request.ConvertToJson());
+            await _client.PostAsync($"/api/v1/client/users", request.ConvertToJson());
 
             var secondPost = await _client.PostAsync($"/api/v1/client/users", request.ConvertToJson());
-            secondPost.StatusCode.Should().Be(HttpStatusCode.OK);
+            secondPost.StatusCode.Should().Be(HttpStatusCode.Conflict);
 
-            using var context = _testFixture.GetContext();
+            var content = await secondPost.Content.ReadAsStringAsync();
 
-            var entries = context.Users.Count(u => u.Email == request.Email);
-
-            entries.Should().Be(1);
+            content.Should().Contain("User with email already exists, no record has been created");
         }
 
         [Fact]

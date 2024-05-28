@@ -1,22 +1,12 @@
 ﻿using Dfe.Complete.API.Contracts.User;
+using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.Data;
 
 namespace Dfe.Complete.API.UseCases.User
 {
-    public record CreateUserResult
-    {
-        public UserCreateState UserCreateState { get; set; }
-    }
-
-    public enum UserCreateState
-    {
-        New = 1,
-        Exists = 2
-    }
-
     public interface ICreateUserService
     {
-        public CreateUserResult Execute(CreateUserRequest request);
+        public Task Execute(CreateUserRequest request);
     }
 
     public class CreateUserService : ICreateUserService
@@ -28,7 +18,7 @@ namespace Dfe.Complete.API.UseCases.User
             _context = context;
         }
 
-        public CreateUserResult Execute(CreateUserRequest request)
+        public async Task Execute(CreateUserRequest request)
         {
             var dbUser = new Data.Entities.User()
             {
@@ -41,14 +31,12 @@ namespace Dfe.Complete.API.UseCases.User
 
             if (existingUser != null)
             {
-                return new CreateUserResult() { UserCreateState = UserCreateState.Exists };
+                throw new ResourceConflictException("User with email already exists, no record has been created");
             }
 
             _context.Users.Add(dbUser);
 
-            _context.SaveChanges();
-
-            return new CreateUserResult() { UserCreateState = UserCreateState.New };
+            await _context.SaveChangesAsync();
         }
     }
 }
