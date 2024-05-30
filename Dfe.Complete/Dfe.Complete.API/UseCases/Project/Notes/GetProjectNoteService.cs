@@ -24,13 +24,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
 
             var createdBy = $"{note.User?.FirstName} {note.User?.LastName}".Trim();
 
-            var result = new GetProjectNoteResponse()
-            {
-                Id = note.Id,
-                Note = note.Body,
-                DateCreated = note.CreatedAt,
-                CreatedBy = createdBy
-            };
+            var result = GetProjectNoteResponseBuilder.Execute(note);
 
             return result;
         }

@@ -1,8 +1,11 @@
 ﻿using Dfe.Complete.API.Contracts.Http;
+using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Notes;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
+using NSubstitute.ReturnsExtensions;
 using System;
+using System.Linq;
 using System.Net;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -103,6 +106,45 @@ namespace Dfe.Complete.API.Tests.Integration.Project
         }
 
         [Fact]
+        public async Task GetProjectNoteList_Returns_200()
+        {
+            var createdProject = await _client.CreateTransferProject();
+            var projectId = createdProject.Id;
+
+            var createdFirstNote = await CreateProjectNote(projectId);
+            var createdSecondNote = await CreateProjectNote(projectId);
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.ProjectNote, projectId));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var projectNotes = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteListResponse>();
+
+            projectNotes.ProjectDetails.ProjectType.Should().Be(ProjectType.Transfer);
+
+            projectNotes.Notes.Count.Should().Be(2);
+
+            var firstNote = projectNotes.Notes.FirstOrDefault(n => n.Id == createdFirstNote.Id);
+            var secondNote = projectNotes.Notes.FirstOrDefault(n => n.Id == createdSecondNote.Id);
+
+            firstNote.Should().Be(createdFirstNote);
+            secondNote.Should().Be(createdSecondNote);
+        }
+
+        [Fact]
+        public async Task GetProjectNoteList_NoNotes_Returns_Empty_200()
+        {
+            var createdProject = await _client.CreateTransferProject();
+            var projectId = createdProject.Id;
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.ProjectNote, projectId));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var projectNotes = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteListResponse>();
+
+            projectNotes.Notes.Count.Should().Be(0);
+        }
+
+        [Fact]
         public async Task CreateProjectNote_ProjectNotFound_Returns_404()
         {
             var projectId = Guid.NewGuid();
@@ -182,6 +224,39 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var content = await deleteResponse.Content.ReadAsStringAsync();
             content.Should().Contain($"Project with id {projectId}, note with id {noteId} not found");
+        }
+
+        [Fact]
+        public async Task GetProjectList_ProjectNotFound_Returns_404()
+        {
+            var projectId = Guid.NewGuid();
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.ProjectNote, projectId));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+            var content = await getResponse.Content.ReadAsStringAsync();
+            content.Should().Contain($"Project with id {projectId} not found");
+        }
+
+        private async Task<GetProjectNoteResponse> CreateProjectNote(Guid projectId)
+        {
+            var createNoteRequest = new CreateProjectNoteRequest
+            {
+                Note = _autoFixture.Create<string>(),
+                Email = _testFixture.DefaultUser.Email
+            };
+
+            var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
+            createResponse.StatusCode.Should().Be(HttpStatusCode.Created);
+
+            var createdNote = await createResponse.Content.ReadFromJsonAsync<CreateProjectNoteResponse>();
+
+            var getResponse = await _client.GetAsync(string.Format(RouteConstants.ProjectNoteById, projectId, createdNote.Id));
+            getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
+
+            var result = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteResponse>();
+
+            return result;
         }
     }
 }

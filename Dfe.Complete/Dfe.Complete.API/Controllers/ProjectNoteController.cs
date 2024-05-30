@@ -1,6 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Notes;
 using Dfe.Complete.API.UseCases.Project.Notes;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dfe.Complete.API.Controllers
@@ -14,17 +13,20 @@ namespace Dfe.Complete.API.Controllers
         private readonly ICreateProjectNoteService _createProjectNoteService;
         private readonly IUpdateProjectNoteService _updateProjectNoteService;
         private readonly IDeleteProjectNoteService _deleteProjectNoteService;
+        private readonly IGetProjectNoteListService _getProjectNoteListService;
 
         public ProjectNoteController(
             IGetProjectNoteService getProjectNoteService, 
             ICreateProjectNoteService createProjectNoteService,
             IUpdateProjectNoteService updateProjectNoteService,
-            IDeleteProjectNoteService deleteProjectNoteService)
+            IDeleteProjectNoteService deleteProjectNoteService,
+            IGetProjectNoteListService getProjectNoteListService)
         {
             _getProjectNoteService = getProjectNoteService;
             _createProjectNoteService = createProjectNoteService;
             _updateProjectNoteService = updateProjectNoteService;
             _deleteProjectNoteService = deleteProjectNoteService;
+            _getProjectNoteListService = getProjectNoteListService;
         }
 
         [HttpPost]
@@ -33,6 +35,14 @@ namespace Dfe.Complete.API.Controllers
             var projectNote = await _createProjectNoteService.Execute(projectId, request);
 
             return CreatedAtAction(nameof(GetProjectNote), new { projectId, noteId = projectNote.Id }, projectNote);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetProjectNoteList(Guid projectId)
+        {
+            var projectNotes = await _getProjectNoteListService.Execute(projectId);
+
+            return new OkObjectResult(projectNotes);
         }
 
         [HttpGet("{noteId}")]

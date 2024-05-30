@@ -40,6 +40,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IGetProjectNoteService, GetProjectNoteService>();
 			services.AddScoped<IUpdateProjectNoteService, UpdateProjectNoteService>();
 			services.AddScoped<IDeleteProjectNoteService, DeleteProjectNoteService>();
+			services.AddScoped<IGetProjectNoteListService, GetProjectNoteListService>();
 
 			// Conversion projects
 			services.AddScoped<ICreateConversionProjectService, CreateConversionProjectService>();
