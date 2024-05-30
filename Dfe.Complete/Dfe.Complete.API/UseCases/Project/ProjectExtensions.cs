@@ -72,7 +72,7 @@ namespace Dfe.Complete.API.UseCases.Project
 
         public static async Task<Note> GetProjectNoteById(this CompleteContext context, Guid projectId, Guid noteId)
         {
-            var note = await context.Notes.FirstOrDefaultAsync(n => n.ProjectId == projectId && n.Id == noteId);
+            var note = await context.Notes.Include(n => n.User).FirstOrDefaultAsync(n => n.ProjectId == projectId && n.Id == noteId);
 
             if (note == null)
             {

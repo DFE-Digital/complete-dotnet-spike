@@ -1,6 +1,8 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Notes;
+using Dfe.Complete.API.Exceptions;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dfe.Complete.API.UseCases.Project.Notes
 {
@@ -22,6 +24,13 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
         {
             await _context.GetProjectById(projectId);
 
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == request.Email);
+
+            if (user == null)
+            {
+                throw new UnprocessableContentException("User with email not found");
+            }
+
             var note = new Note()
             {
                 Id = Guid.NewGuid(),
@@ -29,6 +38,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
                 Body = request.Note,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
+                UserId = user.Id,
             };
 
             _context.Notes.Add(note);

@@ -17,14 +17,15 @@ namespace Dfe.Complete.API.Tests.Integration.Project
         }
 
         [Fact]
-        public async Task AddProjectNote_Returns_200()
+        public async Task CreateProjectNote_Returns_200()
         {
             var createdProject = await _client.CreateTransferProject();
             var projectId = createdProject.Id;
             
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Note = _autoFixture.Create<string>(),
+                Email = _testFixture.DefaultUser.Email
             };
 
             var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
@@ -38,6 +39,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             var projectNote = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteResponse>();
 
             projectNote.Note.Should().Be(createNoteRequest.Note);
+            projectNote.CreatedBy.Should().Be("Automation User");
         }
 
         [Fact]
@@ -48,7 +50,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Note = _autoFixture.Create<string>(),
+                Email = _testFixture.DefaultUser.Email
             };
 
             var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
@@ -80,7 +83,8 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Note = _autoFixture.Create<string>(),
+                Email = _testFixture.DefaultUser.Email
             };
 
             var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
@@ -112,6 +116,25 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var content = await createResponse.Content.ReadAsStringAsync();
             content.Should().Contain($"Project with id {projectId} not found");
+        }
+
+        [Fact]
+        public async Task CreateProjectNote_UserNotFound_Returns_422()
+        {
+            var createdProject = await _client.CreateTransferProject();
+            var projectId = createdProject.Id;
+
+            var createNoteRequest = new CreateProjectNoteRequest
+            {
+                Note = _autoFixture.Create<string>(),
+                Email = _autoFixture.Create<string>()
+            };
+
+            var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
+            createResponse.StatusCode.Should().Be(HttpStatusCode.UnprocessableContent);
+
+            var content = await createResponse.Content.ReadAsStringAsync();
+            content.Should().Contain($"User with email not found");
         }
 
         [Fact]

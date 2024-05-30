@@ -22,11 +22,14 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
         {
             var note = await _context.GetProjectNoteById(projectId, noteId);
 
+            var createdBy = $"{note.User?.FirstName} {note.User?.LastName}".Trim();
+
             var result = new GetProjectNoteResponse()
             {
                 Id = note.Id,
                 Note = note.Body,
-                DateCreated = note.CreatedAt
+                DateCreated = note.CreatedAt,
+                CreatedBy = createdBy
             };
 
             return result;

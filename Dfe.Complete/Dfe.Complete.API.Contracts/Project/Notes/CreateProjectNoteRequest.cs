@@ -3,5 +3,6 @@
     public record CreateProjectNoteRequest
     {
         public string Note { get; set; }
+        public string Email { get; set; }
     }
 }
