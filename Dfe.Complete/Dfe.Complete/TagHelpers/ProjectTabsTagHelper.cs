@@ -26,19 +26,17 @@ namespace Dfe.Complete.TagHelpers
              
             string aboutProjectLink;
             string taskListLink;
-            string notesLink = "";
+            string notesLink = string.Format(Constants.RouteConstants.ProjectViewNotes, ProjectId);
 
             if (ProjectType == ProjectType.Conversion)
             {
                 aboutProjectLink = string.Format(Constants.RouteConstants.ConversionProjectAbout, ProjectId);
                 taskListLink = string.Format(Constants.RouteConstants.ConversionProjectTaskList, ProjectId);
-                notesLink = string.Format(Constants.RouteConstants.ConversionProjectViewNotes, ProjectId);
             }
             else if (ProjectType == ProjectType.Transfer)
             {
                 aboutProjectLink = string.Format(Constants.RouteConstants.TransferProjectAbout, ProjectId);
                 taskListLink = string.Format(Constants.RouteConstants.TransferProjectTaskList, ProjectId);
-                notesLink = string.Format(Constants.RouteConstants.TransferProjectViewNotes, ProjectId);
             }
             else
             {

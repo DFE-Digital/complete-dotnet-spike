@@ -22,7 +22,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
         {
             var note = await _context.GetProjectNoteById(projectId, noteId);
 
-            note.Body = request.Note;
+            note.Body = request.Text;
 
             await _context.SaveChangesAsync();
         }

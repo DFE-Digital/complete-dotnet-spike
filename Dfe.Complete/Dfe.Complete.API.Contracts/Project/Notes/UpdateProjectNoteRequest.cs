@@ -2,6 +2,6 @@
 {
     public class UpdateProjectNoteRequest
     {
-        public string Note { get; set; }
+        public string Text { get; set; }
     }
 }

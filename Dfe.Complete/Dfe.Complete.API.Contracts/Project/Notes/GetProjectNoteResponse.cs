@@ -9,7 +9,7 @@ namespace Dfe.Complete.API.Contracts.Project.Notes
     public record GetProjectNoteResponse
     {
         public Guid Id { get; set; }
-        public string Note { get; set; }
+        public string Text { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? DateCreated { get; set; }
     }

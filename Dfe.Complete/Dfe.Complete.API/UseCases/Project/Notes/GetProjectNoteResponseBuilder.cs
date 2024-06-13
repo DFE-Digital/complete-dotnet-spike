@@ -12,7 +12,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
             var result = new GetProjectNoteResponse()
             {
                 Id = note.Id,
-                Note = note.Body,
+                Text = note.Body,
                 DateCreated = note.CreatedAt,
                 CreatedBy = createdBy
             };

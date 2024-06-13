@@ -26,7 +26,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>(),
+                Text = _autoFixture.Create<string>(),
                 Email = _testFixture.DefaultUser.Email
             };
 
@@ -40,7 +40,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var projectNote = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteResponse>();
 
-            projectNote.Note.Should().Be(createNoteRequest.Note);
+            projectNote.Text.Should().Be(createNoteRequest.Text);
             projectNote.CreatedBy.Should().Be("Automation User");
         }
 
@@ -52,7 +52,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>(),
+                Text = _autoFixture.Create<string>(),
                 Email = _testFixture.DefaultUser.Email
             };
 
@@ -64,7 +64,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var updateNoteRequest = new UpdateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Text = _autoFixture.Create<string>()
             };
 
             var updateResponse = await _client.PatchAsync(string.Format(RouteConstants.ProjectNoteById, projectId, noteId), updateNoteRequest.ConvertToJson());
@@ -74,7 +74,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
             var projectNote = await getResponse.Content.ReadFromJsonAsync<GetProjectNoteResponse>();
-            projectNote.Note.Should().Be(updateNoteRequest.Note);
+            projectNote.Text.Should().Be(updateNoteRequest.Text);
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>(),
+                Text = _autoFixture.Create<string>(),
                 Email = _testFixture.DefaultUser.Email
             };
 
@@ -149,7 +149,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
             var projectId = Guid.NewGuid();
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Text = _autoFixture.Create<string>()
             };
 
             var createResponse = await _client.PostAsync(string.Format(RouteConstants.ProjectNote, projectId), createNoteRequest.ConvertToJson());
@@ -167,7 +167,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>(),
+                Text = _autoFixture.Create<string>(),
                 Email = _autoFixture.Create<string>()
             };
 
@@ -201,7 +201,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
 
             var updateNoteRequest = new UpdateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>()
+                Text = _autoFixture.Create<string>()
             };
 
             var updateResponse = await _client.PatchAsync(string.Format(RouteConstants.ProjectNoteById, projectId, noteId), updateNoteRequest.ConvertToJson());
@@ -241,7 +241,7 @@ namespace Dfe.Complete.API.Tests.Integration.Project
         {
             var createNoteRequest = new CreateProjectNoteRequest
             {
-                Note = _autoFixture.Create<string>(),
+                Text = _autoFixture.Create<string>(),
                 Email = _testFixture.DefaultUser.Email
             };
 

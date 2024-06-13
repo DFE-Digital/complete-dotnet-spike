@@ -35,7 +35,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
             {
                 Id = Guid.NewGuid(),
                 ProjectId = projectId,
-                Body = request.Note,
+                Body = request.Text,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 UserId = user.Id,
