@@ -1,0 +1,35 @@
+﻿@page
+
+@using Dfe.Complete.API.Contracts.Project;
+@model Dfe.Complete.Pages.Projects.ViewProjectNotesModel
+@{
+    ViewData["Title"] = "Project notes";
+
+    var projectDetails = Model.Project.ProjectDetails;
+    var notesList = Model.Project.Notes;
+
+    var projectType = (ProjectType)projectDetails.ProjectType;
+}
+
+<partial name="_ProjectSummary" model="@projectDetails" />
+
+<govuk-project-tabs project-id="@Model.ProjectId" project-type="@projectType" />
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h2 class="govuk-heading-l">Notes</h2>
+
+        <div class="govuk-!-margin-bottom-5">
+            <a data-module="govuk-button" draggable="false" role="button" class="govuk-button" href="/projects/3D1D6D36-FD0A-4B46-876E-4E70330B2EF0/notes/new">Add note</a>
+        </div>
+
+        @foreach (var note in notesList)
+        {
+            <span class="govuk-caption-m">@note.DateCreated.ToDateString()</span>
+            <h3 class="govuk-heading-m">@note.CreatedBy</h3>
+            <p class="govuk-body-m">@note.Note</p>
+            <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+        }
+
+    </div>
+</div>

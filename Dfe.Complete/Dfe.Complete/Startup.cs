@@ -59,6 +59,8 @@ public class Startup
            .AddRazorPages(options =>
            {
                options.Conventions.AuthorizeFolder("/");
+               options.Conventions.AddPageRoute("/Projects/ViewProjectNotes", "/transfer-projects/{projectId}/notes");
+               options.Conventions.AddPageRoute("/Projects/ViewProjectNotes", "/conversion-projects/{projectId}/notes");
            })
            .AddViewOptions(options =>
            {

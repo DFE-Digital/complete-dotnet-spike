@@ -26,16 +26,19 @@ namespace Dfe.Complete.TagHelpers
              
             string aboutProjectLink;
             string taskListLink;
+            string notesLink = "";
 
             if (ProjectType == ProjectType.Conversion)
             {
                 aboutProjectLink = string.Format(Constants.RouteConstants.ConversionProjectAbout, ProjectId);
                 taskListLink = string.Format(Constants.RouteConstants.ConversionProjectTaskList, ProjectId);
+                notesLink = string.Format(Constants.RouteConstants.ConversionProjectViewNotes, ProjectId);
             }
             else if (ProjectType == ProjectType.Transfer)
             {
-                aboutProjectLink = string.Format(Constants.RouteConstants.AboutTransferProject, ProjectId);
+                aboutProjectLink = string.Format(Constants.RouteConstants.TransferProjectAbout, ProjectId);
                 taskListLink = string.Format(Constants.RouteConstants.TransferProjectTaskList, ProjectId);
+                notesLink = string.Format(Constants.RouteConstants.TransferProjectViewNotes, ProjectId);
             }
             else
             {
@@ -47,6 +50,7 @@ namespace Dfe.Complete.TagHelpers
 
             var aboutPageCurrentStyle = currentUrl.Contains(aboutProjectLink) ? currentPageAttribute : "";
             var taskListCurrentPageStyle = currentUrl.Contains(taskListLink) ? currentPageAttribute : "";
+            var notesCurrentPageStyle = currentUrl.Contains(notesLink) ? currentPageAttribute : "";
 
             output.Content.SetHtmlContent(
                 $@"<div class=""govuk-grid-column-full"">
@@ -64,7 +68,7 @@ namespace Dfe.Complete.TagHelpers
 
 
                             <li class=""moj-sub-navigation__item"">
-                                <a class=""moj-sub-navigation__link"" href=""/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes"">Notes</a>
+                                <a class=""moj-sub-navigation__link"" {notesCurrentPageStyle} href=""{notesLink}"">Notes</a>
                             </li>
 
 

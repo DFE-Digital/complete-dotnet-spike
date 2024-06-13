@@ -15,6 +15,7 @@ namespace Dfe.Complete.StartupConfiguration
             services.AddScoped<CompleteApiClient, CompleteApiClient>();
             services.AddScoped<IAnalyticsConsentService, AnalyticsConsentService>();
             services.AddScoped<IGetProjectListService, GetProjectListService>();
+            services.AddScoped<IGetProjectNoteListService, GetProjectNoteListService>();
 
             // Transfers
             services.AddScoped<IGetTransferProjectByTaskService, GetTransferProjectByTaskService>();

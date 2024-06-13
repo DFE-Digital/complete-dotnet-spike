@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Dfe.Complete.Pages.Projects.All
+namespace Dfe.Complete.Pages.Projects.List
 {
     public class ProjectsInProgressModel : PageModel
     {

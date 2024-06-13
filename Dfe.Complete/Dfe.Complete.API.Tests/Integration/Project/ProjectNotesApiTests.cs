@@ -3,7 +3,6 @@ using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Notes;
 using Dfe.Complete.API.Tests.Fixtures;
 using Dfe.Complete.API.Tests.Helpers;
-using NSubstitute.ReturnsExtensions;
 using System;
 using System.Linq;
 using System.Net;

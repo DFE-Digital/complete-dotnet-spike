@@ -140,7 +140,7 @@ namespace Dfe.Complete.Pages.Projects.Transfer
 
             await _updateTransferProjectService.Execute(ProjectId, request);
 
-            return Redirect(string.Format(RouteConstants.AboutTransferProject, ProjectId));
+            return Redirect(string.Format(RouteConstants.TransferProjectAbout, ProjectId));
         }
     }
 }

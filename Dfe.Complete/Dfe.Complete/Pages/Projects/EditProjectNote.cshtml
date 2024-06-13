@@ -1,0 +1,27 @@
+﻿@page "/projects/{projectId}/notes/{noteId}/edit"
+@model Dfe.Complete.Pages.Projects.EditProjectNoteModel
+@{
+}
+
+<div class="govuk-grid-row govuk-body">
+    <div class="govuk-grid-column-two-thirds">
+        <form class="edit_note" id="edit_note_6F36965F-BA31-4CA4-A1D1-78F19613E6B1" action="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes/6F36965F-BA31-4CA4-A1D1-78F19613E6B1" accept-charset="UTF-8" method="post">
+
+            <div class="govuk-form-group">
+                <h1 class="govuk-label-wrapper">
+                    <label for="note-body-field" class="govuk-label govuk-label--l">
+                        Enter note
+                    </label>
+                </h1>
+                <div class="govuk-hint" id="note-body-hint">Do not include personal or financial information.</div>
+                    <textarea id="note-body-field" class="govuk-textarea" rows="5" aria-describedby="note-body-hint" name="note[body]">something</textarea>
+                </div>
+
+            <div class="govuk-button-group">
+                <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save note</button>
+                <a data-module="govuk-button" draggable="false" role="button" class="govuk-button govuk-button--warning" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes/6F36965F-BA31-4CA4-A1D1-78F19613E6B1/delete">Delete</a>
+                <a class="govuk-link" href="/projects/51FA403B-B3F3-4580-919B-207B842B9BE3/notes">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
