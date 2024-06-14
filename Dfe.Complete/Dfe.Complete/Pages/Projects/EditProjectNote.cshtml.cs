@@ -55,10 +55,11 @@ namespace Dfe.Complete.Pages.Projects
                 await _createProjectNoteService.Execute(ProjectId, new CreateProjectNoteRequest()
                 {
                     Text = NoteText,
+                    Email = User?.Identity?.Name,
                 });
             }
 
-            return RedirectToPage(string.Format(RouteConstants.ProjectViewNotes, ProjectId));
+            return Redirect(string.Format(RouteConstants.ProjectViewNotes, ProjectId));
         }
 
         private bool NoteExists()
