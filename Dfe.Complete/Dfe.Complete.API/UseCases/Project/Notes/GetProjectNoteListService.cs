@@ -29,6 +29,7 @@ namespace Dfe.Complete.API.UseCases.Project.Notes
             var notes = await _context.Notes
                 .Include(n => n.User)
                 .Where(n => n.ProjectId == projectId)
+                .OrderByDescending(n => n.CreatedAt)
                 .Select(n => GetProjectNoteResponseBuilder.Execute(n))
                 .ToListAsync();
 
