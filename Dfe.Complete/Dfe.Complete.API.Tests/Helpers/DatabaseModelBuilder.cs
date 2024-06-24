@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Contracts.Project;
+using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using System;
@@ -7,7 +8,12 @@ namespace Dfe.Complete.API.Tests.Helpers
 {
     public static class DatabaseModelBuilder
     {
-        public static Fixture _fixture = new();
+        public static readonly Fixture _fixture = new();
+
+        static DatabaseModelBuilder()
+        {
+            _fixture.Customize(new OmitNestedPropertiesCustomization());
+        }
 
         public static Data.Entities.Project BuildProject()
         {
@@ -36,6 +42,21 @@ namespace Dfe.Complete.API.Tests.Helpers
             var result = BuildProject();
             result.AssignedTo = null;
             result.State = ProjectState.Completed;
+
+            return result;
+        }
+
+        public static TransferProject BuildTransferProject()
+        {
+            var project = BuildProject();
+            project.Type = ProjectType.Transfer;
+            project.TasksDataType = TaskType.Transfer;
+            project.CompletedAt = null;
+            project.State = ProjectState.Active;
+
+            var taskData = _fixture.Create<TransferTasksData>();
+
+            var result = new TransferProject() { Project = project, TaskData = taskData };
 
             return result;
         }

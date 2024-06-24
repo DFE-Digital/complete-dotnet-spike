@@ -4,6 +4,7 @@ using Dfe.Complete.API.UseCases.Project;
 using Dfe.Complete.API.UseCases.Project.Conversion;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks;
 using Dfe.Complete.API.UseCases.Project.Notes;
+using Dfe.Complete.API.UseCases.Project.Reports;
 using Dfe.Complete.API.UseCases.Project.Transfer;
 using Dfe.Complete.API.UseCases.Project.Transfer.Tasks;
 using Dfe.Complete.API.UseCases.User;
@@ -41,6 +42,7 @@ namespace Dfe.Complete.API.StartupConfiguration
 			services.AddScoped<IUpdateProjectNoteService, UpdateProjectNoteService>();
 			services.AddScoped<IDeleteProjectNoteService, DeleteProjectNoteService>();
 			services.AddScoped<IGetProjectNoteListService, GetProjectNoteListService>();
+			services.AddScoped<IAcademiesDueToTransferReportService,  AcademiesDueToTransferReportService>();
 
 			// Conversion projects
 			services.AddScoped<ICreateConversionProjectService, CreateConversionProjectService>();

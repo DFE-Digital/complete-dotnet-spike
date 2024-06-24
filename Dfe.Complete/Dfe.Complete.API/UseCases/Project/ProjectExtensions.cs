@@ -8,6 +8,26 @@ namespace Dfe.Complete.API.UseCases.Project
 {
     public static class ProjectExtensions
     {
+        public static IQueryable<TransferProject> GetTransferProjects(this CompleteContext context)
+        {
+            var projects =
+                context.Projects
+                    .Include(e => e.AssignedTo)
+                    .Include(e => e.MainContact)
+                    .Where(p => p.Type == ProjectType.Transfer);
+                    
+            var result = (from project in projects
+                          join taskData in context.TransferTasksData on project.TasksDataId equals taskData.Id into joinedTaskData
+                          from taskData in joinedTaskData.DefaultIfEmpty()
+                          select new TransferProject
+                          {
+                              Project = project,
+                              TaskData = taskData
+                          });
+
+            return result;
+        }
+
         public static async Task<TransferProject> GetTransferProjectById(this CompleteContext context, Guid projectId)
         {
             var result = await (from project in context.Projects

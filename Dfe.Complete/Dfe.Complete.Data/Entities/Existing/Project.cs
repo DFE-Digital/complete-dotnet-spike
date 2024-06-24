@@ -66,7 +66,7 @@ namespace Dfe.Complete.Data.Entities
 
         public int? OutgoingTrustUkprn { get; set; }
 
-        public string Team { get; set; }
+        public ProjectTeam? Team { get; set; }
 
         public bool? TwoRequiresImprovement { get; set; }
 
@@ -101,5 +101,7 @@ namespace Dfe.Complete.Data.Entities
         public virtual User RegionalDeliveryOfficer { get; set; }
 
         public virtual User TeamLeader { get; set; }
+
+        public virtual Contact MainContact { get; set; }
     }
 }

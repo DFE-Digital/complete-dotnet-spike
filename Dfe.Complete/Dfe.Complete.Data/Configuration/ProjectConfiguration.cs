@@ -82,7 +82,11 @@ namespace Dfe.Complete.Data.Configuration
                 );
             builder.Property(e => e.Team)
                 .HasMaxLength(4000)
-                .HasColumnName("team");
+                .HasColumnName("team")
+                .HasConversion(
+                    v => v.ToProjectTeamCode(),
+                    v => ProjectTeamExtensions.ToProjectTeam(v)
+                );
             builder.Property(e => e.TeamLeaderId).HasColumnName("team_leader_id");
             builder.Property(e => e.TwoRequiresImprovement)
                 .HasDefaultValueSql("((0))")
