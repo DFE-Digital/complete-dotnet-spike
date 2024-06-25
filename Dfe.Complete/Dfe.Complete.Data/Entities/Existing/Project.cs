@@ -101,7 +101,5 @@ namespace Dfe.Complete.Data.Entities
         public virtual User RegionalDeliveryOfficer { get; set; }
 
         public virtual User TeamLeader { get; set; }
-
-        public virtual Contact MainContact { get; set; }
     }
 }

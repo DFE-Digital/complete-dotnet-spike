@@ -15,6 +15,11 @@
         public string StatutoryHighAge { get; set; }
 
         public string DioceseName { get; set; }
+
+        public string ToAgeRange()
+        {
+            return $"{StatutoryHighAge} - {StatutoryLowAge}";
+        }
     }
 
     public record GetTrustResponse

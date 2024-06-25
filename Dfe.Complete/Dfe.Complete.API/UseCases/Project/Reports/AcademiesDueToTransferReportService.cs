@@ -1,4 +1,5 @@
 ﻿using Dfe.Complete.API.Extensions;
+using Dfe.Complete.API.UseCases.Academies;
 using Dfe.Complete.Data;
 using Dfe.Complete.Data.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -16,30 +17,47 @@ namespace Dfe.Complete.API.UseCases.Project.Reports
     public class AcademiesDueToTransferReportService : IAcademiesDueToTransferReportService
     {
         private readonly CompleteContext _context;
+        private readonly IGetEstablishmentAndTrustService _getEstablishmentAndTrustService;
 
-        public AcademiesDueToTransferReportService(CompleteContext context)
+        public AcademiesDueToTransferReportService(
+            CompleteContext context, IGetEstablishmentAndTrustService getEstablishmentAndTrustService)
         {
             _context = context;
+            _getEstablishmentAndTrustService = getEstablishmentAndTrustService;
         }
 
         public async Task<MemoryStream> Execute()
         {
-            var projects = await _context
-                .GetTransferProjects()
+            var projects = _context.Projects.Include(p => p.AssignedTo);
+
+            var transferProjects = await _context
+                .GetTransferProjects(projects)
                 .Where(t => t.Project.Urn == 142278)
                 .ToListAsync();
 
-            var entries = BuildEntries(projects);
+            var urns = transferProjects.Select(p => p.Project.Urn).ToList();
+            var outgoingUkPrns = transferProjects.Select(p => p.Project.OutgoingTrustUkprn).ToList();
+            var incomingUkPrns = transferProjects.Select(p => p.Project.IncomingTrustUkprn).ToList();
+
+            var establishmentAndTrustLookup = await _getEstablishmentAndTrustService.Execute(urns, incomingUkPrns, outgoingUkPrns);
+
+            var entries = BuildEntries(transferProjects, establishmentAndTrustLookup);
 
             return WriteCsv(entries);
         }
 
-        private List<AcademiesDueToTransferReportEntry> BuildEntries(List<TransferProject> projects)
+        private List<AcademiesDueToTransferReportEntry> BuildEntries(
+            List<TransferProject> transferProjects,
+            GetMultipleEstablishmentAndTrustResponse establishmentAndTrustLookup)
         {
             List<AcademiesDueToTransferReportEntry> result = new List<AcademiesDueToTransferReportEntry>();
 
-            foreach (var transferProject in projects)
+            foreach (var transferProject in transferProjects)
             {
+                var establishment = establishmentAndTrustLookup.Establishments[transferProject.Project.Urn.ToString()];
+                var incomingTrust = establishmentAndTrustLookup.Trusts[transferProject.Project.IncomingTrustUkprn?.ToString()];
+                var outgoingTrust = establishmentAndTrustLookup.Trusts[transferProject.Project.OutgoingTrustUkprn?.ToString()];
+
                 var entry = new AcademiesDueToTransferReportEntry()
                 {
                     SchoolUrn = transferProject.Project.Urn.ToString(),
@@ -51,10 +69,21 @@ namespace Dfe.Complete.API.UseCases.Project.Reports
                     NewUrnRequested = ToYesNoString(transferProject.Project.AcademyUrn.HasValue),
                     BankDetailsChanging = ToYesNoString(transferProject.TaskData.BankDetailsChangingYesNo),
                     TeamManagingTheProject = transferProject.Project.Team.ToDescription(),
-                    AuthorityToProceed = ToYesNoString(transferProject.Project.AllConditionsMet)
+                    AuthorityToProceed = ToYesNoString(transferProject.Project.AllConditionsMet),
+                    Region = transferProject.Project.Region.ToDescription(),
+                    SchoolPhase = establishment?.PhaseOfEducation.Name,
+                    SchoolAgeRange = establishment?.ToAgeRange(),
+                    LocalAuthority = establishment?.LocalAuthorityName,
+                    SchoolName = establishment?.Name,
+                    IncomingTrustUkprn = incomingTrust?.Ukprn,
+                    IncomingTrustCompaniesHouseNumber = incomingTrust?.CompaniesHouseNumber,
+                    IncomingTrustName = incomingTrust?.Name,
+                    OutgoingTrustUkprn = outgoingTrust?.Ukprn,
+                    OutgoingTrustCompaniesHouseNumber = outgoingTrust?.CompaniesHouseNumber,
+                    OutgoingTrustName = outgoingTrust?.Name,
                 };
 
-            result.Add(entry);
+                result.Add(entry);
             }
 
             return result;
