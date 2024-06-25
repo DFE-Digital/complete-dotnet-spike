@@ -10,9 +10,6 @@
         public const string ProjectAddNote = ProjectViewNotes + "/edit";
         public const string ProjectEditNote = ProjectViewNotes + "/{1}/edit";
 
-        public const string ProjectReport = "/projects/reports";
-        public const string ProjectReportAcademiesDueToTransfer = ProjectReport + "/academies-due-to-transfer";
-
         // Conversion
         public const string ConversionProject = "/conversion-projects/{0}";
         public const string ConversionProjectTaskList = ConversionProject + "/tasks";

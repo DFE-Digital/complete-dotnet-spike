@@ -8,6 +8,10 @@
         public const string ProjectNote = "api/v1/client/projects/{0}/notes";
         public const string ProjectNoteById = ProjectNote + "/{1}";
 
+        // Reports
+        public const string ProjectReport = "api/v1/projects/reports";
+        public const string ProjectReportAcademiesDueToTransfer = ProjectReport + "/academies-due-to-transfer";
+
         // Transfer
         public const string CreateTransferProject = "api/v1/transfer-projects";
         public const string TransferProject = "api/v1/client/transfer-projects";

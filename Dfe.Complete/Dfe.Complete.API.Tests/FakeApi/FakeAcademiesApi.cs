@@ -84,6 +84,26 @@ namespace Dfe.Complete.API.Tests.FakeApi
                         Postcode = "Establishment 1 Postcode"
                     },
                     Diocese = new() { Name = "St Pauls" }
+                },
+                new GetEstablishmentResponse()
+                {
+                    Urn = "1002",
+                    Name = "Transfer report",
+                    LocalAuthorityName = "Local authority 2",
+                    EstablishmentType = new() { Name = "Voluntary aided school" },
+                    PhaseOfEducation = new() { Name = "Primary" },
+                    StatutoryLowAge = "3",
+                    StatutoryHighAge = "16",
+                    Address = new()
+                    {
+                        Street = "Establishment 2 Street",
+                        Locality = "Establishment 2 Locality",
+                        Additional = "Establishment 2 Additional",
+                        Town = "Establishment 2 Town",
+                        County = "Establishment 2 County",
+                        Postcode = "Establishment 2 Postcode"
+                    },
+                    Diocese = new() { Name = "St Pauls" }
                 }
             };
 

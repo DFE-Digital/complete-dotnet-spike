@@ -18,7 +18,7 @@
 
         public string ToAgeRange()
         {
-            return $"{StatutoryHighAge} - {StatutoryLowAge}";
+            return $"{StatutoryLowAge}-{StatutoryHighAge}";
         }
     }
 
