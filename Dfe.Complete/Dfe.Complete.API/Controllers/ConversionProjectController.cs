@@ -32,7 +32,7 @@ namespace Dfe.Complete.API.Controllers
         [HttpGet]
         public async Task<ActionResult<GetConversionProjectResponse>> GetConversionProject(Guid projectId)
         {
-            var result = await _getConversionProjectService.Execute(projectId);
+            var result = await _getConversionProjectService.GetConversionProjectById(projectId);
 
             return new OkObjectResult(result);
         }

@@ -1,0 +1,43 @@
+﻿@page "/projects/conversion-projects/{projectId}/created"
+
+@using Dfe.Complete.API.Contracts.Project;
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.ProjectCreatedModel
+@{
+    ViewData["Title"] = "Project Created";
+
+    // var taskListLink = string.Format(RouteConstants.ConversionProjectTaskList, Model.Project.);
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <govuk-panel heading-level="2">
+            <govuk-panel-title>Project created</govuk-panel-title>
+        </govuk-panel>
+        <p class="govuk-body">You have created a project for @Model.Project.SchoolDetails.Name, URN @Model.Project.SchoolDetails.Urn</p>
+
+        <h2>Add contact details</h2>
+
+        <p class="govuk-body">You must add contact details for the:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>school or academy</li>
+            <li>trust</li>
+            <li>solicitors</li>
+            <li>local authority</li>
+        </ul>
+
+
+        @* TODO EA: You need to add a hyperlink here *@
+        <p class="govuk-body">You must add contact details for the diocese if this is a faith school</p>
+        <p class="govuk-body">This will help the person continuing this project to organise the kick-off meeting</p>
+
+        <h2>What happens next</h2>
+
+        <p class="govuk-body">Another person will be assigned to this project</p>
+
+        <form method="post">
+            <govuk-button type="submit">Add contacts</govuk-button>
+        </form>
+    </div>
+</div>

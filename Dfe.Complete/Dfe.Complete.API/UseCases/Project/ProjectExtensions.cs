@@ -73,6 +73,22 @@ namespace Dfe.Complete.API.UseCases.Project
             return result;
         }
 
+        public static async Task<ConversionProject> GetConversionProjectByUrn(this CompleteContext context, int urn)
+        {
+            var result = (from project in context.Projects
+                          join taskData in context.ConversionTasksData on project.TasksDataId equals taskData.Id into joinedTaskData
+                          from taskData in joinedTaskData.DefaultIfEmpty()
+                          where project.Urn == urn && project.Type == ProjectType.Conversion
+                          select new ConversionProject
+                          {
+                              Project = project,
+                              TaskData = taskData
+                          }
+                          ).FirstOrDefault();
+
+            return result;
+        }
+
         public static async Task<Data.Entities.Project> GetProjectById(this CompleteContext context, Guid projectId)
         {
             var project = await context.Projects.FirstOrDefaultAsync(p => p.Id == projectId);

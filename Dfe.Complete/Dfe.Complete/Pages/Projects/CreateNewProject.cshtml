@@ -1,0 +1,56 @@
+﻿@page "/projects/new"
+
+@using Dfe.Complete.API.Contracts.Project;
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.CreateNewProjectModel
+@{
+    ViewData["Title"] = "Create new project";
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+            <govuk-radios name="ProjectType">
+                <govuk-radios-fieldset>
+                    <govuk-radios-fieldset-legend is-page-heading="true" class="govuk-fieldset__legend--l">
+                        Choose project type
+                    </govuk-radios-fieldset-legend>
+
+                    <govuk-radios-item value="conversion" checked=true>
+                        <b>Conversion</b>
+                        <br />
+                        <govuk-radios-hint>
+                            A local authority school becomes an academy and joins an existing trust
+                        </govuk-radios-hint>
+                    </govuk-radios-item>
+
+                    <govuk-radios-item value="transfer">
+                        <b>Transfer</b>
+                        <br />
+                        <govuk-radios-hint>
+                            An academy moves to a different trust that already exists
+                        </govuk-radios-hint>
+                    </govuk-radios-item>
+
+                    <govuk-radios-item value="famconversion">
+                        <b>Form a MAT conversion</b>
+                        <br />
+                        <govuk-radios-hint>
+                            A local authority school becomes an academy and joins a brand new multi-academy trust
+                        </govuk-radios-hint>
+                    </govuk-radios-item>
+
+                    <govuk-radios-item value="famtransfer">
+                        <b>Form a MAT transfer</b>
+                        <br />
+                        <govuk-radios-hint>
+                            A local authority school becomes an academy and joins a brand new multi-academy trust
+                        </govuk-radios-hint>
+                    </govuk-radios-item>
+                </govuk-radios-fieldset>
+            </govuk-radios>
+
+            <govuk-button type="submit">Continue</govuk-button>
+        </form>
+    </div>
+</div>

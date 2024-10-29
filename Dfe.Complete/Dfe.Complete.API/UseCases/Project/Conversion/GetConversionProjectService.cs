@@ -7,7 +7,8 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
 {
     public interface IGetConversionProjectService
     {
-        public Task<GetConversionProjectResponse> Execute(Guid projectId);
+        public Task<GetConversionProjectResponse> GetConversionProjectById(Guid projectId);
+        public Task<GetConversionProjectResponse> GetConversionProjectByUrn(int urn);
     }
 
     public class GetConversionProjectService : IGetConversionProjectService
@@ -23,9 +24,42 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion
             _getEstablishmentAndTrustService = getEstablishmentAndTrustService;
         }
 
-        public async Task<GetConversionProjectResponse> Execute(Guid projectId)
+        public async Task<GetConversionProjectResponse> GetConversionProjectById(Guid projectId)
         {
             var queryResult = await _context.GetConversionProjectById(projectId);
+            var project = queryResult.Project;
+
+            var establishmentAndTrust = await _getEstablishmentAndTrustService.Execute(project.Urn, project.IncomingTrustUkprn, project.OutgoingTrustUkprn);
+
+            var result = new GetConversionProjectResponse()
+            {
+                ProjectDetails = ProjectDetailsBuilder.Execute(project, establishmentAndTrust),
+                ReasonForTheConversion = new ReasonForTheConversion()
+                {
+                    IsDueTo2RI = project.TwoRequiresImprovement,
+                    HasAcademyOrderBeenIssued = project.DirectiveAcademyOrder,
+                },
+                AdvisoryBoardDetails = new AdvisoryBoardDetails()
+                {
+                    Date = project.AdvisoryBoardDate,
+                    Conditions = project.AdvisoryBoardConditions
+                },
+                IncomingTrustDetails = TrustDetailsBuilder.Execute(establishmentAndTrust.IncomingTrust, project.IncomingTrustSharepointLink),
+                SchoolDetails = SchoolDetailsBuilder.Execute(establishmentAndTrust.Establishment, project.EstablishmentSharepointLink)
+            };
+
+            return result;
+        }
+
+        public async Task<GetConversionProjectResponse> GetConversionProjectByUrn(int urn)
+        {
+            var queryResult = await _context.GetConversionProjectByUrn(urn);
+
+            if (queryResult == null)
+            {
+                return null;
+            }
+
             var project = queryResult.Project;
 
             var establishmentAndTrust = await _getEstablishmentAndTrustService.Execute(project.Urn, project.IncomingTrustUkprn, project.OutgoingTrustUkprn);
