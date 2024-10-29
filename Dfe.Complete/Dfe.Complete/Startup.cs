@@ -7,6 +7,7 @@ using Dfe.Complete.Configuration;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
 using Dfe.Complete.StartupConfiguration;
+using GovUk.Frontend.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -95,6 +96,8 @@ public class Startup
         System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 
         RegisterClients(services);
+
+        services.AddGovUkFrontend();
 
         // API
         services.AddCompleteApiProject(Configuration);

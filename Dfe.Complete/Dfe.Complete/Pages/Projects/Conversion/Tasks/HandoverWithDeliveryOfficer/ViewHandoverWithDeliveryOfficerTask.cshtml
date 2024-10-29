@@ -22,10 +22,50 @@
             Handover with regional delivery officer
         </h1>
         <govuk-summary-list>
-            <govuk-summary-item label="Not applicable" asp-for="@handoverWithDeliveryOfficer.NotApplicable" href="@editlink" />
-            <govuk-summary-item label="Review the project information and carry out research" asp-for="@handoverWithDeliveryOfficer.ReviewProjectInformation" href="@editlink" />
-            <govuk-summary-item label="Make notes and write questions to ask the regional delivery officer" asp-for="@handoverWithDeliveryOfficer.MakeNotes" href="@editlink" />
-            <govuk-summary-item label="Attend handover meeting with regional delivery officer" asp-for="@handoverWithDeliveryOfficer.AttendHandoverMeeting" href="@editlink" />
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Not applicable
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @handoverWithDeliveryOfficer.NotApplicable
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="name">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Review the project information and carry out research
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @handoverWithDeliveryOfficer.ReviewProjectInformation
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Review the project information and carry out research">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Make notes and write questions to ask the regional delivery officer
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @handoverWithDeliveryOfficer.MakeNotes
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Make notes and write questions to ask the regional delivery officer">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Attend handover meeting with regional delivery officer
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @handoverWithDeliveryOfficer.AttendHandoverMeeting
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Attend handover meeting with regional delivery officer">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
         </govuk-summary-list>
     </div>
 </div>

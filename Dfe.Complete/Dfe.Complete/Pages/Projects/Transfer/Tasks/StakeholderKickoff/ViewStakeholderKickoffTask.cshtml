@@ -22,9 +22,39 @@
             External stakeholder kick-off
         </h1>
         <govuk-summary-list>
-            <govuk-summary-item label="Send introductory emails" asp-for="@stakeholderKickoff.SendIntroEmails" href="@editlink" />
-            <govuk-summary-item label="Send invites to the kick-off meeting or call" asp-for="@stakeholderKickoff.SendInvites" href="@editlink" />
-            <govuk-summary-item label="Host the kick-off meeting or call" asp-for="@stakeholderKickoff.HostMeetingOrCall" href="@editlink" />
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Send introductory emails
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @stakeholderKickoff.SendIntroEmails
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Send introductory emails">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Send invites to the kick-off meeting or call
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @stakeholderKickoff.SendInvites
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Send invites to the kick-off meeting or call">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Host the kick-off meeting or call
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @stakeholderKickoff.HostMeetingOrCall
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Host the kick-off meeting or call">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
         </govuk-summary-list>
     </div>
 </div>
