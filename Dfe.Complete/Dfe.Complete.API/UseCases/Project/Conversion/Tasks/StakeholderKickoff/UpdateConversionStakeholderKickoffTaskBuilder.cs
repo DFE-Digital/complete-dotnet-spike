@@ -12,6 +12,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff
 
             dbTask.StakeholderKickOffLocalAuthorityProforma = task.LocalAuthorityProforma;
             dbTask.StakeholderKickOffCheckProvisionalConversionDate = task.LocalAuthorityAbleToConvert;
+            dbTask.StakeholderKickOffConversionDate = task.StakeholderKickOffConversionDate;
         }
     }
 }

@@ -16,7 +16,8 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff
                 SendInvites = updatedTask.SendInvites,
                 HostMeetingOrCall = updatedTask.HostMeetingOrCall,
                 LocalAuthorityAbleToConvert = task.StakeholderKickOffCheckProvisionalConversionDate,
-                LocalAuthorityProforma = task.StakeholderKickOffLocalAuthorityProforma
+                LocalAuthorityProforma = task.StakeholderKickOffLocalAuthorityProforma,
+                StakeholderKickOffConversionDate = task.StakeholderKickOffConversionDate
             };
 
             return result;

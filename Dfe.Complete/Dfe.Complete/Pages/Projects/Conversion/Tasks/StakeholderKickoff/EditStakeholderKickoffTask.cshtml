@@ -1,0 +1,141 @@
+﻿@page "/conversion-projects/{projectId}/tasks/stakeholder-kickoff/edit"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.Tasks.StakeholderKickoff.EditStakeholderKickoffTaskModel
+@{
+    var backlink = string.Format(RouteConstants.ConversionEditStakeholderKickoffTask, Model.ProjectId);
+}
+@section BeforeMain {
+    <a href=@backlink class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+
+            <govuk-checkboxes name="options">
+                <govuk-checkboxes-fieldset>
+                    <govuk-checkboxes-fieldset-legend is-page-heading="true" class="govuk-fieldset__legend--l">
+                        External stakeholder kick-off
+                    </govuk-checkboxes-fieldset-legend>
+
+                    <govuk-checkboxes-hint>
+                        <p>
+                            This is where you make sure everyone involved in the conversion knows what they need to do, and when to do it, so the school can become an academy on time.
+                        </p>
+
+                        <p>
+                            This is also a good opportunity to talk about common problems and how to avoid them.
+                        </p>
+                    </govuk-checkboxes-hint>
+
+                    <govuk-checkboxes-item id="conversion_task_stakeholder_kick_off_task_form_introductory_emails" asp-for="@Model.SendIntroEmails" value="true" name="send-intro-emails" checked="@Model.SendIntroEmails">
+                        Send introductory emails
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                Email the school or trust, and their solicitors. Email the diocese too if this is a faith school.
+                            </p>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to include in introductory emails</span></summary><div class="govuk-details__text">
+                                        <p>You can <a href="https://educationgovuk.sharepoint.com/:f:/s/ServiceDeliveryDirectorate/ElWeWBJ7zxtLhJe3fepy1j4BCRuJnb9DEYgiQiKdCkLt1w?e=EkRZIL" target="_blank">choose an email template (opens in new tab)</a> to help you write your introductory emails. There are templates for the school or trust and their solicitors.</p> <p>This will help you to:</p> <ul> <li>organise kick-off meetings</li> <li>clarify roles and expectation</li> <li>establish dates and deadlines</li> <li>provide links to documents that need to be completed</li> <li>agree ways of working</li> </ul> <p>You should aim to do this in the first week after you have been assigned the project.</p> <p>Ideally the kick-off meeting should take place within the first two weeks.</p>
+                                    </div>
+                                </details>
+                            </div>
+
+
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_stakeholder_kick_off_task_form_local_authority_proforma" asp-for="@Model.LocalAuthorityProforma" value="true" name="local-authority-proforma" checked="@Model.LocalAuthorityProforma">
+                        Check the local authority proforma
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                Check the information is correct and there is no missing information.
+                            </p>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to do if you don't have the local authority proforma</span></summary><div class="govuk-details__text">
+                                        <p>The person who prepared this project for advisory board should have asked for the proforma from the local authority and saved it in SharePoint.</p> <p>However, some local authorities will not share the proforma until after the academy order has been issued.</p><p> </p><p>If it is not in SharePoint, check if the person who prepared the project has asked for it.</p> <p>If they have not, ask the local authority to send the proforma to you and save it in SharePoint.</p> <p>You can <a href="https://educationgovuk.sharepoint.com/sites/ServiceDeliveryDirectorate/Shared%20Documents/Forms/AllItems.aspx?FolderCTID=0x012000265B42F1C27524438F6B1CC14FCF9E05&amp;id=%2Fsites%2FServiceDeliveryDirectorate%2FShared%20Documents%2FOperational%20Delivery%2FGuidance%2C%20Training%20and%20Resources%2F%281%29%20CONVERSIONS%20%2D%20Guidance%20and%20Templates%2FCONVERSIONS%20%2D%20Template%20Emails%20%26%20Documents&amp;viewid=84d1a8e7%2D052b%2D4a94%2D8d1b%2D850c4e6f284f" target="blank">use a local authority email template (opens in new tab)</a> to help you write this email.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_stakeholder_kick_off_task_form_Local_authority_able_to_convert" asp-for="@Model.LocalAuthorityAbleToConvert" value="true" name="local-authority-able-to-convert" checked="@Model.LocalAuthorityAbleToConvert">
+                        Check the local authority is able to convert the school by the provisional conversion date: 01 September 2023
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                The school or trust may have provided a provisional conversion date. Email the local authority to make sure they are able to do what they need to do by this date.
+                            </p>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to do if the local authority is not able meet the provisional conversion date</span></summary><div class="govuk-details__text">
+                                        <p>Tell the school and trust if the local authority cannot complete the conversion by the provisional date.</p> <p>If this happens you'll need to work with the school, trust and local authority to agree a new date.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_stakeholder_kick_off_task_form_setup_meeting" asp-for="@Model.SendInvites" value="true" name="send-invites" checked="@Model.SendInvites">
+                        Send invites to the kick-off meeting or call
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                Check who the school or trust would like to attend the kick-off meeting.
+                            </p>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">How to arrange the kick-off meeting</span></summary><div class="govuk-details__text">
+                                        <p>You should have included possible dates for the kick-off meeting in your introductory email.</p> <p>Once the school have got back to you with a suitable date and list of attendees, send out invites to arrange the time, date and location of the meeting. It's likely to be a video call over Microsoft Teams.</p> <p>Some schools and trusts may prefer to have a one-to-one call with you, rather than a meeting involving all stakeholders.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_stakeholder_kick_off_task_form_meeting" asp-for="@Model.HostMeetingOrCall" value="true" name="host-meeting-or-call" checked="@Model.HostMeetingOrCall">
+                        Host the kick-off meeting or call
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                Make sure all attendees understand what they need to do, and when they need to do it.
+                            </p>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to talk about in the meeting</span></summary><div class="govuk-details__text">
+                                        <p>You should discuss and record issues that might complicate or delay the project.</p> <p>You can <a href="https://educationgovuk.sharepoint.com/:w:/s/ServiceDeliveryDirectorate/EZx-RuHD_JxEuaCF68ZXpe8BvSQ3ITlysjfNJ28t0_xzfQ?e=hxRZxt" target="_blank">use the conversion checklist (opens in new tab)</a> to guide the conversation and make sure you talk about everything you need to.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+  
+                </govuk-checkboxes-fieldset>
+            </govuk-checkboxes>
+
+            <govuk-date-input id="conversion-date" name-prefix="conversion-date" asp-for="@Model.ConversionDate">
+                <govuk-date-input-fieldset>
+                    <govuk-date-input-fieldset-legend class="govuk-fieldset__legend--m">
+                        Enter the confirmed conversion date
+                    </govuk-date-input-fieldset-legend>
+                    <govuk-date-input-hint>
+                        <p>
+                            Everyone should have agreed to and know the confirmed conversion date.
+                        </p>
+
+                        <p>
+                            You only need to enter a month and year. All schools convert on the first day of the month.
+                        </p>
+                    </govuk-date-input-hint>
+                </govuk-date-input-fieldset>
+            </govuk-date-input>
+
+            <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save and return</button>
+        </form>
+    </div>
+</div>
