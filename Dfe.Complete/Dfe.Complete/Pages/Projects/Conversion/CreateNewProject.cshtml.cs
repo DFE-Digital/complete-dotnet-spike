@@ -1,17 +1,12 @@
 using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.API.Contracts.Project.Conversion;
-using Dfe.Complete.API.Contracts.Project.Notes;
 using Dfe.Complete.API.UseCases.Project.Conversion;
-using Dfe.Complete.Data.Entities;
-using Dfe.Complete.Services.Project;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Dfe.Complete.Extensions;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace Dfe.Complete.Pages.Projects.Conversion
 {
@@ -111,8 +106,8 @@ namespace Dfe.Complete.Pages.Projects.Conversion
             ValidateUKPRN();
             ValidateAdvisoryBoardDate();
             ValidateProvisionalConversionDate();
-            ValidateSharePointLink(nameof(SchoolSharePointLink));
-            ValidateSharePointLink(nameof(IncomingTrustSharePointLink));
+            //ValidateSharePointLink(nameof(SchoolSharePointLink));
+            //ValidateSharePointLink(nameof(IncomingTrustSharePointLink));
             ValidateHandingToRCS();
             ValidateAcademyOrder();
             ValidateDueTo2RI();

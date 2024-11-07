@@ -24,6 +24,15 @@
         public const string ConversionStakeholderKickoffTask = ConversionProjectTaskList + "/stakeholder-kickoff";
         public const string ConversionEditStakeholderKickoffTask = ConversionStakeholderKickoffTask + "/edit";
 
+        public const string ConversionLandQuestionnaireTask = ConversionProjectTaskList + "/land-questionnaire";
+        public const string ConversionEditLandQuestionnaireTask = ConversionLandQuestionnaireTask + "/edit";
+
+        public const string ConversionLandRegistryTask = ConversionProjectTaskList + "/land-registry";
+        public const string ConversionEditLandRegistryTask = ConversionLandRegistryTask + "/edit";
+
+        public const string ConversionSupplementalFundingAgreementTask = ConversionProjectTaskList + "/supplemental-funding-agreement";
+        public const string ConversionEditSupplementalFundingAgreementTask = ConversionSupplementalFundingAgreementTask + "/edit";
+
         // Transfer
         public const string TransferProject = "/transfer-projects/{0}";
         public const string TransferProjectTaskList = TransferProject + "/tasks";

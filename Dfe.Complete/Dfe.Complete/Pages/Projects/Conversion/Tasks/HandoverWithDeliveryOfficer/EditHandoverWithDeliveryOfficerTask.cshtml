@@ -4,77 +4,72 @@
 @{
     var backlink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
 
-    var reviewProjectInformationHint = @"
-        Check that no information is missing from the existing project documents and there are no errors.
-        <details data-module=""govuk-details"" class=""govuk-details"">
-            <summary class=""govuk-details__summary"">
-                <span class=""govuk-details__summary-text"">What to check for</span>
-            </summary>
-            <div class=""govuk-details__text"">
-                <p>You should check existing project documents, including:</p>
-                <ul>
-                    <li>academy order</li>
-                    <li>application to convert</li> 
-                </ul>
-                <p>Check that no information is missing and there are no errors. You should also research the background of the project before you meet with the regional delivery officer.</p>
-                <p>Things to check during your background research include:</p> 
-                <ul>
-                    <li>project information, such as advisory board conditions</li>
-                    <li>school or trust website for more information about the school</li>
-                    <li>Google Maps for potential land issues</li>
-                </ul>
-                </div>
-            </details>";
 
-    var makeNotesHint = @"
-        <details data-module=""govuk-details"" class=""govuk-details"">
-            <summary class=""govuk-details__summary"">
-                <span class=""govuk-details__summary-text"">What to check for</span>
-            </summary>
-            <div class=""govuk-details__text"">
-                <p>Note down things you want to ask and talk about with the regional delivery officer at the handover meeting.</p>
-                <p>This is an opportunity to clarify anything that you're unsure about after reviewing the project and doing your background research.</p>
-            </div>
-        </details>";
+
 }
 @section BeforeMain {
     <a href=@backlink class="govuk-back-link">Back</a>
 }
 
-<h1 class="govuk-heading-xl" data-testid="title">
-    <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
-    Handover with regional delivery officer
-</h1>
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
         <form method="post">
 
-            <govuk-checkbox-input label="Not applicable"
-                                  asp-for="@Model.NotApplicable"
-                                  name="not-applicable"
-                                  id="not-applicable" add-margin=false />
+            <govuk-checkboxes name="options">
+                <govuk-checkboxes-fieldset>
+                    <govuk-checkboxes-fieldset-legend is-page-heading="true" class="govuk-fieldset__legend--l">
+                        <span class="govuk-caption-l" data-testid="school-name">@Model.SchoolName</span>
+                        Handover with regional delivery officer
+                    </govuk-checkboxes-fieldset-legend>
 
-            <govuk-checkbox-input label="Review the project information and carry out research"
-                                  asp-for="@Model.ReviewProjectInformation"
-                                  name="review-project-information"
-                                  id="transfer_task_handover_task_form_review"
-                                  hint="@reviewProjectInformationHint"
-                                  add-margin=false />
+                    <govuk-checkboxes-item id="not-applicable" asp-for="@Model.NotApplicable" value="true" name="not-applicable" checked="@Model.NotApplicable">
+                        <b>Not applicable</b>
+                    </govuk-checkboxes-item>
 
-            <govuk-checkbox-input label="Make notes and write questions to ask the regional delivery officer"
-                                  asp-for="@Model.MakeNotes"
-                                  name="make-notes"
-                                  id="transfer_task_handover_task_form_notes"
-                                  hint="@makeNotesHint"
-                                  add-margin=false />
+                    <govuk-checkboxes-item id="conversion_task_handover_task_form_review" asp-for="@Model.ReviewProjectInformation" value="true" name="review-project-information" checked="@Model.ReviewProjectInformation">
+                        <b>Review the project information, check the documents and carry out research</b>
+                        <govuk-checkboxes-item-hint>
+                            <p>
+                                Check that no information is missing from the existing project documents and there are no errors.
+                            </p>
 
-            <govuk-checkbox-input label="Attend handover meeting with regional delivery officer"
-                                  asp-for="@Model.AttendHandoverMeeting"
-                                  name="attend-handover-meeting"
-                                  id="transfer_task_handover_task_form_meeting"
-                                  hint="Discuss any questions you have about the project in the meeting."
-                                  add-margin=false />
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to check for</span></summary><div class="govuk-details__text">
+                                        <p>You should check existing project documents, including:</p> <ul> <li>academy order</li> <li>application to convert</li> </ul> <p>Check that no information is missing and there are no errors. You should also research the background of the project before you meet with the regional delivery officer.</p> <p>Things to check during your background research include:</p> <ul> <li>project information, such as advisory board conditions</li> <li>school or trust website for more information about the school</li> <li>Google Maps for potential land issues</li> </ul>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_handover_task_form_notes" asp-for="@Model.MakeNotes" value="true" name="make-notes" checked="@Model.MakeNotes">
+                        <b>Make notes and write questions to ask the regional delivery officer</b>
+                        <govuk-checkboxes-item-hint>
+
+                            <div class="guidance">
+                                <details data-module="govuk-details" class="govuk-details">
+                                    <summary class="govuk-details__summary"><span class="govuk-details__summary-text">What to make notes about</span></summary><div class="govuk-details__text">
+                                        <p>Note down things you want to ask and talk about with the regional delivery officer at the handover meeting.</p> <p>This is an opportunity to clarify anything that you're unsure about after reviewing the project and doing your background research.</p>
+                                    </div>
+                                </details>
+                            </div>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_handover_task_form_meeting" asp-for="@Model.AttendHandoverMeeting" value="true" name="attend-handover-meeting" checked="@Model.AttendHandoverMeeting">
+                        <b>Attend handover meeting with regional delivery officer</b>
+                        <govuk-checkboxes-item-hint>
+
+                            <p>
+                                Discuss any questions you have about the project in the meeting.
+                            </p>
+                        </govuk-checkboxes-item-hint>
+                    </govuk-checkboxes-item>
+
+                </govuk-checkboxes-fieldset>
+            </govuk-checkboxes>
 
             <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save and return</button>
         </form>

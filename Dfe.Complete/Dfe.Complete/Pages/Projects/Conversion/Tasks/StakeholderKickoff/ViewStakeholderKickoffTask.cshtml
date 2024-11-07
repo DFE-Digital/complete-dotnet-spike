@@ -2,9 +2,8 @@
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.Conversion.Tasks.StakeholderKickoff.ViewStakeholderKickoffTaskModel
 @{
-    var backlink = string.Format(RouteConstants.ConversionStakeholderKickoffTask, Model.ProjectId);
+    var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
     var editlink = string.Format(RouteConstants.ConversionEditStakeholderKickoffTask, Model.ProjectId);
-    var taskList = string.Format(RouteConstants.ConversionStakeholderKickoffTask, Model.ProjectId);
 
     var stakeholderKickoff = Model.Project.StakeholderKickoff;
 }
@@ -55,17 +54,6 @@
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority is able to convert the school by the provisional conversion date">Change</govuk-summary-list-row-action>
                 </govuk-summary-list-row-actions>
             </govuk-summary-list-row>
-            <govuk-summary-list-row>
-                <govuk-summary-list-row-key>
-                    Conversion date
-                </govuk-summary-list-row-key>
-                <govuk-summary-list-row-value>
-                    @stakeholderKickoff.StakeholderKickOffConversionDate.ToDateString()
-                </govuk-summary-list-row-value>
-                <govuk-summary-list-row-actions>
-                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority is able to convert the school by the provisional conversion date">Change</govuk-summary-list-row-action>
-                </govuk-summary-list-row-actions>
-            </govuk-summary-list-row>
 
             <govuk-summary-list-row>
                 <govuk-summary-list-row-key>
@@ -87,6 +75,17 @@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Host the kick-off meeting or call">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Conversion date
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @stakeholderKickoff.StakeholderKickOffConversionDate.ToDateString()
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority is able to convert the school by the provisional conversion date">Change</govuk-summary-list-row-action>
                 </govuk-summary-list-row-actions>
             </govuk-summary-list-row>
         </govuk-summary-list>

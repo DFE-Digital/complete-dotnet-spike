@@ -1,6 +1,8 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.LandQuestionnaire;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.SupplementalFundingAgreement;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,15 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
 
             if (request.StakeholderKickoff != null)
                 UpdateConversionStakeholderKickoffTaskBuilder.Execute(request.StakeholderKickoff, conversionTaskData);
+
+            if (request.LandQuestionnaire != null)
+                UpdateConversionLandQuestionnaireTaskBuilder.Execute(request.LandQuestionnaire, conversionTaskData);
+
+            if (request.LandRegistry != null)
+                UpdateConversionLandRegistryTaskBuilder.Execute(request.LandRegistry, conversionTaskData);
+
+            if (request.SupplementalFundingAgreement != null)
+                UpdateConversionSupplementalFundingAgreementTaskBuilder.Execute(request.SupplementalFundingAgreement, conversionTaskData);
 
             await _context.SaveChangesAsync();
         }

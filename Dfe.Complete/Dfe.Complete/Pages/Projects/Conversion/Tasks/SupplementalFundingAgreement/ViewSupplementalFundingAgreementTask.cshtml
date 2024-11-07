@@ -1,0 +1,106 @@
+﻿@page "/conversion-projects/{projectId}/tasks/supplemental-funding-agreement"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.Tasks.SupplementalFundingAgreement.ViewSupplementalFundingAgreementTaskTaskModel
+@{
+    var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.ConversionEditSupplementalFundingAgreementTask, Model.ProjectId);
+
+    var supplementalFundingAgreement = Model.Project.SupplementalFundingAgreement;
+}
+
+@section BeforeMain {
+    <a href=@backlink class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Supplemental funding agreement
+            <span class="govuk-caption-m">
+                Check and clear the supplemental funding agreement
+            </span>
+        </h1>
+
+        <h2 class="govuk-heading-l">
+            Check and clear the supplemental funding agreement
+            <span class="govuk-caption-m">
+                You can view the model documents (opens in new tab) to check for changes.
+            </span>
+        </h2>
+
+        <details data-module="govuk-details" class="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">Help checking the supplemental funding agreement</span></summary><div class="govuk-details__text"><p>Changes that personalise the model documents to a school or trust, and remove or add optional clauses, are expected. The wording of clauses should not change.</p> <p>You'll need to <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/Resources/Request%20for%20advice%20from%20the%20AOPU.aspx" class="govuk-link" target="_blank">contact the policy team (opens in new tab)</a> about changes to clause text.</p> <p>We only accept new supplemental funding agreements that use the 2020 edition of the model documents.</p> <p>Master funding agreements from 2018 onwards are compatible with supplemental funding agreements from 2020 onwards.</p></div></details>
+
+        <govuk-summary-list>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Received
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.Received
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Received">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Cleared
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.Cleared
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Cleared">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Signed by school or trust
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.Signed
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Signed by school or trust">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Saved in the school's SharePoint folder
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.Saved
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Saved in the school's SharePoint folder">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Sent to team leader or deputy director
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.Sent
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Sent to team leader or deputy director">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Document signed on behalf of the Secretary of State
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @supplementalFundingAgreement.SignedSecretaryState
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Document signed on behalf of the Secretary of State">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+        </govuk-summary-list>
+    </div>
+</div>
