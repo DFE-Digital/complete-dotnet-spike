@@ -39,7 +39,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
             var conversionTasks = queryResult.TaskData;
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(conversionTasks);
-            var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks);
+            var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks, project);
             var landQuestionnaire = ConversionLandQuestionnaireTaskBuilder.Execute(conversionTasks);
             var landRegistry = ConversionLandRegistryTaskBuilder.Execute(conversionTasks);
             var supplementalFundingAgreement = ConversionSupplementalFundingAgreementTaskBuilder.Execute(conversionTasks);

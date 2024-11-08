@@ -131,7 +131,6 @@ namespace Dfe.Complete.Data.Configuration
             builder.Property(e => e.StakeholderKickOffLocalAuthorityProforma).HasColumnName("stakeholder_kick_off_local_authority_proforma");
             builder.Property(e => e.StakeholderKickOffMeeting).HasColumnName("stakeholder_kick_off_meeting");
             builder.Property(e => e.StakeholderKickOffSetupMeeting).HasColumnName("stakeholder_kick_off_setup_meeting");
-            builder.Property(e => e.StakeholderKickOffConversionDate).HasColumnName("stakeholder_kick_off_conversion_date");
             builder.Property(e => e.SubleasesCleared).HasColumnName("subleases_cleared");
             builder.Property(e => e.SubleasesEmailSigned).HasColumnName("subleases_email_signed");
             builder.Property(e => e.SubleasesNotApplicable).HasColumnName("subleases_not_applicable");

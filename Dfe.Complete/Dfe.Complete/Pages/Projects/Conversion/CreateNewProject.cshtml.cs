@@ -76,9 +76,8 @@ namespace Dfe.Complete.Pages.Projects.Conversion
             var project = new CreateConversionProjectRequest();
             project.Urn = URN;
             project.Date = ProvisionalConversionDate;
-            project.IsDateProvisional = true; //Come back and confirm the logic 
+            project.IsDateProvisional = true; // will be set to false in the stakeholder kick off task 
             project.SchoolSharePointLink = SchoolSharePointLink;
-            project.Region = Region.YorkshireAndTheHumber; //Come back and confirm the region
             project.IsDueTo2RI = IsDueTo2RI;
             project.AdvisoryBoardDetails = new AdvisoryBoardDetails() 
             {

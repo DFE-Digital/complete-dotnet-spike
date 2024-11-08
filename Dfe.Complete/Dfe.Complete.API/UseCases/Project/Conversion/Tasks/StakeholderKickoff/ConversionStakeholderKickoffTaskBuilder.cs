@@ -6,7 +6,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff
 {
     public class ConversionStakeholderKickoffTaskBuilder
     {
-        public static ConversionStakeholderKickoffTask Execute(ConversionTasksData task)
+        public static ConversionStakeholderKickoffTask Execute(ConversionTasksData task, Data.Entities.Project project)
         {
             var updatedTask = StakeholderKickoffTaskBuilder.Execute(task);
 
@@ -17,7 +17,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff
                 HostMeetingOrCall = updatedTask.HostMeetingOrCall,
                 LocalAuthorityAbleToConvert = task.StakeholderKickOffCheckProvisionalConversionDate,
                 LocalAuthorityProforma = task.StakeholderKickOffLocalAuthorityProforma,
-                StakeholderKickOffConversionDate = task.StakeholderKickOffConversionDate
+                StakeholderKickOffConversionDate = project.SignificantDate
             };
 
             return result;

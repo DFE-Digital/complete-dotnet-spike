@@ -32,8 +32,6 @@ public partial class ConversionTasksData : IProjectTasksData
 
     public bool? StakeholderKickOffSetupMeeting { get; set; }
 
-    public DateTime? StakeholderKickOffConversionDate { get; set; }
-
     public bool? StakeholderKickOffMeeting { get; set; }
 
     public bool? ConversionGrantCheckVendorAccount { get; set; }

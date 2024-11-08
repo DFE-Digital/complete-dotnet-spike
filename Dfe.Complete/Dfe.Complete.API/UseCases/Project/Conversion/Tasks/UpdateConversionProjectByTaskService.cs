@@ -34,7 +34,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                 UpdateHandoverWithDeliveryOfficerTaskBuilder.Execute(request.HandoverWithDeliveryOfficer, conversionTaskData);
 
             if (request.StakeholderKickoff != null)
-                UpdateConversionStakeholderKickoffTaskBuilder.Execute(request.StakeholderKickoff, conversionTaskData);
+                UpdateConversionStakeholderKickoffTaskBuilder.Execute(request.StakeholderKickoff, conversionTaskData, project);
 
             if (request.LandQuestionnaire != null)
                 UpdateConversionLandQuestionnaireTaskBuilder.Execute(request.LandQuestionnaire, conversionTaskData);

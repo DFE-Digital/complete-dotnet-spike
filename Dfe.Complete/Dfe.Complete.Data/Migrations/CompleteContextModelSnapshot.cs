@@ -124,7 +124,7 @@ namespace Dfe.Complete.Data.Migrations
                     b.ToTable("contacts", "complete");
                 });
 
-            modelBuilder.Entity("Dfe.Complete.Data.Entities.ConversionTasksData", b =>
+            modelBuilder.Entity("Dfe.Complete.Data.Entities.ConversionTasksDatum", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -499,10 +499,6 @@ namespace Dfe.Complete.Data.Migrations
                     b.Property<bool?>("StakeholderKickOffCheckProvisionalConversionDate")
                         .HasColumnType("bit")
                         .HasColumnName("stakeholder_kick_off_check_provisional_conversion_date");
-
-                    b.Property<DateTime?>("StakeholderKickOffConversionDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("stakeholder_kick_off_conversion_date");
 
                     b.Property<bool?>("StakeholderKickOffIntroductoryEmails")
                         .HasColumnType("bit")
@@ -1245,7 +1241,7 @@ namespace Dfe.Complete.Data.Migrations
                     b.ToTable("significant_date_histories", "complete");
                 });
 
-            modelBuilder.Entity("Dfe.Complete.Data.Entities.TransferTasksData", b =>
+            modelBuilder.Entity("Dfe.Complete.Data.Entities.TransferTasksDatum", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()

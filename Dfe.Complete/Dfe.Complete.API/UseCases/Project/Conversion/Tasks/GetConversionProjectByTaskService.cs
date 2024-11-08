@@ -48,7 +48,7 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                     break;
 
                 case ConversionProjectTaskName.StakeholderKickoff:
-                    response.StakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTaskData);
+                    response.StakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTaskData, project);
                     break;
 
                 case ConversionProjectTaskName.LandQuestionnaire:
