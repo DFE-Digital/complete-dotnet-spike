@@ -3,6 +3,8 @@ using Dfe.Complete.API.Configuration;
 using Dfe.Complete.API.Extensions;
 using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
+using Dfe.Complete.Client;
+using Dfe.Complete.Client.Contracts;
 using Dfe.Complete.Configuration;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
@@ -24,6 +26,7 @@ using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
+using Dfe.Complete.Api.Client.Extensions;
 
 namespace Dfe.Complete;
 
@@ -101,6 +104,8 @@ public class Startup
 
         // API
         services.AddCompleteApiProject(Configuration);
+
+        services.AddCompleteApiClient<ICreateProjectClient, CreateProjectClient>(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

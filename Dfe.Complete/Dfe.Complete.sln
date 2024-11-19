@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Complete.UserContext.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Complete.Tests", "Dfe.Complete.Tests\Dfe.Complete.Tests.csproj", "{169507DC-02F7-43D0-805B-F729C2369696}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfe.Complete.Api.Client", "..\..\complete-api\src\Dfe.Complete.Api.Client\Dfe.Complete.Api.Client.csproj", "{0445EB76-18C1-4AD5-A36B-9062D9F284B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{169507DC-02F7-43D0-805B-F729C2369696}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{169507DC-02F7-43D0-805B-F729C2369696}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{169507DC-02F7-43D0-805B-F729C2369696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0445EB76-18C1-4AD5-A36B-9062D9F284B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0445EB76-18C1-4AD5-A36B-9062D9F284B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0445EB76-18C1-4AD5-A36B-9062D9F284B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0445EB76-18C1-4AD5-A36B-9062D9F284B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

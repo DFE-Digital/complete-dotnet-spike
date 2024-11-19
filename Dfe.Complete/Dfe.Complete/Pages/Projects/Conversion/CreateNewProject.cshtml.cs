@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using Dfe.Complete.Extensions;
+using Dfe.Complete.Client.Contracts;
 
 namespace Dfe.Complete.Pages.Projects.Conversion
 {
@@ -14,6 +15,7 @@ namespace Dfe.Complete.Pages.Projects.Conversion
     {
         private readonly ICreateConversionProjectService _createConversionProjectService;
         private readonly IGetConversionProjectService _getConversionProjectService;
+        private readonly ICreateProjectClient _projectsClient;
 
         [BindProperty]
         public string URN { get; set; } 
@@ -49,12 +51,13 @@ namespace Dfe.Complete.Pages.Projects.Conversion
         public bool? DirectiveAcademyOrder { get; set; } 
 
         [BindProperty]
-        public bool? IsDueTo2RI { get; set; } 
+        public bool? IsDueTo2RI { get; set; }
 
-        public CreateNewProjectModel(ICreateConversionProjectService createConversionProjectService, IGetConversionProjectService getConversionProjectService)
+        public CreateNewProjectModel(ICreateConversionProjectService createConversionProjectService, IGetConversionProjectService getConversionProjectService, ICreateProjectClient projectsClient)
         {
             _createConversionProjectService = createConversionProjectService;
             _getConversionProjectService = getConversionProjectService;
+            _projectsClient = projectsClient;
         }
 
         public async Task<IActionResult> OnGet()
@@ -62,42 +65,48 @@ namespace Dfe.Complete.Pages.Projects.Conversion
             return Page();
         }
 
-
         public async Task<IActionResult> OnPost()
         {
             //Validate
-            await ValidateAllFields();
+            //await ValidateAllFields();
 
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            var project = new CreateConversionProjectRequest();
-            project.Urn = URN;
-            project.Date = ProvisionalConversionDate;
-            project.IsDateProvisional = true; // will be set to false in the stakeholder kick off task 
-            project.SchoolSharePointLink = SchoolSharePointLink;
-            project.IsDueTo2RI = IsDueTo2RI;
-            project.AdvisoryBoardDetails = new AdvisoryBoardDetails() 
-            {
-                Date = AdvisoryBoardDate,
-                Conditions = AdvisoryBoardConditions,
-            };
-            project.IncomingTrustDetails = new CreateTrustDetails() 
-            {
-                Ukprn = UKPRN,
-                SharepointLink = IncomingTrustSharePointLink,
-            };
-            project.HasAcademyOrderBeenIssued = DirectiveAcademyOrder;
+            //var createProjectCommand = new CreateProjectCommand();
+            //createProjectCommand.Urn = new Urn();
+            //createProjectCommand.SignificantDate = ProvisionalConversionDate;
+            //createProjectCommand.IsSignificantDateProvisional = true; // will be set to false in the stakeholder kick off task 
+            //createProjectCommand.IncomingTrustSharepointLink = IncomingTrustSharePointLink;
+            //createProjectCommand.EstablishmentSharepointLink = SchoolSharePointLink;
+            //createProjectCommand.IsDueTo2RI = IsDueTo2RI;
+            //createProjectCommand.AdvisoryBoardDate = AdvisoryBoardDate;
+            //createProjectCommand.AdvisoryBoardConditions = AdvisoryBoardConditions;
+            //createProjectCommand.IncomingTrustUkprn = new Ukprn();
+            //createProjectCommand.HasAcademyOrderBeenIssued = DirectiveAcademyOrder;
 
-            var createResponse = await _createConversionProjectService.Execute(project);
 
-            return Redirect($"/projects/conversion-projects/{createResponse.Id}/created");
+            //Test Data
+            var createProjectCommand = new CreateProjectCommand();
+            createProjectCommand.Urn = new Urn() { Value = 2 };
+            createProjectCommand.SignificantDate = DateTime.UtcNow;
+            createProjectCommand.IsSignificantDateProvisional = true; // will be set to false in the stakeholder kick off task 
+            createProjectCommand.IncomingTrustSharepointLink = "https://www.sharepointlink.com/test";
+            createProjectCommand.EstablishmentSharepointLink = "https://www.sharepointlink.com/test";
+            createProjectCommand.IsDueTo2RI = IsDueTo2RI;
+            createProjectCommand.AdvisoryBoardDate = DateTime.UtcNow;
+            createProjectCommand.AdvisoryBoardConditions = "test conditions";
+            createProjectCommand.IncomingTrustUkprn = new Ukprn() { Value = 2 };
+            createProjectCommand.HasAcademyOrderBeenIssued = true;
 
-            //return Page();
+            var createResponse = await _projectsClient.Projects_CreateProject_Async(createProjectCommand);
+
+            var projectId = createResponse.Value;
+
+            return Redirect($"/projects/conversion-projects/{projectId}/created");
         }
-    
 
         public async Task ValidateAllFields()
         {
@@ -105,6 +114,7 @@ namespace Dfe.Complete.Pages.Projects.Conversion
             ValidateUKPRN();
             ValidateAdvisoryBoardDate();
             ValidateProvisionalConversionDate();
+            //TODO:EA needs fixing
             //ValidateSharePointLink(nameof(SchoolSharePointLink));
             //ValidateSharePointLink(nameof(IncomingTrustSharePointLink));
             ValidateHandingToRCS();
