@@ -80,6 +80,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Condition="Exists('..\..\..\complete-api\src\Dfe.Complete.Api.Client\Dfe.Complete.Api.Client.csproj')" Include="..\..\..\complete-api\src\Dfe.Complete.Api.Client\Dfe.Complete.Api.Client.csproj" />
 	  <ProjectReference Include="..\Dfe.Complete.API.Contracts\Dfe.Complete.API.Contracts.csproj" />
 	  <ProjectReference Include="..\Dfe.Complete.API\Dfe.Complete.API.csproj" />
 	  <ProjectReference Include="..\Dfe.Complete.Logging\Dfe.Complete.Logging.csproj" />
