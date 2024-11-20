@@ -1,11 +1,14 @@
 ﻿@page
 @using Dfe.BuildFreeSchools.Pages;
 @model IndexModel
+@using Dfe.Complete.Constants
 
 @{
     ViewData["Title"] = "Your projects";
 }
 
-<p>Hello world</p>
+<form asp-page="@RouteConstants.CreateNewProject" method="get">
+    <govuk-button type="submit">Add a project</govuk-button>
+</form>
 
-
+<h1 class="govuk-heading-l">Your projects in progress</h1>

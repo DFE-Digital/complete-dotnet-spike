@@ -3,8 +3,8 @@
 	public abstract class Claims
 	{
 		public const string ClaimPrefix = "concerns-casework.";
-		public const string CaseWorkerRoleClaim = $"caseworker";
-		public const string TeamLeaderRoleClaim = $"teamleader";
-		public const string AdminRoleClaim = $"admin";
+		public const string CaseWorkerRoleClaim = $"{ClaimPrefix}caseworker";
+		public const string TeamLeaderRoleClaim = $"{ClaimPrefix}teamleader";
+		public const string AdminRoleClaim = $"{ClaimPrefix}admin";
 	}
 }

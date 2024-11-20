@@ -64,56 +64,158 @@
         <div id="projectDetails" class="project-information-block">
             <h3 class="govuk-heading-m">Project details</h3>
             <govuk-summary-list>
-                <govuk-summary-item label="Type" asp-for="@projectDetails.ProjectType" />
-                <div class="govuk-summary-list__row govuk-summary-list__row--no-actions">
-                    <dt class="govuk-summary-list__key">Conversion date</dt>
-                    <dd class="govuk-summary-list__value">
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Type
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @projectDetails.ProjectType
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Conversion date
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
                         @projectDetails.Date.ToDateString()
                         @if (projectDetails.IsDateProvisional == true)
                         {
                             <strong class="govuk-tag govuk-tag--grey">provisional</strong>
                         }
-
-                    </dd>
-                </div>
-                <govuk-summary-item label="Local authority" asp-for="@projectDetails.LocalAuthority" />
-                <govuk-summary-item label="Diocese" asp-for="@schoolDetails.Diocese" />
-                <govuk-summary-item label="Region" asp-for="@projectDetails.Region" />
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Local authority
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @projectDetails.LocalAuthority
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Diocese
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.Diocese
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Region
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @projectDetails.Region
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
             </govuk-summary-list>
         </div>
 
-
         <div id="reasonsFor" class="project-information-block">
             <h3 class="govuk-heading-m">Reasons for the conversion</h3>
-
             <govuk-summary-list>
-                <govuk-summary-item label="Has a directive academy order been issued?" asp-for="@reasonForConversion.HasAcademyOrderBeenIssued" />
-                <govuk-summary-item label="Is this transfer due to 2RI?" asp-for="@reasonForConversion.IsDueTo2RI" />
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Has a directive academy order been issued?
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @reasonForConversion.HasAcademyOrderBeenIssued
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Is this transfer due to 2RI?
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @reasonForConversion.IsDueTo2RI
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
             </govuk-summary-list>
         </div>
 
 
         <div id="advisoryBoardDetails" class="project-information-block">
             <h3 class="govuk-heading-m">Advisory board details</h3>
-
             <govuk-summary-list>
-                <govuk-summary-item label="Date of advisory board" asp-for="@advisoryBoardDetails.Date" />
-                <govuk-summary-item label="Conditions from advisory board" asp-for="@advisoryBoardDetails.Conditions" />
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Date of advisory board
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @advisoryBoardDetails.Date
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Conditions from advisory board
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @advisoryBoardDetails.Conditions
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
             </govuk-summary-list>
-
         </div>
 
 
         <div id="academyDetails" class="project-information-block">
             <h3 class="govuk-heading-m">School details</h3>
             <govuk-summary-list>
-                <govuk-summary-item label="Name" asp-for="@schoolGiasLink" />
-                <govuk-summary-item label="Academy URN (unique reference number)" asp-for="@schoolDetails.Urn" />
-                <govuk-summary-item label="Type" asp-for="@schoolDetails.Type" />
-                <govuk-summary-item label="Age range" asp-for="@schoolDetails.AgeRange" />
-                <govuk-summary-item label="Phase" asp-for="@schoolDetails.Phase" />
-                <govuk-summary-item label="Address" asp-for="@schoolDetails.Address" />
-                <govuk-summary-item label="SharePoint folder" asp-for="@schoolSharePointLink" />
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Name
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolGiasLink
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Academy URN (unique reference number)
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.Urn
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Type
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.Type
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Age range
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.AgeRange
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Phase
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.Phase
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        Address
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolDetails.Address
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
+                <govuk-summary-list-row>
+                    <govuk-summary-list-row-key>
+                        SharePoint folder
+                    </govuk-summary-list-row-key>
+                    <govuk-summary-list-row-value>
+                        @schoolSharePointLink
+                    </govuk-summary-list-row-value>
+                </govuk-summary-list-row>
             </govuk-summary-list>
         </div>
 

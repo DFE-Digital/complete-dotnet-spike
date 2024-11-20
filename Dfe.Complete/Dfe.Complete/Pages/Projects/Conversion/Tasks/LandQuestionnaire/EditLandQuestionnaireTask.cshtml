@@ -1,0 +1,43 @@
+﻿@page "/conversion-projects/{projectId}/tasks/land-questionnaire/edit"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.Tasks.LandQuestionnaire.EditLandQuestionnaireTaskModel
+@{
+    var backlink = string.Format(RouteConstants.ConversionLandQuestionnaireTask, Model.ProjectId);
+}
+@section BeforeMain {
+    <a href=@backlink class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <form method="post">
+
+            <govuk-checkboxes name="options">
+                <govuk-checkboxes-fieldset>
+                    <govuk-checkboxes-fieldset-legend is-page-heading="true" class="govuk-fieldset__legend--l">
+                        Land questionnaire
+                    </govuk-checkboxes-fieldset-legend>
+
+                    <govuk-checkboxes-item id="conversion_task_land_questionnaire_task_form_received" asp-for="@Model.Received" value="true" name="received" checked="@Model.Received">
+                        <b>Received</b>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_land_questionnaire_task_form_cleared" asp-for="@Model.Cleared" value="true" name="cleared" checked="@Model.Cleared">
+                        <b>Cleared</b>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_land_questionnaire_task_form_signed" asp-for="@Model.Signed" value="true" name="signed" checked="@Model.Signed">
+                        <b>Signed by solicitor</b>
+                    </govuk-checkboxes-item>
+
+                    <govuk-checkboxes-item id="conversion_task_land_questionnaire_task_form_saved" asp-for="@Model.Saved" value="true" name="saved" checked="@Model.Saved">
+                        <b>Saved in the school's SharePoint folder</b>
+                    </govuk-checkboxes-item>
+                </govuk-checkboxes-fieldset>
+            </govuk-checkboxes>
+
+
+            <button type="submit" formnovalidate="formnovalidate" class="govuk-button" data-module="govuk-button" data-prevent-double-click="true">Save and return</button>
+        </form>
+    </div>
+</div>

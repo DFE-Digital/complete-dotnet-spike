@@ -5,6 +5,11 @@
 @{
     var handoverWithDeliveryOfficerLink = string.Format(RouteConstants.ConversionViewHandoverWithDeliveryOfficerTask, Model.ProjectId);
     var aboutConversionProject = string.Format(RouteConstants.ConversionProjectAbout, Model.ProjectId);
+
+    var stakeHolderKickOffLink = string.Format(RouteConstants.ConversionStakeholderKickoffTask, Model.ProjectId);
+    var landQuestionnaireLink = string.Format(RouteConstants.ConversionLandQuestionnaireTask, Model.ProjectId);
+    var landRegistryLink = string.Format(RouteConstants.ConversionLandRegistryTask, Model.ProjectId);
+    var supplementalFundingAgreementLink = string.Format(RouteConstants.ConversionSupplementalFundingAgreementTask, Model.ProjectId);
 }
 
 <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
@@ -47,10 +52,15 @@
                             Project kick-off
                         </h3>
                         <ul class="app-task-list__items">
-                            <govuk-task-summary-item asp-for="@Model.Tasks.HandoverWithDeliveryOfficer" label="Handover with regional delivery officer" href="@handoverWithDeliveryOfficerLink" />
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
-                                    <a aria-describedby="external-stakeholder-kick-off-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/stakeholder_kick_off">External stakeholder kick-off</a>
+                                    <a aria-describedby="handover-with-delivery-officer-status" class="govuk-link" href="@handoverWithDeliveryOfficerLink">Handover with regional delivery officer</a>
+                                </span>
+                                <strong class="govuk-tag govuk-tag--orange app-task-list__tag" id="handover-with-delivery-officer-status">In progress</strong>
+                            </li>
+                            <li class="app-task-list__item">
+                                <span class="app-task-list__task-name">
+                                    <a aria-describedby="external-stakeholder-kick-off-status" class="govuk-link" href="@stakeHolderKickOffLink">External stakeholder kick-off</a>
                                 </span>
                                 <strong class="govuk-tag govuk-tag--orange app-task-list__tag" id="external-stakeholder-kick-off-status">In progress</strong>
                             </li>
@@ -111,19 +121,19 @@
                         <ul class="app-task-list__items">
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
-                                    <a aria-describedby="land-questionnaire-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/land_questionnaire">Land questionnaire</a>
+                                    <a aria-describedby="land-questionnaire-status" class="govuk-link" href="@landQuestionnaireLink">Land questionnaire</a>
                                 </span>
                                 <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="land-questionnaire-status">Not started</strong>
                             </li>
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
-                                    <a aria-describedby="land-registry-title-plans-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/land_registry">Land registry title plans</a>
+                                    <a aria-describedby="land-registry-title-plans-status" class="govuk-link" href="@landRegistryLink">Land registry title plans</a>
                                 </span>
                                 <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="land-registry-title-plans-status">Not started</strong>
                             </li>
                             <li class="app-task-list__item">
                                 <span class="app-task-list__task-name">
-                                    <a aria-describedby="supplemental-funding-agreement-status" class="govuk-link" href="/projects/83A84379-BB36-4934-BB94-490C94B30FAB/tasks/supplemental_funding_agreement">Supplemental funding agreement</a>
+                                    <a aria-describedby="supplemental-funding-agreement-status" class="govuk-link" href="@supplementalFundingAgreementLink">Supplemental funding agreement</a>
                                 </span>
                                 <strong class="govuk-tag govuk-tag--blue app-task-list__tag" id="supplemental-funding-agreement-status">Not started</strong>
                             </li>

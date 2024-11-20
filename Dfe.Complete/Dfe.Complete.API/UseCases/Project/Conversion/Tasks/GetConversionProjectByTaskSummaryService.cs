@@ -1,7 +1,10 @@
 ﻿using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
 using Dfe.Complete.API.Contracts.Project.Tasks;
 using Dfe.Complete.API.Exceptions;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.LandQuestionnaire;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.LandRegistry;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.StakeholderKickoff;
+using Dfe.Complete.API.UseCases.Project.Conversion.Tasks.SupplementalFundingAgreement;
 using Dfe.Complete.API.UseCases.Project.Tasks;
 using Dfe.Complete.API.UseCases.Project.Tasks.HandoverWithDeliveryOfficer;
 using Dfe.Complete.Data;
@@ -36,7 +39,10 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
             var conversionTasks = queryResult.TaskData;
 
             var handoverWithDeliveryOfficer = HandoverWithDeliveryOfficerTaskBuilder.Execute(conversionTasks);
-            var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks);
+            var stakeholderKickoff = ConversionStakeholderKickoffTaskBuilder.Execute(conversionTasks, project);
+            var landQuestionnaire = ConversionLandQuestionnaireTaskBuilder.Execute(conversionTasks);
+            var landRegistry = ConversionLandRegistryTaskBuilder.Execute(conversionTasks);
+            var supplementalFundingAgreement = ConversionSupplementalFundingAgreementTaskBuilder.Execute(conversionTasks);
             var projectDetails = await _getProjectDetailsService.Execute(project);
 
             var result = new GetConversionProjectByTaskSummaryResponse
@@ -50,6 +56,18 @@ namespace Dfe.Complete.API.UseCases.Project.Conversion.Tasks
                 {
                     Status = ProjectTaskStatusBuilder.Build(stakeholderKickoff),
                 },
+                LandQuestionnaire = new TaskSummaryResponse()
+                {
+                    Status = ProjectTaskStatusBuilder.Build(landQuestionnaire)
+                },
+                LandRegistry = new TaskSummaryResponse()
+                {
+                    Status = ProjectTaskStatusBuilder.Build(landRegistry)
+                },
+                SupplementalFundingAgreement = new TaskSummaryResponse()
+                {
+                    Status = ProjectTaskStatusBuilder.Build(supplementalFundingAgreement)
+                }
             };
 
             return result;

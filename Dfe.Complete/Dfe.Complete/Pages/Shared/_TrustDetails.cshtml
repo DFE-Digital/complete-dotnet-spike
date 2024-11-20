@@ -33,13 +33,60 @@
 
 <div id="@Model.Id" class="project-information-block">
     <h3 class="govuk-heading-m" data-testid="title">@Model.Label</h3>
-
     <govuk-summary-list>
-        <govuk-summary-item label="Name" asp-for="@trustGiasLink" />
-        <govuk-summary-item label="UKPRN (UK provider reference number)" asp-for="@trustDetails.UkPrn" href="@Model.Href" />
-        <govuk-summary-item label="Group ID (identifier)" asp-for="@trustDetails.GroupId" />
-        <govuk-summary-item label="Companies house number" asp-for="@trustcompaniesHouse" />
-        <govuk-summary-item label="Address" asp-for="@trustDetails.Address" />
-        <govuk-summary-item label="SharePoint folder" asp-for="@trustSharePointLink" href="@Model.Href" />
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                Name
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustGiasLink
+            </govuk-summary-list-row-value>
+        </govuk-summary-list-row>
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                UKPRN (UK provider reference number)
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustDetails.UkPrn
+            </govuk-summary-list-row-value>
+            <govuk-summary-list-row-actions>
+                <govuk-summary-list-row-action href="@Model.Href" visually-hidden-text="UKPRN (UK provider reference number)">Change</govuk-summary-list-row-action>
+            </govuk-summary-list-row-actions>
+        </govuk-summary-list-row>
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                Group ID (identifier)
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustDetails.GroupId
+            </govuk-summary-list-row-value>
+        </govuk-summary-list-row>
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                Companies house number
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustcompaniesHouse
+            </govuk-summary-list-row-value>
+        </govuk-summary-list-row>
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                Address
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustDetails.Address
+            </govuk-summary-list-row-value>
+        </govuk-summary-list-row>
+        <govuk-summary-list-row>
+            <govuk-summary-list-row-key>
+                SharePoint folder
+            </govuk-summary-list-row-key>
+            <govuk-summary-list-row-value>
+                @trustSharePointLink
+            </govuk-summary-list-row-value>
+            <govuk-summary-list-row-actions>
+                <govuk-summary-list-row-action href="@Model.Href" visually-hidden-text="SharePoint folder">Change</govuk-summary-list-row-action>
+            </govuk-summary-list-row-actions>
+        </govuk-summary-list-row>
     </govuk-summary-list>
 </div>

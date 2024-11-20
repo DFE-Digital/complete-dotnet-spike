@@ -1,0 +1,86 @@
+﻿@page "/conversion-projects/{projectId}/tasks/land-questionnaire"
+@using Dfe.Complete.Constants
+@model Dfe.Complete.Pages.Projects.Conversion.Tasks.LandQuestionnaire.ViewLandQuestionnaireTaskModel
+@{
+    var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
+    var editlink = string.Format(RouteConstants.ConversionEditLandQuestionnaireTask, Model.ProjectId);
+    var taskList = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
+
+    var landQuestionnaire = Model.Project.LandQuestionnaire;
+}
+
+@section BeforeMain {
+    <a href=@backlink class="govuk-back-link">Back</a>
+}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+        <h1 class="govuk-heading-xl" data-testid="title">
+            <span class="govuk-caption-l" data-testid="school-name">
+                @Model.Project.SchoolName
+            </span>
+            Land questionnaire
+            <span class="govuk-caption-m">
+                Make sure that any proposals for the land meet legal requirements and ministerial preferences.
+            </span>
+        </h1>
+
+        <h2 class="govuk-heading-l">
+            Check and clear the land questionnaire
+            <span class="govuk-caption-m">
+                You can <a href="https://educationgovuk.sharepoint.com/sites/lvewp00030/SitePages/3-Conversion%20Process/Land/Land.aspx" target="_blank">use the land transfer advice and guidance to check for common problems (opens in new tab).</a>
+            </span>
+        </h2>
+
+        <details data-module="govuk-details" class="govuk-details"><summary class="govuk-details__summary"><span class="govuk-details__summary-text">How to clear a land questionnaire</span></summary><div class="govuk-details__text"><p>You must <a href="https://www.gov.uk/government/publications/academy-land-questionnaires" class="govuk-link" target="_blank">check the school is using the right land questionnaire (opens in new tab)</a>.</p> <p>You need to clear the land questionnaire before the master funding agreement and the supplemental funding agreement.</p> <p>The land questionnaire is critical. It is the basis for all land decisions.</p> <p>The answers given inform how the land will be treated. It decides which leases, directions and other land agreements are needed.</p></div></details>
+
+        <govuk-summary-list>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Received
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @landQuestionnaire.Received
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Received">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Cleared
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @landQuestionnaire.Cleared
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Cleared">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Signed by solicitor
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @landQuestionnaire.Signed
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Signed by solicitor">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+            <govuk-summary-list-row>
+                <govuk-summary-list-row-key>
+                    Saved in the school's SharePoint folder
+                </govuk-summary-list-row-key>
+                <govuk-summary-list-row-value>
+                    @landQuestionnaire.Saved
+                </govuk-summary-list-row-value>
+                <govuk-summary-list-row-actions>
+                    <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Saved in the school's SharePoint folder">Change</govuk-summary-list-row-action>
+                </govuk-summary-list-row-actions>
+            </govuk-summary-list-row>
+
+   
+        </govuk-summary-list>
+    </div>
+</div>

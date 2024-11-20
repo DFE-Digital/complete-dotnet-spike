@@ -10,6 +10,9 @@ namespace Dfe.Complete.API.Contracts.Project.Conversion.Tasks
     {
         Unknown,
         HandoverWithDeliveryOfficer,
-        StakeholderKickoff
+        StakeholderKickoff,
+        LandQuestionnaire,
+        LandRegistry,
+        SupplementalFundingAgreement
     }
 }

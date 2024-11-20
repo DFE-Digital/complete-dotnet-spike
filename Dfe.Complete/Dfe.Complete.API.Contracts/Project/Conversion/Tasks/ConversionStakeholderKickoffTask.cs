@@ -7,5 +7,7 @@ namespace Dfe.Complete.API.Contracts.Project.Conversion.Tasks
         public bool? LocalAuthorityProforma { get; set; }
 
         public bool? LocalAuthorityAbleToConvert { get; set; }
+
+        public DateTime? StakeholderKickOffConversionDate { get; set; }
     }
 }
