@@ -24,6 +24,8 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
 using Dfe.Complete.Api.Client.Extensions;
+
+//TODO: remove this
 using Dfe.Complete.API.Configuration;
 
 namespace Dfe.Complete;

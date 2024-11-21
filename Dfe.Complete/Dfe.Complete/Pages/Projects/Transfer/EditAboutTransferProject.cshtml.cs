@@ -1,4 +1,3 @@
-using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.Constants;
 using Dfe.Complete.Models;
 using Dfe.Complete.Services;
@@ -73,8 +72,6 @@ namespace Dfe.Complete.Pages.Projects.Transfer
         public bool? IsDueToIssues { get; set; }
 
         private readonly ErrorService _errorService;
-        
-        
 
         public async Task<IActionResult> OnPost()
         {

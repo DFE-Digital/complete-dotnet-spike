@@ -1,4 +1,3 @@
-using Dfe.Complete.API.UseCases.Project.Conversion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -9,12 +8,8 @@ using Dfe.Complete.Client.Contracts;
 
 namespace Dfe.Complete.Pages.Projects.Conversion
 {
-    public class CreateNewProjectModel : PageModel
+    public class CreateNewProjectModel(ICreateProjectClient projectsClient) : PageModel
     {
-        private readonly ICreateConversionProjectService _createConversionProjectService;
-        private readonly IGetConversionProjectService _getConversionProjectService;
-        private readonly ICreateProjectClient _projectsClient;
-
         [BindProperty]
         public string URN { get; set; } 
 
@@ -50,13 +45,6 @@ namespace Dfe.Complete.Pages.Projects.Conversion
 
         [BindProperty]
         public bool? IsDueTo2RI { get; set; }
-
-        public CreateNewProjectModel(ICreateConversionProjectService createConversionProjectService, IGetConversionProjectService getConversionProjectService, ICreateProjectClient projectsClient)
-        {
-            _createConversionProjectService = createConversionProjectService;
-            _getConversionProjectService = getConversionProjectService;
-            _projectsClient = projectsClient;
-        }
 
         public async Task<IActionResult> OnGet()
         {
@@ -99,7 +87,7 @@ namespace Dfe.Complete.Pages.Projects.Conversion
             createProjectCommand.IncomingTrustUkprn = new Ukprn() { Value = 2 };
             createProjectCommand.HasAcademyOrderBeenIssued = true;
 
-            var createResponse = await _projectsClient.Projects_CreateProject_Async(createProjectCommand);
+            var createResponse = await projectsClient.Projects_CreateProject_Async(createProjectCommand);
 
             var projectId = createResponse.Value;
 
@@ -143,14 +131,12 @@ namespace Dfe.Complete.Pages.Projects.Conversion
 
             var parsedUrn = value.ToInt();
 
-            var existingProject = await _getConversionProjectService.GetConversionProjectByUrn(parsedUrn);
-
-            if (existingProject != null)
-            {
-                ModelState.AddModelError($"{fieldName}", "project with this URN already exists");
-
-                return;
-            }
+            // var existingProject = await _getConversionProjectService.GetConversionProjectByUrn(parsedUrn);
+            //
+            // if (existingProject != null)
+            // {
+            //     ModelState.AddModelError($"{fieldName}", "project with this URN already exists");
+            // }
         }
 
         private void ValidateUKPRN()

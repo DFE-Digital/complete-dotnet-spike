@@ -1,24 +1,19 @@
-using Dfe.Complete.API.Contracts.Project;
 using Dfe.Complete.Pages.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Dfe.Complete.Pages.Projects.List
 {
     public class ProjectsInProgressModel : PageModel
     {
-
         [BindProperty(SupportsGet = true)]
         public int PageNumber { get; set; } = 1;
 
         public PaginationModel Pagination { get; set; } = new();
 
-        public List<ProjectListEntryResponse> Projects { get; set; }
-
-   
-
+        // public List<ProjectListEntryResponse> Projects { get; set; }
+        
         public async Task OnGet()
         {
             //TODO: Review pagination logic

@@ -1,6 +1,4 @@
 ﻿@page "/projects/{projectId}/notes"
-
-@using Dfe.Complete.API.Contracts.Project;
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.ViewProjectNotesModel
 @{
@@ -14,7 +12,8 @@
     var addNoteLink = string.Format(RouteConstants.ProjectAddNote, Model.ProjectId);
 }
 
-<partial name="_ProjectSummary" model="" />
+@*TODO: add below back with model*@
+@* <partial name="_ProjectSummary" model="" /> *@
 
 <govuk-project-tabs project-id="@Model.ProjectId" project-type="" />
 

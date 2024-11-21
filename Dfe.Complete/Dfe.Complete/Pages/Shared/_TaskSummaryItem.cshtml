@@ -1,5 +1,4 @@
-﻿@using Dfe.Complete.API.Contracts.Project.Tasks
-@using Dfe.Complete.TagHelpers
+﻿@using Dfe.Complete.TagHelpers
 @model TaskSummaryItemViewModel
 
 <li class="app-task-list__item">
@@ -9,31 +8,31 @@
         </a>
     </span>
     @{
-        RenderStatus(Model.TaskSummary);
+        // RenderStatus(Model.TaskSummary);
     }
 </li>
 
 @functions {
 
-    public void RenderStatus(TaskSummaryResponse task)
-    {
-        var testId = $"task-status";
-
-        if (task.Status == ProjectTaskStatus.Completed)
-        {
-            <strong class="govuk-tag govuk-tag--turquoise app-task-list__tag" data-testid="@testId">Completed</strong>
-        }
-        else if (task.Status == ProjectTaskStatus.InProgress)
-        {
-            <strong class="govuk-tag govuk-tag--orange app-task-list__tag" data-testid="@testId">In progress</strong>
-        }
-        else if (task.Status == ProjectTaskStatus.NotApplicable)
-        {
-            <strong class="govuk-tag govuk-tag--grey app-task-list__tag" data-testid="@testId">Not applicable</strong>
-        }
-        else
-        {
-            <strong class="govuk-tag govuk-tag--blue app-task-list__tag" data-testid="@testId">Not started</strong>
-        }
-    }
+    @* public void RenderStatus(TaskSummaryResponse task) *@
+    @* { *@
+    @*     var testId = $"task-status"; *@
+    @* *@
+    @*     if (task.Status == ProjectTaskStatus.Completed) *@
+    @*     { *@
+    @*         <strong class="govuk-tag govuk-tag--turquoise app-task-list__tag" data-testid="@testId">Completed</strong> *@
+    @*     } *@
+    @*     else if (task.Status == ProjectTaskStatus.InProgress) *@
+    @*     { *@
+    @*         <strong class="govuk-tag govuk-tag--orange app-task-list__tag" data-testid="@testId">In progress</strong> *@
+    @*     } *@
+    @*     else if (task.Status == ProjectTaskStatus.NotApplicable) *@
+    @*     { *@
+    @*         <strong class="govuk-tag govuk-tag--grey app-task-list__tag" data-testid="@testId">Not applicable</strong> *@
+    @*     } *@
+    @*     else *@
+    @*     { *@
+    @*         <strong class="govuk-tag govuk-tag--blue app-task-list__tag" data-testid="@testId">Not started</strong> *@
+    @*     } *@
+    @* } *@
 }

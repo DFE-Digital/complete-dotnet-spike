@@ -1,5 +1,3 @@
-using Dfe.Complete.API.Contracts.Project.Tasks;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.Constants;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

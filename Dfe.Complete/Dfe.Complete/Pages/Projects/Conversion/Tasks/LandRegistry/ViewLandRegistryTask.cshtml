@@ -6,7 +6,7 @@
     var editlink = string.Format(RouteConstants.ConversionEditLandRegistryTask, Model.ProjectId);
     var taskList = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
 
-    var landRegistry = Model.Project.LandRegistry;
+    // var landRegistry = Model.Project.LandRegistry;
 }
 
 @section BeforeMain {
@@ -17,7 +17,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl" data-testid="title">
             <span class="govuk-caption-l" data-testid="school-name">
-                @Model.Project.SchoolName
+                @* @Model.Project.SchoolName *@
             </span>
             Land registry title plans
             <span class="govuk-caption-m">
@@ -39,7 +39,7 @@
                     Received
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landRegistry.Received
+                    @* @landRegistry.Received *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Received">Change</govuk-summary-list-row-action>
@@ -50,7 +50,7 @@
                     Cleared
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landRegistry.Cleared
+                    @* @landRegistry.Cleared *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Cleared">Change</govuk-summary-list-row-action>
@@ -61,7 +61,7 @@
                     Saved in the school's SharePoint folder
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landRegistry.Saved
+                    @* @landRegistry.Saved *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Saved in the school's SharePoint folder">Change</govuk-summary-list-row-action>
