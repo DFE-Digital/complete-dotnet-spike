@@ -12,7 +12,7 @@
     var supplementalFundingAgreementLink = string.Format(RouteConstants.ConversionSupplementalFundingAgreementTask, Model.ProjectId);
 }
 
-<partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
+@* <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails /> *@
 
 <govuk-project-tabs project-id="@Model.ProjectId" project-type="@ProjectType.Conversion" />
 

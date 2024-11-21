@@ -1,5 +1,3 @@
-using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.API.Contracts.Project.Conversion;
 using Dfe.Complete.API.UseCases.Project.Conversion;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

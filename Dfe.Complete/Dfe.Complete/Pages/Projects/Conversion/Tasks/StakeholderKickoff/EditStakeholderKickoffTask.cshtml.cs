@@ -1,8 +1,6 @@
 using Dfe.Complete.API.Contracts.Project.Conversion.Tasks;
-using Dfe.Complete.API.Contracts.Project.Transfer.Tasks;
 using Dfe.Complete.API.UseCases.Project.Conversion.Tasks;
 using Dfe.Complete.Constants;
-using Dfe.Complete.Services.Project.Transfer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;

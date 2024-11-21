@@ -1,5 +1,4 @@
 using Dfe.Complete.API.Contracts.Project.Transfer;
-using Dfe.Complete.Services.Project.Transfer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Threading.Tasks;
@@ -8,21 +7,11 @@ namespace Dfe.Complete.Pages.Projects.Transfer
 {
     public class AboutTransferProjectModel : PageModel
     {
-        private IGetTransferProjectService _getTransferProjectService;
 
         [BindProperty(SupportsGet = true, Name = "projectId")]
         public string ProjectId { get; set; }
 
         public GetTransferProjectResponse Project { get; set; }
-
-        public AboutTransferProjectModel(IGetTransferProjectService getTransferProjectService)
-        {
-            _getTransferProjectService = getTransferProjectService;
-        }
-
-        public async Task OnGet()
-        {
-            Project = await _getTransferProjectService.Execute(ProjectId);
-        }
+        
     }
 }

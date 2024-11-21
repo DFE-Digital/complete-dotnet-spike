@@ -1,7 +1,4 @@
 using Azure.Storage.Blobs;
-using Dfe.Complete.API.Configuration;
-using Dfe.Complete.API.Extensions;
-using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Client;
 using Dfe.Complete.Client.Contracts;
@@ -27,6 +24,7 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
 using Dfe.Complete.Api.Client.Extensions;
+using Dfe.Complete.API.Configuration;
 
 namespace Dfe.Complete;
 
@@ -103,15 +101,12 @@ public class Startup
         services.AddGovUkFrontend();
 
         // API
-        services.AddCompleteApiProject(Configuration);
 
         services.AddCompleteApiClient<ICreateProjectClient, CreateProjectClient>(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
     {
-        app.UseCompleteSwagger(provider);
-
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -145,7 +140,6 @@ public class Startup
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseApiMiddleware();
 
         app.UseEndpoints(endpoints =>
         {
@@ -177,6 +171,7 @@ public class Startup
     {
         services.AddHttpClient("AcademiesClient", (_, client) =>
         {
+            //TODO: do we need to move this to another proj?
             AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
             client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
             client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
