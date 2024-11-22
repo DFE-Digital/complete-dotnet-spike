@@ -6,7 +6,7 @@
     var editlink = string.Format(RouteConstants.TransferEditHandoverWithDeliveryOfficerTask, Model.ProjectId);
     var taskList = string.Format(RouteConstants.TransferProjectTaskList, Model.ProjectId);
 
-    var handoverWithDeliveryOfficer = Model.Project.HandoverWithDeliveryOfficer;
+    // var handoverWithDeliveryOfficer = Model.Project.HandoverWithDeliveryOfficer;
 }
 
 @section BeforeMain {
@@ -17,7 +17,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl" data-testid="title">
             <span class="govuk-caption-l" data-testid="school-name">
-                @Model.Project.SchoolName
+                @* @Model.Project.SchoolName *@
             </span>
             Handover with regional delivery officer
         </h1>
@@ -27,7 +27,7 @@
                     Not applicable
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @handoverWithDeliveryOfficer.NotApplicable
+                    @* @handoverWithDeliveryOfficer.NotApplicable *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Not applicable">Change</govuk-summary-list-row-action>
@@ -38,7 +38,7 @@
                     Review the project information and carry out research
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @handoverWithDeliveryOfficer.ReviewProjectInformation
+                    @* @handoverWithDeliveryOfficer.ReviewProjectInformation *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Review the project information and carry out research">Change</govuk-summary-list-row-action>
@@ -49,7 +49,7 @@
                     Make notes and write questions to ask the regional delivery officer
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @handoverWithDeliveryOfficer.MakeNotes
+                    @* @handoverWithDeliveryOfficer.MakeNotes *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Make notes and write questions to ask the regional delivery officer">Change</govuk-summary-list-row-action>
@@ -60,7 +60,7 @@
                     Attend handover meeting with regional delivery officer
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @handoverWithDeliveryOfficer.AttendHandoverMeeting
+                    @* @handoverWithDeliveryOfficer.AttendHandoverMeeting *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Attend handover meeting with regional delivery officer">Change</govuk-summary-list-row-action>

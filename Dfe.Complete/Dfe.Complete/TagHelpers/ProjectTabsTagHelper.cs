@@ -1,8 +1,8 @@
-﻿using Dfe.Complete.API.Contracts.Project;
-using Microsoft.AspNetCore.Http.Extensions;
+﻿using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
+using Dfe.Complete.Client.Contracts;
 using System;
 
 namespace Dfe.Complete.TagHelpers

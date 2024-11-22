@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Dfe.Complete.Utils
+﻿namespace Dfe.Complete.Utils
 {
     public static class StringChunker
     {

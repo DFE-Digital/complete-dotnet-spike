@@ -5,7 +5,7 @@
     var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
     var editlink = string.Format(RouteConstants.ConversionEditSupplementalFundingAgreementTask, Model.ProjectId);
 
-    var supplementalFundingAgreement = Model.Project.SupplementalFundingAgreement;
+    // var supplementalFundingAgreement = Model.Project.SupplementalFundingAgreement;
 }
 
 @section BeforeMain {
@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl" data-testid="title">
             <span class="govuk-caption-l" data-testid="school-name">
-                @Model.Project.SchoolName
+                @* @Model.Project.SchoolName *@
             </span>
             Supplemental funding agreement
             <span class="govuk-caption-m">
@@ -39,7 +39,7 @@
                     Received
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.Received
+                    @* @supplementalFundingAgreement.Received *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Received">Change</govuk-summary-list-row-action>
@@ -50,7 +50,7 @@
                     Cleared
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.Cleared
+                    @* @supplementalFundingAgreement.Cleared *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Cleared">Change</govuk-summary-list-row-action>
@@ -61,7 +61,7 @@
                     Signed by school or trust
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.Signed
+                    @* @supplementalFundingAgreement.Signed *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Signed by school or trust">Change</govuk-summary-list-row-action>
@@ -72,7 +72,7 @@
                     Saved in the school's SharePoint folder
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.Saved
+                    @* @supplementalFundingAgreement.Saved *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Saved in the school's SharePoint folder">Change</govuk-summary-list-row-action>
@@ -84,7 +84,7 @@
                     Sent to team leader or deputy director
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.Sent
+                    @* @supplementalFundingAgreement.Sent *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Sent to team leader or deputy director">Change</govuk-summary-list-row-action>
@@ -95,7 +95,7 @@
                     Document signed on behalf of the Secretary of State
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @supplementalFundingAgreement.SignedSecretaryState
+                    @* @supplementalFundingAgreement.SignedSecretaryState *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Document signed on behalf of the Secretary of State">Change</govuk-summary-list-row-action>

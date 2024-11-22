@@ -1,7 +1,4 @@
 ﻿@page "/projects/conversion-projects/{projectId}/created"
-
-@using Dfe.Complete.API.Contracts.Project;
-@using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.Conversion.ProjectCreatedModel
 @{
     ViewData["Title"] = "Project Created";
@@ -14,7 +11,7 @@
         <govuk-panel heading-level="2">
             <govuk-panel-title>Project created</govuk-panel-title>
         </govuk-panel>
-        <p class="govuk-body">You have created a project for @Model.Project.SchoolDetails.Name, URN @Model.Project.SchoolDetails.Urn</p>
+        @* <p class="govuk-body">You have created a project for @Model.Project.SchoolDetails.Name, URN @Model.Project.SchoolDetails.Urn</p> *@
 
         <h2>Add contact details</h2>
 

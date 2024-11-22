@@ -5,7 +5,7 @@
     var backlink = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
     var editlink = string.Format(RouteConstants.ConversionEditStakeholderKickoffTask, Model.ProjectId);
 
-    var stakeholderKickoff = Model.Project.StakeholderKickoff;
+    // var stakeholderKickoff = Model.Project.StakeholderKickoff;
 }
 
 @section BeforeMain {
@@ -16,7 +16,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl" data-testid="title">
             <span class="govuk-caption-l" data-testid="school-name">
-                @Model.Project.SchoolName
+                @* @Model.Project.SchoolName *@
             </span>
             External stakeholder kick-off
         </h1>
@@ -26,7 +26,7 @@
                     Send introductory emails
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.SendIntroEmails
+                    @* @stakeholderKickoff.SendIntroEmails *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Send introductory emails">Change</govuk-summary-list-row-action>
@@ -37,7 +37,7 @@
                     Check the local authority proforma
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.LocalAuthorityProforma
+                    @* @stakeholderKickoff.LocalAuthorityProforma *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority proforma">Change</govuk-summary-list-row-action>
@@ -48,7 +48,7 @@
                     Check the local authority is able to convert the school by the provisional conversion date
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.LocalAuthorityAbleToConvert
+                    @* @stakeholderKickoff.LocalAuthorityAbleToConvert *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority is able to convert the school by the provisional conversion date">Change</govuk-summary-list-row-action>
@@ -60,7 +60,7 @@
                     Send invites to the kick-off meeting or call
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.SendInvites
+                    @* @stakeholderKickoff.SendInvites *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Send invites to the kick-off meeting or call">Change</govuk-summary-list-row-action>
@@ -71,7 +71,7 @@
                     Host the kick-off meeting or call
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.HostMeetingOrCall
+                    @* @stakeholderKickoff.HostMeetingOrCall *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Host the kick-off meeting or call">Change</govuk-summary-list-row-action>
@@ -82,7 +82,7 @@
                     Conversion date
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @stakeholderKickoff.StakeholderKickOffConversionDate.ToDateString()
+                    @* @stakeholderKickoff.StakeholderKickOffConversionDate.ToDateString() *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Check the local authority is able to convert the school by the provisional conversion date">Change</govuk-summary-list-row-action>

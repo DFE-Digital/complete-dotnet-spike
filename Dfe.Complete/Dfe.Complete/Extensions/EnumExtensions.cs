@@ -1,8 +1,6 @@
-﻿using DocumentFormat.OpenXml;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace Dfe.Complete.Extensions
 {

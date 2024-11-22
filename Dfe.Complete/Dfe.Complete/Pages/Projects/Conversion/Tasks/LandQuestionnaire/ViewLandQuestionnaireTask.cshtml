@@ -6,7 +6,7 @@
     var editlink = string.Format(RouteConstants.ConversionEditLandQuestionnaireTask, Model.ProjectId);
     var taskList = string.Format(RouteConstants.ConversionProjectTaskList, Model.ProjectId);
 
-    var landQuestionnaire = Model.Project.LandQuestionnaire;
+    // var landQuestionnaire = Model.Project.LandQuestionnaire;
 }
 
 @section BeforeMain {
@@ -17,7 +17,7 @@
     <div class="govuk-grid-column-full">
         <h1 class="govuk-heading-xl" data-testid="title">
             <span class="govuk-caption-l" data-testid="school-name">
-                @Model.Project.SchoolName
+                @* @Model.Project.SchoolName *@
             </span>
             Land questionnaire
             <span class="govuk-caption-m">
@@ -40,7 +40,7 @@
                     Received
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landQuestionnaire.Received
+                    @* @landQuestionnaire.Received *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Received">Change</govuk-summary-list-row-action>
@@ -51,7 +51,7 @@
                     Cleared
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landQuestionnaire.Cleared
+                    @* @landQuestionnaire.Cleared *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Cleared">Change</govuk-summary-list-row-action>
@@ -62,7 +62,7 @@
                     Signed by solicitor
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landQuestionnaire.Signed
+                    @* @landQuestionnaire.Signed *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Signed by solicitor">Change</govuk-summary-list-row-action>
@@ -73,7 +73,7 @@
                     Saved in the school's SharePoint folder
                 </govuk-summary-list-row-key>
                 <govuk-summary-list-row-value>
-                    @landQuestionnaire.Saved
+                    @* @landQuestionnaire.Saved *@
                 </govuk-summary-list-row-value>
                 <govuk-summary-list-row-actions>
                     <govuk-summary-list-row-action href="@editlink" visually-hidden-text="Saved in the school's SharePoint folder">Change</govuk-summary-list-row-action>

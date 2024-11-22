@@ -1,35 +1,34 @@
 ﻿@page "/transfer-projects/{projectId}/information"
-@using Dfe.Complete.API.Contracts.Project
 @using Dfe.Complete.Constants
 @using Dfe.Complete.TagHelpers
 @model Dfe.Complete.Pages.Projects.Transfer.AboutTransferProjectModel
 @{
-    var projectDetails = Model.Project.ProjectDetails;
-    var reasonForTransfer = Model.Project.ReasonForTheTransfer;
-    var advisoryBoardDetails = Model.Project.AdvisoryBoardDetails;
-    var schoolDetails = Model.Project.SchoolDetails;
-    var incomingTrustDetails = Model.Project.IncomingTrustDetails;
-    var outgoingTrustDetails = Model.Project.OutgoingTrustDetails;
+    // var projectDetails = Model.Project.ProjectDetails;
+    // var reasonForTransfer = Model.Project.ReasonForTheTransfer;
+    // var advisoryBoardDetails = Model.Project.AdvisoryBoardDetails;
+    // var schoolDetails = Model.Project.SchoolDetails;
+    // var incomingTrustDetails = Model.Project.IncomingTrustDetails;
+    // var outgoingTrustDetails = Model.Project.OutgoingTrustDetails;
 
-    var schoolGiasLink = new LinkSummaryItem()
-            {
-                Label = schoolDetails.Name,
-                Link = string.Format(ExternalSiteConstants.GiasEstablishment, schoolDetails.Urn),
-                LinkText = "View the school's information in GIAS"
-            };
+    // var schoolGiasLink = new LinkSummaryItem()
+    //         {
+    //             Label = schoolDetails.Name,
+    //             Link = string.Format(ExternalSiteConstants.GiasEstablishment, schoolDetails.Urn),
+    //             LinkText = "View the school's information in GIAS"
+    //         };
 
     var schoolSharePointLink = new LinkSummaryItem()
             {
-                Link = schoolDetails.SharePointLink,
+                // Link = schoolDetails.SharePointLink,
                 LinkText = "View the academy SharePoint folder"
             };
 
     var editLink = string.Format(RouteConstants.TransferProjectEditAbout, Model.ProjectId);
 }
 
-<partial name="_ProjectSummary" model="@projectDetails" />
+@* <partial name="_ProjectSummary" model="@projectDetails" /> *@
 
-<govuk-project-tabs project-id="@Model.ProjectId" project-type="@ProjectType.Transfer" />
+<govuk-project-tabs project-id="@Model.ProjectId" project-type="" />
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-one-quarter">
@@ -73,7 +72,7 @@
                         Type
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @projectDetails.ProjectType
+                        @* @projectDetails.ProjectType *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -81,11 +80,11 @@
                         Transfer date
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @projectDetails.Date.ToDateString()
-                        @if (projectDetails.IsDateProvisional == true)
-                        {
-                            <strong class="govuk-tag govuk-tag--grey">provisional</strong>
-                        }
+                        @* @projectDetails.Date.ToDateString() *@
+                        @* @if (projectDetails.IsDateProvisional == true) *@
+                        @* { *@
+                        @*     <strong class="govuk-tag govuk-tag--grey">provisional</strong> *@
+                        @* } *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -93,7 +92,7 @@
                         Local authority
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @projectDetails.LocalAuthority
+                        @* @projectDetails.LocalAuthority *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -101,7 +100,7 @@
                         Diocese
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolDetails.Diocese
+                        @* @schoolDetails.Diocese *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -109,7 +108,7 @@
                         Region
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @projectDetails.Region
+                        @* @projectDetails.Region *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
             </govuk-summary-list>
@@ -125,7 +124,7 @@
                         Is this transfer due to 2RI?
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @reasonForTransfer.IsDueTo2RI
+                        @* @reasonForTransfer.IsDueTo2RI *@
                     </govuk-summary-list-row-value>
                     <govuk-summary-list-row-actions>
                         <govuk-summary-list-row-action href="@editLink" visually-hidden-text="Is this transfer due to 2RI?">Change</govuk-summary-list-row-action>
@@ -136,7 +135,7 @@
                         Is this transfer due to an inadequate Ofsted rating?
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @reasonForTransfer.IsDueToOfstedRating
+                        @* @reasonForTransfer.IsDueToOfstedRating *@
                     </govuk-summary-list-row-value>
                     <govuk-summary-list-row-actions>
                         <govuk-summary-list-row-action href="@editLink" visually-hidden-text="Is this transfer due to an inadequate Ofsted rating?">Change</govuk-summary-list-row-action>
@@ -147,7 +146,7 @@
                         Is this transfer due to financial, safeguarding or governance issues?
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @reasonForTransfer.IsDueToIssues
+                        @* @reasonForTransfer.IsDueToIssues *@
                     </govuk-summary-list-row-value>
                     <govuk-summary-list-row-actions>
                         <govuk-summary-list-row-action href="@editLink" visually-hidden-text="Is this transfer due to financial, safeguarding or governance issues?">Change</govuk-summary-list-row-action>
@@ -165,7 +164,7 @@
                         Date of advisory board
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @advisoryBoardDetails.Date
+                        @* @advisoryBoardDetails.Date *@
                     </govuk-summary-list-row-value>
                     <govuk-summary-list-row-actions>
                         <govuk-summary-list-row-action href="@editLink" visually-hidden-text="Date of advisory board">Change</govuk-summary-list-row-action>
@@ -176,7 +175,7 @@
                         Conditions from advisory board
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @advisoryBoardDetails.Conditions
+                        @* @advisoryBoardDetails.Conditions *@
                     </govuk-summary-list-row-value>
                     <govuk-summary-list-row-actions>
                         <govuk-summary-list-row-action href="@editLink" visually-hidden-text="Conditions from advisory board">Change</govuk-summary-list-row-action>
@@ -195,7 +194,7 @@
                         Name
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolGiasLink
+                        @* @schoolGiasLink *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -203,7 +202,7 @@
                         Academy URN (unique reference number)
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolDetails.Urn
+                        @* @schoolDetails.Urn *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -211,7 +210,7 @@
                         Type
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolDetails.Type
+                        @* @schoolDetails.Type *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -219,7 +218,7 @@
                         Age range
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolDetails.AgeRange
+                        @* @schoolDetails.AgeRange *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -227,7 +226,7 @@
                         Phase
                     </govuk-summary-list-row-key>
                     <govuk-summary-list-row-value>
-                        @schoolDetails.Phase
+                        @* @schoolDetails.Phase *@
                     </govuk-summary-list-row-value>
                 </govuk-summary-list-row>
                 <govuk-summary-list-row>
@@ -245,8 +244,8 @@
             </govuk-summary-list>
         </div>
 
-        <govuk-trust-details asp-for="@Model.Project.IncomingTrustDetails" id="incomingTrustDetails" label="Incoming trust details" href="@editLink" />
-        <govuk-trust-details asp-for="@Model.Project.OutgoingTrustDetails" id="outgoingTrustDetails" label="Outgoing trust details" href="@editLink" />
+        @* <govuk-trust-details asp-for="@Model.Project.IncomingTrustDetails" id="incomingTrustDetails" label="Incoming trust details" href="@editLink" /> *@
+        @* <govuk-trust-details asp-for="@Model.Project.OutgoingTrustDetails" id="outgoingTrustDetails" label="Outgoing trust details" href="@editLink" /> *@
 
     </div>
 </div>

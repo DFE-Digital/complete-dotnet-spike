@@ -1,34 +1,33 @@
-﻿@using Dfe.Complete.API.Contracts.Project
-@using Dfe.Complete.Constants
+﻿@using Dfe.Complete.Constants
 @using Dfe.Complete.TagHelpers
 @model TrustDetailsViewModel
 @{
-    var trustDetails = Model.TrustDetails;
+  //  var trustDetails = Model.TrustDetails;
 
     var trustGiasLink = new LinkSummaryItem()
             {
-                Label = trustDetails.Name,
-                Link = string.Format(ExternalSiteConstants.GiasTrust, trustDetails.UkPrn),
+          //      Label = trustDetails.Name,
+         //       Link = string.Format(ExternalSiteConstants.GiasTrust, trustDetails.UkPrn),
                 LinkText = "View the trust information in GIAS"
             };
 
     var trustSharePointLink = new LinkSummaryItem()
             {
-                Link = trustDetails.SharePointLink,
+      //          Link = trustDetails.SharePointLink,
                 LinkText = "View the trust SharePoint folder"
             };
 
     LinkSummaryItem trustcompaniesHouse = null;
 
-    if (!string.IsNullOrEmpty(trustDetails.CompaniesHouseNumber))
-    {
-        trustcompaniesHouse = new LinkSummaryItem()
-                {
-                    Label = trustDetails.CompaniesHouseNumber,
-                    Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, trustDetails.CompaniesHouseNumber),
-                    LinkText = "View the Companies House information"
-                };
-    }
+    // if (!string.IsNullOrEmpty(trustDetails.CompaniesHouseNumber))
+    // {
+    //     trustcompaniesHouse = new LinkSummaryItem()
+    //             {
+    //                 Label = trustDetails.CompaniesHouseNumber,
+    //                 Link = string.Format(ExternalSiteConstants.CompaniesHouseByCompany, trustDetails.CompaniesHouseNumber),
+    //                 LinkText = "View the Companies House information"
+    //             };
+    // }
 }
 
 <div id="@Model.Id" class="project-information-block">
@@ -42,7 +41,7 @@
                 @trustGiasLink
             </govuk-summary-list-row-value>
         </govuk-summary-list-row>
-        <govuk-summary-list-row>
+      @*   <govuk-summary-list-row>
             <govuk-summary-list-row-key>
                 UKPRN (UK provider reference number)
             </govuk-summary-list-row-key>
@@ -60,7 +59,7 @@
             <govuk-summary-list-row-value>
                 @trustDetails.GroupId
             </govuk-summary-list-row-value>
-        </govuk-summary-list-row>
+        </govuk-summary-list-row> *@
         <govuk-summary-list-row>
             <govuk-summary-list-row-key>
                 Companies house number
@@ -69,14 +68,14 @@
                 @trustcompaniesHouse
             </govuk-summary-list-row-value>
         </govuk-summary-list-row>
-        <govuk-summary-list-row>
+@*         <govuk-summary-list-row>
             <govuk-summary-list-row-key>
                 Address
             </govuk-summary-list-row-key>
             <govuk-summary-list-row-value>
                 @trustDetails.Address
             </govuk-summary-list-row-value>
-        </govuk-summary-list-row>
+        </govuk-summary-list-row> *@
         <govuk-summary-list-row>
             <govuk-summary-list-row-key>
                 SharePoint folder
