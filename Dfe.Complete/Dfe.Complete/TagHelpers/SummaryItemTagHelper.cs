@@ -1,5 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Project;
-using Dfe.Complete.Constants;
+﻿using Dfe.Complete.Constants;
 using Dfe.Complete.Extensions;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -119,10 +118,10 @@ namespace Dfe.Complete.TagHelpers
                 return ((decimal)model).ToString("C", new CultureInfo("en-GB"));
             }
 
-            if (type == typeof(Address))
-            {
-                return BuildAddress((Address)model);
-            }
+            //if (type == typeof(Address))
+            //{
+            //    return BuildAddress((Address)model);
+            //}
 
             if (type == typeof(LinkSummaryItem))
             {
@@ -151,17 +150,17 @@ namespace Dfe.Complete.TagHelpers
             return result;
         }
 
-        private static string BuildAddress(Address address)
-        {
-            var addressLines = address.ToArray();
+        //private static string BuildAddress(Address address)
+        //{
+        //    var addressLines = address.ToArray();
 
-            if (addressLines.Length == 0)
-            {
-                return HtmlTagConstants.Empty;
-            }
+        //    if (addressLines.Length == 0)
+        //    {
+        //        return HtmlTagConstants.Empty;
+        //    }
 
-            return string.Join("<br />", address.ToArray());
-        }
+        //    return string.Join("<br />", address.ToArray());
+        //}
 
         private static string BuildLinkSummaryItem(LinkSummaryItem linkSummaryItem)
         {
