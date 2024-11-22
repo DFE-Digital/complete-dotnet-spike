@@ -171,9 +171,9 @@ public class Startup
 
     private void RegisterClients(IServiceCollection services)
     {
+        //TODO: AcademiesOptions is from Api proj, need to move or remove
         services.AddHttpClient("AcademiesClient", (_, client) =>
         {
-            //TODO: do we need to move this to another proj?
             AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
             client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
             client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
