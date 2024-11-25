@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using Dfe.Complete.Extensions;
 using Dfe.Complete.Client.Contracts;
+using Dfe.Complete.Extensions;
 
 namespace Dfe.Complete.Pages.Projects.Conversion
 {

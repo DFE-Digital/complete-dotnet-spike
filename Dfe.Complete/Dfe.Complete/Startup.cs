@@ -1,7 +1,5 @@
 using Azure.Storage.Blobs;
 using Dfe.Complete.Authorization;
-using Dfe.Complete.Client;
-using Dfe.Complete.Client.Contracts;
 using Dfe.Complete.Configuration;
 using Dfe.Complete.Security;
 using Dfe.Complete.Services;
@@ -23,6 +21,8 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
 using Dfe.Complete.Api.Client.Extensions;
+using Dfe.Complete.Client;
+using Dfe.Complete.Client.Contracts;
 
 //TODO: remove this
 // using Dfe.Complete.API.Configuration;
