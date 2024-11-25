@@ -1,5 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Project.Tasks;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
@@ -36,7 +35,7 @@ namespace Dfe.Complete.TagHelpers
 
             var model = new TaskSummaryItemViewModel()
             {
-                TaskSummary = For.Model as TaskSummaryResponse,
+            //    TaskSummary = For.Model as TaskSummaryResponse,
                 Href = Href,
                 Label = Label
             };
@@ -50,7 +49,7 @@ namespace Dfe.Complete.TagHelpers
 
     public record TaskSummaryItemViewModel
     {
-        public TaskSummaryResponse TaskSummary { get; set; }
+   //     public TaskSummaryResponse TaskSummary { get; set; }
 
         public string Href { get; set; }
 

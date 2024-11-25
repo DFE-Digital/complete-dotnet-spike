@@ -1,8 +1,6 @@
-using Dfe.Complete.API.Contracts.Project.Transfer;
 using Dfe.Complete.Constants;
 using Dfe.Complete.Models;
 using Dfe.Complete.Services;
-using Dfe.Complete.Services.Project.Transfer;
 using Dfe.Complete.Validators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -75,35 +73,6 @@ namespace Dfe.Complete.Pages.Projects.Transfer
 
         private readonly ErrorService _errorService;
 
-        private IGetTransferProjectService _getTransferProjectService;
-        private IUpdateTransferProjectService _updateTransferProjectService;
-
-        public EditAboutTransferProjectModel(
-            IGetTransferProjectService getTransferProjectService, 
-            IUpdateTransferProjectService updateTransferProjectService,
-            ErrorService errorService)
-        {
-            _getTransferProjectService = getTransferProjectService;
-            _updateTransferProjectService = updateTransferProjectService;
-            _errorService = errorService;
-        }
-
-        public async Task OnGet()
-        {
-            var project = await _getTransferProjectService.Execute(ProjectId);
-
-            OutgoingTrustUkprn = project.OutgoingTrustDetails.UkPrn;
-            OutgoingTrustSharePointFolder = project.OutgoingTrustDetails.SharePointLink;
-            IncomingTrustUkprn = project.IncomingTrustDetails.UkPrn;
-            IncomingTrustSharePointFolder = project.IncomingTrustDetails.SharePointLink;
-            DateOfAdvisoryBoard = project.AdvisoryBoardDetails.Date;
-            AdvisoryBoardConditions = project.AdvisoryBoardDetails.Conditions;
-            SchoolSharePointFolder = project.SchoolDetails.SharePointLink;
-            IsDueTo2RI = project.ReasonForTheTransfer.IsDueTo2RI;
-            IsDueToOfstedRating = project.ReasonForTheTransfer.IsDueToOfstedRating;
-            IsDueToIssues = project.ReasonForTheTransfer.IsDueToIssues;
-        }
-
         public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
@@ -111,35 +80,7 @@ namespace Dfe.Complete.Pages.Projects.Transfer
                 _errorService.AddErrors(ModelState.Keys, ModelState);
                 return Page();
             }
-
-            var request = new UpdateTransferProjectRequest()
-            {
-                AdvisoryBoardDetails = new()
-                {
-                    Date = DateOfAdvisoryBoard,
-                    Conditions = AdvisoryBoardConditions
-                },
-                IncomingTrustDetails = new()
-                {
-                    Ukprn = IncomingTrustUkprn,
-                    SharePointLink = IncomingTrustSharePointFolder
-                },
-                OutgoingTrustDetails = new()
-                {
-                    Ukprn = OutgoingTrustUkprn,
-                    SharePointLink = OutgoingTrustSharePointFolder
-                },
-                ReasonForTheTransfer = new()
-                {
-                    IsDueTo2RI = IsDueTo2RI,
-                    IsDueToOfstedRating = IsDueToOfstedRating,
-                    IsDueToIssues = IsDueToIssues
-                },
-                SchoolSharePointLink = SchoolSharePointFolder
-            };
-
-            await _updateTransferProjectService.Execute(ProjectId, request);
-
+            
             return Redirect(string.Format(RouteConstants.TransferProjectAbout, ProjectId));
         }
     }

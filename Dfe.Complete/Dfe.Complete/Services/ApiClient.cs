@@ -1,5 +1,4 @@
-﻿using Dfe.Complete.API.Contracts.Http;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
@@ -165,8 +164,9 @@ namespace Dfe.Complete.Services
         private HttpClient CreateHttpClient()
         {
             var client = _clientFactory.CreateClient(_httpClientName);
-
-            client.DefaultRequestHeaders.Add(HttpHeaderConstants.UserContextName, _httpContextAccessor.HttpContext.User?.Identity?.Name);
+            
+            //TODO: we still using this class?
+            // client.DefaultRequestHeaders.Add(HttpHeaderConstants.UserContextName, _httpContextAccessor.HttpContext.User?.Identity?.Name);
 
             return client;
         }

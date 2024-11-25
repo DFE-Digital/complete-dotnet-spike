@@ -1,5 +1,4 @@
 ﻿@page "/conversion-projects/{projectId}/tasks"
-@using Dfe.Complete.API.Contracts.Project
 @using Dfe.Complete.Constants
 @model Dfe.Complete.Pages.Projects.Conversion.Tasks.ConversionTaskListModel
 @{
@@ -12,9 +11,9 @@
     var supplementalFundingAgreementLink = string.Format(RouteConstants.ConversionSupplementalFundingAgreementTask, Model.ProjectId);
 }
 
-<partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails />
+@* <partial name="_ProjectSummary" model=@Model.Tasks.ProjectDetails /> *@
 
-<govuk-project-tabs project-id="@Model.ProjectId" project-type="@ProjectType.Conversion" />
+<govuk-project-tabs project-id="@Model.ProjectId" project-type="" />
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-full-width">

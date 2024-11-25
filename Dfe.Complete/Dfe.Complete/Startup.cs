@@ -1,7 +1,4 @@
 using Azure.Storage.Blobs;
-using Dfe.Complete.API.Configuration;
-using Dfe.Complete.API.Extensions;
-using Dfe.Complete.API.StartupConfiguration;
 using Dfe.Complete.Authorization;
 using Dfe.Complete.Client;
 using Dfe.Complete.Client.Contracts;
@@ -17,7 +14,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +23,9 @@ using Microsoft.Identity.Web.UI;
 using System;
 using System.Security.Claims;
 using Dfe.Complete.Api.Client.Extensions;
+
+//TODO: remove this
+// using Dfe.Complete.API.Configuration;
 
 namespace Dfe.Complete;
 
@@ -102,16 +101,12 @@ public class Startup
 
         services.AddGovUkFrontend();
 
-        // API
-        services.AddCompleteApiProject(Configuration);
-
+        // New API client
         services.AddCompleteApiClient<ICreateProjectClient, CreateProjectClient>(Configuration);
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.UseCompleteSwagger(provider);
-
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -144,14 +139,11 @@ public class Startup
         app.UseSession();
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseApiMiddleware();
-
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapRazorPages();
-            endpoints.MapControllerRoute("default", "{controller}/{action}/");
-            endpoints.MapControllers();
+            // endpoints.MapControllerRoute("default", "{controller}/{action}/");
+            // endpoints.MapControllers();
         });
     }
 
@@ -175,12 +167,13 @@ public class Startup
 
     private void RegisterClients(IServiceCollection services)
     {
-        services.AddHttpClient("AcademiesClient", (_, client) =>
-        {
-            AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
-            client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
-            client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
-        });
+        //TODO: AcademiesOptions is from Api proj, need to move or remove
+        // services.AddHttpClient("AcademiesClient", (_, client) =>
+        // {
+        //     AcademiesOptions academiesOptions = GetTypedConfigurationFor<AcademiesOptions>();
+        //     client.BaseAddress = new Uri(academiesOptions.ApiEndpoint);
+        //     client.DefaultRequestHeaders.Add("ApiKey", academiesOptions.ApiKey);
+        // });
 
         services.AddHttpClient("CompleteClient", (_, client) =>
         {

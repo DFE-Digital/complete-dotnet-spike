@@ -1,6 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Reflection.Emit;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace Dfe.Complete.TagHelpers
 {
